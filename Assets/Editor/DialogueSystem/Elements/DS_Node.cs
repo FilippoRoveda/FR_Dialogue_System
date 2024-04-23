@@ -15,7 +15,7 @@ namespace DialogueSystem.Eelements
         public DS_DialogueType DialogueType { get; set; }
 
 
-        public void Initialize(Vector2 spawnPosition)
+        public virtual void Initialize(Vector2 spawnPosition)
         {
             DialogueName = "Dialogue Name";
             Choiches = new List<string>();
@@ -23,7 +23,7 @@ namespace DialogueSystem.Eelements
             SetPosition(new Rect(spawnPosition, Vector2.zero));
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             //Dialogue name text field 
             TextField dialogueNameField = new TextField()
@@ -51,8 +51,6 @@ namespace DialogueSystem.Eelements
             dialogueTextFoldout.Add(dialogueTextTextField);
             customDataContainer.Add(dialogueTextFoldout);
             extensionContainer.Add(customDataContainer);
-
-            RefreshExpandedState();
         }
     }
 }

@@ -1,4 +1,6 @@
 using DialogueSystem.Eelements;
+using DialogueSystem.Enumerations;
+using System;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -15,9 +17,10 @@ namespace DialogueSystem.Windows
             AddManipulators();
         }
 
-        private DS_Node CreateNode(Vector2 spawnPosition)
+        private DS_Node CreateNode(Vector2 spawnPosition, DS_DialogueType dialogueType)
         {
-            DS_Node node = new DS_Node();
+            Type nodeType = Type.GetType($"DialogueSystem.Eelements.DS_{dialogueType.ToString()}Node");
+            DS_Node node = (DS_Node) Activator.CreateInstance(nodeType);
             node.Initialize(spawnPosition);
             node.Draw();
             return node;
@@ -30,13 +33,15 @@ namespace DialogueSystem.Windows
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
-            this.AddManipulator(CreateNodeContextualMenu());
+            
+            this.AddManipulator(CreateNodeContextualMenu("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
+            this.AddManipulator(CreateNodeContextualMenu("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));
         }
 
-        private IManipulator CreateNodeContextualMenu()
+        private IManipulator CreateNodeContextualMenu(string actionTitle, DS_DialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction("Add Node", actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition)))
+                menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition, dialogueType)))
                 );
             return contextualMenuManipulator;
         }
