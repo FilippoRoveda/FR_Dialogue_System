@@ -1,6 +1,7 @@
 using DialogueSystem.Eelements;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace DialogueSystem.Windows
@@ -12,21 +13,32 @@ namespace DialogueSystem.Windows
             AddGridBackground();
             AddStyle();
             AddManipulators();
-            AddNode();
         }
 
-        private void AddNode()
+        private DS_Node CreateNode(Vector2 spawnPosition)
         {
             DS_Node node = new DS_Node();
-            node.Initialize();
+            node.Initialize(spawnPosition);
             node.Draw();
-            AddElement(node);
+            return node;
         }
 
         private void AddManipulators()
         {
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
+            
             this.AddManipulator(new ContentDragger());
+            this.AddManipulator(new SelectionDragger());
+            this.AddManipulator(new RectangleSelector());
+            this.AddManipulator(CreateNodeContextualMenu());
+        }
+
+        private IManipulator CreateNodeContextualMenu()
+        {
+            ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
+                menuEvent => menuEvent.menu.AppendAction("Add Node", actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition)))
+                );
+            return contextualMenuManipulator;
         }
 
         /// <summary>

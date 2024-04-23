@@ -15,11 +15,12 @@ namespace DialogueSystem.Eelements
         public DS_DialogueType DialogueType { get; set; }
 
 
-        public void Initialize()
+        public void Initialize(Vector2 spawnPosition)
         {
             DialogueName = "Dialogue Name";
             Choiches = new List<string>();
             Text = "Dialogue Text";
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
         }
 
         public void Draw()
