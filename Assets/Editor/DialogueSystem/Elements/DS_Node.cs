@@ -21,6 +21,9 @@ namespace DialogueSystem.Eelements
             Choiches = new List<string>();
             Text = "Dialogue Text";
             SetPosition(new Rect(spawnPosition, Vector2.zero));
+
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-node_main-container");
         }
 
         public virtual void Draw()
@@ -30,6 +33,11 @@ namespace DialogueSystem.Eelements
             {
                 value = "DialogueName"
             };
+
+            dialogueNameField.AddToClassList("ds-node-textfield");
+            dialogueNameField.AddToClassList("ds-node-filename-textfield");
+            dialogueNameField.AddToClassList("ds-node-textfield_hidden");
+
             titleContainer.Insert(0, dialogueNameField);
 
             //Input port element
@@ -38,6 +46,8 @@ namespace DialogueSystem.Eelements
             inputContainer.Add(inputPort);
             
             VisualElement customDataContainer = new VisualElement();
+            customDataContainer.AddToClassList("ds-node-custom-data-container");
+
 
             //Dialogue text foldout and text field
             Foldout dialogueTextFoldout = new Foldout()
@@ -48,6 +58,10 @@ namespace DialogueSystem.Eelements
             {
                 value = "Dialogue text..."
             };
+
+            dialogueTextTextField.AddToClassList("ds-node-textfield");
+            dialogueTextTextField.AddToClassList("ds-node-quote-textfield");
+
             dialogueTextFoldout.Add(dialogueTextTextField);
             customDataContainer.Add(dialogueTextFoldout);
             extensionContainer.Add(customDataContainer);

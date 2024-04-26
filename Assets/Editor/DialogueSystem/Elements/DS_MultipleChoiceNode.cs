@@ -23,6 +23,9 @@ namespace DialogueSystem.Eelements
             {
                 text = "Add Choice"
             };
+
+            addChoiceButton.AddToClassList("ds-node-button");
+
             mainContainer.Insert(1, addChoiceButton);
             foreach (string choice in Choiches)
             {
@@ -33,10 +36,17 @@ namespace DialogueSystem.Eelements
                 {
                     text = "X"
                 };
+
+                deleteChoiceButton.AddToClassList("ds-node-button");
+
                 TextField choiceTextField = new TextField()
                 {
                     value = choice
                 };
+                choiceTextField.AddToClassList("ds-node-textfield");
+                choiceTextField.AddToClassList("ds-node-choice-textfield");
+                choiceTextField.AddToClassList("ds-node-textfield_hidden");
+
                 choiceTextField.style.flexDirection = FlexDirection.Column;
                 choicePort.Add(choiceTextField);
                 choicePort.Add(deleteChoiceButton);

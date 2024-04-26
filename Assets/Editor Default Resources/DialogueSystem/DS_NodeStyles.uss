@@ -1,0 +1,115 @@
+/* CONTAINERS */
+.ds-node_extension-container
+{
+	background-color: #1D1D1E;
+	padding: 2px;
+}
+.ds-node_main-container:
+{
+	background-color: #1D1D1E;
+}
+.ds-node-custom-data-container
+{
+	background-color: #212325;
+	border-radius: 4px;
+	padding: 8px;
+}
+
+/*INPUTS*/
+.ds-node-textfield > .unity-text-field_input
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+	border-radius: 4px;
+	max-width: 240px;
+	max-height: 160px;
+	padding: 8px;
+}
+.ds-node-textfield_hidden > .unity-text-field_input
+{
+	background-color: transparent;
+	border-color: transparent;
+}
+.ds-node-textfield_hidden > .unity-text-field_input:focus
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+}
+.ds-node-filename-textfield > .unity-text-field_input
+{
+	max-width: 1000px;
+}
+.ds-node-filename-textfield > .unity-text-field_input:focus
+{
+	margin: 4px;
+	padding: 4px;
+}
+.ds-node-choice-textfield > .unity-text-field_input
+{
+	font-size: 11px;
+	height: 35px;
+	max-width: 1000px;
+	min-width: 0px;
+}
+.ds-node-choice-textfield > .unity-text-field_input:focus
+{
+	height: 45px;
+	margin: 4px;
+	padding: 4px;
+}
+.ds-node-quote-textfield > .unity-text-field_input
+{
+	background-color: #232527;
+	border-color: transparent;
+	border-left-color: #27292C;
+	border-width: 4px;
+	padding: 16px;
+	max-width: 600px;
+}
+.ds-node-quote-textfield > .unity-text-field_input:hover
+{
+	background-color: #252729;
+}
+.ds-node-quote-textfield > .unity-text-field_input:focus
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+}
+
+/*BUTTONS*/
+.ds-node-button
+{
+	background-color: #252729;
+	border-color: #1D1D1E;
+	margin: 4px;
+	max-height: 25px;
+}
+.ds-node-button:hover
+{
+	background-color: #2B2D2F;
+}
+.ds-node-button:active
+{
+	background-color: #212325;
+	color: #FDD057
+}
+/*ELEMENTS*/
+TextField
+{
+	margin-left: 0px;
+}
+.ds-node-custom-data-container > Foldout
+{
+	margin-left: -4px;
+	margin-top: 4px;
+}
+.ds-node-custom-data-container > Foldout > TextField
+{
+	margin-left: -12px;
+	margin-top: 8px;
+}
+/*BUILT IN*/
+.unity-toggle-text
+{
+	margin-left: 2px;
+}

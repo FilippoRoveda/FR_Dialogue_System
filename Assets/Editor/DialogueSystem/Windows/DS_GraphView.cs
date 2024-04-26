@@ -34,11 +34,11 @@ namespace DialogueSystem.Windows
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
             
-            this.AddManipulator(CreateNodeContextualMenu("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
-            this.AddManipulator(CreateNodeContextualMenu("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));
         }
 
-        private IManipulator CreateNodeContextualMenu(string actionTitle, DS_DialogueType dialogueType)
+        private IManipulator CreateNode_CtxMenu_Option(string actionTitle, DS_DialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
                 menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition, dialogueType)))
@@ -61,8 +61,10 @@ namespace DialogueSystem.Windows
         /// </summary>
         private void AddStyle()
         {
-            StyleSheet style = (StyleSheet) EditorGUIUtility.Load("DialogueSystem/DS_GridBackground.uss");
-            styleSheets.Add(style);
+            StyleSheet gridStyle = (StyleSheet) EditorGUIUtility.Load("DialogueSystem/DS_GridBackground.uss");
+            StyleSheet nodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DS_NodeStyles.uss");
+            styleSheets.Add(gridStyle);
+            styleSheets.Add(nodeStyle);
         }
     }
 }
