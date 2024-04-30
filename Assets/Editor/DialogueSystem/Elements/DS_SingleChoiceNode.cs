@@ -7,16 +7,17 @@ namespace DialogueSystem.Eelements
 
     public class DS_SingleChoiceNode : DS_Node
     {
-        public override void Draw()
-        {
-            base.Draw();
-            DialogueType = DS_DialogueType.SingleChoice;
-            Choiches.Add("Next Choice");
-        }
-
         public override void Initialize(Vector2 spawnPosition)
         {
             base.Initialize(spawnPosition);
+
+            DialogueType = DS_DialogueType.SingleChoice;
+            Choiches.Add("Next Choice");
+            
+        }
+        public override void Draw()
+        {
+            base.Draw();
             foreach (string choice in Choiches)
             {
                 Port choicePort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
@@ -26,5 +27,7 @@ namespace DialogueSystem.Eelements
 
             RefreshExpandedState();
         }
+
+
     }
 }
