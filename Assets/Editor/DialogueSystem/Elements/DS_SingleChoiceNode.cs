@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace DialogueSystem.Eelements
 {
+    using DS.Utilities;
     using Enumerations;
     using UnityEditor.Experimental.GraphView;
 
@@ -12,14 +13,15 @@ namespace DialogueSystem.Eelements
             base.Initialize(spawnPosition);
 
             DialogueType = DS_DialogueType.SingleChoice;
-            Choiches.Add("Next Choice");
+            Choices.Add("Next Choice");
             
         }
         public override void Draw()
         {
             base.Draw();
-            foreach (string choice in Choiches)
+            foreach (string choice in Choices)
             {
+                //Input port element
                 Port choicePort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
                 choicePort.portName = choice;
                 outputContainer.Add(choicePort);

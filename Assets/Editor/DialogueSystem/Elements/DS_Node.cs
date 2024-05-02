@@ -1,4 +1,5 @@
 using DialogueSystem.Enumerations;
+using DS.Utilities;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace DialogueSystem.Eelements
     {
         [field: SerializeField]
         public string DialogueName { get; set; }
-        public List<string> Choiches { get; set; }
+        public List<string> Choices { get; set; }
         public string Text { get; set; }
         public DS_DialogueType DialogueType { get; set; }
 
@@ -18,7 +19,7 @@ namespace DialogueSystem.Eelements
         public virtual void Initialize(Vector2 spawnPosition)
         {
             DialogueName = "Dialogue Name";
-            Choiches = new List<string>();
+            Choices = new List<string>();
             Text = "Dialogue Text";
             SetPosition(new Rect(spawnPosition, Vector2.zero));
 
@@ -29,10 +30,7 @@ namespace DialogueSystem.Eelements
         public virtual void Draw()
         {
             //Dialogue name text field 
-            TextField dialogueNameField = new TextField()
-            {
-                value = "DialogueName"
-            };
+            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName");
 
             dialogueNameField.AddToClassList("ds-node-textfield");
             dialogueNameField.AddToClassList("ds-node-filename-textfield");
@@ -41,23 +39,17 @@ namespace DialogueSystem.Eelements
             titleContainer.Insert(0, dialogueNameField);
 
             //Input port element
-            Port inputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(bool));
-            inputPort.portName = "DialogueConnection";
-            inputContainer.Add(inputPort);
-            
+            Port choicePort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+            choicePort.portName = "DialogueConnection";
+            inputContainer.Add(choicePort);
+
             VisualElement customDataContainer = new VisualElement();
             customDataContainer.AddToClassList("ds-node-custom-data-container");
 
 
             //Dialogue text foldout and text field
-            Foldout dialogueTextFoldout = new Foldout()
-            {
-                text = "DialogueText"
-            };
-            TextField dialogueTextTextField = new TextField()
-            {
-                value = "Dialogue text..."
-            };
+            Foldout dialogueTextFoldout = DS_ElementsUtilities.CreateFoldout("DialogueText");
+            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea("Dialogue text...");
 
             dialogueTextTextField.AddToClassList("ds-node-textfield");
             dialogueTextTextField.AddToClassList("ds-node-quote-textfield");
