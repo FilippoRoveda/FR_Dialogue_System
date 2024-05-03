@@ -11,9 +11,15 @@ namespace DialogueSystem.Windows
     using Utilities;
     public class DS_GraphView : GraphView
     {
-        public DS_GraphView()
+        private DS_EditorWindow editorWindow;
+        private DS_SearchWindow searchWindow;
+
+        public DS_GraphView(DS_EditorWindow editorWindow)
         {
+            this.editorWindow = editorWindow;
+            AddSearchWindow();
             AddGridBackground();
+
             AddStyles();
             AddManipulators();
         }
@@ -50,30 +56,30 @@ namespace DialogueSystem.Windows
         private IManipulator CreateGroup_CtxMenu_Option()
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent => AddElement(CreateGroup("New node group", actionEvent.eventInfo.localMousePosition)))
+                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent => AddElement(CreateGroup("New node group", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition))))
                 );
             return contextualMenuManipulator;
         }
         private IManipulator CreateNode_CtxMenu_Option(string actionTitle, DS_DialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition, dialogueType)))
+                menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(GetLocalMousePosition(actionEvent.eventInfo.localMousePosition), dialogueType)))
                 );
             return contextualMenuManipulator;
         }
         #endregion
 
         #region Create Elements
-        private DS_Node CreateNode(Vector2 spawnPosition, DS_DialogueType dialogueType)
+        public DS_Node CreateNode(Vector2 spawnPosition, DS_DialogueType dialogueType)
         {
-            Type nodeType = Type.GetType($"DialogueSystem.Eelements.DS_{dialogueType.ToString()}Node");
+            Type nodeType = Type.GetType($"DialogueSystem.Eelements.DS_{dialogueType}Node");
             DS_Node node = (DS_Node) Activator.CreateInstance(nodeType);
             node.Initialize(spawnPosition);
             node.Draw();
             return node;
         }
 
-        private Group CreateGroup(string groupName, Vector2 localMousePosition)
+        public Group CreateGroup(string groupName, Vector2 localMousePosition)
         {
             Group group = new Group()
             {
@@ -95,6 +101,17 @@ namespace DialogueSystem.Windows
             Insert(0, gridBackground);
         }
 
+
+        private void AddSearchWindow()
+        {
+            if(searchWindow == null)
+            {
+                searchWindow = ScriptableObject.CreateInstance<DS_SearchWindow>();
+                searchWindow.Initialize(this);
+            }
+            nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
+        }
+
         /// <summary>
         /// Load style sheet from resources and add that to the graph view visual elemente.
         /// </summary>
@@ -105,6 +122,21 @@ namespace DialogueSystem.Windows
                                 "DS_NodeStyles.uss");
         }
 
-        
+
+        #region Utilities
+        public Vector2 GetLocalMousePosition(Vector2 mousePosition, bool isSearchWindow = false)
+        {
+           Vector2 worldMousePosition = mousePosition;
+
+           if(isSearchWindow) 
+           {
+                worldMousePosition -= editorWindow.position.position; 
+           }
+
+           Vector2 localMousePosition = contentViewContainer.WorldToLocal(worldMousePosition);
+           return localMousePosition;
+        }
+        #endregion
+
     }
 }

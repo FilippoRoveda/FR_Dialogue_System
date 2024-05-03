@@ -23,7 +23,7 @@ namespace DialogueSystem.Windows
 
         private void AddGraphView()
         {
-            DS_GraphView graph_View = new DS_GraphView();
+            DS_GraphView graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
         }
