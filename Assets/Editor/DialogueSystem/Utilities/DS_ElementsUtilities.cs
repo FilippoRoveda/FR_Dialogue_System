@@ -1,10 +1,11 @@
-using DialogueSystem.Eelements;
 using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace DS.Utilities
+namespace DialogueSystem.Utilities
 {
+    using Eelements;
+
     public static class DS_ElementsUtilities
     {
         /// <summary>
@@ -78,12 +79,12 @@ namespace DS.Utilities
         /// <param name="direction">Direction of the port.</param>
         /// <param name="capacity">Connection capacity of the port.</param>
         /// <returns>The generated port.</returns>
-        public static Port CreatePort( DS_Node node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
+        public static Port CreatePort( this DS_Node node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
-            port.Q<Label>("text").visible = false;
-            port.name = portName;
-            node.inputContainer.Add(port);
+            //Label label = node.Q<Label>("type");
+            //label.SetEnabled(false);
+            //port.name = portName;
             return port;
         }
     }

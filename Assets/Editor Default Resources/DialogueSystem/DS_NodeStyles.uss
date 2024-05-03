@@ -93,6 +93,20 @@
 	background-color: #212325;
 	color: #FDD057
 }
+
+/*PORTS*/
+/* .ds-node-port
+{
+	font-size: 12px;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+	flex-direction: row;
+	color: #D2D2D2;
+	align-items: center;
+} */
+
+
 /*ELEMENTS*/
 TextField
 {

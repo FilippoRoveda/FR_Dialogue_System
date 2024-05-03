@@ -2,19 +2,19 @@ using DialogueSystem.Eelements;
 using DialogueSystem.Enumerations;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace DialogueSystem.Windows
 {
+    using Utilities;
     public class DS_GraphView : GraphView
     {
         public DS_GraphView()
         {
             AddGridBackground();
-            AddStyle();
+            AddStyles();
             AddManipulators();
         }
 
@@ -98,12 +98,11 @@ namespace DialogueSystem.Windows
         /// <summary>
         /// Load style sheet from resources and add that to the graph view visual elemente.
         /// </summary>
-        private void AddStyle()
+        private void AddStyles()
         {
-            StyleSheet gridStyle = (StyleSheet) EditorGUIUtility.Load("DialogueSystem/DS_GridBackground.uss");
-            StyleSheet nodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DS_NodeStyles.uss");
-            styleSheets.Add(gridStyle);
-            styleSheets.Add(nodeStyle);
+
+            this.AddStyleSheet( "DS_GridBackground.uss",
+                                "DS_NodeStyles.uss");
         }
 
         

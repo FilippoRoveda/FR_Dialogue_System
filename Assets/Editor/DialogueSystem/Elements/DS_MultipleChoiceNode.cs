@@ -1,11 +1,11 @@
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace DialogueSystem.Eelements
 {
-    using DS.Utilities;
+    using Utilities;
     using Enumerations;
-    using UnityEditor.Experimental.GraphView;
-    using UnityEngine.UIElements;
 
     public class DS_MultipleChoiceNode : DS_Node
     {
@@ -20,6 +20,7 @@ namespace DialogueSystem.Eelements
             base.Draw();
             Button addChoiceButton = DS_ElementsUtilities.CreateButton("Add Choice", () =>
             {
+                //Here i can add a int to detect the progress of adding new choices
                 Port choicePort = CreateChoicePort("New choice");
                 Choices.Add("New choice");
                 outputContainer.Add(choicePort);
@@ -40,7 +41,8 @@ namespace DialogueSystem.Eelements
 
         private Port CreateChoicePort(string choice)
         {
-            Port choicePort = DS_ElementsUtilities.CreatePort(this);
+            Port choicePort = this.CreatePort(choice, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
+            choicePort.portName = "";           
 
             Button deleteChoiceButton = DS_ElementsUtilities.CreateButton("X");
 
@@ -48,13 +50,14 @@ namespace DialogueSystem.Eelements
 
             TextField choiceTextField = DS_ElementsUtilities.CreateTextField(choice);
 
-            choiceTextField.AddToClassList("ds-node-textfield");
-            choiceTextField.AddToClassList("ds-node-choice-textfield");
-            choiceTextField.AddToClassList("ds-node-textfield_hidden");
+            choiceTextField.AddToClassLists("ds-node-textfield", "ds-node-choice-textfield", "ds-node-textfield_hidden");
+            //choiceTextField.AddToClassList("ds-node-textfield");
+            //choiceTextField.AddToClassList("ds-node-choice-textfield");
+            //choiceTextField.AddToClassList("ds-node-textfield_hidden");
 
             choiceTextField.style.flexDirection = FlexDirection.Column;
 
-            choicePort.Insert(0, deleteChoiceButton);
+            choicePort.Add(deleteChoiceButton);
             choicePort.Insert(1, choiceTextField);
 
 

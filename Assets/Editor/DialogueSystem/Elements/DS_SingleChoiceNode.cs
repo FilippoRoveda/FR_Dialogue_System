@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
+
 
 namespace DialogueSystem.Eelements
 {
-    using DS.Utilities;
+    using Utilities;
     using Enumerations;
-    using UnityEditor.Experimental.GraphView;
+
 
     public class DS_SingleChoiceNode : DS_Node
     {
@@ -22,7 +24,7 @@ namespace DialogueSystem.Eelements
             foreach (string choice in Choices)
             {
                 //Input port element
-                Port choicePort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                Port choicePort = this.CreatePort(choice, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
                 choicePort.portName = choice;
                 outputContainer.Add(choicePort);
             }

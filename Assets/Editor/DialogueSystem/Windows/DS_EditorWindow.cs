@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 
 namespace DialogueSystem.Windows
 {
+    using Utilities;
+
     public class DS_EditorWindow : EditorWindow
     {
         [MenuItem("DialogueSystem/Editor_Window")]
@@ -16,7 +18,7 @@ namespace DialogueSystem.Windows
         private void CreateGUI()
         {
             AddGraphView();
-            AddStyle();
+            AddStyles();
         }
 
         private void AddGraphView()
@@ -29,10 +31,9 @@ namespace DialogueSystem.Windows
         /// <summary>
         /// Load style sheet from resources and add that to the visual element.
         /// </summary>
-        private void AddStyle()
+        private void AddStyles()
         {
-            StyleSheet variablesTable = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DS_Variables.uss");
-            rootVisualElement.styleSheets.Add(variablesTable);
+            rootVisualElement.AddStyleSheet("DS_Variables.uss");
         }
     }
 }
