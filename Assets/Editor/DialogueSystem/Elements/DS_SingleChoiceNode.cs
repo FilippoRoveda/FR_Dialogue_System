@@ -6,13 +6,14 @@ namespace DialogueSystem.Eelements
 {
     using Utilities;
     using Enumerations;
+    using Windows;
 
 
     public class DS_SingleChoiceNode : DS_Node
     {
-        public override void Initialize(Vector2 spawnPosition)
+        public override void Initialize(DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(spawnPosition);
+            base.Initialize(context, spawnPosition);
 
             DialogueType = DS_DialogueType.SingleChoice;
             Choices.Add("Next Choice");

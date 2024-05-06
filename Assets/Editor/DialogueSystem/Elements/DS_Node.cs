@@ -8,6 +8,8 @@ namespace DialogueSystem.Eelements
 {
     using Utilities;
     using Enumerations;
+    using Windows;
+    using UnityEditor.TestTools.TestRunner.Api;
 
     public class DS_Node : Node
     {
@@ -18,11 +20,18 @@ namespace DialogueSystem.Eelements
         public DS_DialogueType DialogueType { get; set; }
 
 
-        public virtual void Initialize(Vector2 spawnPosition)
+        private DS_GraphView context;
+        private Color defaultColor;
+
+
+        public virtual void Initialize(DS_GraphView context, Vector2 spawnPosition)
         {
             DialogueName = "Dialogue Name";
             Choices = new List<string>();
             Text = "Dialogue Text";
+            defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
+            this.context = context;
+
             SetPosition(new Rect(spawnPosition, Vector2.zero));
 
             extensionContainer.AddToClassList("ds-node_extension-container");
@@ -32,12 +41,9 @@ namespace DialogueSystem.Eelements
         public virtual void Draw()
         {
             //Dialogue name text field 
-            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName");
+            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName", callback => OnDialogueNameChanged(callback.newValue));
 
             dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
-            //dialogueNameField.AddToClassList("ds-node-textfield");
-            //dialogueNameField.AddToClassList("ds-node-filename-textfield");
-            //dialogueNameField.AddToClassList("ds-node-textfield_hidden");
 
             titleContainer.Insert(0, dialogueNameField);
 
@@ -54,12 +60,36 @@ namespace DialogueSystem.Eelements
             TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea("Dialogue text...");
 
             dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
-            //dialogueTextTextField.AddToClassList("ds-node-textfield");
-            //dialogueTextTextField.AddToClassList("ds-node-quote-textfield");
 
             dialogueTextFoldout.Add(dialogueTextTextField);
             customDataContainer.Add(dialogueTextFoldout);
             extensionContainer.Add(customDataContainer);
         }
+
+        #region Callbacks
+
+        /// <summary>
+        /// Callback called when the dialogue name 
+        /// </summary>
+        /// <param name="newDialogueName"></param>
+        private void OnDialogueNameChanged(string newDialogueName)
+        {
+            context.RemoveUngroupedNode(this);
+            this.DialogueName = newDialogueName;
+            context.AddUngroupedNode(this);
+        }
+        #endregion
+
+
+        #region Appearence style
+        public void SetErrorStyle(Color errorColor)
+        {
+            mainContainer.style.backgroundColor = errorColor;
+        }
+        public void ResetStyle()
+        {
+            mainContainer.style.backgroundColor = defaultColor;
+        }
+        #endregion
     }
 }
