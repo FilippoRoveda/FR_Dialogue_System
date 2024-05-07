@@ -1,13 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace DialogueSystem.Windows
+namespace DS.Windows
 {
     using Enumerations;
-    using Eelements;
+    using Elements;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DS_SearchWindow : ScriptableObject, ISearchWindowProvider
     {
         private DS_GraphView graphView;
@@ -46,7 +48,7 @@ namespace DialogueSystem.Windows
 
         public bool OnSelectEntry(SearchTreeEntry SearchTreeEntry, SearchWindowContext context)
         {
-            Vector2 localMousePosition = graphView.GetLocalMousePosition(context.screenMousePosition, true);
+            Vector2 localMousePosition = graphView.WorldToLocalMousePosition(context.screenMousePosition, true);
 
             switch (SearchTreeEntry.userData) 
             {

@@ -2,10 +2,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace DialogueSystem.Windows
+namespace DS.Windows
 {
     using Utilities;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
         [MenuItem("DialogueSystem/Editor_Window")]

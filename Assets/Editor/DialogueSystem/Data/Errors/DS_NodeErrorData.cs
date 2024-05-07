@@ -1,7 +1,7 @@
-using DialogueSystem.Eelements;
+using DS.Elements;
 using System.Collections.Generic;
 
-namespace DialogueSystem.Data.Error
+namespace DS.Data.Error
 {
     [System.Serializable]
     public class DS_NodeErrorData

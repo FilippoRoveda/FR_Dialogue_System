@@ -2,9 +2,9 @@ using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace DialogueSystem.Utilities
+namespace DS.Utilities
 {
-    using Eelements;
+    using Elements;
 
     public static class DS_ElementsUtilities
     {
@@ -82,8 +82,6 @@ namespace DialogueSystem.Utilities
         public static Port CreatePort( this DS_Node node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
-            //Label label = node.Q<Label>("type");
-            //label.SetEnabled(false);
             //port.name = portName;
             return port;
         }

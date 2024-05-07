@@ -2,12 +2,11 @@ using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 
 
-namespace DialogueSystem.Eelements
+namespace DS.Elements
 {
     using Utilities;
     using Enumerations;
     using Windows;
-
 
     public class DS_SingleChoiceNode : DS_Node
     {
@@ -15,7 +14,7 @@ namespace DialogueSystem.Eelements
         {
             base.Initialize(context, spawnPosition);
 
-            DialogueType = DS_DialogueType.SingleChoice;
+            SetDialogueType(DS_DialogueType.SingleChoice);
             Choices.Add("Next Choice");
             
         }
@@ -24,15 +23,11 @@ namespace DialogueSystem.Eelements
             base.Draw();
             foreach (string choice in Choices)
             {
-                //Input port element
                 Port choicePort = this.CreatePort(choice, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
                 choicePort.portName = choice;
                 outputContainer.Add(choicePort);
             }
-
             RefreshExpandedState();
         }
-
-
     }
 }

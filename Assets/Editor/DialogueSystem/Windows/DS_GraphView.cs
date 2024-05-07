@@ -1,12 +1,12 @@
-using DialogueSystem.Eelements;
-using DialogueSystem.Enumerations;
+using DS.Elements;
+using DS.Enumerations;
 using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace DialogueSystem.Windows
+namespace DS.Windows
 {
     using Data.Error;
     using Utilities;
@@ -24,19 +24,21 @@ namespace DialogueSystem.Windows
 
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
+            //Fields initializings
             this.editorWindow = editorWindow;
             ungroupedNodes = new SerializableDictionary<string, DS_NodeErrorData>();
             groupedNodes = new SerializableDictionary<Group, SerializableDictionary<string, DS_NodeErrorData>>();
 
+            //Update callbacks setups
+            UpdateDeleteSelection();
+            UpdateElementsAddedToGroup();
+            UpdateElementRemovedFromGroup();
 
-            SetDeleteSelectionCallback();
-            SetGroupElementAdditionCallback();
-
-            AddSearchWindow();
-            AddGridBackground();
-
-            AddStyles();
-            AddManipulators();
+            //Adding
+            Add_SearchWindow();
+            Add_GridBackground();
+            Add_Styles();
+            Add_Manipulators();
         }
 
         #region Overrides
@@ -54,8 +56,8 @@ namespace DialogueSystem.Windows
         }
         #endregion
 
-        #region Callbacks
-        private void SetDeleteSelectionCallback()
+        #region Callbacks update
+        private void UpdateDeleteSelection()
         {
             deleteSelection = (operationName, askUser) =>
             {
@@ -65,28 +67,53 @@ namespace DialogueSystem.Windows
                 {
                     if (selection[i] is DS_Node node)
                     {
-                        RemoveUngroupedNode(node);
+                        if (node.Group != null)
+                        {
+                            Remove_Node_FromGroup(node, node.Group);
+                            Add_Node_ToUngrouped(node);
+                        }
+                        Remove_Node_FromUngrouped(node);
+
                         RemoveElement(node);
                     }
+                    //else RemoveElement((GraphElement)selection[i]);
                 }
             };
         }
 
-        private void SetGroupElementAdditionCallback()
+        private void UpdateElementsAddedToGroup()
         {
             elementsAddedToGroup = (group, elements) =>
             {
                 foreach(GraphElement element in elements)
                 {
-                    if (!(element is DS_Node)) continue;
-                    DS_Node node = (DS_Node) element;
-
-                    RemoveUngroupedNode(node);
-                    AddGroupedNode(node, group);
+                    if ((element is DS_Node) == false) continue;
+                    else
+                    {
+                        DS_Node node = (DS_Node)element;
+                        Remove_Node_FromUngrouped(node);
+                        Add_Node_ToGroup(node, group);
+                    }
                 }
             };
         }
 
+        private void UpdateElementRemovedFromGroup()
+        {
+            elementsRemovedFromGroup = (group, elements) =>
+            {
+                foreach (GraphElement element in elements)
+                {
+                    if (!(element is DS_Node)) continue;
+                    else
+                    {
+                        DS_Node node = (DS_Node)element;
+                        Remove_Node_FromGroup(node, group);
+                        Add_Node_ToUngrouped(node);
+                    }
+                }
+            };
+        }
         #endregion
 
         #region Manipulators
@@ -94,7 +121,7 @@ namespace DialogueSystem.Windows
         /// <summary>
         /// Function that contain all the manipulators setup operations for zoom, manipulators and context menù options.
         /// </summary>
-        private void AddManipulators()
+        private void Add_Manipulators()
         {
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
@@ -113,8 +140,8 @@ namespace DialogueSystem.Windows
         private IManipulator CreateGroup_CtxMenu_Option()
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent => AddElement(CreateGroup("New node group", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition))))
-                );
+                menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent =>
+                AddElement(CreateGroup("New node group", WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition)))));
             return contextualMenuManipulator;
         }
         /// <summary>
@@ -126,8 +153,8 @@ namespace DialogueSystem.Windows
         private IManipulator CreateNode_CtxMenu_Option(string actionTitle, DS_DialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-                menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(GetLocalMousePosition(actionEvent.eventInfo.localMousePosition), dialogueType)))
-                );
+                menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => 
+                AddElement(CreateNode(WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition), dialogueType))));
             return contextualMenuManipulator;
         }
         #endregion
@@ -141,25 +168,100 @@ namespace DialogueSystem.Windows
         /// <returns>Pointer to the created node as a generic DS_Node.</returns>
         public DS_Node CreateNode(Vector2 spawnPosition, DS_DialogueType dialogueType)
         {
-            Type nodeType = Type.GetType($"DialogueSystem.Eelements.DS_{dialogueType}Node"); //Generating the Type variable according to the indicated Name.
+            Type nodeType = Type.GetType($"DS.Elements.DS_{dialogueType}Node"); //Generating the Type variable according to the indicated Name.
             DS_Node node = (DS_Node) Activator.CreateInstance(nodeType);
+
             node.Initialize(this, spawnPosition);
             node.Draw();
 
-            AddUngroupedNode(node);
+            Add_Node_ToUngrouped(node);
             return node;
         }
+
+        /// <summary>
+        /// Function to instantiate a Group during GraphView operations.
+        /// </summary>
+        /// <param name="groupName">The name of the group.</param>
+        /// <param name="localMousePosition">The position, local to the window, on which spawn the group.</param>
+        /// <returns>Pointer to the newly generated Group.</returns>
+        public Group CreateGroup(string groupName, Vector2 localMousePosition)
+        {
+            Group group = new Group()
+            {
+                title = groupName
+            };
+            group.SetPosition(new Rect(localMousePosition, Vector2.zero));
+            return group;
+        }
+        #endregion
+
+        #region GraphView parts addition
+        /// <summary>
+        /// Add GridBackground class to this graph view container.
+        /// </summary>
+        private void Add_GridBackground()
+        {
+            GridBackground gridBackground = new GridBackground();
+            gridBackground.StretchToParentSize();
+            Insert(0, gridBackground);
+        }
+
+        /// <summary>
+        /// Function tha add a Search window feature to the GraphView window.
+        /// </summary>
+        private void Add_SearchWindow()
+        {
+            if(searchWindow == null)
+            {
+                searchWindow = ScriptableObject.CreateInstance<DS_SearchWindow>();
+                searchWindow.Initialize(this);
+            }
+            nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
+        }
+
+        /// <summary>
+        /// Load style sheet from resources and add that to the graph view visual elemente.
+        /// </summary>
+        private void Add_Styles()
+        {
+
+            this.AddStyleSheet( "DS_GridBackground.uss",
+                                "DS_NodeStyles.uss");
+        }
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Utility to convert a global screen pixel position to a local window view position.
+        /// </summary>
+        /// <param name="mousePos">Global mouse position when the function is called.</param>
+        /// <param name="isSearchWindow">Boolean to detect if considerate the SearchWindow position during the operation.</param>
+        /// <returns>A Vector2 representing the new window related local position.</returns>
+        public Vector2 WorldToLocalMousePosition(Vector2 mousePos, bool isSearchWindow = false)
+        {
+           Vector2 worldMousePos = mousePos;
+
+           if(isSearchWindow) 
+           {
+                worldMousePos -= editorWindow.position.position; 
+           }
+
+           Vector2 localMousePos = contentViewContainer.WorldToLocal(worldMousePos);
+           return localMousePos;
+        }
+        #endregion
 
         /// <summary>
         /// Add the passed node to the ungrouped node dictionary.
         /// </summary>
         /// <param name="node">The node that need to be added to the dictionary.</param>
-        public void AddUngroupedNode(DS_Node node)
+        public void Add_Node_ToUngrouped(DS_Node node)
         {
             string nodeName = node.DialogueName;
-            if(ungroupedNodes.ContainsKey(nodeName) == false)
+
+            if (ungroupedNodes.ContainsKey(nodeName) == false)
             {
-                DS_NodeErrorData nodeErrorData = new DS_NodeErrorData();
+                DS_NodeErrorData nodeErrorData = new();
                 nodeErrorData.Nodes.Add(node);
 
                 ungroupedNodes.Add(nodeName, nodeErrorData);
@@ -183,7 +285,7 @@ namespace DialogueSystem.Windows
         /// Remove an ungrouped node from its ungrouped node list.
         /// </summary>
         /// <param name="node">Node to remove from ungrouped nodes.</param>
-        public void RemoveUngroupedNode(DS_Node node)
+        public void Remove_Node_FromUngrouped(DS_Node node)
         {
             string nodeName = node.DialogueName;
             List<DS_Node> nodeList = ungroupedNodes[nodeName].Nodes;
@@ -191,11 +293,11 @@ namespace DialogueSystem.Windows
             nodeList.Remove(node);
             node.ResetStyle();
 
-            if(nodeList.Count == 1)
+            if (nodeList.Count == 1)
             {
                 nodeList[0].ResetStyle(); return;
             }
-            if(nodeList.Count == 0)
+            if (nodeList.Count == 0)
             {
                 ungroupedNodes.Remove(nodeName); return;
             }
@@ -207,18 +309,23 @@ namespace DialogueSystem.Windows
         /// <param name="node"></param>
         /// <param name="group"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void AddGroupedNode(DS_Node node, Group group)
+        public void Add_Node_ToGroup(DS_Node node, Group group)
         {
             string nodeName = node.DialogueName;
-            if(!groupedNodes.ContainsKey(group))
+            node.SetGroup(group);
+
+            if (groupedNodes.ContainsKey(group) == false)
             {
                 groupedNodes.Add(group, new SerializableDictionary<string, DS_NodeErrorData>());
+                Debug.Log("Group added in group dictionary as a key:  " + group.name);
             }
-            if (!groupedNodes[group].ContainsKey(nodeName))
+
+            if (groupedNodes[group].ContainsKey(nodeName) == false)
             {
                 DS_NodeErrorData nodeErrorData = new DS_NodeErrorData();
                 nodeErrorData.Nodes.Add(node);
                 groupedNodes[group].Add(nodeName, nodeErrorData);
+                Debug.Log("Node added in group dictionary as new nodename:  " + nodeName);
                 return;
             }
             else
@@ -227,88 +334,31 @@ namespace DialogueSystem.Windows
                 groupedNodes[group][nodeName].Nodes.Add(node);
                 Color errorColor = groupedNodes[group][nodeName].ErrorData.ErrorColor;
                 node.SetErrorStyle(errorColor);
-                if(groupedNodeList.Count == 2)
+                if (groupedNodeList.Count == 2)
                 {
                     groupedNodeList[0].SetErrorStyle(errorColor);
                 }
+                Debug.Log("Node added in group dictionary as already existing nodename:  " + nodeName);
             }
 
         }
 
-
-        /// <summary>
-        /// Function to instantiate a Group during GraphView operations.
-        /// </summary>
-        /// <param name="groupName">The name of the group.</param>
-        /// <param name="localMousePosition">The position, local to the window, on which spawn the group.</param>
-        /// <returns>Pointer to the newly generated Group.</returns>
-        public Group CreateGroup(string groupName, Vector2 localMousePosition)
+        public void Remove_Node_FromGroup(DS_Node node, Group group)
         {
-            Group group = new Group()
+            string nodeName = node.DialogueName;
+            node.RemoveFromGroup();
+
+            List<DS_Node> groupedNodesList = groupedNodes[group][nodeName].Nodes;
+            groupedNodesList.Remove(node);
+            node.ResetStyle();
+
+            if (groupedNodesList.Count == 1)
             {
-                title = groupName
-            };
-            group.SetPosition(new Rect(localMousePosition, Vector2.zero));
-            return group;
-        }
-        #endregion
-
-        #region GraphView parts addition
-        /// <summary>
-        /// Add GridBackground class to this graph view container.
-        /// </summary>
-        private void AddGridBackground()
-        {
-            GridBackground gridBackground = new GridBackground();
-            gridBackground.StretchToParentSize();
-            Insert(0, gridBackground);
-        }
-
-        /// <summary>
-        /// Function tha add a Search window feature to the GraphView window.
-        /// </summary>
-        private void AddSearchWindow()
-        {
-            if(searchWindow == null)
-            {
-                searchWindow = ScriptableObject.CreateInstance<DS_SearchWindow>();
-                searchWindow.Initialize(this);
+                groupedNodesList[0].ResetStyle();
+                return;
             }
-            nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
+            if (groupedNodesList.Count == 0) groupedNodes[group].Remove(nodeName);
+            if (groupedNodes[group].Count == 0) groupedNodes.Remove(group);
         }
-
-        /// <summary>
-        /// Load style sheet from resources and add that to the graph view visual elemente.
-        /// </summary>
-        private void AddStyles()
-        {
-
-            this.AddStyleSheet( "DS_GridBackground.uss",
-                                "DS_NodeStyles.uss");
-        }
-        #endregion
-
-        #region Utilities
-        /// <summary>
-        /// Utility to convert a global screen pixel position to a local window view position.
-        /// </summary>
-        /// <param name="mousePosition">Global mouse position when the function is called.</param>
-        /// <param name="isSearchWindow">Boolean to detect if considerate the SearchWindow position during the operation.</param>
-        /// <returns>A Vector2 representing the new window related local position.</returns>
-        public Vector2 GetLocalMousePosition(Vector2 mousePosition, bool isSearchWindow = false)
-        {
-           Vector2 worldMousePosition = mousePosition;
-
-           if(isSearchWindow) 
-           {
-                worldMousePosition -= editorWindow.position.position; 
-           }
-
-           Vector2 localMousePosition = contentViewContainer.WorldToLocal(worldMousePosition);
-           return localMousePosition;
-        }
-        #endregion
-
-
     }
 }

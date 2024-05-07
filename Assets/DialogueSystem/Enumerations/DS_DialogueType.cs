@@ -1,4 +1,4 @@
-namespace DialogueSystem.Enumerations
+namespace DS.Enumerations
 {
     public enum DS_DialogueType
     {

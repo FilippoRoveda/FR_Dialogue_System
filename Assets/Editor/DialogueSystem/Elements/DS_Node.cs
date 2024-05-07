@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-namespace DialogueSystem.Eelements
+namespace DS.Elements
 {
-    using Utilities;
     using Enumerations;
+    using Utilities;
     using Windows;
-    using UnityEditor.TestTools.TestRunner.Api;
 
     public class DS_Node : Node
     {
@@ -17,7 +16,8 @@ namespace DialogueSystem.Eelements
         public string DialogueName { get; set; }
         public List<string> Choices { get; set; }
         public string Text { get; set; }
-        public DS_DialogueType DialogueType { get; set; }
+        public DS_DialogueType DialogueType { get; private set; }
+        public Group Group { get; private set; }
 
 
         private DS_GraphView context;
@@ -69,14 +69,24 @@ namespace DialogueSystem.Eelements
         #region Callbacks
 
         /// <summary>
-        /// Callback called when the dialogue name 
+        /// Callback called when the dialogue name changes.
         /// </summary>
         /// <param name="newDialogueName"></param>
         private void OnDialogueNameChanged(string newDialogueName)
         {
-            context.RemoveUngroupedNode(this);
-            this.DialogueName = newDialogueName;
-            context.AddUngroupedNode(this);
+            if (Group == null)
+            {
+                context.Remove_Node_FromUngrouped(this);
+                DialogueName = newDialogueName;
+                context.Add_Node_ToUngrouped(this);
+            }
+            else
+            {
+                Group groupRef = Group;
+                context.Remove_Node_FromGroup(this, Group);
+                DialogueName = newDialogueName;
+                context.Add_Node_ToGroup(this, groupRef);
+            }
         }
         #endregion
 
@@ -91,5 +101,18 @@ namespace DialogueSystem.Eelements
             mainContainer.style.backgroundColor = defaultColor;
         }
         #endregion
+
+        public void SetGroup(Group group)
+        {
+            Group = group;
+        }
+        public void RemoveFromGroup()
+        {
+            Group = null;
+        }
+        protected void SetDialogueType(DS_DialogueType dialogueType)
+        {
+            DialogueType = dialogueType;
+        }
     }
 }

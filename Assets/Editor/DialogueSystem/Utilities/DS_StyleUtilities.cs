@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace DialogueSystem.Utilities
+namespace DS.Utilities
 {
     /// <summary>
     /// 
