@@ -1,6 +1,19 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+public static class ElementCounter
+{
+    public static int groupCounter = 0;
+    public static void IncreaseGroupCounter()
+    {
+        groupCounter++;
+    }
+    public static void DecreaseGroupCounter()
+    {
+        groupCounter--;
+    }
+}
+
 public class DS_Group : Group
 {
     public string oldTitle;
@@ -10,6 +23,8 @@ public class DS_Group : Group
 
     public DS_Group(string title, Vector2 spawnPosition)
     {
+        ElementCounter.IncreaseGroupCounter();
+        this.name = ElementCounter.groupCounter.ToString();
         this.title = title;
         oldTitle = title;
 
