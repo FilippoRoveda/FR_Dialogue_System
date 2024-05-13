@@ -17,7 +17,7 @@ namespace DS.Elements
         public List<string> Choices { get; set; }
         public string Text { get; set; }
         public DS_DialogueType DialogueType { get; private set; }
-        public Group Group { get; private set; }
+        public DS_Group Group { get; private set; }
 
 
         private DS_GraphView context;
@@ -82,7 +82,7 @@ namespace DS.Elements
             }
             else
             {
-                Group groupRef = Group;
+                DS_Group groupRef = Group;
                 context.Remove_Node_FromGroup(this, Group);
                 DialogueName = newDialogueName;
                 context.Add_Node_ToGroup(this, groupRef);
@@ -102,7 +102,7 @@ namespace DS.Elements
         }
         #endregion
 
-        public void SetGroup(Group group)
+        public void SetGroup(DS_Group group)
         {
             Group = group;
         }

@@ -22,6 +22,8 @@ namespace DS.Windows
         public SerializableDictionary<string, DS_NodeErrorData> ungroupedNodes;
         public SerializableDictionary<Group, SerializableDictionary<string, DS_NodeErrorData>> groupedNodes;
 
+        public SerializableDictionary<string, DS_GroupErrorData> groups;
+
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
             //Fields initializings
@@ -29,10 +31,13 @@ namespace DS.Windows
             ungroupedNodes = new SerializableDictionary<string, DS_NodeErrorData>();
             groupedNodes = new SerializableDictionary<Group, SerializableDictionary<string, DS_NodeErrorData>>();
 
+            groups = new SerializableDictionary<string, DS_GroupErrorData>();
+
             //Update callbacks setups
             UpdateDeleteSelection();
             UpdateElementsAddedToGroup();
             UpdateElementRemovedFromGroup();
+            UpdateGroupTitleChanged();
 
             //Adding
             Add_SearchWindow();
@@ -76,7 +81,18 @@ namespace DS.Windows
 
                         RemoveElement(node);
                     }
-                    //else RemoveElement((GraphElement)selection[i]);
+                    else if (selection[i] is DS_Group group)
+                    {
+                        Remove_Group_FromDictionary(group);
+                        RemoveElement(group);
+                    }
+                    else
+                    {
+                        RemoveElement((GraphElement)selection[i]);
+                    }
+
+                    //L'ordine di cancellazione degli elementi qui deve essere gruppi->nodi->resto, questo è separato dalle operazioni di rimozione dai dizionari
+                    //che parrebbe essere precedente
                 }
             };
         }
@@ -90,9 +106,10 @@ namespace DS.Windows
                     if ((element is DS_Node) == false) continue;
                     else
                     {
+                        DS_Group nodeGroup = (DS_Group)group; 
                         DS_Node node = (DS_Node)element;
                         Remove_Node_FromUngrouped(node);
-                        Add_Node_ToGroup(node, group);
+                        Add_Node_ToGroup(node, nodeGroup);
                     }
                 }
             };
@@ -112,6 +129,18 @@ namespace DS.Windows
                         Add_Node_ToUngrouped(node);
                     }
                 }
+            };
+        }
+
+        private void UpdateGroupTitleChanged()
+        {
+            groupTitleChanged = (group, newTitle) =>
+            {
+                DS_Group dS_Group = (DS_Group)group;
+
+                Remove_Group_FromDictionary(dS_Group);
+                dS_Group.title = newTitle;
+                Add_Group_ToDictionary(dS_Group);
             };
         }
         #endregion
@@ -184,13 +213,10 @@ namespace DS.Windows
         /// <param name="groupName">The name of the group.</param>
         /// <param name="localMousePosition">The position, local to the window, on which spawn the group.</param>
         /// <returns>Pointer to the newly generated Group.</returns>
-        public Group CreateGroup(string groupName, Vector2 localMousePosition)
+        public DS_Group CreateGroup(string groupName, Vector2 localMousePosition)
         {
-            Group group = new Group()
-            {
-                title = groupName
-            };
-            group.SetPosition(new Rect(localMousePosition, Vector2.zero));
+            DS_Group group = new DS_Group(groupName, localMousePosition);
+            Add_Group_ToDictionary(group);
             return group;
         }
         #endregion
@@ -309,7 +335,7 @@ namespace DS.Windows
         /// <param name="node"></param>
         /// <param name="group"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void Add_Node_ToGroup(DS_Node node, Group group)
+        public void Add_Node_ToGroup(DS_Node node, DS_Group group)
         {
             string nodeName = node.DialogueName;
             node.SetGroup(group);
@@ -342,7 +368,11 @@ namespace DS.Windows
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="group"></param>
         public void Remove_Node_FromGroup(DS_Node node, Group group)
         {
             string nodeName = node.DialogueName;
@@ -359,6 +389,54 @@ namespace DS.Windows
             }
             if (groupedNodesList.Count == 0) groupedNodes[group].Remove(nodeName);
             if (groupedNodes[group].Count == 0) groupedNodes.Remove(group);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="group"></param>
+        public void Add_Group_ToDictionary(DS_Group group)
+        {
+            string groupTitle = group.title;
+
+            if(groups.ContainsKey(groupTitle) == false)
+            {
+                DS_GroupErrorData groupErrorData = new DS_GroupErrorData();
+                groupErrorData.Groups.Add(group);
+                groups.Add(groupTitle, groupErrorData);
+                return;
+            }
+            else 
+            {
+                List<DS_Group> groupList = groups[groupTitle].Groups;
+                groupList.Add(group);
+                Color errorColor = groups[groupTitle].ErrorData.ErrorColor;
+                group.SetErrorStyle(errorColor);
+
+                if(groupList.Count == 2)
+                {
+                    groupList[0].SetErrorStyle(errorColor);
+                }
+            }
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="group"></param>
+        public void Remove_Group_FromDictionary(DS_Group group)
+        {
+            string groupTitle = group.title;
+            List<DS_Group> groupList = groups[groupTitle].Groups;
+            groupList.Remove(group);
+            group.ResetStyle();
+            if(groupList.Count == 1)
+            {
+                groupList[0].ResetStyle();
+            }
+            else if(groupList.Count == 0)
+            {
+                groups.Remove(groupTitle);
+            }
         }
     }
 }
