@@ -1,5 +1,3 @@
-using DS.Elements;
-using DS.Enumerations;
 using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -9,6 +7,8 @@ using UnityEngine.UIElements;
 namespace DS.Windows
 {
     using Data.Error;
+    using Elements;
+    using Enumerations;
     using Utilities;
 
     /// <summary>
@@ -66,6 +66,7 @@ namespace DS.Windows
         {
             deleteSelection = (operationName, askUser) =>
             {
+                Debug.LogError("Delete Selection callback");
                 var count = selection.Count;
 
                 for (var i = count - 1; i >= 0; i--)
@@ -104,7 +105,8 @@ namespace DS.Windows
         {
             elementsAddedToGroup = (group, elements) =>
             {
-                foreach(GraphElement element in elements)
+                Debug.LogError("Elements addition to group callback");
+                foreach (GraphElement element in elements)
                 {
                     if ((element is DS_Node) == false) continue;
                     else
@@ -121,6 +123,7 @@ namespace DS.Windows
         {
             elementsRemovedFromGroup = (group, elements) =>
             {
+                Debug.LogError("Elements removed from group callback");
                 foreach (GraphElement element in elements)
                 {
                     if (!(element is DS_Node)) continue;
@@ -128,7 +131,7 @@ namespace DS.Windows
                     {
                         DS_Group nodeGroup = (DS_Group)group;
                         DS_Node node = (DS_Node)element;
-                        Remove_Node_FromGroup(node, nodeGroup);
+                        if(Remove_Node_FromGroup(node, nodeGroup) == false) return;
                         Add_Node_ToUngrouped(node);
                     }
                 }
@@ -291,6 +294,7 @@ namespace DS.Windows
         /// <param name="node">The node that need to be added to the dictionary.</param>
         public void Add_Node_ToUngrouped(DS_Node node)
         {
+            Debug.LogError("Ungrouped addition");
             string nodeName = node.DialogueName;
 
             if (ungroupedNodes.ContainsKey(nodeName) == false)
@@ -299,8 +303,7 @@ namespace DS.Windows
                 nodeErrorData.Nodes.Add(node);
 
                 ungroupedNodes.Add(nodeName, nodeErrorData);
-                Debug.LogWarning("NEW UNGROUPED KEY ADDED");
-                Debug.Log($"NEW KEY: [{nodeName}] NEW COUNT: [{nodeErrorData.Nodes.Count}]");
+                Debug.Log($"NEW KEY: [{nodeName}] COUNT: [{nodeErrorData.Nodes.Count}]");
                 //return;
             }
             else
@@ -308,8 +311,7 @@ namespace DS.Windows
                 ungroupedNodes[nodeName].Nodes.Add(node);
                 Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.ErrorColor;
 
-                Debug.LogWarning("UNGROUPED NODE ADDED TO KEY");
-                Debug.Log($" KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+                Debug.Log($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
 
                 node.SetErrorStyle(groupErrorColor);
                 if (ungroupedNodes[nodeName].Nodes.Count == 2)
@@ -318,9 +320,10 @@ namespace DS.Windows
                 }
                 //return;
             }
+            Debug.LogError("Ungrouped recap");
             foreach (var key in ungroupedNodes.Keys)
             {
-                Debug.LogWarning($"   KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
+                Debug.LogWarning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
             }
         }
         /// <summary>
@@ -329,13 +332,13 @@ namespace DS.Windows
         /// <param name="node">Node to remove from ungrouped nodes.</param>
         public void Remove_Node_FromUngrouped(DS_Node node)
         {
+            Debug.LogError("Ungrouped removing");
             string nodeName = node.DialogueName;
             List<DS_Node> nodeList = ungroupedNodes[nodeName].Nodes;
-            Debug.LogWarning("UNGROUPED REMOVED");
-            Debug.Log($" KEY: [{nodeName}]  / OLD COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            Debug.Log($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             nodeList.Remove(node);
             node.ResetStyle();
-            Debug.Log($" NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            Debug.Log($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             if (nodeList.Count == 1)
             {
                 nodeList[0].ResetStyle(); return;
@@ -344,6 +347,11 @@ namespace DS.Windows
             {
                 Debug.LogWarning($"UNGROUPED REMOVED KEY: {nodeName}");
                 ungroupedNodes.Remove(nodeName); return;
+            }
+            Debug.LogError("Ungrouped recap");
+            foreach (var key in ungroupedNodes.Keys)
+            {
+                Debug.LogWarning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
             }
         }
         /// <summary>
@@ -354,12 +362,13 @@ namespace DS.Windows
         /// <exception cref="NotImplementedException"></exception>
         public void Add_Node_ToGroup(DS_Node node, DS_Group group)
         {
+            Debug.LogError("Grouped nodes");
             string nodeName = node.DialogueName;
             node.SetGroup(group);
 
             if (groupedNodes.ContainsKey(group) == false)
             {
-                Debug.LogWarning($"ADDING GROUPED KEY [[{group.name}][{group.title}]");
+                Debug.LogWarning($"ADDING KEY [[{group.name}][{group.title}]");
                 var innerDictionary = new SerializableDictionary<string, DS_NodeErrorData>();
 
                 groupedNodes.Add(group, innerDictionary);   
@@ -367,17 +376,17 @@ namespace DS.Windows
 
             if (groupedNodes[group].ContainsKey(nodeName) == false)
             {
-                Debug.LogWarning($"ADD INNER-DICT TO GROUPED KEY [[{group.name}][{group.title}]");
+                Debug.LogWarning($"ADD INNER-DICT TO KEY [[{group.name}][{group.title}]");
 
                 DS_NodeErrorData nodeErrorData = new DS_NodeErrorData();
                 nodeErrorData.Nodes.Add(node);
                 groupedNodes[group].Add(nodeName, nodeErrorData);
-                Debug.Log($"Node added as new nodename: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                Debug.Log($"Node added as new: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 return;
             }
             else
             {
-                Debug.LogWarning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH EXISTING INNER-DICT nodename key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                Debug.LogWarning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 List<DS_Node> groupedNodeList = groupedNodes[group][nodeName].Nodes;
                 groupedNodes[group][nodeName].Nodes.Add(node);
                 Color errorColor = groupedNodes[group][nodeName].ErrorData.ErrorColor;
@@ -388,12 +397,13 @@ namespace DS.Windows
                     groupedNodeList[0].SetErrorStyle(errorColor);
                 }  
             }
+            Debug.LogError("Grouped nodes recap");
             foreach (var key in groupedNodes.Keys)
             {
-                Debug.LogWarning($"   KEY:[{key}]");
+                Debug.LogWarning($"KEY:[{key}]");
                 foreach (var key2 in groupedNodes[key].Keys)
                 {
-                    Debug.LogWarning($"   Inner nodename key:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+                    Debug.LogWarning($"Inner key:[{key2}] + COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
                 }
             }
         }
@@ -402,22 +412,46 @@ namespace DS.Windows
         /// </summary>
         /// <param name="node"></param>
         /// <param name="group"></param>
-        public void Remove_Node_FromGroup(DS_Node node, DS_Group group)
+        public bool Remove_Node_FromGroup(DS_Node node, DS_Group group)
         {
+            Debug.LogError("Groupednodes");
             string nodeName = node.DialogueName;
             node.RemoveFromGroup();
 
+            if (groupedNodes.ContainsKey(group) == false) 
+            {
+                return false;
+            }
             List<DS_Node> groupedNodesList = groupedNodes[group][nodeName].Nodes;
             groupedNodesList.Remove(node);
+            Debug.LogWarning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
             node.ResetStyle();
 
             if (groupedNodesList.Count == 1)
             {
-                groupedNodesList[0].ResetStyle();
-                return;
+                groupedNodesList[0].ResetStyle();              
             }
-            if (groupedNodesList.Count == 0) groupedNodes[group].Remove(nodeName);
-            if (groupedNodes[group].Count == 0) groupedNodes.Remove(group);
+            if (groupedNodesList.Count == 0) 
+            {
+                groupedNodes[group].Remove(nodeName);
+                Debug.LogWarning($"REMOVING INNER KEY [{nodeName}]");
+            } 
+            if (groupedNodes[group].Count == 0) 
+            {
+                groupedNodes.Remove(group);
+                Debug.LogWarning($"REMOVING GROUP KEY [{group.name}/{group.title}]");
+            }
+
+            Debug.LogError("Grouped nodes recap");
+            foreach (var key in groupedNodes.Keys)
+            {
+                Debug.LogWarning($"GROUP KEY:[{key}]");
+                foreach (var key2 in groupedNodes[key].Keys)
+                {
+                    Debug.LogWarning($"INNER NODENAME KEY:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+                }
+            }
+            return true;
         }
         /// <summary>
         /// 
@@ -425,6 +459,7 @@ namespace DS.Windows
         /// <param name="group"></param>
         public void Add_Group_ToDictionary(DS_Group group)
         {
+            Debug.LogError("Groups addition");
             string groupTitle = group.title;
 
             if(groups.ContainsKey(groupTitle) == false)
@@ -433,13 +468,8 @@ namespace DS.Windows
                 groupErrorData.Groups.Add(group);
                 groups.Add(groupTitle, groupErrorData);
 
-                Debug.Log($"   NEW KEY:  {groupTitle}  /  NEW COUNT:  {groups[groupTitle].Groups.Count}");
+                Debug.Log($"NEW KEY: {groupTitle}  / COUNT: {groups[groupTitle].Groups.Count}");
 
-                foreach (var key in groups.Keys)
-                {
-                    Debug.LogWarning($"   KEY:[{key}]  +  COUNT:[{groups[key].Groups.Count}]");
-                }
-                return;
             }
             else 
             {
@@ -448,18 +478,18 @@ namespace DS.Windows
                 Color errorColor = groups[groupTitle].ErrorData.ErrorColor;
                 group.SetErrorStyle(errorColor);
 
-                Debug.Log($"   KEY:  {groupTitle}  /  COUNT:  {groups[groupTitle].Groups.Count}");
+                Debug.Log($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
 
                 if (groupList.Count == 2)
                 {
                     groupList[0].SetErrorStyle(errorColor);
                 }
-                foreach (var key in groups.Keys)
-                {
-                    Debug.LogWarning($"   KEY:[{key}]  +  COUNT:[{groups[key].Groups.Count}]");
-                }
             }
-
+            Debug.LogError("Groups recap");
+            foreach (var key in groups.Keys)
+            {
+                Debug.LogWarning($"KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
+            }
         }
         /// <summary>
         /// 
@@ -467,14 +497,15 @@ namespace DS.Windows
         /// <param name="group"></param>
         public void Remove_Group_FromDictionary(DS_Group group)
         {
+            Debug.LogError("Groups removing");
             string groupTitle = group.title;
             List<DS_Group> groupList = groups[groupTitle].Groups;
-            Debug.Log($"   SELECTED KEY:  {groupTitle}  /  COUNT BEFORE:  {groups[groupTitle].Groups.Count}");
+            Debug.Log($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
 
             groupList.Remove(group);
             group.ResetStyle();
 
-            Debug.Log($"   COUNT AFTER:  {groups[groupTitle].Groups.Count}");
+            Debug.Log($"AFTER: {groups[groupTitle].Groups.Count}");
 
             if (groupList.Count == 1)
             {
@@ -483,12 +514,12 @@ namespace DS.Windows
             else if(groupList.Count == 0)
             {
                 groups.Remove(groupTitle);
-                Debug.LogWarning($"   DELETED KEY: {groupTitle}");
+                Debug.LogWarning($" DELETED KEY: {groupTitle}");
             }
-
+            Debug.LogError("Groups recap");
             foreach (var key in groups.Keys)
             {
-                Debug.LogWarning($"   KEY:[{key}]  +  COUNT:[{groups[key].Groups.Count}]");
+                Debug.LogWarning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
             }
         }
     }
