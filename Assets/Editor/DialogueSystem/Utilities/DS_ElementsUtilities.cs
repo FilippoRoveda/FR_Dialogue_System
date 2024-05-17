@@ -14,11 +14,12 @@ namespace DS.Utilities
         /// <param name="value">The string value to assign to the field.</param>
         /// <param name="onValueChanged">Callback called on text value changed.</param>
         /// <returns>The generated single line TextField.</returns>
-        public static TextField CreateTextField(string value = null, EventCallback<ChangeEvent<string>> onValueChanged = null)
+        public static TextField CreateTextField(string value = null, string label = null, EventCallback<ChangeEvent<string>> onValueChanged = null)
         {
             TextField textField = new TextField()
             {
-                value = value
+                value = value,
+                label = label
             };
             if(onValueChanged != null) textField.RegisterValueChangedCallback(onValueChanged);
             
@@ -31,9 +32,9 @@ namespace DS.Utilities
         /// <param name="value">The string value to assign to the field.</param>
         /// <param name="onValueChanged">Callback called on text value changed.</param>
         /// <returns>The generated multi line TextField.</returns>
-        public static TextField CreateTextArea(string value = null, EventCallback<ChangeEvent<string>> onValueChanged = null)
+        public static TextField CreateTextArea(string value = null, string label = null, EventCallback<ChangeEvent<string>> onValueChanged = null)
         {
-            TextField textArea = CreateTextField(value, onValueChanged);
+            TextField textArea = CreateTextField(value, label, onValueChanged);
             textArea.multiline = true;
             return textArea;
         }

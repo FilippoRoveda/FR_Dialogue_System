@@ -20,7 +20,7 @@ namespace DS.Elements
         public DS_Group Group { get; private set; }
 
 
-        private DS_GraphView context;
+        private DS_GraphView graphView;
         private Color defaultColor;
 
 
@@ -30,7 +30,7 @@ namespace DS.Elements
             Choices = new List<string>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
-            this.context = context;
+            this.graphView = context;
 
             SetPosition(new Rect(spawnPosition, Vector2.zero));
 
@@ -41,7 +41,7 @@ namespace DS.Elements
         public virtual void Draw()
         {
             //Dialogue name text field 
-            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName", callback => OnDialogueNameChanged(callback.newValue));
+            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName", null,  callback => OnDialogueNameChanged(callback));
 
             dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
 
@@ -66,30 +66,41 @@ namespace DS.Elements
             extensionContainer.Add(customDataContainer);
         }
 
+        #region Overrides
+        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+        {
+            evt.menu.AppendAction("Disconnect Input Ports", actionEvent => DisconnectPorts(inputContainer));
+            evt.menu.AppendAction("Disconnect Output Ports", actionEvent => DisconnectPorts(outputContainer));
+            base.BuildContextualMenu(evt);
+        }
+        #endregion
+
         #region Callbacks
 
         /// <summary>
         /// Callback called when the dialogue name changes.
         /// </summary>
         /// <param name="newDialogueName"></param>
-        private void OnDialogueNameChanged(string newDialogueName)
+        private void OnDialogueNameChanged(ChangeEvent<string> callback)
         {
+            TextField target = (TextField)callback.target;
+            target.value = callback.newValue.RemoveWhitespaces();
+
             if (Group == null)
             {
-                context.Remove_Node_FromUngrouped(this);
-                DialogueName = newDialogueName;
-                context.Add_Node_ToUngrouped(this);
+                graphView.Remove_Node_FromUngrouped(this);
+                DialogueName = target.value;
+                graphView.Add_Node_ToUngrouped(this);
             }
             else
             {
                 DS_Group groupRef = Group;
-                context.Remove_Node_FromGroup(this, Group);
-                DialogueName = newDialogueName;
-                context.Add_Node_ToGroup(this, groupRef);
+                graphView.Remove_Node_FromGroup(this, Group);
+                DialogueName = target.value;
+                graphView.Add_Node_ToGroup(this, groupRef);
             }
         }
         #endregion
-
 
         #region Appearence style
         public void SetErrorStyle(Color errorColor)
@@ -102,6 +113,7 @@ namespace DS.Elements
         }
         #endregion
 
+        #region Utilities
         public void SetGroup(DS_Group group)
         {
             Group = group;
@@ -114,5 +126,21 @@ namespace DS.Elements
         {
             DialogueType = dialogueType;
         }
+        public void DisconnectPorts(VisualElement container)
+        {
+            foreach(Port port in container.Children())
+            {
+                if(port.connected == true)
+                {
+                    graphView.DeleteElements(port.connections);
+                }
+            }
+        }
+        public void DisconnectAllPorts()
+        {
+            DisconnectPorts(inputContainer);
+            DisconnectPorts(outputContainer);
+        }
+        #endregion
     }
 }

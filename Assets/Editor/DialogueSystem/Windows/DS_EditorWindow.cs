@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 namespace DS.Windows
 {
+    using UnityEditor.UIElements;
     using Utilities;
 
     /// <summary>
@@ -11,6 +12,10 @@ namespace DS.Windows
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
+        private readonly string defaultFileName = "DialogueFileName";
+        private Button saveGraphButton;
+
+
         [MenuItem("DialogueSystem/Editor_Window")]
         public static void Open()
         {
@@ -21,6 +26,7 @@ namespace DS.Windows
         private void CreateGUI()
         {
             AddGraphView();
+            AddToolbar();
             AddStyles();
         }
 
@@ -37,6 +43,32 @@ namespace DS.Windows
         private void AddStyles()
         {
             rootVisualElement.AddStyleSheet("DS_Variables.uss");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void AddToolbar()
+        {
+            Toolbar toolbar = new Toolbar();
+            TextField filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:");
+            saveGraphButton = DS_ElementsUtilities.CreateButton("Save");
+
+            toolbar.Add(filenameTextField);
+            toolbar.Add(saveGraphButton);
+
+            toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
+
+            rootVisualElement.Add(toolbar);
+        }
+
+        public void EnableSaving()
+        {
+            saveGraphButton.SetEnabled(true);
+        }
+        public void DisableSaving()
+        {
+            saveGraphButton.SetEnabled(false);
         }
     }
 }

@@ -21,8 +21,28 @@ namespace DS.Windows
 
         public SerializableDictionary<string, DS_NodeErrorData> ungroupedNodes;
         public SerializableDictionary<DS_Group, SerializableDictionary<string, DS_NodeErrorData>> groupedNodes;
-
         public SerializableDictionary<string, DS_GroupErrorData> groups;
+
+        private int repeatedNamesCounter;
+        public int RepeatedNamesCounter
+        {
+            get { return repeatedNamesCounter; }
+            set {
+                int previewsValue = repeatedNamesCounter;
+
+                repeatedNamesCounter = value;
+                if(repeatedNamesCounter == 0)
+                {
+                    editorWindow.EnableSaving();
+                }
+                if(previewsValue == 0 && repeatedNamesCounter == 1)
+                {
+                    editorWindow.DisableSaving();
+                }
+            }
+        }
+
+
 
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
@@ -67,37 +87,61 @@ namespace DS.Windows
             deleteSelection = (operationName, askUser) =>
             {
                 Debug.LogError("Delete Selection callback");
-                var count = selection.Count;
 
-                for (var i = count - 1; i >= 0; i--)
+                List<DS_Group> groupsToDelete = new List<DS_Group>();
+                List<Edge> edgesToDelete = new List<Edge>();
+                List<DS_Node> nodesToDelete = new List<DS_Node>();
+
+                foreach(GraphElement element in selection)
                 {
-                    if (selection[i] is DS_Node node)
+                    if(element is DS_Node node)
                     {
-                        if (node.Group != null)
-                        {
-                            Remove_Node_FromGroup(node, node.Group);
-                            Add_Node_ToUngrouped(node);
-                        }
-                        Remove_Node_FromUngrouped(node);
-
-                        //RemoveElement(node);
+                        nodesToDelete.Add(node);
+                        continue;
                     }
-                    else if (selection[i] is DS_Group group)
+                    if(element is Edge edge)
                     {
-                        Remove_Group_FromDictionary(group);
-                        //RemoveElement(group);
+                        edgesToDelete.Add(edge);
+                        continue;
                     }
-                    //else
-                    //{
-                    //    RemoveElement((GraphElement)selection[i]);
-                    //}
-
-                    //L'ordine di cancellazione degli elementi qui deve essere gruppi->nodi->resto, questo è separato dalle operazioni di rimozione dai dizionari
-                    //che parrebbe essere precedente
+                    if(element is DS_Group group)
+                    {
+                        groupsToDelete.Add(group);
+                        continue;
+                    }
+                    else
+                    {
+                        RemoveElement(element);
+                    }
                 }
-                for (var i = count - 1; i >= 0; i--)
+
+                foreach(DS_Group group in groupsToDelete)
                 {
-                    RemoveElement((GraphElement)selection[i]);
+                    List<DS_Node> groupNodes = new List<DS_Node>();
+                    foreach (GraphElement element in group.containedElements)
+                    {
+                        if (element is DS_Node == true)
+                        {
+                            groupNodes.Add((DS_Node)element);
+                        }
+                    }
+                    group.RemoveElements(groupNodes);
+                    Remove_Group_FromDictionary(group);
+                    RemoveElement(group);
+                }
+
+                DeleteElements(edgesToDelete);
+
+                foreach(DS_Node node in nodesToDelete)
+                {
+                    if (node.Group != null)
+                    {
+                        Remove_Node_FromGroup(node, node.Group);
+                        Add_Node_ToUngrouped(node);
+                    }
+                    Remove_Node_FromUngrouped(node);
+                    node.DisconnectAllPorts();
+                    RemoveElement(node);
                 }
             };
         }
@@ -142,16 +186,13 @@ namespace DS.Windows
             groupTitleChanged = (group, newTitle) =>
             {
                 DS_Group dS_Group = (DS_Group)group;
-
+                dS_Group.title = newTitle.RemoveWhitespaces();
                 Remove_Group_FromDictionary(dS_Group);
-                dS_Group.title = newTitle;
+                dS_Group.oldTitle = dS_Group.title;
                 Add_Group_ToDictionary(dS_Group);
             };
         }
         #endregion
-
-
-
 
         #region Manipulators
 
@@ -178,7 +219,7 @@ namespace DS.Windows
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
                 menuEvent => menuEvent.menu.AppendAction("Create Group", actionEvent =>
-                AddElement(CreateGroup("New node group", WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition)))));
+                CreateGroup("New node group", WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition))));
             return contextualMenuManipulator;
         }
         /// <summary>
@@ -225,6 +266,19 @@ namespace DS.Windows
         {
             DS_Group group = new DS_Group(groupName, localMousePosition);
             Add_Group_ToDictionary(group);
+
+            AddElement(group);
+
+            foreach(GraphElement selectedElement in selection)
+            {
+                if(selectedElement is DS_Node == true)
+                {
+                    DS_Node node = (DS_Node)selectedElement;
+                    group.AddElement(node);
+
+                }
+            }
+
             return group;
         }
         #endregion
@@ -316,6 +370,7 @@ namespace DS.Windows
                 node.SetErrorStyle(groupErrorColor);
                 if (ungroupedNodes[nodeName].Nodes.Count == 2)
                 {
+                    ++RepeatedNamesCounter; 
                     ungroupedNodes[nodeName].Nodes[0].SetErrorStyle(groupErrorColor);
                 }
                 //return;
@@ -341,7 +396,9 @@ namespace DS.Windows
             Debug.Log($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             if (nodeList.Count == 1)
             {
-                nodeList[0].ResetStyle(); return;
+                --RepeatedNamesCounter;
+                nodeList[0].ResetStyle(); 
+                return;
             }
             if (nodeList.Count == 0)
             {
@@ -394,6 +451,7 @@ namespace DS.Windows
                 Debug.Log($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 if (groupedNodeList.Count == 2)
                 {
+                    ++RepeatedNamesCounter;
                     groupedNodeList[0].SetErrorStyle(errorColor);
                 }  
             }
@@ -429,6 +487,7 @@ namespace DS.Windows
 
             if (groupedNodesList.Count == 1)
             {
+                --RepeatedNamesCounter;
                 groupedNodesList[0].ResetStyle();              
             }
             if (groupedNodesList.Count == 0) 
@@ -482,6 +541,7 @@ namespace DS.Windows
 
                 if (groupList.Count == 2)
                 {
+                    ++RepeatedNamesCounter;
                     groupList[0].SetErrorStyle(errorColor);
                 }
             }
@@ -509,6 +569,7 @@ namespace DS.Windows
 
             if (groupList.Count == 1)
             {
+                --RepeatedNamesCounter;
                 groupList[0].ResetStyle();
             }
             else if(groupList.Count == 0)
