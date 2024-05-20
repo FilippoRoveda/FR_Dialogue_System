@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 namespace DS.Data.Error
 {
-    using Elements;
     public class DS_GroupErrorData
     {
         public DS_ErrorData ErrorData { get; set; }

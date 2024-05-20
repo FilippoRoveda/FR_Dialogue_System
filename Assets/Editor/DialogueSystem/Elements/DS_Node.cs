@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -6,28 +7,30 @@ using UnityEngine.UIElements;
 
 namespace DS.Elements
 {
+    using Data.Save;
     using Enumerations;
     using Utilities;
     using Windows;
 
     public class DS_Node : Node
     {
-        [field: SerializeField]
-        public string DialogueName { get; set; }
-        public List<string> Choices { get; set; }
-        public string Text { get; set; }
-        public DS_DialogueType DialogueType { get; private set; }
-        public DS_Group Group { get; private set; }
+        [SerializeField] public string ID {  get; set; }
+        [SerializeField] public string DialogueName { get; set; }
+        [SerializeField] public List<DS_Choice_SaveData> Choices { get; set; }
+        [SerializeField] public string Text { get; set; }
+        [SerializeField] public DS_DialogueType DialogueType { get; private set; }
+        [SerializeField] public DS_Group Group { get; private set; } //Da far diventare group ID come stringa
 
 
-        private DS_GraphView graphView;
+        protected DS_GraphView graphView;
         private Color defaultColor;
 
 
         public virtual void Initialize(DS_GraphView context, Vector2 spawnPosition)
         {
-            DialogueName = "Dialogue Name";
-            Choices = new List<string>();
+            ID = Guid.NewGuid().ToString();
+            DialogueName = "DialogueName";
+            Choices = new List<DS_Choice_SaveData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
             this.graphView = context;
@@ -84,7 +87,7 @@ namespace DS.Elements
         private void OnDialogueNameChanged(ChangeEvent<string> callback)
         {
             TextField target = (TextField)callback.target;
-            target.value = callback.newValue.RemoveWhitespaces();
+            target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
 
             if (Group == null)
             {

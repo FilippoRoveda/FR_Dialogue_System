@@ -1,30 +1,18 @@
+using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public static class ElementCounter
-{
-    public static int groupCounter = 0;
-    public static void IncreaseGroupCounter()
-    {
-        groupCounter++;
-    }
-    public static void DecreaseGroupCounter()
-    {
-        groupCounter--;
-    }
-}
-
 public class DS_Group : Group
 {
+    public string ID { get; private set; }
     public string oldTitle;
 
     private Color defaultBorderColor;
     private float defaultBorderWidth;
 
-    public DS_Group(string title, Vector2 spawnPosition)
+    public DS_Group(string title, Vector2 spawnPosition) //Here check if value ID is null for a new instantiation
     {
-        ElementCounter.IncreaseGroupCounter();
-        this.name = ElementCounter.groupCounter.ToString();
+        ID = Guid.NewGuid().ToString();
         this.title = title;
         oldTitle = title;
 

@@ -13,6 +13,7 @@ namespace DS.Windows
     public class DS_EditorWindow : EditorWindow
     {
         private readonly string defaultFileName = "DialogueFileName";
+        private TextField filenameTextField;
         private Button saveGraphButton;
 
 
@@ -51,7 +52,7 @@ namespace DS.Windows
         private void AddToolbar()
         {
             Toolbar toolbar = new Toolbar();
-            TextField filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:");
+            filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
             saveGraphButton = DS_ElementsUtilities.CreateButton("Save");
 
             toolbar.Add(filenameTextField);
@@ -60,6 +61,11 @@ namespace DS.Windows
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
+        }
+
+        private void OnFilenameChanged(ChangeEvent<string> callback)
+        {
+            filenameTextField.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
         }
 
         public void EnableSaving()
