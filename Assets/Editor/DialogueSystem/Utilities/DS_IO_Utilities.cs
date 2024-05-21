@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 
 
 namespace DS.Utilities
 {
     using Elements;
     using System;
-    using UnityEditor.Experimental.GraphView;
     using Windows;
+
     public static class DS_IO_Utilities
     {
         private static DS_GraphView graphView;
@@ -32,6 +34,7 @@ namespace DS.Utilities
         {
             CreateStaticFolders();
             GetElementsFromGraphView();
+            CreateAsset();
         }
 
         #endregion
@@ -57,12 +60,10 @@ namespace DS.Utilities
             else AssetDatabase.CreateFolder(path, folderName);
             
         }
-
         private static void GetElementsFromGraphView()
         {
             graphView.graphElements.ForEach(FetchGraphElements());
         }
-
         private static Action<GraphElement> FetchGraphElements()
         {
             return graphElement =>
@@ -75,8 +76,16 @@ namespace DS.Utilities
                 {
                     groups.Add((DS_Group)graphElement);
                 }
-
             };
+        }
+
+
+        private static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
+        {
+            string fullPath = $"{path}/{assetName}.asset";
+            T asset = ScriptableObject.CreateInstance<T>();
+            AssetDatabase.CreateAsset(asset, fullPath);
+            return asset;
         }
         #endregion
     }
