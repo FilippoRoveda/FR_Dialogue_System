@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Linq;
 
 
 namespace DS.Elements
@@ -16,7 +17,7 @@ namespace DS.Elements
     {
         [SerializeField] public string ID {  get; set; }
         [SerializeField] public string DialogueName { get; set; }
-        [SerializeField] public List<DS_Choice_SaveData> Choices { get; set; }
+        [SerializeField] public List<DS_ChoiceData> Choices { get; set; }
         [SerializeField] public string Text { get; set; }
         [SerializeField] public DS_DialogueType DialogueType { get; private set; }
         [SerializeField] public DS_Group Group { get; private set; } //Da far diventare group ID come stringa
@@ -30,7 +31,7 @@ namespace DS.Elements
         {
             ID = Guid.NewGuid().ToString();
             DialogueName = "DialogueName";
-            Choices = new List<DS_Choice_SaveData>();
+            Choices = new List<DS_ChoiceData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
             this.graphView = context;
@@ -60,7 +61,10 @@ namespace DS.Elements
 
             //Dialogue text foldout and text field
             Foldout dialogueTextFoldout = DS_ElementsUtilities.CreateFoldout("DialogueText");
-            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea("Dialogue text...");
+            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea(Text, null, callback => 
+            { 
+                Text = callback.newValue; 
+            });
 
             dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
 
@@ -143,6 +147,12 @@ namespace DS.Elements
         {
             DisconnectPorts(inputContainer);
             DisconnectPorts(outputContainer);
+        }
+
+        public bool IsStartingNode()
+        {
+            Port inputPort = (Port) inputContainer.Children().First();
+            return !inputPort.connected;
         }
         #endregion
     }

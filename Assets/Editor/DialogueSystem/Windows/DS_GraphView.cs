@@ -202,9 +202,9 @@ namespace DS.Windows
                 foreach(Edge edge in changes.edgesToCreate)
                 {
                     DS_Node nextNode = (DS_Node) edge.input.node;
-                    DS_Choice_SaveData choiceData = (DS_Choice_SaveData) edge.output.userData;
+                    DS_ChoiceData choiceData = (DS_ChoiceData) edge.output.userData;
 
-                    choiceData.LinkedNodeID = nextNode.ID;
+                    choiceData.NodeID = nextNode.ID;
                 }
 
                 foreach (GraphElement element in changes.elementsToRemove)
@@ -212,8 +212,8 @@ namespace DS.Windows
                     if(element.GetType() == typeof(Edge))
                     {
                         Edge edge = (Edge)element;
-                        DS_Choice_SaveData choiceData = (DS_Choice_SaveData) edge.output.userData;
-                        choiceData.LinkedNodeID = "";
+                        DS_ChoiceData choiceData = (DS_ChoiceData) edge.output.userData;
+                        choiceData.NodeID = "";
                     }
                 }
 

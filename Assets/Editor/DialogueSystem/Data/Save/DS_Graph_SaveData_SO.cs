@@ -12,6 +12,7 @@ namespace DS.Data.Save
         [SerializeField] public List<string> OldUngroupedNodesNames { get; set; }
         [SerializeField] public SerializableDictionary<string, List<string>> OldGroupedNodesNames { get; set; }
 
+
         public void Initialize(string fileName)
         {
             FileName = fileName;
