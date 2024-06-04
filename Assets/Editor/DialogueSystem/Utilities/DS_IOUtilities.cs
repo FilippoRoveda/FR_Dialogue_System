@@ -108,12 +108,29 @@ namespace DS.Utilities
         }
         private static void SaveNodes(DS_Graph_SaveData_SO graphData, DS_DialogueContainer_SO dialogueContainer)
         {
+
+            SerializableDictionary<string, List<string>> groupedNodeNames = new SerializableDictionary<string, List<string>>();
+            List<string> ungroupedNodeNames = new List<string>();
+
             foreach(DS_Node node in nodes)
             {
                 SaveNodeInGraphData(node, graphData);
                 SaveNodeToSO(node, dialogueContainer);
+
+                if (node.Group != null)
+                {
+                    groupedNodeNames.AddItem(node.Group.title, node.DialogueName);
+                }
+                else
+                {
+                    ungroupedNodeNames.Add(node.DialogueName);
+                }
             }
+
             UpdateDialogueChoicesConnection();
+
+            UpdateOldGroupedNodes(groupedNodeNames, graphData);
+            UpdateOldUngroupedNodes(ungroupedNodeNames, graphData);
         }
 
 
@@ -174,6 +191,45 @@ namespace DS.Utilities
                     SaveAsset(dialogue);
                 }
             }
+        }
+
+        private static void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, DS_Graph_SaveData_SO graphData)
+        {
+            if (graphData.OldGroupedNodesNames != null && graphData.OldGroupedNodesNames.Count != 0)
+            {
+                foreach(KeyValuePair<string, List<string>> oldGroupedNodes in graphData.OldGroupedNodesNames)
+                {
+                    List<string> nodesToRemove = new List<string>();
+
+                    if(currentGroupedNodeNames.ContainsKey(oldGroupedNodes.Key))
+                    {
+                        nodesToRemove = oldGroupedNodes.Value.Except(currentGroupedNodeNames[oldGroupedNodes.Key]).ToList();
+
+                        foreach (string nodeToRemove in nodesToRemove)
+                        {
+                            RemoveAsset($"{containerFolderPath}/Groups/{oldGroupedNodes.Key}/Dialpgue", nodeToRemove);
+                        }
+                    }
+                    else
+                    {
+                        RemoveFolder($"{containerFolderPath}/Groups/{oldGroupedNodes.Key}");
+                    }
+                }
+                graphData.OldGroupedNodesNames = new SerializableDictionary<string, List<string>>(currentGroupedNodeNames);
+            }
+        }
+        private static void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, DS_Graph_SaveData_SO graphData)
+        {
+            if(graphData.OldUngroupedNodesNames != null && graphData.OldUngroupedNodesNames.Count != 0)
+            {
+                List<string> nodesToRemove = graphData.OldUngroupedNodesNames.Except(currentUngroupedNodeNames).ToList();
+
+                foreach(string nodeToRemove in nodesToRemove)
+                {
+                    RemoveAsset($"{containerFolderPath}/Global/Dialogues", nodeToRemove);
+                }
+            }
+            graphData.OldUngroupedNodesNames = new List<string>(currentUngroupedNodeNames);
         }
 
         #endregion
@@ -244,6 +300,10 @@ namespace DS.Utilities
             FileUtil.DeleteFileOrDirectory($"{folderPath}/");
         }
 
+        private static void RemoveAsset(string path, string assetName)
+        {
+            AssetDatabase.DeleteAsset($"{path}/{assetName}.asset");
+        }
         #endregion
     }
 }

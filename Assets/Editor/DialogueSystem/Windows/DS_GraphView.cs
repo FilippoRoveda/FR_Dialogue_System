@@ -11,6 +11,7 @@ namespace DS.Windows
     using Elements;
     using Enumerations;
     using Utilities;
+    using static UnityEngine.GraphicsBuffer;
 
     /// <summary>
     /// Dialogue system GraphView window class.
@@ -24,19 +25,19 @@ namespace DS.Windows
         public SerializableDictionary<DS_Group, SerializableDictionary<string, DS_NodeErrorData>> groupedNodes;
         public SerializableDictionary<string, DS_GroupErrorData> groups;
 
-        private int repeatedNamesCounter;
-        public int RepeatedNamesCounter
+        private int nameErrorsAmount;
+        public int NameErrorsAmount
         {
-            get { return repeatedNamesCounter; }
+            get { return nameErrorsAmount; }
             set {
-                int previewsValue = repeatedNamesCounter;
+                int previewsValue = nameErrorsAmount;
 
-                repeatedNamesCounter = value;
-                if(repeatedNamesCounter == 0)
+                nameErrorsAmount = value;
+                if(nameErrorsAmount == 0)
                 {
                     editorWindow.EnableSaving();
                 }
-                if(previewsValue == 0 && repeatedNamesCounter == 1)
+                if(previewsValue == 0 && nameErrorsAmount == 1)
                 {
                     editorWindow.DisableSaving();
                 }
@@ -191,6 +192,22 @@ namespace DS.Windows
                 Remove_Group_FromDictionary(dS_Group);
 
                 dS_Group.title = newTitle.RemoveWhitespaces().RemoveSpecialCharacters();
+
+                if (string.IsNullOrEmpty(dS_Group.title))
+                {
+                    if (string.IsNullOrEmpty(dS_Group.oldTitle) == false)
+                    {
+                        NameErrorsAmount++;
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(dS_Group.oldTitle) == true)
+                    {
+                        NameErrorsAmount--;
+                    }
+                }
+
                 dS_Group.oldTitle = dS_Group.title;
                 Add_Group_ToDictionary(dS_Group);
             };
@@ -199,24 +216,30 @@ namespace DS.Windows
         {
             graphViewChanged = (changes) =>
             {
-                foreach(Edge edge in changes.edgesToCreate)
+                try
                 {
-                    DS_Node nextNode = (DS_Node) edge.input.node;
-                    DS_ChoiceData choiceData = (DS_ChoiceData) edge.output.userData;
-
-                    choiceData.NodeID = nextNode.ID;
-                }
-
-                foreach (GraphElement element in changes.elementsToRemove)
-                {
-                    if(element.GetType() == typeof(Edge))
+                    foreach (Edge edge in changes.edgesToCreate)
                     {
-                        Edge edge = (Edge)element;
-                        DS_ChoiceData choiceData = (DS_ChoiceData) edge.output.userData;
-                        choiceData.NodeID = "";
+                        DS_Node nextNode = (DS_Node)edge.input.node;
+                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+
+                        choiceData.NodeID = nextNode.ID;
+                    }
+
+                    foreach (GraphElement element in changes.elementsToRemove)
+                    {
+                        if (element.GetType() == typeof(Edge))
+                        {
+                            Edge edge = (Edge)element;
+                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                            choiceData.NodeID = "";
+                        }
                     }
                 }
-
+                catch (Exception ex) 
+                {
+                    Logger.Error(ex.Message, Color.red);
+                }
                 return changes;
             };
         }
@@ -398,7 +421,7 @@ namespace DS.Windows
                 node.SetErrorStyle(groupErrorColor);
                 if (ungroupedNodes[nodeName].Nodes.Count == 2)
                 {
-                    ++RepeatedNamesCounter; 
+                    ++NameErrorsAmount; 
                     ungroupedNodes[nodeName].Nodes[0].SetErrorStyle(groupErrorColor);
                 }
             }
@@ -427,7 +450,7 @@ namespace DS.Windows
             Logger.Message($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             if (nodeList.Count == 1)
             {
-                --RepeatedNamesCounter;
+                --NameErrorsAmount;
                 nodeList[0].ResetStyle(); 
                 return;
             }
@@ -484,7 +507,7 @@ namespace DS.Windows
                 Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 if (groupedNodeList.Count == 2)
                 {
-                    ++RepeatedNamesCounter;
+                    ++NameErrorsAmount;
                     groupedNodeList[0].SetErrorStyle(errorColor);
                 }  
             }
@@ -521,7 +544,7 @@ namespace DS.Windows
 
             if (groupedNodesList.Count == 1)
             {
-                --RepeatedNamesCounter;
+                --NameErrorsAmount;
                 groupedNodesList[0].ResetStyle();              
             }
             if (groupedNodesList.Count == 0) 
@@ -575,7 +598,7 @@ namespace DS.Windows
 
                 if (groupList.Count == 2)
                 {
-                    ++RepeatedNamesCounter;
+                    ++NameErrorsAmount;
                     groupList[0].SetErrorStyle(errorColor);
                 }
             }
@@ -604,7 +627,7 @@ namespace DS.Windows
 
             if (groupList.Count == 1)
             {
-                --RepeatedNamesCounter;
+                --NameErrorsAmount;
                 groupList[0].ResetStyle();
             }
 

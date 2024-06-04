@@ -93,6 +93,21 @@ namespace DS.Elements
             TextField target = (TextField)callback.target;
             target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
 
+            if(string.IsNullOrEmpty(target.value))
+            {
+                if(string.IsNullOrEmpty(DialogueName) == false)
+                {
+                    graphView.NameErrorsAmount++;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(DialogueName) == true)
+                {
+                    graphView.NameErrorsAmount--;
+                }
+            }
+
             if (Group == null)
             {
                 graphView.Remove_Node_FromUngrouped(this);

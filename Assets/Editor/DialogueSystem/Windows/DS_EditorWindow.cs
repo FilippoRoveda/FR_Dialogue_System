@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 namespace DS.Windows
 {
+    using System;
     using UnityEditor.UIElements;
     using Utilities;
 
@@ -15,6 +16,8 @@ namespace DS.Windows
         private readonly string defaultFileName = "DialogueFileName";
         private TextField filenameTextField;
         private Button saveGraphButton;
+
+        private DS_GraphView graph_View;
 
 
         [MenuItem("DialogueSystem/Editor_Window")]
@@ -33,7 +36,7 @@ namespace DS.Windows
 
         private void AddGraphView()
         {
-            DS_GraphView graph_View = new DS_GraphView(this);
+            graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
         }
@@ -53,7 +56,7 @@ namespace DS.Windows
         {
             Toolbar toolbar = new Toolbar();
             filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
-            saveGraphButton = DS_ElementsUtilities.CreateButton("Save");
+            saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => Save());
 
             toolbar.Add(filenameTextField);
             toolbar.Add(saveGraphButton);
@@ -61,6 +64,18 @@ namespace DS.Windows
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
+        }
+
+        private void Save()
+        {
+            if(string.IsNullOrEmpty(filenameTextField.value))
+            {
+                EditorUtility.DisplayDialog("Invalid file name.", "Please ensure the file name is not empty or invalid.", "Ok");
+                return;
+            }
+
+            DS_IOUtilities.Initialize(graph_View, filenameTextField.value);
+            DS_IOUtilities.SaveGraph();
         }
 
         private void OnFilenameChanged(ChangeEvent<string> callback)
