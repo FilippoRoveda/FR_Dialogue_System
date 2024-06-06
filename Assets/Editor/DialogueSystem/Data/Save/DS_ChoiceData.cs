@@ -6,10 +6,20 @@ namespace DS.Data.Save
     [System.Serializable]
     public class DS_ChoiceData
     {
-        [SerializeField] public string ChoiceName { get; set; }
+        [SerializeField] private string choiceName;
+        public string ChoiceName 
+        {
+            get {  return choiceName; } 
+            set { choiceName = value; }
+        }
 
         //Linked choice name?
-        [SerializeField] public string NodeID { get; set; }
+        [SerializeField] private string nodeID;
+        public string NodeID 
+        {
+            get { return nodeID; } 
+            set {  nodeID = value; }
+        }
 
         public DS_ChoiceData() { }
         public DS_ChoiceData(DS_ChoiceData choice)

@@ -9,13 +9,89 @@ namespace DS.Data.Save
     [System.Serializable]
     public class DS_Node_SaveData
     {
-        [SerializeField] public string NodeID {  get; set; }
-        [SerializeField] public string Name {  get; set; }
-        [SerializeField] public string Text { get; set; }
-        [SerializeField] public List<DS_ChoiceData> Choices {  get; set; }
-        [SerializeField] public string GroupID { get; set; }
-        [SerializeField] public DS_DialogueType DialogueType { get; set; }
-        [SerializeField] public Vector2 Position { get; set; }
+        [SerializeField] private string nodeID;
+        public string NodeID 
+        {
+            get
+            {
+                return nodeID;
+            }
+            set 
+            {
+                nodeID = value;
+            } 
+        }
+        [SerializeField] private string name;
+        public string Name 
+        {  get
+            {
+                return name;
+            }
+           set
+            {
+                name = value;
+            }
+        }
+        [SerializeField] private string text;
+        public string Text 
+        { 
+            get
+            {
+                return text;
+            }
+            set
+            {
+                text = value;
+            }
+        }
+        [SerializeField] private List<DS_ChoiceData> choices;
+        public List<DS_ChoiceData> Choices
+        {  get
+            { 
+                return choices;
+            }
+           set
+            {
+                choices = value;
+            }
+        }
+
+        [SerializeField] private string groupID;
+        public string GroupID 
+        {
+            get 
+            {
+                return groupID;
+            } 
+            set
+            {
+                groupID = value;
+            }
+        }
+        [SerializeField] private DS_DialogueType dialogueType;
+        public DS_DialogueType DialogueType 
+        { 
+            get
+            {
+                return dialogueType;
+            }
+            set
+            {
+                dialogueType = value;
+            }
+        }
+        [SerializeField] private Vector2 position;
+        public Vector2 Position 
+        { 
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
 
         public DS_Node_SaveData() { }
         public DS_Node_SaveData(DS_Node node)
