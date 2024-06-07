@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DS.Data.Save
 {
-    public class DS_Graph_SaveData_SO : ScriptableObject
+    public class DS_Graph_SO : ScriptableObject
     {
         [SerializeField] private string fileName;
         public string FileName 

@@ -27,10 +27,10 @@ namespace DS.Elements
         private Color defaultColor;
 
 
-        public virtual void Initialize(DS_GraphView context, Vector2 spawnPosition)
+        public virtual void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             ID = Guid.NewGuid().ToString();
-            DialogueName = "DialogueName";
+            DialogueName = nodeName;
             Choices = new List<DS_ChoiceData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);

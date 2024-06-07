@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DS_Group : Group
 {
-    public string ID { get; private set; }
+    public string ID { get; set; }
     public string oldTitle;
 
     private Color defaultBorderColor;

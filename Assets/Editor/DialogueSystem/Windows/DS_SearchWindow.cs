@@ -53,11 +53,11 @@ namespace DS.Windows
             switch (SearchTreeEntry.userData) 
             {
                 case DS_DialogueType.SingleChoice:
-                    DS_SingleChoiceNode singleChoiceNode = (DS_SingleChoiceNode) graphView.CreateNode(localMousePosition, DS_DialogueType.SingleChoice);
+                    DS_SingleChoiceNode singleChoiceNode = (DS_SingleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.SingleChoice);
                     graphView.AddElement(singleChoiceNode);
                     return true;
                 case DS_DialogueType.MultipleChoice:
-                    DS_MultipleChoiceNode multipleChoiceNode = (DS_MultipleChoiceNode) graphView.CreateNode(localMousePosition, DS_DialogueType.MultipleChoice);
+                    DS_MultipleChoiceNode multipleChoiceNode = (DS_MultipleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.MultipleChoice);
                     graphView.AddElement(multipleChoiceNode);
                     return true;
                 case Group _:

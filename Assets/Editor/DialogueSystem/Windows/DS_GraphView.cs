@@ -216,31 +216,26 @@ namespace DS.Windows
         {
             graphViewChanged = (changes) =>
             {
-                try
+                if (changes.edgesToCreate == null) return changes;
+
+                foreach (Edge edge in changes.edgesToCreate)
                 {
-                    foreach (Edge edge in changes.edgesToCreate)
+                    DS_Node nextNode = (DS_Node)edge.input.node;
+                    DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+
+                    choiceData.NodeID = nextNode.ID;
+                }
+
+                foreach (GraphElement element in changes.elementsToRemove)
+                {
+                    if (element.GetType() == typeof(Edge))
                     {
-                        DS_Node nextNode = (DS_Node)edge.input.node;
+                        Edge edge = (Edge)element;
                         DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
-
-                        choiceData.NodeID = nextNode.ID;
-                    }
-
-                    foreach (GraphElement element in changes.elementsToRemove)
-                    {
-                        if (element.GetType() == typeof(Edge))
-                        {
-                            Edge edge = (Edge)element;
-                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
-                            choiceData.NodeID = "";
-                        }
+                        choiceData.NodeID = "";
                     }
                 }
-                catch (Exception ex) 
-                {
-                    Logger.Error(ex.Message, Color.red);
-                }
-                return changes;
+            return changes;
             };
         }
 
@@ -284,7 +279,7 @@ namespace DS.Windows
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
                 menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => 
-                AddElement(CreateNode(WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition), dialogueType))));
+                AddElement(CreateNode("DialogueName", WorldToLocalMousePosition(actionEvent.eventInfo.localMousePosition), dialogueType))));
             return contextualMenuManipulator;
         }
         #endregion
@@ -296,13 +291,13 @@ namespace DS.Windows
         /// <param name="spawnPosition">The screen spawn position for the node.</param>
         /// <param name="dialogueType">Enumerator selecting which type of node to spawn.</param>
         /// <returns>Pointer to the created node as a generic DS_Node.</returns>
-        public DS_Node CreateNode(Vector2 spawnPosition, DS_DialogueType dialogueType)
+        public DS_Node CreateNode(string nodeName, Vector2 spawnPosition, DS_DialogueType dialogueType, bool shouldDraw = true)
         {
             Type nodeType = Type.GetType($"DS.Elements.DS_{dialogueType}Node"); //Generating the Type variable according to the indicated Name.
             DS_Node node = (DS_Node) Activator.CreateInstance(nodeType);
 
-            node.Initialize(this, spawnPosition);
-            node.Draw();
+            node.Initialize(nodeName, this, spawnPosition);
+            if(shouldDraw == true) node.Draw();
 
             Add_Node_ToUngrouped(node);
             return node;
@@ -388,6 +383,15 @@ namespace DS.Windows
 
            Vector2 localMousePos = contentViewContainer.WorldToLocal(worldMousePos);
            return localMousePos;
+        }
+
+        public void ClearGraph()
+        {
+            graphElements.ForEach(graphElement => RemoveElement(graphElement));
+            groups.Clear();
+            groupedNodes.Clear();
+            ungroupedNodes.Clear();
+            nameErrorsAmount = 0;
         }
         #endregion
 

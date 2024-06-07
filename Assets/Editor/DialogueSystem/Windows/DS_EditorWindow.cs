@@ -14,8 +14,12 @@ namespace DS.Windows
     public class DS_EditorWindow : EditorWindow
     {
         private readonly string defaultFileName = "DialogueFileName";
-        private TextField filenameTextField;
+
+        private static TextField filenameTextField;
+
         private Button saveGraphButton;
+        private Button clearButton;
+        private Button resetButton;
 
         private DS_GraphView graph_View;
 
@@ -56,17 +60,23 @@ namespace DS.Windows
         {
             Toolbar toolbar = new Toolbar();
             filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
-            saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => Save());
+            saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
+            clearButton = DS_ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
+            resetButton = DS_ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
 
             toolbar.Add(filenameTextField);
             toolbar.Add(saveGraphButton);
+            toolbar.Add(clearButton);
+            toolbar.Add(resetButton);
 
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
         }
 
-        private void Save()
+
+        #region Callbacks
+        private void OnSaveButtonPressed()
         {
             if(string.IsNullOrEmpty(filenameTextField.value))
             {
@@ -76,6 +86,24 @@ namespace DS.Windows
 
             DS_IOUtilities.Initialize(graph_View, filenameTextField.value);
             DS_IOUtilities.SaveGraph();
+        }
+
+        private void OnClearButtonPressed()
+        {
+            graph_View?.ClearGraph();
+        }
+
+        private void OnResetGraphButtonPressed()
+        {
+            OnClearButtonPressed();
+            UpdateFilename(defaultFileName);
+        }
+        #endregion
+
+        #region Utilities
+        public static void UpdateFilename(string newFilename)
+        {
+            filenameTextField.value = newFilename;
         }
 
         private void OnFilenameChanged(ChangeEvent<string> callback)
@@ -91,5 +119,6 @@ namespace DS.Windows
         {
             saveGraphButton.SetEnabled(false);
         }
+        #endregion
     }
 }

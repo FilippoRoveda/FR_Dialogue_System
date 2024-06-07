@@ -11,9 +11,9 @@ namespace DS.Elements
 
     public class DS_SingleChoiceNode : DS_Node
     {
-        public override void Initialize(DS_GraphView context, Vector2 spawnPosition)
+        public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(context, spawnPosition);
+            base.Initialize(nodeName, context, spawnPosition);
 
             SetDialogueType(DS_DialogueType.SingleChoice);
             DS_ChoiceData choiceData = new DS_ChoiceData() { ChoiceName = "Next Choice" };

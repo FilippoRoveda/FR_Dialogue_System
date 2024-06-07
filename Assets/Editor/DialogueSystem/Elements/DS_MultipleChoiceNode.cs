@@ -13,9 +13,9 @@ namespace DS.Elements
     {
         private int choiceCounter;
 
-        public override void Initialize(DS_GraphView context, Vector2 spawnPosition)
+        public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(context, spawnPosition);
+            base.Initialize(nodeName, context, spawnPosition);
 
             SetDialogueType(DS_DialogueType.MultipleChoice);
             choiceCounter = 1;
