@@ -14,6 +14,8 @@ namespace DS.Windows
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
+        private Toolbar toolbar;
+
         private readonly string defaultFileName = "DialogueFileName";
 
         private static TextField filenameTextField;
@@ -22,6 +24,7 @@ namespace DS.Windows
         private Button loadButton;
         private Button clearButton;
         private Button resetButton;
+        private Button toggleMinimapButton;
 
         private DS_GraphView graph_View;
 
@@ -60,23 +63,27 @@ namespace DS.Windows
         /// </summary>
         private void AddToolbar()
         {
-            Toolbar toolbar = new Toolbar();
+            toolbar = new Toolbar();
             filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
             saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
             loadButton = DS_ElementsUtilities.CreateButton("Load", () => OnLoadButtonPressed());
             clearButton = DS_ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             resetButton = DS_ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
+            toggleMinimapButton = DS_ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
+
 
             toolbar.Add(filenameTextField);
             toolbar.Add(saveGraphButton);
             toolbar.Add(loadButton);
             toolbar.Add(clearButton);
             toolbar.Add(resetButton);
+            toolbar.Add(toggleMinimapButton);
 
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
         }
+
 
 
 
@@ -113,6 +120,13 @@ namespace DS.Windows
         {
             OnClearButtonPressed();
             UpdateFilename(defaultFileName);
+        }
+
+        private void OnToggleMinimapButtonPressed()
+        {
+            graph_View.ToggleMinimap();
+
+            toggleMinimapButton.ToggleInClassList("ds-toolbar_button_selected");
         }
         #endregion
 

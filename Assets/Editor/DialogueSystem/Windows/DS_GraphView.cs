@@ -21,6 +21,9 @@ namespace DS.Windows
         private DS_EditorWindow editorWindow; //Reference to the editor window class
         private DS_SearchWindow searchWindow; //Reference to the search window owned class
 
+        private GridBackground gridBackground;
+        private MiniMap miniMap;
+
         public SerializableDictionary<string, DS_NodeErrorData> ungroupedNodes;
         public SerializableDictionary<DS_Group, SerializableDictionary<string, DS_NodeErrorData>> groupedNodes;
         public SerializableDictionary<string, DS_GroupErrorData> groups;
@@ -67,8 +70,10 @@ namespace DS.Windows
             AddMinimap();
             Add_GridBackground();
             Add_Styles();
+            Add_MinimapStyles();
             Add_Manipulators();
         }
+
 
         #region Overrides
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -341,14 +346,18 @@ namespace DS.Windows
         /// </summary>
         private void Add_GridBackground()
         {
-            GridBackground gridBackground = new GridBackground();
+            gridBackground = new GridBackground();
             gridBackground.StretchToParentSize();
             Insert(0, gridBackground);
         }
 
         private void AddMinimap()
         {
-            throw new NotImplementedException();
+            miniMap = new MiniMap();
+            miniMap.anchored = true;
+            miniMap.SetPosition(new Rect(15, 50, 200, 180));
+            Add(miniMap);
+            miniMap.visible = false;
         }
 
         /// <summary>
@@ -372,6 +381,19 @@ namespace DS.Windows
 
             this.AddStyleSheet( "DS_GridBackground.uss",
                                 "DS_NodeStyles.uss");
+        }
+
+
+        private void Add_MinimapStyles()
+        {
+            StyleColor backgroundColor = new StyleColor(new Color32(29, 29, 30, 255));
+            StyleColor borderColor = new StyleColor(new Color32(51, 51, 51, 255));
+
+            miniMap.style.backgroundColor = backgroundColor;
+            miniMap.style.borderTopColor = borderColor;
+            miniMap.style.borderRightColor = borderColor;
+            miniMap.style.borderLeftColor = borderColor;
+            miniMap.style.borderBottomColor = borderColor;
         }
         #endregion
 
@@ -402,6 +424,11 @@ namespace DS.Windows
             groupedNodes.Clear();
             ungroupedNodes.Clear();
             nameErrorsAmount = 0;
+        }
+
+        public void ToggleMinimap()
+        {
+            miniMap.visible = !miniMap.visible;
         }
         #endregion
 

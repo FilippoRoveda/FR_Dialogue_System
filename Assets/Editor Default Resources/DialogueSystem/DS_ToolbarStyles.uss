@@ -51,3 +51,8 @@ TextField:focus > .unity-text-field_label
 {
 	color: #212325;
 }
+
+.ds-toolbar_button_selected
+{
+	color: #FDD057;
+}
