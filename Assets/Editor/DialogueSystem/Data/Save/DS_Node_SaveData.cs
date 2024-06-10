@@ -108,8 +108,10 @@ namespace DS.Data.Save
 
             Choices = choices;
             Text = node.Text;
+
             if(node.Group != null) GroupID = node.Group.ID;
             else GroupID = null;
+
             DialogueType = node.DialogueType;
             Position = node.GetPosition().position;
         }

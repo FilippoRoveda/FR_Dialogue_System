@@ -64,6 +64,7 @@ namespace DS.Windows
 
             //Adding
             Add_SearchWindow();
+            AddMinimap();
             Add_GridBackground();
             Add_Styles();
             Add_Manipulators();
@@ -216,23 +217,27 @@ namespace DS.Windows
         {
             graphViewChanged = (changes) =>
             {
-                if (changes.edgesToCreate == null) return changes;
-
-                foreach (Edge edge in changes.edgesToCreate)
+                if (changes.edgesToCreate != null)
                 {
-                    DS_Node nextNode = (DS_Node)edge.input.node;
-                    DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                    foreach (Edge edge in changes.edgesToCreate)
+                    {
+                        DS_Node nextNode = (DS_Node)edge.input.node;
+                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
 
-                    choiceData.NodeID = nextNode.ID;
+                        choiceData.NodeID = nextNode.ID;
+                    }
                 }
 
-                foreach (GraphElement element in changes.elementsToRemove)
+                if (changes.elementsToRemove != null)
                 {
-                    if (element.GetType() == typeof(Edge))
+                    foreach (GraphElement element in changes.elementsToRemove)
                     {
-                        Edge edge = (Edge)element;
-                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
-                        choiceData.NodeID = "";
+                        if (element.GetType() == typeof(Edge))
+                        {
+                            Edge edge = (Edge)element;
+                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                            choiceData.NodeID = "";
+                        }
                     }
                 }
             return changes;
@@ -341,6 +346,11 @@ namespace DS.Windows
             Insert(0, gridBackground);
         }
 
+        private void AddMinimap()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Function tha add a Search window feature to the GraphView window.
         /// </summary>
@@ -397,7 +407,7 @@ namespace DS.Windows
 
 
 
-
+        #region Dictionaries handling
         /// <summary>
         /// Add the passed node to the ungrouped node dictionary.
         /// </summary>
@@ -647,5 +657,6 @@ namespace DS.Windows
                 Logger.Warning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
             }
         }
+        #endregion
     }
 }

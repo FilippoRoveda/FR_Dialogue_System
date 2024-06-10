@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 namespace DS.Windows
 {
     using System;
+    using System.IO;
     using UnityEditor.UIElements;
     using Utilities;
 
@@ -18,6 +19,7 @@ namespace DS.Windows
         private static TextField filenameTextField;
 
         private Button saveGraphButton;
+        private Button loadButton;
         private Button clearButton;
         private Button resetButton;
 
@@ -61,11 +63,13 @@ namespace DS.Windows
             Toolbar toolbar = new Toolbar();
             filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
             saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
+            loadButton = DS_ElementsUtilities.CreateButton("Load", () => OnLoadButtonPressed());
             clearButton = DS_ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             resetButton = DS_ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
 
             toolbar.Add(filenameTextField);
             toolbar.Add(saveGraphButton);
+            toolbar.Add(loadButton);
             toolbar.Add(clearButton);
             toolbar.Add(resetButton);
 
@@ -73,6 +77,7 @@ namespace DS.Windows
 
             rootVisualElement.Add(toolbar);
         }
+
 
 
         #region Callbacks
@@ -86,6 +91,17 @@ namespace DS.Windows
 
             DS_IOUtilities.Initialize(graph_View, filenameTextField.value);
             DS_IOUtilities.SaveGraph();
+        }
+
+        private void OnLoadButtonPressed()
+        {
+            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/DialogueSystem/Graphs", "asset");
+            if(string.IsNullOrEmpty(filePath) == false)
+            {
+                OnClearButtonPressed();
+                DS_IOUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
+                DS_IOUtilities.LoadGraph();
+            }
         }
 
         private void OnClearButtonPressed()

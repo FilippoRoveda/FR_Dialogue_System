@@ -26,6 +26,7 @@ namespace DS.Utilities
         public static Dictionary<string, DS_Dialogue_SO> createdDialoguesSO;
 
         private static Dictionary<string, DS_Group> loadedGroups;
+        private static Dictionary<string, DS_Node> loadedNodes;
 
 
         public static void Initialize(DS_GraphView graphView, string graphName)
@@ -40,6 +41,7 @@ namespace DS.Utilities
             createdDialoguesSO = new Dictionary<string, DS_Dialogue_SO>();
 
             loadedGroups = new Dictionary<string, DS_Group>();
+            loadedNodes = new Dictionary<string, DS_Node>();
         }
 
         #region Save methods
@@ -139,9 +141,12 @@ namespace DS.Utilities
 
         private static void SaveNodeInGraphData(DS_Node node, DS_Graph_SO graphData)
         {
-            DS_Node_SaveData nodeData = new DS_Node_SaveData();
+            //List<DS_ChoiceData> choices = CloneChoices(node.Choices);
+
+            DS_Node_SaveData nodeData = new DS_Node_SaveData(node);
             graphData.Nodes.Add(nodeData);
         }
+
 
         private static void SaveNodeToSO(DS_Node node, DS_DialogueContainer_SO dialogueContainer)
         {
@@ -149,7 +154,7 @@ namespace DS.Utilities
             
             if(node.Group == null)
             {
-                dialogue = CreateAsset<DS_Dialogue_SO>($"{containerFolderPath}/Groups/Global/Dialogues", node.DialogueName);
+                dialogue = CreateAsset<DS_Dialogue_SO>($"{containerFolderPath}/Global/Dialogues", node.DialogueName);
                 dialogueContainer.UngroupedDialogues.Add(dialogue);
             }
             else 
@@ -255,6 +260,7 @@ namespace DS.Utilities
 
             LoadGroups(graphData.Groups);
             LoadNodes(graphData.Nodes);
+            LoadNodesConnections();
         }
 
         private static void LoadGroups(List<DS_Group_SaveData> groups)
@@ -271,10 +277,47 @@ namespace DS.Utilities
         private static void LoadNodes(List<DS_Node_SaveData> nodes)
         {
             foreach(DS_Node_SaveData nodeData in nodes)
-            {
-                DS_Node node = graphView.CreateNode(nodeData.Name ,nodeData.Position, nodeData.DialogueType);
+            {         
+                DS_Node node = graphView.CreateNode(nodeData.Name ,nodeData.Position, nodeData.DialogueType, false);
+
+                node.ID = nodeData.NodeID;
+                List<DS_ChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
+                node.Choices = clonedChoices;
+                node.Text = nodeData.Text;
+                
+                node.Draw();
+                graphView.AddElement(node);
+                
+                if(string.IsNullOrEmpty(nodeData.GroupID) == false)
+                {
+                    DS_Group group = loadedGroups[nodeData.GroupID];
+                    node.Group = group;
+                    group.AddElement(node);
+                    loadedNodes.Add(node.ID, node);
+                }
             }
         }
+
+        private static void LoadNodesConnections()
+        {
+            foreach(KeyValuePair<string, DS_Node> loadedNode in loadedNodes)
+            {
+                foreach(Port choicePort in loadedNode.Value.outputContainer.Children())
+                {
+                    DS_ChoiceData choiceData = (DS_ChoiceData) choicePort.userData;
+
+                    if(string.IsNullOrEmpty(choiceData.NodeID) == false)
+                    {
+                        DS_Node linkedNode = loadedNodes[choiceData.NodeID];
+                        Port linkedNodeInputPort = (Port) linkedNode.inputContainer.Children().First();
+                        Edge edge = choicePort.ConnectTo(linkedNodeInputPort);
+                        graphView.AddElement(edge);
+                        loadedNode.Value.RefreshPorts();
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Creation methods
@@ -352,6 +395,19 @@ namespace DS.Utilities
         private static void RemoveAsset(string path, string assetName)
         {
             AssetDatabase.DeleteAsset($"{path}/{assetName}.asset");
+        }
+
+        private static List<DS_ChoiceData> CloneChoices(List<DS_ChoiceData> choiceList)
+        {
+            List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
+
+            foreach (DS_ChoiceData choice in choiceList)
+            {
+                DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
+                choices.Add(choice_SaveData);
+            }
+
+            return choices;
         }
         #endregion
     }

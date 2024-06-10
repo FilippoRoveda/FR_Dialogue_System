@@ -20,7 +20,7 @@ namespace DS.Elements
         [SerializeField] public List<DS_ChoiceData> Choices { get; set; }
         [SerializeField] public string Text { get; set; }
         [SerializeField] public DS_DialogueType DialogueType { get; private set; }
-        [SerializeField] public DS_Group Group { get; private set; } //Da far diventare group ID come stringa
+        [SerializeField] public DS_Group Group { get; set; } //Da far diventare group ID come stringa
 
 
         protected DS_GraphView graphView;
