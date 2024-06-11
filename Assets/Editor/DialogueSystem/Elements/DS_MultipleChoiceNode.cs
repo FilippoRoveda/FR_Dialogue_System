@@ -56,6 +56,7 @@ namespace DS.Elements
 
             Port choicePort = this.CreatePort(choiceData.ChoiceName, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
             choicePort.portName = "";
+            choicePort.userData = choiceData;
 
             Button deleteChoiceButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteChoiceClick(choicePort, choiceData));
 

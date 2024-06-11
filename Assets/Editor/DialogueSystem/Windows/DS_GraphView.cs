@@ -48,6 +48,19 @@ namespace DS.Windows
         }
 
 
+        private float viewMovementSpeed = 40.0f;
+        public float ViewMovementSpeed
+        {
+            get; set;
+        }
+
+        private Dictionary<KeyCode, bool> keyStates = new Dictionary<KeyCode, bool>
+    {
+        { KeyCode.UpArrow, false },
+        { KeyCode.LeftArrow, false },
+        { KeyCode.DownArrow, false },
+        { KeyCode.RightArrow, false }
+    };
 
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
@@ -72,10 +85,44 @@ namespace DS.Windows
             Add_Styles();
             Add_MinimapStyles();
             Add_Manipulators();
+
+            RegisterCallback<KeyDownEvent>(OnKeyDown);
+            RegisterCallback<KeyUpEvent>(OnKeyUp);
+
+            schedule.Execute(UpdateViewPosition).Every(32);
         }
 
 
         #region Overrides
+
+        private void UpdateViewPosition()
+        {
+            Vector3 newPosition = contentViewContainer.transform.position;           
+
+            if (keyStates[KeyCode.UpArrow])
+            {
+                newPosition.y += viewMovementSpeed * Time.deltaTime;
+            }
+            if (keyStates[KeyCode.LeftArrow])
+            {
+                newPosition.x += viewMovementSpeed * Time.deltaTime;
+            }
+            if (keyStates[KeyCode.DownArrow])
+            {
+                newPosition.y -= viewMovementSpeed * Time.deltaTime;
+            }
+            if (keyStates[KeyCode.RightArrow])
+            {
+                newPosition.x -= viewMovementSpeed * Time.deltaTime;
+            }
+
+            if (newPosition != contentViewContainer.transform.position)
+            {
+                contentViewContainer.transform.position = newPosition;
+                contentViewContainer.MarkDirtyRepaint();
+            }
+        }
+
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             List<Port> compatiblePorts = new List<Port>();
@@ -228,7 +275,6 @@ namespace DS.Windows
                     {
                         DS_Node nextNode = (DS_Node)edge.input.node;
                         DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
-
                         choiceData.NodeID = nextNode.ID;
                     }
                 }
@@ -429,6 +475,26 @@ namespace DS.Windows
         public void ToggleMinimap()
         {
             miniMap.visible = !miniMap.visible;
+        }
+
+        private void OnKeyDown(KeyDownEvent evt)
+        {
+            if (keyStates.ContainsKey(evt.keyCode))
+            {
+                keyStates[evt.keyCode] = true;
+                evt.StopPropagation(); 
+                evt.PreventDefault();
+            }
+        }
+
+        private void OnKeyUp(KeyUpEvent evt)
+        {
+            if (keyStates.ContainsKey(evt.keyCode))
+            {
+                keyStates[evt.keyCode] = false;
+                evt.StopPropagation();
+                evt.PreventDefault();
+            }
         }
         #endregion
 
