@@ -10,8 +10,8 @@ namespace DS.Windows
     using DS.Data.Save;
     using Elements;
     using Enumerations;
+    using System.Linq;
     using Utilities;
-    using static UnityEngine.GraphicsBuffer;
 
     /// <summary>
     /// Dialogue system GraphView window class.
@@ -91,7 +91,6 @@ namespace DS.Windows
 
             schedule.Execute(UpdateViewPosition).Every(32);
         }
-
 
         #region Overrides
 
@@ -291,6 +290,17 @@ namespace DS.Windows
                         }
                     }
                 }
+
+                if(changes.movedElements != null)
+                {
+                    foreach(GraphElement element in changes.movedElements)
+                    {
+                        if(element.GetType() == typeof(DS_SingleChoiceNode) || element.GetType() == typeof(DS_MultipleChoiceNode))
+                        {
+                            AvoidNodeOverlap((DS_Node)element);
+                        }
+                    }
+                }
             return changes;
             };
         }
@@ -356,6 +366,8 @@ namespace DS.Windows
             if(shouldDraw == true) node.Draw();
 
             Add_Node_ToUngrouped(node);
+
+            AvoidNodeOverlap();
             return node;
         }
 
@@ -497,8 +509,6 @@ namespace DS.Windows
             }
         }
         #endregion
-
-
 
         #region Dictionaries handling
         /// <summary>
@@ -751,5 +761,48 @@ namespace DS.Windows
             }
         }
         #endregion
+
+
+        private void AvoidNodeOverlap(DS_Node node)
+        {
+            List<Node> nodes = new List<Node>(this.Query<Node>().ToList());
+            nodes.Remove(node);
+            Queue<Node> queue = new Queue<Node>(nodes);
+            queue.Enqueue(node);
+            nodes = queue.ToList();
+                 
+            Debug.Log(nodes.Count);
+            bool hasOverlap;
+
+            do
+            {
+                hasOverlap = false;
+                for (int i = 0; i < nodes.Count; i++)
+                {
+                    for (int j = i + 1; j < nodes.Count; j++)
+                    {
+                        if (NodeOverlap(nodes[i], nodes[j]))
+                        {
+                            hasOverlap = true;
+                            Debug.Log("Nodo si sovrappone");
+                            ResolveOverlap(nodes[i], nodes[j]);
+                        }
+                    }
+                }
+            } while (hasOverlap);
+        }
+
+        private bool NodeOverlap(Node a, Node b)
+        {
+            return a.GetPosition().Overlaps(b.GetPosition());
+        }
+
+        private void ResolveOverlap(Node a, Node b)
+        {
+            Rect rectA = a.GetPosition();
+            Rect rectB = b.GetPosition();
+
+            
+        }
     }
 }

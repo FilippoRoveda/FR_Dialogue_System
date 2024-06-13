@@ -25,6 +25,7 @@ namespace DS.Elements
 
         protected DS_GraphView graphView;
         private Color defaultColor;
+        private Rect oldPostition;
 
 
         public virtual void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
@@ -79,6 +80,12 @@ namespace DS.Elements
             evt.menu.AppendAction("Disconnect Input Ports", actionEvent => DisconnectPorts(inputContainer));
             evt.menu.AppendAction("Disconnect Output Ports", actionEvent => DisconnectPorts(outputContainer));
             base.BuildContextualMenu(evt);
+        }
+
+        public override void SetPosition(Rect newPos)
+        {
+            oldPostition = GetPosition();
+            base.SetPosition(newPos);
         }
         #endregion
 
