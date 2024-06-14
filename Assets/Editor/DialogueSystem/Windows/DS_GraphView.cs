@@ -367,7 +367,7 @@ namespace DS.Windows
 
             Add_Node_ToUngrouped(node);
 
-            AvoidNodeOverlap();
+            AvoidNodeOverlap(node);
             return node;
         }
 
@@ -763,46 +763,123 @@ namespace DS.Windows
         #endregion
 
 
-        private void AvoidNodeOverlap(DS_Node node)
+        private void AvoidNodeOverlap(DS_Node nodeA)
         {
-            List<Node> nodes = new List<Node>(this.Query<Node>().ToList());
-            nodes.Remove(node);
-            Queue<Node> queue = new Queue<Node>(nodes);
-            queue.Enqueue(node);
-            nodes = queue.ToList();
-                 
-            Debug.Log(nodes.Count);
-            bool hasOverlap;
-
+            List<DS_Node> otherNodes = new List<DS_Node>(this.Query<DS_Node>().ToList());
+            otherNodes.Remove(nodeA);
+            Debug.LogError("DS_Nodes.Count == " + otherNodes.Count());  
+            bool hasOverlap = false;
             do
             {
                 hasOverlap = false;
-                for (int i = 0; i < nodes.Count; i++)
+
+                foreach (DS_Node nodeB in otherNodes)
                 {
-                    for (int j = i + 1; j < nodes.Count; j++)
+                    if (nodeA.IsOverlapping(nodeB))
                     {
-                        if (NodeOverlap(nodes[i], nodes[j]))
-                        {
-                            hasOverlap = true;
-                            Debug.Log("Nodo si sovrappone");
-                            ResolveOverlap(nodes[i], nodes[j]);
-                        }
+                        //hasOverlap = true;
+                        Debug.LogError("Node is overlapping");
+                        ResolveOverlap(nodeA, nodeB);
                     }
                 }
-            } while (hasOverlap);
+            } while (hasOverlap == true);
         }
 
-        private bool NodeOverlap(Node a, Node b)
+        private void ResolveOverlap(Node nodeA, Node nodeB)
         {
-            return a.GetPosition().Overlaps(b.GetPosition());
-        }
+            Rect rectA = nodeA.GetPosition();
+            Rect rectB = nodeB.GetPosition();
 
-        private void ResolveOverlap(Node a, Node b)
-        {
-            Rect rectA = a.GetPosition();
-            Rect rectB = b.GetPosition();
+            float overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
+            float overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
 
-            
+            if (rectA.xMax < rectB.xMax && rectA.yMax < rectB.yMax)
+            {
+                if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMax - rectB.yMin))
+                {
+                    //push sx
+                    rectA.x -= overlapX;
+                    Debug.LogError("push sx");
+                }
+                else
+                {
+                    //push down(up in inverse axis of the graphview)
+                    rectA.y -= overlapY;
+                    Debug.LogError("push down");
+                }
+            }
+            else if(rectA.xMax < rectB.xMax && rectA.yMax > rectB.yMax)
+            {
+                if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMin - rectB.yMax))
+                {
+                    //push sx
+                    rectA.x -= overlapX;
+                    Debug.LogError("push sx");
+                }
+                else
+                {
+                    //push up
+                    rectA.y += overlapY;
+                    Debug.LogError("push up");
+                }
+            }
+            else if(rectA.xMax > rectB.xMax && rectA.yMax > rectB.yMax)
+            {
+                if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMin - rectB.yMax))
+                {
+                    //push dx
+                    rectA.x += overlapX;
+                    Debug.LogError("push dx");
+                }
+                else
+                {
+                    //push up
+                    rectA.y -= overlapY;
+                    Debug.LogError("push up");
+                }
+            }
+            else if(rectA.xMax > rectB.xMax && rectA.yMax < rectB.yMax)
+            {
+                if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMax - rectB.yMin))
+                {
+                    //push dx
+                    rectA.x += overlapX;
+                    Debug.LogError("push dx");
+                }
+                else
+                {
+                    //push down
+                    rectA.y -= overlapY;
+                    Debug.LogError("push down");
+                }
+            }
+            else if(rectA.xMax == rectB.xMax && rectA.yMax > rectB.yMax)
+            {
+                //push up
+                rectA.y += overlapY;
+                Debug.LogError("push up");
+            }
+            else if(rectA.xMax == rectB.xMax && rectA.yMax < rectB.yMax)
+            {
+                //push down
+                rectA.y -= overlapY;
+                Debug.LogError("push down");
+            }
+            else if(rectA.xMax < rectB.xMax && rectA.yMax == rectB.yMax)
+            {
+                //push sx
+                rectA.x -= overlapX;
+                Debug.LogError("push sx");
+            }
+            else if(rectA.xMax > rectB.xMax && rectA.yMax == rectB.yMax)
+            {
+                //push dx
+                rectA.x += overlapX;
+                Debug.LogError("push dx");
+            }
+
+            nodeA.SetPosition(rectA);
+            return;
         }
     }
 }

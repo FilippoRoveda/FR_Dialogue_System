@@ -170,11 +170,15 @@ namespace DS.Elements
             DisconnectPorts(inputContainer);
             DisconnectPorts(outputContainer);
         }
-
         public bool IsStartingNode()
         {
             Port inputPort = (Port) inputContainer.Children().First();
             return !inputPort.connected;
+        }
+
+        public bool IsOverlapping(DS_Node node)
+        {
+            return GetPosition().Overlaps(node.GetPosition());
         }
         #endregion
     }
