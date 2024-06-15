@@ -784,6 +784,7 @@ namespace DS.Windows
             } while (hasOverlap == true);
         }
 
+
         private void ResolveOverlap(Node nodeA, Node nodeB)
         {
             Rect rectA = nodeA.GetPosition();
