@@ -20,7 +20,7 @@ namespace DS.Elements
             SetDialogueType(DS_DialogueType.MultipleChoice);
             choiceCounter = 1;
 
-            DS_ChoiceData choiceData = new DS_ChoiceData() { ChoiceName = "New Choice 1" };
+            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = "New Choice 1" };
             Choices.Add(choiceData);
         }
 
@@ -33,7 +33,7 @@ namespace DS.Elements
 
             mainContainer.Insert(1, addChoiceButton);
 
-            foreach (DS_ChoiceData choice in Choices)
+            foreach (DS_Choice_SaveData choice in Choices)
             {
                 Port choicePort = CreateChoicePort(choice);
                 outputContainer.Add(choicePort);
@@ -43,7 +43,7 @@ namespace DS.Elements
         }
         private void OnAddChoiceButtonPressed()
         {
-            DS_ChoiceData choiceData = new DS_ChoiceData() { ChoiceName = $"New choice {choiceCounter + 1}" };
+            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = $"New choice {choiceCounter + 1}" };
             choiceCounter++;
 
             Port choicePort = CreateChoicePort(choiceData);
@@ -52,7 +52,7 @@ namespace DS.Elements
         }
         private Port CreateChoicePort(object userData)
         {
-            DS_ChoiceData choiceData = (DS_ChoiceData)userData;
+            DS_Choice_SaveData choiceData = (DS_Choice_SaveData)userData;
 
             Port choicePort = this.CreatePort(choiceData.ChoiceName, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
             choicePort.portName = "";
@@ -74,7 +74,7 @@ namespace DS.Elements
             return choicePort;
         }
 
-        private void OnDeleteChoiceClick(Port choicePort, DS_ChoiceData choiceData)
+        private void OnDeleteChoiceClick(Port choicePort, DS_Choice_SaveData choiceData)
         {
             if (Choices.Count == 1) return;
 

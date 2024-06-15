@@ -16,7 +16,7 @@ namespace DS.Elements
             base.Initialize(nodeName, context, spawnPosition);
 
             SetDialogueType(DS_DialogueType.SingleChoice);
-            DS_ChoiceData choiceData = new DS_ChoiceData() { ChoiceName = "Next Choice" };
+            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = "Next Choice" };
 
             Choices.Add(choiceData);
             
@@ -25,7 +25,7 @@ namespace DS.Elements
         {
             base.Draw();
 
-            foreach (DS_ChoiceData choice in Choices)
+            foreach (DS_Choice_SaveData choice in Choices)
             {
                 Port choicePort = this.CreatePort(choice.ChoiceName, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
                 choicePort.portName = choice.ChoiceName;

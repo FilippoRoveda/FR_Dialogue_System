@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace DS.Data.Save
 {
+    /// <summary>
+    /// Class that hold group informations to be contained in a graph scriptable object.
+    /// </summary>
     [System.Serializable]
     public class DS_Group_SaveData
     {
@@ -25,7 +28,7 @@ namespace DS.Data.Save
             set {  position = value; } 
         }
 
-        //Non manca una lista di nodi che ha all'interno? per poi instanziarli nuovamente come suoi
+        // lista di nodi che ha all'interno? per poi instanziarli nuovamente come suoi
 
         public DS_Group_SaveData() { }
         public DS_Group_SaveData(DS_Group group)

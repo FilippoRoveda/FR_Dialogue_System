@@ -6,6 +6,9 @@ namespace DS.Data.Save
     using DS.Elements;
     using Enumerations;
 
+    /// <summary>
+    /// Class that hold node informations to be contained in a graph scriptable object.
+    /// </summary>
     [System.Serializable]
     public class DS_Node_SaveData
     {
@@ -44,8 +47,8 @@ namespace DS.Data.Save
                 text = value;
             }
         }
-        [SerializeField] private List<DS_ChoiceData> choices;
-        public List<DS_ChoiceData> Choices
+        [SerializeField] private List<DS_Choice_SaveData> choices;
+        public List<DS_Choice_SaveData> Choices
         {  get
             { 
                 return choices;
@@ -57,6 +60,9 @@ namespace DS.Data.Save
         }
 
         [SerializeField] private string groupID;
+        /// <summary>
+        /// Group ID for the group that hold this node.
+        /// </summary>
         public string GroupID 
         {
             get 
@@ -99,10 +105,10 @@ namespace DS.Data.Save
             NodeID = node.ID;
             Name = node.DialogueName;
 
-            List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
-            foreach(DS_ChoiceData choice in node.Choices)
+            List<DS_Choice_SaveData> choices = new List<DS_Choice_SaveData>();
+            foreach(DS_Choice_SaveData choice in node.Choices)
             {
-                DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
+                DS_Choice_SaveData choice_SaveData = new DS_Choice_SaveData(choice);
                 choices.Add(choice_SaveData);
             }
 

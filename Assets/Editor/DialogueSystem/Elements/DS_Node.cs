@@ -17,7 +17,7 @@ namespace DS.Elements
     {
         [SerializeField] public string ID {  get; set; }
         [SerializeField] public string DialogueName { get; set; }
-        [SerializeField] public List<DS_ChoiceData> Choices { get; set; }
+        [SerializeField] public List<DS_Choice_SaveData> Choices { get; set; }
         [SerializeField] public string Text { get; set; }
         [SerializeField] public DS_DialogueType DialogueType { get; private set; }
         [SerializeField] public DS_Group Group { get; set; } //Da far diventare group ID come stringa
@@ -32,7 +32,7 @@ namespace DS.Elements
         {
             ID = Guid.NewGuid().ToString();
             DialogueName = nodeName;
-            Choices = new List<DS_ChoiceData>();
+            Choices = new List<DS_Choice_SaveData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
             this.graphView = context;

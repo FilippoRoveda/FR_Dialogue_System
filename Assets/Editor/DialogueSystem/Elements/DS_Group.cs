@@ -2,17 +2,22 @@ using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+/// <summary>
+/// Base class for DialogueSystem node group.
+/// </summary>
 public class DS_Group : Group
 {
     public string ID { get; set; }
+
     public string oldTitle;
 
     private Color defaultBorderColor;
     private float defaultBorderWidth;
 
-    public DS_Group(string title, Vector2 spawnPosition) //Here check if value ID is null for a new instantiation
+    public DS_Group(string title, Vector2 spawnPosition, string ID = null) /
     {
-        ID = Guid.NewGuid().ToString();
+        if (ID == null) this.ID = Guid.NewGuid().ToString();
+        else this.ID = ID;
         this.title = title;
         oldTitle = title;
 

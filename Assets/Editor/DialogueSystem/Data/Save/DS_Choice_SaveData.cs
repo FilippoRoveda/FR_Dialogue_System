@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace DS.Data.Save
 {
+    /// <summary>
+    /// Class that hold choice informations to be saved inside DS_Node_SaveData.
+    /// </summary>
     [System.Serializable]
-    public class DS_ChoiceData
+    public class DS_Choice_SaveData
     {
         [SerializeField] private string choiceName;
         public string ChoiceName 
@@ -21,8 +24,8 @@ namespace DS.Data.Save
             set {  nodeID = value; }
         }
 
-        public DS_ChoiceData() { }
-        public DS_ChoiceData(DS_ChoiceData choice)
+        public DS_Choice_SaveData() { }
+        public DS_Choice_SaveData(DS_Choice_SaveData choice)
         {
             ChoiceName = choice.ChoiceName;
             NodeID = choice.NodeID;

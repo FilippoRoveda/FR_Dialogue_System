@@ -2,13 +2,16 @@ using System.Collections.Generic;
 
 namespace DS.Data.Error
 {
+    /// <summary>
+    /// Class that hold error color for a list or DS_Groups.
+    /// </summary>
     public class DS_GroupErrorData
     {
-        public DS_ErrorData ErrorData { get; set; }
+        public ErrorColor ErrorColor { get; set; }
         public List<DS_Group> Groups { get; set; }
         public DS_GroupErrorData()
         {
-            ErrorData = new DS_ErrorData();
+            ErrorColor = new ErrorColor();
             Groups = new List<DS_Group>();
         }
     }

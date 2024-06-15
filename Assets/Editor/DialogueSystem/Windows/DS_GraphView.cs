@@ -10,7 +10,6 @@ namespace DS.Windows
     using DS.Data.Save;
     using Elements;
     using Enumerations;
-    using System.Linq;
     using Utilities;
 
     /// <summary>
@@ -273,7 +272,7 @@ namespace DS.Windows
                     foreach (Edge edge in changes.edgesToCreate)
                     {
                         DS_Node nextNode = (DS_Node)edge.input.node;
-                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                        DS_Choice_SaveData choiceData = (DS_Choice_SaveData)edge.output.userData;
                         choiceData.NodeID = nextNode.ID;
                     }
                 }
@@ -285,7 +284,7 @@ namespace DS.Windows
                         if (element.GetType() == typeof(Edge))
                         {
                             Edge edge = (Edge)element;
-                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                            DS_Choice_SaveData choiceData = (DS_Choice_SaveData)edge.output.userData;
                             choiceData.NodeID = "";
                         }
                     }
@@ -531,7 +530,7 @@ namespace DS.Windows
             else
             {
                 ungroupedNodes[nodeName].Nodes.Add(node);
-                Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.ErrorColor;
+                Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.Color;
 
                 Logger.Message($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
 
@@ -618,7 +617,7 @@ namespace DS.Windows
                 Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 List<DS_Node> groupedNodeList = groupedNodes[group][nodeName].Nodes;
                 groupedNodes[group][nodeName].Nodes.Add(node);
-                Color errorColor = groupedNodes[group][nodeName].ErrorData.ErrorColor;
+                Color errorColor = groupedNodes[group][nodeName].ErrorData.Color;
                 node.SetErrorStyle(errorColor);
 
                 Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
@@ -708,7 +707,7 @@ namespace DS.Windows
             {
                 List<DS_Group> groupList = groups[groupTitle].Groups;
                 groupList.Add(group);
-                Color errorColor = groups[groupTitle].ErrorData.ErrorColor;
+                Color errorColor = groups[groupTitle].ErrorColor.Color;
                 group.SetErrorStyle(errorColor);
 
                 Logger.Message($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
@@ -767,7 +766,7 @@ namespace DS.Windows
         {
             List<DS_Node> otherNodes = new List<DS_Node>(this.Query<DS_Node>().ToList());
             otherNodes.Remove(nodeA);
-            Debug.LogError("DS_Nodes.Count == " + otherNodes.Count());  
+
             bool hasOverlap = false;
             do
             {
@@ -790,22 +789,26 @@ namespace DS.Windows
             Rect rectA = nodeA.GetPosition();
             Rect rectB = nodeB.GetPosition();
 
-            float overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
-            float overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
+            float overlapX = 0.0f;
+            float overlapY = 0.0f;
 
             if (rectA.xMax < rectB.xMax && rectA.yMax < rectB.yMax)
             {
                 if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMax - rectB.yMin))
                 {
                     //push sx
+                    overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                     rectA.x -= overlapX;
+                    Debug.LogWarning($"Overlapping movement {overlapX}");
                     Debug.LogError("push sx");
                 }
                 else
                 {
                     //push down(up in inverse axis of the graphview)
+                    overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                     rectA.y -= overlapY;
-                    Debug.LogError("push down");
+                    Debug.LogWarning($"Overlapping movement {overlapY}");
+                    Debug.LogError("push up");
                 }
             }
             else if(rectA.xMax < rectB.xMax && rectA.yMax > rectB.yMax)
@@ -813,14 +816,18 @@ namespace DS.Windows
                 if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMin - rectB.yMax))
                 {
                     //push sx
+                    overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                     rectA.x -= overlapX;
+                    Debug.LogWarning($"Overlapping movement {overlapX}");
                     Debug.LogError("push sx");
                 }
                 else
                 {
                     //push up
+                    overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
                     rectA.y += overlapY;
-                    Debug.LogError("push up");
+                    Debug.LogWarning($"Overlapping movement {overlapY}");
+                    Debug.LogError("push down");
                 }
             }
             else if(rectA.xMax > rectB.xMax && rectA.yMax > rectB.yMax)
@@ -828,14 +835,18 @@ namespace DS.Windows
                 if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMin - rectB.yMax))
                 {
                     //push dx
+                    overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                     rectA.x += overlapX;
+                    Debug.LogWarning($"Overlapping movement {overlapX}");
                     Debug.LogError("push dx");
                 }
                 else
                 {
-                    //push up
-                    rectA.y -= overlapY;
-                    Debug.LogError("push up");
+                    //push down
+                    overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
+                    rectA.y += overlapY;
+                    Debug.LogWarning($"Overlapping movement {overlapY}");
+                    Debug.LogError("push down");
                 }
             }
             else if(rectA.xMax > rectB.xMax && rectA.yMax < rectB.yMax)
@@ -843,38 +854,50 @@ namespace DS.Windows
                 if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMax - rectB.yMin))
                 {
                     //push dx
+                    overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                     rectA.x += overlapX;
+                    Debug.LogWarning($"Overlapping movement {overlapX}");
                     Debug.LogError("push dx");
                 }
                 else
                 {
-                    //push down
+                    //push up
+                    overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                     rectA.y -= overlapY;
-                    Debug.LogError("push down");
+                    Debug.LogWarning($"Overlapping movement {overlapY}");
+                    Debug.LogError("push up");
                 }
             }
             else if(rectA.xMax == rectB.xMax && rectA.yMax > rectB.yMax)
             {
                 //push up
+                overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
                 rectA.y += overlapY;
-                Debug.LogError("push up");
+                Debug.LogWarning($"Overlapping movement {overlapY}");
+                Debug.LogError("push down");
             }
             else if(rectA.xMax == rectB.xMax && rectA.yMax < rectB.yMax)
             {
                 //push down
+                overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                 rectA.y -= overlapY;
-                Debug.LogError("push down");
+                Debug.LogWarning($"Overlapping movement {overlapY}");
+                Debug.LogError("push up");
             }
             else if(rectA.xMax < rectB.xMax && rectA.yMax == rectB.yMax)
             {
                 //push sx
+                overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                 rectA.x -= overlapX;
+                Debug.LogWarning($"Overlapping movement {overlapX}");
                 Debug.LogError("push sx");
             }
             else if(rectA.xMax > rectB.xMax && rectA.yMax == rectB.yMax)
             {
                 //push dx
+                overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                 rectA.x += overlapX;
+                Debug.LogWarning($"Overlapping movement {overlapX}");
                 Debug.LogError("push dx");
             }
 
