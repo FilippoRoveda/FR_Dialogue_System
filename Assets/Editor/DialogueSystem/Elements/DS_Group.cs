@@ -1,6 +1,6 @@
-using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Base class for DialogueSystem node group.
@@ -14,7 +14,7 @@ public class DS_Group : Group
     private Color defaultBorderColor;
     private float defaultBorderWidth;
 
-    public DS_Group(string title, Vector2 spawnPosition, string ID = null) /
+    public DS_Group(string title, Vector2 spawnPosition, string ID = null)
     {
         if (ID == null) this.ID = Guid.NewGuid().ToString();
         else this.ID = ID;

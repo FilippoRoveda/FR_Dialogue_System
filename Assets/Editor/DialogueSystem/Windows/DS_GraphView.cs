@@ -776,7 +776,6 @@ namespace DS.Windows
                 {
                     if (nodeA.IsOverlapping(nodeB))
                     {
-                        //hasOverlap = true;
                         Debug.LogError("Node is overlapping");
                         ResolveOverlap(nodeA, nodeB);
                     }
@@ -901,7 +900,14 @@ namespace DS.Windows
                 Debug.LogWarning($"Overlapping movement {overlapX}");
                 Debug.LogError("push dx");
             }
-
+            else if(rectA.xMax == rectB.xMax && rectA.yMax == rectB.yMax)
+            {
+                //push sx
+                overlapX = rectA.width;
+                rectA.x -= overlapX;
+                Debug.LogWarning($"Overlapping movement {overlapX}");
+                Debug.LogError("push sx");
+            }
             nodeA.SetPosition(rectA);
             return;
         }
