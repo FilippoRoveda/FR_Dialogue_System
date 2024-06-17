@@ -244,10 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5de0c9a57b8b564c99bf65e16624855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueContainer: {fileID: 0}
-  dialogueGroup: {fileID: 0}
+  dialogueContainer: {fileID: 11400000, guid: 353ce27e50718ca41988440771d5d00e, type: 2}
+  dialogueGroup: {fileID: 11400000, guid: 20849e17bc6523a42af48d28d53a4d14, type: 2}
   dialogue: {fileID: 0}
-  groupedDialogues: 0
+  groupedDialogues: 1
   startingDialoguesOnly: 0
   selectedGroupIndex: 0
   selectedDialogueIndex: 0

@@ -335,17 +335,17 @@ namespace DS.Utilities
         #endregion
 
         #region Utility methods
-        private static void CreateFolders(string path, string folderName)
+        public static void CreateFolders(string path, string folderName)
         {
             if (AssetDatabase.IsValidFolder($"{path}/{folderName}") == true) return;
             else AssetDatabase.CreateFolder(path, folderName);
             
         }
-        private static void GetElementsFromGraphView()
+        public static void GetElementsFromGraphView()
         {
             graphView.graphElements.ForEach(FetchGraphElements());
         }
-        private static Action<GraphElement> FetchGraphElements()
+        public static Action<GraphElement> FetchGraphElements()
         {
             return graphElement =>
             {
@@ -361,7 +361,7 @@ namespace DS.Utilities
         }
 
 
-        private static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
+        public static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
         {
             string fullPath = $"{path}/{assetName}.asset";
             T asset = LoadAsset<T>(path, assetName);
@@ -374,36 +374,36 @@ namespace DS.Utilities
             return asset;
         }
 
-        private static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
+        public static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
         {
             string fullPath = $"{path}/{assetName}.asset";
             return AssetDatabase.LoadAssetAtPath<T>(fullPath);
         }
 
-        private static void SaveAsset(UnityEngine.Object asset)
+        public static void SaveAsset(UnityEngine.Object asset)
         {
             EditorUtility.SetDirty(asset);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
-        private static void RemoveFolder(string folderPath)
+        public static void RemoveFolder(string folderPath)
         {
             FileUtil.DeleteFileOrDirectory($"{folderPath}.meta");
             FileUtil.DeleteFileOrDirectory($"{folderPath}/");
         }
 
-        private static void RemoveAsset(string path, string assetName)
+        public static void RemoveAsset(string path, string assetName)
         {
             AssetDatabase.DeleteAsset($"{path}/{assetName}.asset");
         }
 
-        private static List<Data.Save.DS_Choice_SaveData> CloneChoices(List<Data.Save.DS_Choice_SaveData> choiceList)
+        private static List<DS_Choice_SaveData> CloneChoices(List<DS_Choice_SaveData> choiceList)
         {
-            List<Data.Save.DS_Choice_SaveData> choices = new List<Data.Save.DS_Choice_SaveData>();
+            List<DS_Choice_SaveData> choices = new List<DS_Choice_SaveData>();
 
-            foreach (Data.Save.DS_Choice_SaveData choice in choiceList)
+            foreach (DS_Choice_SaveData choice in choiceList)
             {
-                Data.Save.DS_Choice_SaveData choice_SaveData = new Data.Save.DS_Choice_SaveData(choice);
+                DS_Choice_SaveData choice_SaveData = new DS_Choice_SaveData(choice);
                 choices.Add(choice_SaveData);
             }
 
