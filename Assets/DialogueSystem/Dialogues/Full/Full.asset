@@ -19,6 +19,5 @@ MonoBehaviour:
       Value:
       - {fileID: 11400000, guid: 6fd0d768dc064274c8e5762f02d70041, type: 2}
   ungroupedDialogues:
-  - {fileID: 11400000, guid: 44b61402bae2910488868649beaf75d3, type: 2}
-  - {fileID: 11400000, guid: a1ac401a88b97d74e8459b9eea42441e, type: 2}
-  - {fileID: 11400000, guid: aebc5ada9eed3da498e606319df427b1, type: 2}
+  - {fileID: 11400000, guid: 680b09a96e07df24c9b35cd7f7cb48c0, type: 2}
+  - {fileID: 11400000, guid: ef9e1a7654fa6294290732af37758442, type: 2}

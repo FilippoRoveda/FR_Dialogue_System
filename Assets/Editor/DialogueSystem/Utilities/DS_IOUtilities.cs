@@ -11,11 +11,14 @@ namespace DS.Utilities
     using Windows;
     using Data.Save;
     using ScriptableObjects;
-    using Data;
 
     public static class DS_IOUtilities
     {
         private static DS_GraphView graphView;
+
+        public static readonly string commonAssetsPath = "Assets/DialogueSystem/Dialogues";
+        public static readonly string commonEditorPath = "Assets/Editor/DialogueSystem/Graphs";
+
         private static string graphFileName;
         private static string containerFolderPath;
 
@@ -33,7 +36,7 @@ namespace DS.Utilities
         {
             DS_IOUtilities.graphView = graphView;
             graphFileName = graphName;
-            containerFolderPath = $"Assets/DialogueSystem/Dialogues/{graphFileName}";
+            containerFolderPath = commonAssetsPath + "/" + graphFileName;
 
             groups = new List<DS_Group>();
             nodes = new List<DS_Node>();
@@ -50,7 +53,7 @@ namespace DS.Utilities
             CreateStaticFolders();
             GetElementsFromGraphView();
 
-            DS_GraphSO graphData = CreateAsset<DS_GraphSO>("Assets/Editor/DialogueSystem/Graphs", $"{graphFileName}_Graph");
+            DS_GraphSO graphData = CreateAsset<DS_GraphSO>(commonEditorPath, $"/{graphFileName}_Graph");
             graphData.Initialize(graphFileName);
 
             DS_DialogueContainerSO dialogueContainer = CreateAsset<DS_DialogueContainerSO>(containerFolderPath, graphFileName);
@@ -141,8 +144,6 @@ namespace DS.Utilities
 
         private static void SaveNodeInGraphData(DS_Node node, DS_GraphSO graphData)
         {
-            //List<DS_ChoiceData> choices = CloneChoices(node.Choices);
-
             DS_Node_SaveData nodeData = new DS_Node_SaveData(node);
             graphData.Nodes.Add(nodeData);
         }
@@ -171,10 +172,10 @@ namespace DS.Utilities
             SaveAsset(dialogue);
         }
 
-        private static List<Data.DS_ChoiceData> ChoicesDataToDialogueChoices(List<Data.Save.DS_Choice_SaveData> nodeChoices)
+        private static List<Data.DS_ChoiceData> ChoicesDataToDialogueChoices(List<DS_Choice_SaveData> nodeChoices)
         {
             List<Data.DS_ChoiceData> dialogueChoices = new();
-            foreach(Data.Save.DS_Choice_SaveData choiceData in nodeChoices)
+            foreach(DS_Choice_SaveData choiceData in nodeChoices)
             {
                 Data.DS_ChoiceData dialogueChoice = new() { LabelText = choiceData.ChoiceName };
                 dialogueChoices.Add(dialogueChoice);
@@ -190,7 +191,7 @@ namespace DS.Utilities
 
                 for(int choiceIndex = 0; choiceIndex < node.Choices.Count; choiceIndex++)
                 {
-                    Data.Save.DS_Choice_SaveData choice = node.Choices[choiceIndex];
+                    DS_Choice_SaveData choice = node.Choices[choiceIndex];
 
                     if (string.IsNullOrEmpty(choice.NodeID)) continue;
 
@@ -245,7 +246,7 @@ namespace DS.Utilities
         #region Load methods
         public static void LoadGraph()
         {
-            DS_GraphSO graphData = LoadAsset<DS_GraphSO>("Assets/Editor/DialogueSystem/Graphs", graphFileName);
+            DS_GraphSO graphData = LoadAsset<DS_GraphSO>(commonEditorPath, graphFileName);
             if(graphData == null)
             {
                 EditorUtility.DisplayDialog(
@@ -277,7 +278,7 @@ namespace DS.Utilities
         private static void LoadNodes(List<DS_Node_SaveData> nodes)
         {
             foreach(DS_Node_SaveData nodeData in nodes)
-            {         
+            {
                 DS_Node node = graphView.CreateNode(nodeData.Name ,nodeData.Position, nodeData.DialogueType, false);
 
                 node.ID = nodeData.NodeID;

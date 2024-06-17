@@ -23,7 +23,7 @@ MonoBehaviour:
       nodeID: 72955917-d77c-4810-be21-092cb593e32b
     groupID: 
     dialogueType: 0
-    position: {x: 340, y: 295}
+    position: {x: 340, y: 295.19998}
   - nodeID: 72955917-d77c-4810-be21-092cb593e32b
     name: Dialogue2
     text: Dialogue Text
@@ -32,7 +32,7 @@ MonoBehaviour:
       nodeID: 
     groupID: 
     dialogueType: 0
-    position: {x: 681, y: 295}
+    position: {x: 672.8, y: 295.19998}
   oldGroupsNames: []
   oldUngroupedNames:
   - Dialogue1

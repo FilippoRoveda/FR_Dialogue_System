@@ -35,7 +35,7 @@ namespace DS.Elements
             Choices = new List<DS_Choice_SaveData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
-            this.graphView = context;
+            graphView = context;
 
             SetPosition(new Rect(spawnPosition, Vector2.zero));
 
@@ -46,7 +46,7 @@ namespace DS.Elements
         public virtual void Draw()
         {
             //Dialogue name text field 
-            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField("DialogueName", null,  callback => OnDialogueNameChanged(callback));
+            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField(DialogueName, null,  callback => OnDialogueNameChanged(callback));
 
             dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
 

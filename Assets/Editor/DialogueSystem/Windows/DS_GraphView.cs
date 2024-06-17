@@ -360,7 +360,6 @@ namespace DS.Windows
         {
             Type nodeType = Type.GetType($"DS.Elements.DS_{dialogueType}Node"); //Generating the Type variable according to the indicated Name.
             DS_Node node = (DS_Node) Activator.CreateInstance(nodeType);
-
             node.Initialize(nodeName, this, spawnPosition);
             if(shouldDraw == true) node.Draw();
 
