@@ -9,17 +9,20 @@ namespace DS.Elements
     using Windows;
     using Data.Save;
 
+    /// <summary>
+    /// Child class that represent a single choice version of the base DS_Node.
+    /// </summary>
     public class DS_SingleChoiceNode : DS_Node
     {
+
+        #region Unity callbacks
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             base.Initialize(nodeName, context, spawnPosition);
-
             SetDialogueType(DS_DialogueType.SingleChoice);
-            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = "Next Choice" };
 
+            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = "Next Choice" };
             Choices.Add(choiceData);
-            
         }
         public override void Draw()
         {
@@ -33,8 +36,8 @@ namespace DS.Elements
 
                 outputContainer.Add(choicePort);
             }
-
             RefreshExpandedState();
         }
+        #endregion
     }
 }

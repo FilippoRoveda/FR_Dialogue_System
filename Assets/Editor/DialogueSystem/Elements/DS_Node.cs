@@ -13,11 +13,21 @@ namespace DS.Elements
     using Utilities;
     using Windows;
 
+    /// <summary>
+    /// Base dialogue system node class.
+    /// </summary>
     public class DS_Node : Node
     {
         [SerializeField] public string ID {  get; set; }
         [SerializeField] public string DialogueName { get; set; }
+
+        /// <summary>
+        /// List of DS_Choice_SaveData representing the output choice for the node.
+        /// </summary>
         [SerializeField] public List<DS_Choice_SaveData> Choices { get; set; }
+        /// <summary>
+        /// Content text of this node.
+        /// </summary>
         [SerializeField] public string Text { get; set; }
         [SerializeField] public DS_DialogueType DialogueType { get; private set; }
         [SerializeField] public DS_Group Group { get; set; } //Da far diventare group ID come stringa
@@ -143,6 +153,11 @@ namespace DS.Elements
         #endregion
 
         #region Utilities
+
+        /// <summary>
+        /// Set the variable which indicates the group that owns this DS_Node.
+        /// </summary>
+        /// <param name="group"></param>
         public void SetGroup(DS_Group group)
         {
             Group = group;
@@ -155,6 +170,11 @@ namespace DS.Elements
         {
             DialogueType = dialogueType;
         }
+
+        /// <summary>
+        /// Disconnect all ports in the passed container.
+        /// </summary>
+        /// <param name="container"></param>
         public void DisconnectPorts(VisualElement container)
         {
             foreach(Port port in container.Children())
@@ -165,17 +185,31 @@ namespace DS.Elements
                 }
             }
         }
+
+        /// <summary>
+        /// Disconnect all ports in both input container and output container.
+        /// </summary>
         public void DisconnectAllPorts()
         {
             DisconnectPorts(inputContainer);
             DisconnectPorts(outputContainer);
         }
+
+        /// <summary>
+        /// Return true if this node is a starting node.
+        /// </summary>
+        /// <returns></returns>
         public bool IsStartingNode()
         {
             Port inputPort = (Port) inputContainer.Children().First();
             return !inputPort.connected;
         }
 
+        /// <summary>
+        /// Return true if the node is overlapping with the passed node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool IsOverlapping(DS_Node node)
         {
             return GetPosition().Overlaps(node.GetPosition());

@@ -26,12 +26,19 @@ public class DS_Group : Group
         defaultBorderColor = contentContainer.style.borderBottomColor.value;
         defaultBorderWidth = contentContainer.style.borderBottomWidth.value;
     }
-
+    /// <summary>
+    /// Update the group style according to the presence of errors related to this group.
+    /// </summary>
+    /// <param name="errorColor"></param>
     public void SetErrorStyle(Color errorColor)
     {
         contentContainer.style.borderBottomColor = errorColor;
         contentContainer.style.borderBottomWidth = 2.0f;
     }
+
+    /// <summary>
+    /// Reset the style of that group to default state.
+    /// </summary>
     public void ResetStyle()
     {
         contentContainer.style.borderBottomColor = defaultBorderColor;

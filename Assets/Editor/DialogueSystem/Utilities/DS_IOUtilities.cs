@@ -14,10 +14,19 @@ namespace DS.Utilities
 
     public static class DS_IOUtilities
     {
+        /// <summary>
+        /// Reference to the current displayed graph in the Dialogue System Graph View Editor Window.
+        /// </summary>
         private static DS_GraphView graphView;
-
+        /// <summary>
+        /// Base assets path for all saved dialogues graphs.
+        /// </summary>
         public static readonly string commonAssetsPath = "Assets/DialogueSystem/Dialogues";
+        /// <summary>
+        /// Base editor assets path for all saved diallgues graphs.
+        /// </summary>
         public static readonly string commonEditorPath = "Assets/Editor/DialogueSystem/Graphs";
+
 
         private static string graphFileName;
         private static string containerFolderPath;
@@ -31,7 +40,11 @@ namespace DS.Utilities
         private static Dictionary<string, DS_Group> loadedGroups;
         private static Dictionary<string, DS_Node> loadedNodes;
 
-
+        /// <summary>
+        /// Initialize the static IOUtilities class with informations for the current DS_Graph view created, displayed or loaded in the editor window.
+        /// </summary>
+        /// <param name="graphView"></param>
+        /// <param name="graphName"></param>
         public static void Initialize(DS_GraphView graphView, string graphName)
         {
             DS_IOUtilities.graphView = graphView;
@@ -48,6 +61,9 @@ namespace DS.Utilities
         }
 
         #region Save methods
+        /// <summary>
+        /// Save the current displayed DS_GraphView.
+        /// </summary>
         public static void SaveGraph()
         {
             CreateStaticFolders();
@@ -279,23 +295,8 @@ namespace DS.Utilities
         {
             foreach(DS_Node_SaveData nodeData in nodes)
             {
-                DS_Node node = graphView.CreateNode(nodeData.Name ,nodeData.Position, nodeData.DialogueType, false);
-
-                node.ID = nodeData.NodeID;
-                List<Data.Save.DS_Choice_SaveData> clonedChoices = CloneChoices(nodeData.Choices);
-                node.Choices = clonedChoices;
-                node.Text = nodeData.Text;
-                
-                node.Draw();
-                graphView.AddElement(node);
-                
-                if(string.IsNullOrEmpty(nodeData.GroupID) == false)
-                {
-                    DS_Group group = loadedGroups[nodeData.GroupID];
-                    node.Group = group;
-                    group.AddElement(node);
-                    loadedNodes.Add(node.ID, node);
-                }
+                DS_Node node = graphView.CreateNode(nodeData);                
+                AddLoadedNode(node.ID, node);
             }
         }
 
@@ -322,6 +323,9 @@ namespace DS.Utilities
         #endregion
 
         #region Creation methods
+        /// <summary>
+        /// Create every needed directory, both assets and editor side, in which save the graph elements.
+        /// </summary>
         private static void CreateStaticFolders()
         {
             CreateFolders("Assets/Editor/DialogueSystem", "Graphs");
@@ -398,7 +402,7 @@ namespace DS.Utilities
             AssetDatabase.DeleteAsset($"{path}/{assetName}.asset");
         }
 
-        private static List<DS_Choice_SaveData> CloneChoices(List<DS_Choice_SaveData> choiceList)
+        public static List<DS_Choice_SaveData> CloneChoices(List<DS_Choice_SaveData> choiceList)
         {
             List<DS_Choice_SaveData> choices = new List<DS_Choice_SaveData>();
 
@@ -409,6 +413,31 @@ namespace DS.Utilities
             }
 
             return choices;
+        }
+
+        public static DS_Group GetLoadedGroup(string groupID)
+        {
+            if(loadedGroups.ContainsKey(groupID))
+            {
+                return loadedGroups[groupID];
+            }
+            else
+            {
+                Logger.Error($"No group with ID:{groupID} is currently loaded in the graph.", Color.red);
+                return null;
+            }
+        }
+        public static void AddLoadedNode(string nodeID, DS_Node node)
+        {
+            if(loadedNodes.ContainsKey(nodeID) == true)
+            {
+                Logger.Error($"Node ID:{nodeID} key in loaded nodes dictionary already exists in the current loaded graph. You can not load the same node more than once.", Color.red);
+                return;
+            }
+            else
+            {
+                loadedNodes.Add(node.ID, node);
+            }
         }
         #endregion
     }

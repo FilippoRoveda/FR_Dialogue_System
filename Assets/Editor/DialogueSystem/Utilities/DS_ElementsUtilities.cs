@@ -6,6 +6,9 @@ namespace DS.Utilities
 {
     using Elements;
 
+    /// <summary>
+    /// Utilities class that contain utilities to facilitate Graph ELements.
+    /// </summary>
     public static class DS_ElementsUtilities
     {
         /// <summary>
@@ -83,7 +86,6 @@ namespace DS.Utilities
         public static Port CreatePort( this DS_Node node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
-            //port.name = portName;
             return port;
         }
     }

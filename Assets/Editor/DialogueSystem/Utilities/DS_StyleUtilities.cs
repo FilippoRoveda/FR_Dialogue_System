@@ -4,15 +4,15 @@ using UnityEngine.UIElements;
 namespace DS.Utilities
 {
     /// <summary>
-    /// 
+    /// Utilities class to facilitate common style .uss related operations.
     /// </summary>
     public static class DS_StyleUtilities
     {
         /// <summary>
-        /// 
+        /// Add a series of stylesheet for this visual element.
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="styleSheetNames"></param>
+        /// <param name="styleSheetNames">Names of the sheet to add.</param>
         public static VisualElement AddStyleSheet(this VisualElement element, params string [] styleSheetNames)
         {
             foreach( string styleSheet in styleSheetNames)
@@ -24,7 +24,7 @@ namespace DS.Utilities
         }
 
         /// <summary>
-        /// 
+        /// Add this visual element to a series of Style class list.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="classNames"></param>
