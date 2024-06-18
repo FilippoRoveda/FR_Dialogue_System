@@ -293,10 +293,25 @@ namespace DS.Utilities
 
         private static void LoadNodes(List<DS_Node_SaveData> nodes)
         {
-            foreach(DS_Node_SaveData nodeData in nodes)
+            foreach (DS_Node_SaveData nodeData in nodes)
             {
-                DS_Node node = graphView.CreateNode(nodeData);                
-                AddLoadedNode(node.ID, node);
+                DS_Node node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
+
+                node.ID = nodeData.NodeID;
+                List<Data.Save.DS_Choice_SaveData> clonedChoices = CloneChoices(nodeData.Choices);
+                node.Choices = clonedChoices;
+                node.Text = nodeData.Text;
+
+                node.Draw();
+                graphView.AddElement(node);
+
+                if (string.IsNullOrEmpty(nodeData.GroupID) == false)
+                {
+                    DS_Group group = loadedGroups[nodeData.GroupID];
+                    node.Group = group;
+                    group.AddElement(node);
+                    loadedNodes.Add(node.ID, node);
+                }
             }
         }
 

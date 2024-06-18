@@ -1,49 +1,54 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.IO;
+using UnityEditor.UIElements;
+using UnityEditor.Callbacks;
 
 namespace DS.Windows
 {
-    using System;
-    using System.IO;
-    using UnityEditor.UIElements;
+    using ScriptableObjects;
     using Utilities;
+    using Data;
+    using DS.Data.Save;
 
     /// <summary>
     /// 
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
-        private Toolbar toolbar;
+        protected Toolbar toolbar;
 
         private readonly string defaultFileName = "DialogueFileName";
 
-        private static TextField filenameTextField;
+        protected static TextField filenameTextField;
 
-        private Button saveGraphButton;
+        protected Button saveGraphButton;
         private Button loadButton;
-        private Button clearButton;
+        protected Button clearButton;
         private Button resetButton;
-        private Button toggleMinimapButton;
+        protected Button toggleMinimapButton;
 
-        private DS_GraphView graph_View;
+        protected DS_GraphView graph_View;
 
+      
 
-        [MenuItem("DialogueSystem/Editor_Window")]
-        public static void Open()
+        [MenuItem("DialogueSystem/Main_Editor_Window")]
+        private static void Open()
         {
             DS_EditorWindow wnd = GetWindow<DS_EditorWindow>();
-            wnd.titleContent = new GUIContent("DS_Editor_Window");
+            wnd.titleContent = new GUIContent("DS_Main_Editor_Window");
         }
 
-        private void CreateGUI()
+
+        protected virtual void CreateGUI()
         {
             AddGraphView();
             AddToolbar();
             AddStyles();
         }
 
-        private void AddGraphView()
+        protected void AddGraphView()
         {
             graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
@@ -53,7 +58,7 @@ namespace DS.Windows
         /// <summary>
         /// Load style sheet from resources and add that to the visual element.
         /// </summary>
-        private void AddStyles()
+        protected void AddStyles()
         {
             rootVisualElement.AddStyleSheet("DS_Variables.uss");
         }
@@ -61,7 +66,7 @@ namespace DS.Windows
         /// <summary>
         /// 
         /// </summary>
-        private void AddToolbar()
+        protected virtual void AddToolbar()
         {
             toolbar = new Toolbar();
             filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
@@ -111,7 +116,7 @@ namespace DS.Windows
             }
         }
 
-        private void OnClearButtonPressed()
+        protected void OnClearButtonPressed()
         {
             graph_View?.ClearGraph();
         }
@@ -122,7 +127,7 @@ namespace DS.Windows
             UpdateFilename(defaultFileName);
         }
 
-        private void OnToggleMinimapButtonPressed()
+        protected void OnToggleMinimapButtonPressed()
         {
             graph_View.ToggleMinimap();
 

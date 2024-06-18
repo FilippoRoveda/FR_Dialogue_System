@@ -369,23 +369,23 @@ namespace DS.Windows
             return node;
         }
 
-        public DS_Node CreateNode(DS_Node_SaveData nodeData)
-        {
-            DS_Node node = CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
+        //public DS_Node CreateNode(DS_Node_SaveData nodeData)
+        //{
+        //    DS_Node node = CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
 
-            node.ID = nodeData.NodeID;
-            node.Choices = DS_IOUtilities.CloneChoices(nodeData.Choices);
-            node.Text = nodeData.Text;    
-            AddElement(node);
+        //    node.ID = nodeData.NodeID;
+        //    node.Choices = DS_IOUtilities.CloneChoices(nodeData.Choices);
+        //    node.Text = nodeData.Text;    
+        //    AddElement(node);
 
-            if (string.IsNullOrEmpty(nodeData.GroupID) == false)
-            {
-                DS_Group group = DS_IOUtilities.GetLoadedGroup(nodeData.GroupID);
-                node.Group = group;
-                group.AddElement(node);              
-            }
-            return node;
-        }
+        //    if (string.IsNullOrEmpty(nodeData.GroupID) == false)
+        //    {
+        //        DS_Group group = DS_IOUtilities.GetLoadedGroup(nodeData.GroupID);
+        //        node.Group = group;
+        //        group.AddElement(node);              
+        //    }
+        //    return node;
+        //}
 
         /// <summary>
         /// Function to instantiate a Group during GraphView operations.
