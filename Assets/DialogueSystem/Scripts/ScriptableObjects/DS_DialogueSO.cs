@@ -30,12 +30,12 @@ namespace DS.ScriptableObjects
             set {  text = value; } 
         }
 
-        [SerializeField] private List<DS_ChoiceData> choices;
+        [SerializeField] private List<DS_DialogueChoiceData> choices;
 
         /// <summary>
         /// The list of choices availables in this node.
         /// </summary>
-        public List<DS_ChoiceData> Choices 
+        public List<DS_DialogueChoiceData> Choices 
         {  
             get { return choices; } 
             set {  choices = value; } 
@@ -63,7 +63,7 @@ namespace DS.ScriptableObjects
         /// <param name="choices"></param>
         /// <param name="dialogueType"></param>
         /// <param name="isStartingDialogue"></param>
-        public void Initialize(string dialogueName, string text, List<DS_ChoiceData> choices, DS_DialogueType dialogueType, bool isStartingDialogue)
+        public void Initialize(string dialogueName, string text, List<DS_DialogueChoiceData> choices, DS_DialogueType dialogueType, bool isStartingDialogue)
         {
             DialogueName = dialogueName;
             Text = text;

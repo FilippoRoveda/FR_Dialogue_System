@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueName: Dialogue1
   text: Dialogue Text
   choices:
-  - labelText: Next Choice
-    nextDialogue: {fileID: 11400000, guid: 16bb094ff98b2904ab1d055ebe58dab3, type: 2}
+  - choiceText: 
+    nextDialogue: {fileID: 11400000, guid: 4ac69414d454cf14e92756f81eca9efc, type: 2}
   dialogueType: 0
   isStartingDialogue: 1

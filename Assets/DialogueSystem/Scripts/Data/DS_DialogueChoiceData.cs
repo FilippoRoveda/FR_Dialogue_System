@@ -8,17 +8,18 @@ namespace DS.Data
     /// Data structure for a dialogue choice.
     /// </summary>
     [System.Serializable]
-    public class DS_ChoiceData
+    public class DS_DialogueChoiceData
     {
-        [SerializeField] private string labelText;
+        [SerializeField] private string choiceText;
         /// <summary>
         /// Label text for the choice.
         /// </summary>
-        public string LabelText 
+        public string ChoiceText 
         { 
-            get {  return labelText; } 
-            set {  labelText = value; } 
+            get {  return choiceText; } 
+            set {  choiceText = value; } 
         }
+
         [SerializeField] private DS_DialogueSO nextDialogue;
         /// <summary>
         /// Reference the next dialogue scriptable object data.

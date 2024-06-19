@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphName: UngroupedDialogues
   dialogueGroups:
-    list: []
+    list:
+    - Key: {fileID: 11400000, guid: 8f2996ebb1b5b05468b5e909d0f1467d, type: 2}
+      Value:
+      - {fileID: 11400000, guid: d1f04afca52195a40bac70dd46d588c0, type: 2}
+    - Key: {fileID: 11400000, guid: 5f873cb34ee544044aa95988a53e5609, type: 2}
+      Value:
+      - {fileID: 11400000, guid: bcd2bec9436536440b107903b662ffaa, type: 2}
+      - {fileID: 11400000, guid: 1fe060109f4019b44be3053db84e8ea5, type: 2}
   ungroupedDialogues:
-  - {fileID: 11400000, guid: 0c21c3b91f8fd0f45b34012a1f63d928, type: 2}
-  - {fileID: 11400000, guid: 16bb094ff98b2904ab1d055ebe58dab3, type: 2}
+  - {fileID: 11400000, guid: 4ac69414d454cf14e92756f81eca9efc, type: 2}

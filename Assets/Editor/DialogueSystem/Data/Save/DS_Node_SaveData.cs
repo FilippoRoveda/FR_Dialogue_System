@@ -47,8 +47,8 @@ namespace DS.Data.Save
                 text = value;
             }
         }
-        [SerializeField] private List<DS_Choice_SaveData> choices;
-        public List<DS_Choice_SaveData> Choices
+        [SerializeField] private List<DS_NodeChoiceData> choices;
+        public List<DS_NodeChoiceData> Choices
         {  get
             { 
                 return choices;
@@ -102,13 +102,15 @@ namespace DS.Data.Save
         public DS_Node_SaveData() { }
         public DS_Node_SaveData(DS_BaseNode node)
         {
+            //Debug.Log($"Saving DS_Node_Data for {node.DialogueName}");
             NodeID = node.ID;
             Name = node.DialogueName;
 
-            List<DS_Choice_SaveData> choices = new List<DS_Choice_SaveData>();
-            foreach(DS_Choice_SaveData choice in node.Choices)
+            List<DS_NodeChoiceData> choices = new List<DS_NodeChoiceData>();
+            foreach(DS_NodeChoiceData choice in node.Choices)
             {
-                DS_Choice_SaveData choice_SaveData = new DS_Choice_SaveData(choice);
+                DS_NodeChoiceData choice_SaveData = new DS_NodeChoiceData(choice);
+                //Debug.Log($"Saving a choice LINKED TO {choice.NextNodeID}");
                 choices.Add(choice_SaveData);
             }
 

@@ -16,17 +16,17 @@ MonoBehaviour:
   groups:
   - id: 8f88f9da-48e8-476d-8ad5-13287fdb17e1
     name: DialogueGroup1
-    position: {x: 135, y: 272}
+    position: {x: 135, y: 272.00006}
   - id: b133836d-1f91-4d49-a699-f9e44fe92005
     name: DialogueGroup2
-    position: {x: 549, y: 276}
+    position: {x: 549.00006, y: 276.00006}
   nodes:
   - nodeID: b2d613f6-1b42-432a-8d9b-117c4832fcf3
     name: Dialogue1
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 6de2be02-1699-4a15-8c34-6fe1dc32a54b
+    - choiceText: 
+      nextNodeID: 
     groupID: 8f88f9da-48e8-476d-8ad5-13287fdb17e1
     dialogueType: 0
     position: {x: 160, y: 331}
@@ -34,8 +34,8 @@ MonoBehaviour:
     name: Dialogue2
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 210cc064-1c5c-4921-a337-95248a0a9349
+    - choiceText: 
+      nextNodeID: 210cc064-1c5c-4921-a337-95248a0a9349
     groupID: b133836d-1f91-4d49-a699-f9e44fe92005
     dialogueType: 0
     position: {x: 574, y: 335}
@@ -43,8 +43,8 @@ MonoBehaviour:
     name: Dialogue3
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 
+    - choiceText: 
+      nextNodeID: 
     groupID: b133836d-1f91-4d49-a699-f9e44fe92005
     dialogueType: 0
     position: {x: 871, y: 335}
@@ -52,8 +52,8 @@ MonoBehaviour:
     name: DialogueName
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 
+    - choiceText: 
+      nextNodeID: 
     groupID: 
     dialogueType: 0
     position: {x: 453, y: 40}

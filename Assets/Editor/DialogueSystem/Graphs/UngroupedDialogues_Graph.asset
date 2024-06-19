@@ -13,29 +13,54 @@ MonoBehaviour:
   m_Name: UngroupedDialogues_Graph
   m_EditorClassIdentifier: 
   graphName: UngroupedDialogues
-  groups: []
+  groups:
+  - id: 8f88f9da-48e8-476d-8ad5-13287fdb17e1
+    name: DialogueGroup1
+    position: {x: 134.99998, y: 272.00003}
+  - id: b133836d-1f91-4d49-a699-f9e44fe92005
+    name: DialogueGroup2
+    position: {x: 549, y: 275.99997}
   nodes:
-  - nodeID: 8b79f7c8-e782-4938-9d4d-3b3cbf2deef4
+  - nodeID: b2d613f6-1b42-432a-8d9b-117c4832fcf3
     name: Dialogue1
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 72955917-d77c-4810-be21-092cb593e32b
-    groupID: 
+    - choiceText: 
+      nextNodeID: 6de2be02-1699-4a15-8c34-6fe1dc32a54b
+    groupID: 8f88f9da-48e8-476d-8ad5-13287fdb17e1
     dialogueType: 0
-    position: {x: 340, y: 295.19998}
-  - nodeID: 72955917-d77c-4810-be21-092cb593e32b
+    position: {x: 160, y: 331}
+  - nodeID: 4d399e63-2415-4a83-9240-2788209b93c1
     name: Dialogue2
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 
+    - choiceText: 
+      nextNodeID: 210cc064-1c5c-4921-a337-95248a0a9349
+    groupID: b133836d-1f91-4d49-a699-f9e44fe92005
+    dialogueType: 0
+    position: {x: 574, y: 335}
+  - nodeID: 210cc064-1c5c-4921-a337-95248a0a9349
+    name: Dialogue3
+    text: Dialogue Text
+    choices:
+    - choiceText: 
+      nextNodeID: 
+    groupID: b133836d-1f91-4d49-a699-f9e44fe92005
+    dialogueType: 0
+    position: {x: 871, y: 335}
+  - nodeID: 6de2be02-1699-4a15-8c34-6fe1dc32a54b
+    name: DialogueName
+    text: Dialogue Text
+    choices:
+    - choiceText: 
+      nextNodeID: 
     groupID: 
     dialogueType: 0
-    position: {x: 672.8, y: 295.19998}
-  oldGroupsNames: []
+    position: {x: 453, y: 40}
+  oldGroupsNames:
+  - DialogueGroup1
+  - DialogueGroup2
   oldUngroupedNames:
-  - Dialogue1
-  - Dialogue2
+  - DialogueName
   oldGroupedNodesNames:
     list: []

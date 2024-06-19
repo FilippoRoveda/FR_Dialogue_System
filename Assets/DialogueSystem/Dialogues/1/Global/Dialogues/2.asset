@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
-  m_Name: Dialogue2
+  m_Name: 2
   m_EditorClassIdentifier: 
-  dialogueName: Dialogue2
+  dialogueName: 2
   text: Dialogue Text
   choices:
-  - choiceText: 
-    nextDialogue: {fileID: 11400000, guid: 23ac791747875e24e8dcc25ac583cf8d, type: 2}
+  - choiceText: Next Choice
+    nextDialogue: {fileID: 0}
   dialogueType: 0
-  isStartingDialogue: 1
+  isStartingDialogue: 0

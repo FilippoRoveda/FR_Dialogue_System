@@ -24,7 +24,7 @@ namespace DS.Elements
         /// <summary>
         /// List of DS_Choice_SaveData representing the output choice for the node.
         /// </summary>
-        [SerializeField] public List<DS_Choice_SaveData> Choices { get; set; }
+        [SerializeField] public List<DS_NodeChoiceData> Choices { get; set; }
         /// <summary>
         /// Content text of this node.
         /// </summary>
@@ -42,7 +42,7 @@ namespace DS.Elements
         {
             ID = Guid.NewGuid().ToString();
             DialogueName = nodeName;
-            Choices = new List<DS_Choice_SaveData>();
+            Choices = new List<DS_NodeChoiceData>();
             Text = "Dialogue Text";
             defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
             graphView = context;

@@ -10,22 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ae2064f60b7d1642a8d354be18fd331, type: 3}
-  m_Name: StartTest_Graph
+  m_Name: 1_Graph
   m_EditorClassIdentifier: 
-  graphName: StartTest
+  graphName: 1
   groups: []
   nodes:
-  - nodeID: bfd351d4-a3b5-46ae-bfe6-84c6c13d86b0
+  - nodeID: eb739b07-1aac-4ad4-8dfb-27820c9fa54f
+    name: 1
+    text: Dialogue Text
+    choices:
+    - choiceText: Next Choice
+      nextNodeID: 8df97f0b-4a41-4d18-ab3f-72583d9df562
+    groupID: 
+    dialogueType: 0
+    position: {x: 199, y: 240}
+  - nodeID: 8df97f0b-4a41-4d18-ab3f-72583d9df562
     name: 2
     text: Dialogue Text
     choices:
-    - choiceName: Next Choice
-      nodeID: 
+    - choiceText: Next Choice
+      nextNodeID: 
     groupID: 
     dialogueType: 0
-    position: {x: 775, y: 509}
+    position: {x: 505, y: 240}
   oldGroupsNames: []
   oldUngroupedNames:
+  - 1
   - 2
   oldGroupedNodesNames:
     list: []

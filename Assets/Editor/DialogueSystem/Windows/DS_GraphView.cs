@@ -272,8 +272,9 @@ namespace DS.Windows
                     foreach (Edge edge in changes.edgesToCreate)
                     {
                         DS_BaseNode nextNode = (DS_BaseNode)edge.input.node;
-                        DS_Choice_SaveData choiceData = (DS_Choice_SaveData)edge.output.userData;
-                        choiceData.NodeID = nextNode.ID;
+                        DS_NodeChoiceData choiceData = (DS_NodeChoiceData)edge.output.userData;
+                        choiceData.NextNodeID = nextNode.ID;
+                        Logger.Warning($"Edge created between node: {((DS_BaseNode)edge.output.node).DialogueName} and node: {nextNode.DialogueName}");
                     }
                 }
 
@@ -284,8 +285,8 @@ namespace DS.Windows
                         if (element.GetType() == typeof(Edge))
                         {
                             Edge edge = (Edge)element;
-                            DS_Choice_SaveData choiceData = (DS_Choice_SaveData)edge.output.userData;
-                            choiceData.NodeID = "";
+                            DS_NodeChoiceData choiceData = (DS_NodeChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = "";
                         }
                     }
                 }

@@ -17,7 +17,7 @@ namespace DS.Elements
         {
             ID = Guid.NewGuid().ToString();
             DialogueName = nodeName;
-            Choices = new List<DS_Choice_SaveData>();
+            Choices = new List<DS_NodeChoiceData>();
             defaultColor = new Color(27f / 255f, 27f / 255f, 7f / 255f);
             graphView = context;
             SetPosition(new Rect(spawnPosition, Vector2.zero));
@@ -25,7 +25,7 @@ namespace DS.Elements
 
             Text = "Start Dialogue Text";
             SetDialogueType(DS_DialogueType.Start);
-            DS_Choice_SaveData choiceData = new DS_Choice_SaveData() { ChoiceName = "Starting Choice" };
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = "Starting Choice" };
             Choices.Add(choiceData);
             extensionContainer.AddToClassList("ds-start-node_extension-container");
             mainContainer.AddToClassList("ds-start-node_main-container");
@@ -33,10 +33,10 @@ namespace DS.Elements
         public override void Draw()
         {
             base.Draw();
-            foreach (DS_Choice_SaveData choice in Choices)
+            foreach (DS_NodeChoiceData choice in Choices)
             {
-                Port choicePort = this.CreatePort(choice.ChoiceName, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
-                choicePort.portName = choice.ChoiceName;
+                Port choicePort = this.CreatePort(choice.ChoiceText, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
+                choicePort.portName = choice.ChoiceText;
                 choicePort.userData = choice;
 
                 outputContainer.Add(choicePort);
