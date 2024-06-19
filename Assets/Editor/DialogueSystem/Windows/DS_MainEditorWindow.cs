@@ -20,6 +20,7 @@ namespace DS.Windows
         protected Toolbar toolbar;
 
         private readonly DS_LenguageType defaultLenguage = DS_LenguageType.Italian;
+        private DS_LenguageType currentLenguage;
         private readonly string defaultFileName = "DialogueFileName";
 
         protected static TextField filenameTextField;
@@ -67,6 +68,7 @@ namespace DS.Windows
         protected Action<DropdownMenuAction> SelectLenguage(DS_LenguageType lenguage, ToolbarMenu toolbarMenu)
         {
             toolbarMenu.text = "Lenguage: " + lenguage.ToString();
+            currentLenguage = lenguage;
             Logger.Error("To implement lenguage selection!");
             return null;
         }

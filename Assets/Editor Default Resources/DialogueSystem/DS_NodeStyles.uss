@@ -1,4 +1,21 @@
 /* CONTAINERS */
+.ds-start-node_extension-container
+{
+	background-color: #1C1D1E;
+	padding: 2px;
+}
+.ds-start-node_main-container:
+{
+	background-color: #1C1D1E;
+}
+.ds-start-node-custom-data-container
+{
+	background-color: #2C2325;
+	border-radius: 4px;
+	padding: 8px;
+}
+
+
 .ds-node_extension-container
 {
 	background-color: #1D1D1E;

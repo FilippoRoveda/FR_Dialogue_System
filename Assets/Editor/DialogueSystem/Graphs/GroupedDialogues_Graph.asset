@@ -26,7 +26,7 @@ MonoBehaviour:
     text: Dialogue Text
     choices:
     - choiceName: Next Choice
-      nodeID: 
+      nodeID: 6de2be02-1699-4a15-8c34-6fe1dc32a54b
     groupID: 8f88f9da-48e8-476d-8ad5-13287fdb17e1
     dialogueType: 0
     position: {x: 160, y: 331}
@@ -48,9 +48,19 @@ MonoBehaviour:
     groupID: b133836d-1f91-4d49-a699-f9e44fe92005
     dialogueType: 0
     position: {x: 871, y: 335}
+  - nodeID: 6de2be02-1699-4a15-8c34-6fe1dc32a54b
+    name: DialogueName
+    text: Dialogue Text
+    choices:
+    - choiceName: Next Choice
+      nodeID: 
+    groupID: 
+    dialogueType: 0
+    position: {x: 453, y: 40}
   oldGroupsNames:
   - DialogueGroup1
   - DialogueGroup2
-  oldUngroupedNames: []
+  oldUngroupedNames:
+  - DialogueName
   oldGroupedNodesNames:
     list: []

@@ -100,7 +100,7 @@ namespace DS.Data.Save
         }
 
         public DS_Node_SaveData() { }
-        public DS_Node_SaveData(DS_Node node)
+        public DS_Node_SaveData(DS_BaseNode node)
         {
             NodeID = node.ID;
             Name = node.DialogueName;

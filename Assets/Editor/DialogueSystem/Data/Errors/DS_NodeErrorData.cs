@@ -10,12 +10,12 @@ namespace DS.Data.Error
     public class DS_NodeErrorData
     {
         public ErrorColor ErrorData {  get; set; }
-        public List<DS_Node> Nodes { get; set; }
+        public List<DS_BaseNode> Nodes { get; set; }
 
         public DS_NodeErrorData() 
         {
             ErrorData = new ErrorColor();
-            Nodes = new List<DS_Node>();
+            Nodes = new List<DS_BaseNode>();
         }
     }
 }

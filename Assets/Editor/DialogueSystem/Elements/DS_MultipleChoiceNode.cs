@@ -12,7 +12,7 @@ namespace DS.Elements
     /// <summary>
     /// Child class that represent a multiple choice version of the base DS_Node.
     /// </summary>
-    public class DS_MultipleChoiceNode : DS_Node
+    public class DS_MultipleChoiceNode : DS_BaseNode
     {
         private int choiceCounter;
 
@@ -30,6 +30,11 @@ namespace DS.Elements
         public override void Draw()
         {
             base.Draw();
+
+            Port inputChoicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
+            inputChoicePort.portName = "DialogueConnection";
+            inputContainer.Add(inputChoicePort);
+
             Button addChoiceButton = DS_ElementsUtilities.CreateButton("Add Choice", () => OnAddChoiceButtonPressed());
 
             addChoiceButton.AddToClassList("ds-node-button");

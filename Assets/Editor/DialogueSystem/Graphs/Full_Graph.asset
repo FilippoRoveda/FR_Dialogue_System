@@ -26,7 +26,7 @@ MonoBehaviour:
     text: Dialogue Text
     choices:
     - choiceName: Next Choice
-      nodeID: 
+      nodeID: b5c97cbb-0b20-4e77-b73d-6a3e5527983e
     groupID: 
     dialogueType: 0
     position: {x: 265, y: 611}

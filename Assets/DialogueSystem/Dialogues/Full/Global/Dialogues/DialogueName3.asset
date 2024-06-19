@@ -16,6 +16,6 @@ MonoBehaviour:
   text: Dialogue Text
   choices:
   - labelText: Next Choice
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: ef9e1a7654fa6294290732af37758442, type: 2}
   dialogueType: 0
   isStartingDialogue: 1

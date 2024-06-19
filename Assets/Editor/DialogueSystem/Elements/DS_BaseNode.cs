@@ -16,7 +16,7 @@ namespace DS.Elements
     /// <summary>
     /// Base dialogue system node class.
     /// </summary>
-    public class DS_Node : Node
+    public class DS_BaseNode : Node
     {
         [SerializeField] public string ID {  get; set; }
         [SerializeField] public string DialogueName { get; set; }
@@ -34,7 +34,7 @@ namespace DS.Elements
 
 
         protected DS_GraphView graphView;
-        private Color defaultColor;
+        protected Color defaultColor;
         private Rect oldPostition;
 
 
@@ -62,9 +62,9 @@ namespace DS.Elements
 
             titleContainer.Insert(0, dialogueNameField);
 
-            Port choicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
-            choicePort.portName = "DialogueConnection";
-            inputContainer.Add(choicePort);
+            //Port choicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
+            //choicePort.portName = "DialogueConnection";
+            //inputContainer.Add(choicePort);
 
             VisualElement customDataContainer = new VisualElement();
             customDataContainer.AddToClassList("ds-node-custom-data-container");
@@ -105,7 +105,7 @@ namespace DS.Elements
         /// Callback called when the dialogue name changes.
         /// </summary>
         /// <param name="newDialogueName"></param>
-        private void OnDialogueNameChanged(ChangeEvent<string> callback)
+        protected void OnDialogueNameChanged(ChangeEvent<string> callback)
         {
             TextField target = (TextField)callback.target;
             target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
@@ -185,7 +185,6 @@ namespace DS.Elements
                 }
             }
         }
-
         /// <summary>
         /// Disconnect all ports in both input container and output container.
         /// </summary>
@@ -195,11 +194,13 @@ namespace DS.Elements
             DisconnectPorts(outputContainer);
         }
 
+
+
         /// <summary>
         /// Return true if this node is a starting node.
         /// </summary>
         /// <returns></returns>
-        public bool IsStartingNode()
+        public virtual bool IsStartingNode()
         {
             Port inputPort = (Port) inputContainer.Children().First();
             return !inputPort.connected;
@@ -210,7 +211,7 @@ namespace DS.Elements
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public bool IsOverlapping(DS_Node node)
+        public bool IsOverlapping(DS_BaseNode node)
         {
             return GetPosition().Overlaps(node.GetPosition());
         }

@@ -12,6 +12,18 @@ namespace DS.Enumerations
         /// <summary>
         /// Multiple choice dialogue node.
         /// </summary>
-        MultipleChoice
+        MultipleChoice,
+        /// <summary>
+        /// 
+        /// </summary>
+        Start,
+        /// <summary>
+        /// 
+        /// </summary>
+        End,
+        /// <summary>
+        /// 
+        /// </summary>
+        Event
     }
 }

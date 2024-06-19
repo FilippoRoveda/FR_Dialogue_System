@@ -32,13 +32,13 @@ namespace DS.Utilities
         private string containerFolderPath;
 
         private List<DS_Group> groups;
-        private List<DS_Node> nodes;
+        private List<DS_BaseNode> nodes;
 
         public Dictionary<string, DS_DialogueGroupSO> createdGroupsSO;
         public Dictionary<string, DS_DialogueSO> createdDialoguesSO;
 
         private Dictionary<string, DS_Group> loadedGroups;
-        private Dictionary<string, DS_Node> loadedNodes;
+        private Dictionary<string, DS_BaseNode> loadedNodes;
 
         /// <summary>
         /// Initialize the static IOUtilities class with informations for the current DS_Graph view created, displayed or loaded in the editor window.
@@ -52,12 +52,12 @@ namespace DS.Utilities
             containerFolderPath = commonAssetsPath + "/" + graphFileName;
 
             groups = new List<DS_Group>();
-            nodes = new List<DS_Node>();
+            nodes = new List<DS_BaseNode>();
             createdGroupsSO = new Dictionary<string, DS_DialogueGroupSO>();
             createdDialoguesSO = new Dictionary<string, DS_DialogueSO>();
 
             loadedGroups = new Dictionary<string, DS_Group>();
-            loadedNodes = new Dictionary<string, DS_Node>();
+            loadedNodes = new Dictionary<string, DS_BaseNode>();
         }
 
         #region Save methods
@@ -136,7 +136,7 @@ namespace DS.Utilities
             SerializableDictionary<string, List<string>> groupedNodeNames = new SerializableDictionary<string, List<string>>();
             List<string> ungroupedNodeNames = new List<string>();
 
-            foreach(DS_Node node in nodes)
+            foreach(DS_BaseNode node in nodes)
             {
                 SaveNodeInGraphData(node, graphData);
                 SaveNodeToSO(node, dialogueContainer);
@@ -158,14 +158,14 @@ namespace DS.Utilities
         }
 
 
-        private void SaveNodeInGraphData(DS_Node node, DS_GraphSO graphData)
+        private void SaveNodeInGraphData(DS_BaseNode node, DS_GraphSO graphData)
         {
             DS_Node_SaveData nodeData = new DS_Node_SaveData(node);
             graphData.Nodes.Add(nodeData);
         }
 
 
-        private void SaveNodeToSO(DS_Node node, DS_DialogueContainerSO dialogueContainer)
+        private void SaveNodeToSO(DS_BaseNode node, DS_DialogueContainerSO dialogueContainer)
         {
             DS_DialogueSO dialogue;
             
@@ -201,7 +201,7 @@ namespace DS.Utilities
 
         private void UpdateDialogueChoicesConnection()
         {
-           foreach(DS_Node node in nodes)
+           foreach(DS_BaseNode node in nodes)
             {
                 DS_DialogueSO dialogue = createdDialoguesSO[node.ID];
 
@@ -295,7 +295,7 @@ namespace DS.Utilities
         {
             foreach (DS_Node_SaveData nodeData in nodes)
             {
-                DS_Node node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
+                DS_BaseNode node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
 
                 node.ID = nodeData.NodeID;
                 List<Data.Save.DS_Choice_SaveData> clonedChoices = CloneChoices(nodeData.Choices);
@@ -317,7 +317,7 @@ namespace DS.Utilities
 
         private void LoadNodesConnections()
         {
-            foreach(KeyValuePair<string, DS_Node> loadedNode in loadedNodes)
+            foreach(KeyValuePair<string, DS_BaseNode> loadedNode in loadedNodes)
             {
                 foreach(Port choicePort in loadedNode.Value.outputContainer.Children())
                 {
@@ -325,7 +325,7 @@ namespace DS.Utilities
 
                     if(string.IsNullOrEmpty(choiceData.NodeID) == false)
                     {
-                        DS_Node linkedNode = loadedNodes[choiceData.NodeID];
+                        DS_BaseNode linkedNode = loadedNodes[choiceData.NodeID];
                         Port linkedNodeInputPort = (Port) linkedNode.inputContainer.Children().First();
                         Edge edge = choicePort.ConnectTo(linkedNodeInputPort);
                         graphView.AddElement(edge);
@@ -369,9 +369,9 @@ namespace DS.Utilities
         {
             return graphElement =>
             {
-                if (graphElement.GetType() == typeof(DS_SingleChoiceNode) || graphElement.GetType() == typeof(DS_MultipleChoiceNode))
+                if (graphElement.GetType() == typeof(DS_SingleChoiceNode) || graphElement.GetType() == typeof(DS_MultipleChoiceNode) || graphElement.GetType() == typeof(DS_StartNode))
                 {
-                    nodes.Add((DS_Node)graphElement);
+                    nodes.Add((DS_BaseNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(DS_Group))
                 {
@@ -442,7 +442,7 @@ namespace DS.Utilities
                 return null;
             }
         }
-        public void AddLoadedNode(string nodeID, DS_Node node)
+        public void AddLoadedNode(string nodeID, DS_BaseNode node)
         {
             if(loadedNodes.ContainsKey(nodeID) == true)
             {

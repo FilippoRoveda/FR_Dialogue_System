@@ -12,7 +12,7 @@ namespace DS.Elements
     /// <summary>
     /// Child class that represent a single choice version of the base DS_Node.
     /// </summary>
-    public class DS_SingleChoiceNode : DS_Node
+    public class DS_SingleChoiceNode : DS_BaseNode
     {
 
         #region Unity callbacks
@@ -27,6 +27,10 @@ namespace DS.Elements
         public override void Draw()
         {
             base.Draw();
+
+            Port inputChoicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
+            inputChoicePort.portName = "DialogueConnection";
+            inputContainer.Add(inputChoicePort);
 
             foreach (DS_Choice_SaveData choice in Choices)
             {

@@ -29,6 +29,10 @@ namespace DS.Windows
             {
                 new SearchTreeGroupEntry(new GUIContent("Create element")),
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Node"), 1),
+                new SearchTreeEntry(new GUIContent("Start Node", indentationTexture))
+                {
+                    level = 2, userData = DS_DialogueType.Start
+                },
                 new SearchTreeEntry(new GUIContent("Single Choice", indentationTexture))
                 {
                     level = 2, userData = DS_DialogueType.SingleChoice
@@ -52,6 +56,10 @@ namespace DS.Windows
 
             switch (SearchTreeEntry.userData) 
             {
+                case DS_DialogueType.Start:
+                    DS_StartNode startNode = (DS_StartNode)graphView.CreateNode("StartNode", localMousePosition, DS_DialogueType.Start);
+                    graphView.AddElement(startNode);
+                    return true;
                 case DS_DialogueType.SingleChoice:
                     DS_SingleChoiceNode singleChoiceNode = (DS_SingleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.SingleChoice);
                     graphView.AddElement(singleChoiceNode);
