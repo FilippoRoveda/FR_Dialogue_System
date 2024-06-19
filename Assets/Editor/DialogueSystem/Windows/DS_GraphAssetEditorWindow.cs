@@ -1,46 +1,62 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEditor.Callbacks;
+using System.IO;
+using UnityEditor.UIElements;
 
 namespace DS.Windows
 {
     using DS.Data.Save;
     using DS.Utilities;
-    using System;
-    using System.IO;
-    using UnityEditor.UIElements;
 
-    public class DS_GraphAssetEditorWindow : DS_EditorWindow
+    public class DS_GraphAssetEditorWindow : DS_MainEditorWindow
     {
-        private static DS_GraphSO assetGraph;
+        public DS_GraphSO assetGraph = null;
 
-        [OnOpenAsset(1)]
-        public static bool OpenAssetEditorWindow(Int32 _instanceID)
+
+        public static void OpenWindow(DS_GraphSO asset)
         {
-            Object item = EditorUtility.InstanceIDToObject(_instanceID);
-
-            if (item is DS_GraphSO)
+            var windows = Resources.FindObjectsOfTypeAll<DS_GraphAssetEditorWindow>();
+            foreach (var window in windows)
             {
-                assetGraph = item as DS_GraphSO;
-
-                DS_GraphAssetEditorWindow wnd = GetWindow<DS_GraphAssetEditorWindow>();
-                wnd.titleContent = new GUIContent($"DS_{assetGraph.GraphName}_Window");
-                return true;
+                if (window.assetGraph == asset)
+                {
+                    window.Focus();
+                    return;
+                }
             }
-            else return false;
+
+            DS_GraphAssetEditorWindow windowInstance = CreateInstance<DS_GraphAssetEditorWindow>();
+            windowInstance.SetAsset(asset);
+            windowInstance.SetTitleContent();
+            windowInstance.Show();
+        }
+
+       
+        private void SetTitleContent()
+        {
+            titleContent = new GUIContent($"DS_{assetGraph.GraphName}_Window");
+        }
+        private void SetAsset(DS_GraphSO assetGraph)
+        {
+            this.assetGraph = assetGraph;
         }
 
         protected override void CreateGUI()
         {
             AddGraphView();
             AddToolbar();
+            AddToolbarMenu();
             AddStyles();
+            LoadTargetGraphAsset();
+        }
+
+        private void LoadTargetGraphAsset()
+        {
             string filePath = $"Assets/Editor/DialogueSystem/Graphs/{assetGraph.GraphName}_Graph.asset";
             if (string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
-                DS_IOUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
-                DS_IOUtilities.LoadGraph();
+                ioUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
+                ioUtilities.LoadGraph();
             }
         }
 
@@ -65,19 +81,5 @@ namespace DS.Windows
 
             rootVisualElement.Add(toolbar);
         }
-
-        #region Callbacks
-        private void OnSaveButtonPressed()
-        {
-            if (string.IsNullOrEmpty(filenameTextField.value))
-            {
-                EditorUtility.DisplayDialog("Invalid file name.", "Please ensure the file name is not empty or invalid.", "Ok");
-                return;
-            }
-
-            DS_IOUtilities.Initialize(graph_View, filenameTextField.value);
-            DS_IOUtilities.SaveGraph();
-        }
-        #endregion
     }
 }

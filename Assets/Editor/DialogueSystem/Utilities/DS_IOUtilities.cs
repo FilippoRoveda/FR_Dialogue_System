@@ -12,12 +12,12 @@ namespace DS.Utilities
     using Data.Save;
     using ScriptableObjects;
 
-    public static class DS_IOUtilities
+    public class DS_IOUtilities
     {
         /// <summary>
         /// Reference to the current displayed graph in the Dialogue System Graph View Editor Window.
         /// </summary>
-        private static DS_GraphView graphView;
+        private DS_GraphView graphView;
         /// <summary>
         /// Base assets path for all saved dialogues graphs.
         /// </summary>
@@ -28,26 +28,26 @@ namespace DS.Utilities
         public static readonly string commonEditorPath = "Assets/Editor/DialogueSystem/Graphs";
 
 
-        private static string graphFileName;
-        private static string containerFolderPath;
+        private string graphFileName;
+        private string containerFolderPath;
 
-        private static List<DS_Group> groups;
-        private static List<DS_Node> nodes;
+        private List<DS_Group> groups;
+        private List<DS_Node> nodes;
 
-        public static Dictionary<string, DS_DialogueGroupSO> createdGroupsSO;
-        public static Dictionary<string, DS_DialogueSO> createdDialoguesSO;
+        public Dictionary<string, DS_DialogueGroupSO> createdGroupsSO;
+        public Dictionary<string, DS_DialogueSO> createdDialoguesSO;
 
-        private static Dictionary<string, DS_Group> loadedGroups;
-        private static Dictionary<string, DS_Node> loadedNodes;
+        private Dictionary<string, DS_Group> loadedGroups;
+        private Dictionary<string, DS_Node> loadedNodes;
 
         /// <summary>
         /// Initialize the static IOUtilities class with informations for the current DS_Graph view created, displayed or loaded in the editor window.
         /// </summary>
         /// <param name="graphView"></param>
         /// <param name="graphName"></param>
-        public static void Initialize(DS_GraphView graphView, string graphName)
+        public void Initialize(DS_GraphView graphView, string graphName)
         {
-            DS_IOUtilities.graphView = graphView;
+            this.graphView = graphView;
             graphFileName = graphName;
             containerFolderPath = commonAssetsPath + "/" + graphFileName;
 
@@ -64,7 +64,7 @@ namespace DS.Utilities
         /// <summary>
         /// Save the current displayed DS_GraphView.
         /// </summary>
-        public static void SaveGraph()
+        public void SaveGraph()
         {
             CreateStaticFolders();
             GetElementsFromGraphView();
@@ -82,7 +82,7 @@ namespace DS.Utilities
             SaveAsset(dialogueContainer);
         }
 
-        private static void SaveGroups(DS_GraphSO graphData, DS_DialogueContainerSO dialogueContainer)
+        private void SaveGroups(DS_GraphSO graphData, DS_DialogueContainerSO dialogueContainer)
         {
             List<string> groupNames = new List<string>();
 
@@ -96,13 +96,13 @@ namespace DS.Utilities
             UpdateOldGroups(groupNames, graphData);
         }
 
-        private static void SaveGroupInGraphData(DS_Group group, DS_GraphSO graphData)
+        private void SaveGroupInGraphData(DS_Group group, DS_GraphSO graphData)
         {
             DS_Group_SaveData groupData = new DS_Group_SaveData(group);
             graphData.Groups.Add(groupData);
         }
 
-        private static void SaveGroupToSO(DS_Group group, DS_DialogueContainerSO dialogueContainer)
+        private void SaveGroupToSO(DS_Group group, DS_DialogueContainerSO dialogueContainer)
         {
             string groupName = group.title;
             CreateFolders($"{containerFolderPath}/Groups", groupName);
@@ -118,7 +118,7 @@ namespace DS.Utilities
             SaveAsset(dialogueGroup);
         }
 
-        private static void UpdateOldGroups(List<string> currentGroupNames, DS_GraphSO graphData)
+        private void UpdateOldGroups(List<string> currentGroupNames, DS_GraphSO graphData)
         {
             if(graphData.OldGroupsNames != null && graphData.OldGroupsNames.Count != 0)
             {
@@ -130,7 +130,7 @@ namespace DS.Utilities
             }
             graphData.OldGroupsNames = new List<string>(currentGroupNames);
         }
-        private static void SaveNodes(DS_GraphSO graphData, DS_DialogueContainerSO dialogueContainer)
+        private void SaveNodes(DS_GraphSO graphData, DS_DialogueContainerSO dialogueContainer)
         {
 
             SerializableDictionary<string, List<string>> groupedNodeNames = new SerializableDictionary<string, List<string>>();
@@ -158,14 +158,14 @@ namespace DS.Utilities
         }
 
 
-        private static void SaveNodeInGraphData(DS_Node node, DS_GraphSO graphData)
+        private void SaveNodeInGraphData(DS_Node node, DS_GraphSO graphData)
         {
             DS_Node_SaveData nodeData = new DS_Node_SaveData(node);
             graphData.Nodes.Add(nodeData);
         }
 
 
-        private static void SaveNodeToSO(DS_Node node, DS_DialogueContainerSO dialogueContainer)
+        private void SaveNodeToSO(DS_Node node, DS_DialogueContainerSO dialogueContainer)
         {
             DS_DialogueSO dialogue;
             
@@ -188,7 +188,7 @@ namespace DS.Utilities
             SaveAsset(dialogue);
         }
 
-        private static List<Data.DS_ChoiceData> ChoicesDataToDialogueChoices(List<DS_Choice_SaveData> nodeChoices)
+        private List<Data.DS_ChoiceData> ChoicesDataToDialogueChoices(List<DS_Choice_SaveData> nodeChoices)
         {
             List<Data.DS_ChoiceData> dialogueChoices = new();
             foreach(DS_Choice_SaveData choiceData in nodeChoices)
@@ -199,7 +199,7 @@ namespace DS.Utilities
             return dialogueChoices;
         }
 
-        private static void UpdateDialogueChoicesConnection()
+        private void UpdateDialogueChoicesConnection()
         {
            foreach(DS_Node node in nodes)
             {
@@ -218,7 +218,7 @@ namespace DS.Utilities
             }
         }
 
-        private static void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, DS_GraphSO graphData)
+        private void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, DS_GraphSO graphData)
         {
             if (graphData.OldGroupedNodesNames != null && graphData.OldGroupedNodesNames.Count != 0)
             {
@@ -243,7 +243,7 @@ namespace DS.Utilities
                 graphData.OldGroupedNodesNames = new SerializableDictionary<string, List<string>>(currentGroupedNodeNames);
             }
         }
-        private static void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, DS_GraphSO graphData)
+        private void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, DS_GraphSO graphData)
         {
             if(graphData.OldUngroupedNodesNames != null && graphData.OldUngroupedNodesNames.Count != 0)
             {
@@ -260,7 +260,7 @@ namespace DS.Utilities
         #endregion
 
         #region Load methods
-        public static void LoadGraph()
+        public void LoadGraph()
         {
             DS_GraphSO graphData = LoadAsset<DS_GraphSO>(commonEditorPath, graphFileName);
             if(graphData == null)
@@ -273,14 +273,14 @@ namespace DS.Utilities
                     );
                 return;
             }
-            DS_EditorWindow.UpdateFilename(graphData.GraphName);
+            DS_MainEditorWindow.UpdateFilename(graphData.GraphName);
 
             LoadGroups(graphData.Groups);
             LoadNodes(graphData.Nodes);
             LoadNodesConnections();
         }
 
-        private static void LoadGroups(List<DS_Group_SaveData> groups)
+        private void LoadGroups(List<DS_Group_SaveData> groups)
         {
             foreach(DS_Group_SaveData groupData in groups)
             {
@@ -291,7 +291,7 @@ namespace DS.Utilities
             }
         }
 
-        private static void LoadNodes(List<DS_Node_SaveData> nodes)
+        private void LoadNodes(List<DS_Node_SaveData> nodes)
         {
             foreach (DS_Node_SaveData nodeData in nodes)
             {
@@ -315,7 +315,7 @@ namespace DS.Utilities
             }
         }
 
-        private static void LoadNodesConnections()
+        private void LoadNodesConnections()
         {
             foreach(KeyValuePair<string, DS_Node> loadedNode in loadedNodes)
             {
@@ -341,7 +341,7 @@ namespace DS.Utilities
         /// <summary>
         /// Create every needed directory, both assets and editor side, in which save the graph elements.
         /// </summary>
-        private static void CreateStaticFolders()
+        private void CreateStaticFolders()
         {
             CreateFolders("Assets/Editor/DialogueSystem", "Graphs");
             CreateFolders("Assets", "DialogueSystem");
@@ -355,17 +355,17 @@ namespace DS.Utilities
         #endregion
 
         #region Utility methods
-        public static void CreateFolders(string path, string folderName)
+        public void CreateFolders(string path, string folderName)
         {
             if (AssetDatabase.IsValidFolder($"{path}/{folderName}") == true) return;
             else AssetDatabase.CreateFolder(path, folderName);
             
         }
-        public static void GetElementsFromGraphView()
+        public void GetElementsFromGraphView()
         {
             graphView.graphElements.ForEach(FetchGraphElements());
         }
-        public static Action<GraphElement> FetchGraphElements()
+        public Action<GraphElement> FetchGraphElements()
         {
             return graphElement =>
             {
@@ -381,7 +381,7 @@ namespace DS.Utilities
         }
 
 
-        public static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
+        public T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
         {
             string fullPath = $"{path}/{assetName}.asset";
             T asset = LoadAsset<T>(path, assetName);
@@ -394,30 +394,30 @@ namespace DS.Utilities
             return asset;
         }
 
-        public static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
+        public T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
         {
             string fullPath = $"{path}/{assetName}.asset";
             return AssetDatabase.LoadAssetAtPath<T>(fullPath);
         }
 
-        public static void SaveAsset(UnityEngine.Object asset)
+        public void SaveAsset(UnityEngine.Object asset)
         {
             EditorUtility.SetDirty(asset);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
-        public static void RemoveFolder(string folderPath)
+        public void RemoveFolder(string folderPath)
         {
             FileUtil.DeleteFileOrDirectory($"{folderPath}.meta");
             FileUtil.DeleteFileOrDirectory($"{folderPath}/");
         }
 
-        public static void RemoveAsset(string path, string assetName)
+        public void RemoveAsset(string path, string assetName)
         {
             AssetDatabase.DeleteAsset($"{path}/{assetName}.asset");
         }
 
-        public static List<DS_Choice_SaveData> CloneChoices(List<DS_Choice_SaveData> choiceList)
+        public List<DS_Choice_SaveData> CloneChoices(List<DS_Choice_SaveData> choiceList)
         {
             List<DS_Choice_SaveData> choices = new List<DS_Choice_SaveData>();
 
@@ -430,7 +430,7 @@ namespace DS.Utilities
             return choices;
         }
 
-        public static DS_Group GetLoadedGroup(string groupID)
+        public DS_Group GetLoadedGroup(string groupID)
         {
             if(loadedGroups.ContainsKey(groupID))
             {
@@ -442,7 +442,7 @@ namespace DS.Utilities
                 return null;
             }
         }
-        public static void AddLoadedNode(string nodeID, DS_Node node)
+        public void AddLoadedNode(string nodeID, DS_Node node)
         {
             if(loadedNodes.ContainsKey(nodeID) == true)
             {

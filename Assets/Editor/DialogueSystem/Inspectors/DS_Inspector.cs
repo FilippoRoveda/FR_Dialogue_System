@@ -21,10 +21,13 @@ namespace DS.Inspectors
         private SerializedProperty selectedGroupIndexProperty;
         private SerializedProperty selectedDialogueIndexProperty;
 
+
+        private DS_IOUtilities iOUtilities;
         #region Unity callbacks
         private void OnEnable()
         {
             SetDialogueSerializedProperties();
+            iOUtilities = new DS_IOUtilities();
         }
         public override void OnInspectorGUI()
         {
@@ -129,7 +132,7 @@ namespace DS.Inspectors
 
             selectedGroupIndexProperty.intValue = DS_InspectorUtilities.DrawPopup("Dialogue Group", selectedGroupIndexProperty, groupNames.ToArray());
             string selectedGroupName = groupNames[selectedGroupIndexProperty.intValue];
-            DS_DialogueGroupSO selectedGroup = DS_IOUtilities.LoadAsset<DS_DialogueGroupSO>($"Assets/DialogueSystem/Dialogues/{dialogueContainer.GraphName}/Groups/{selectedGroupName}", selectedGroupName);
+            DS_DialogueGroupSO selectedGroup = iOUtilities.LoadAsset<DS_DialogueGroupSO>($"Assets/DialogueSystem/Dialogues/{dialogueContainer.GraphName}/Groups/{selectedGroupName}", selectedGroupName);
             dialogueGroupProperty.objectReferenceValue = selectedGroup;
             dialogueGroupProperty.DrawPropertyField(false);
             EditorGUILayout.Space(4);
@@ -167,7 +170,7 @@ namespace DS.Inspectors
 
             selectedDialogueIndexProperty.intValue = DS_InspectorUtilities.DrawPopup("Dialogue", selectedDialogueIndexProperty, dialogueNames.ToArray());
             string selectedDialogueName = dialogueNames[selectedDialogueIndexProperty.intValue];
-            DS_DialogueSO selectedDialogue = DS_IOUtilities.LoadAsset<DS_DialogueSO>(commonFolderPath, selectedDialogueName);
+            DS_DialogueSO selectedDialogue = iOUtilities.LoadAsset<DS_DialogueSO>(commonFolderPath, selectedDialogueName);
             dialogueProperty.objectReferenceValue = selectedDialogue;
             dialogueProperty.DrawPropertyField(false);
         }

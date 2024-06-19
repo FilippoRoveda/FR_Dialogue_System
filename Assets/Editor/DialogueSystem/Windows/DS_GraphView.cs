@@ -17,7 +17,7 @@ namespace DS.Windows
     /// </summary>
     public class DS_GraphView : GraphView
     {
-        private DS_EditorWindow editorWindow; //Reference to the editor window class
+        private DS_MainEditorWindow editorWindow; //Reference to the editor window class
         private DS_SearchWindow searchWindow; //Reference to the search window owned class
 
         private GridBackground gridBackground;
@@ -61,7 +61,7 @@ namespace DS.Windows
         { KeyCode.RightArrow, false }
     };
 
-        public DS_GraphView(DS_EditorWindow editorWindow)
+        public DS_GraphView(DS_MainEditorWindow editorWindow)
         {
             //Fields initializings
             this.editorWindow = editorWindow;
@@ -318,6 +318,7 @@ namespace DS.Windows
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
+            //this.AddManipulator(new FreehandSelector());
 
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));

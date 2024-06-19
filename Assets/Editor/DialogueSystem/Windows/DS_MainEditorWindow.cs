@@ -3,22 +3,23 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.IO;
 using UnityEditor.UIElements;
-using UnityEditor.Callbacks;
 
 namespace DS.Windows
 {
-    using ScriptableObjects;
+    using DS.Enumerations;
+    using System;
     using Utilities;
-    using Data;
-    using DS.Data.Save;
 
     /// <summary>
     /// 
     /// </summary>
-    public class DS_EditorWindow : EditorWindow
+    public class DS_MainEditorWindow : EditorWindow
     {
+        protected DS_IOUtilities ioUtilities;
+
         protected Toolbar toolbar;
 
+        private readonly DS_LenguageType defaultLenguage = DS_LenguageType.Italian;
         private readonly string defaultFileName = "DialogueFileName";
 
         protected static TextField filenameTextField;
@@ -29,15 +30,18 @@ namespace DS.Windows
         private Button resetButton;
         protected Button toggleMinimapButton;
 
+        protected ToolbarMenu toolbarMenu;
+
         protected DS_GraphView graph_View;
 
       
 
         [MenuItem("DialogueSystem/Main_Editor_Window")]
-        private static void Open()
+        public static void Open()
         {
-            DS_EditorWindow wnd = GetWindow<DS_EditorWindow>();
-            wnd.titleContent = new GUIContent("DS_Main_Editor_Window");
+            DS_MainEditorWindow wnd = CreateInstance<DS_MainEditorWindow>();
+            wnd.titleContent = new GUIContent("DS_Main_Editor_Window");          
+            wnd.Show();
         }
 
 
@@ -45,11 +49,31 @@ namespace DS.Windows
         {
             AddGraphView();
             AddToolbar();
+            AddToolbarMenu();
             AddStyles();
+        }
+
+        protected void AddToolbarMenu()
+        {
+            toolbarMenu = new ToolbarMenu();
+            foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
+            {
+                toolbarMenu.menu.AppendAction(lenguage.ToString(), callback => SelectLenguage(lenguage, toolbarMenu));
+            }
+            SelectLenguage(defaultLenguage, toolbarMenu);
+            toolbar.Add(toolbarMenu);
+        }
+
+        protected Action<DropdownMenuAction> SelectLenguage(DS_LenguageType lenguage, ToolbarMenu toolbarMenu)
+        {
+            toolbarMenu.text = "Lenguage: " + lenguage.ToString();
+            Logger.Error("To implement lenguage selection!");
+            return null;
         }
 
         protected void AddGraphView()
         {
+            ioUtilities = new DS_IOUtilities();
             graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
@@ -93,7 +117,7 @@ namespace DS.Windows
 
 
         #region Callbacks
-        private void OnSaveButtonPressed()
+        protected void OnSaveButtonPressed()
         {
             if(string.IsNullOrEmpty(filenameTextField.value))
             {
@@ -101,8 +125,8 @@ namespace DS.Windows
                 return;
             }
 
-            DS_IOUtilities.Initialize(graph_View, filenameTextField.value);
-            DS_IOUtilities.SaveGraph();
+            ioUtilities.Initialize(graph_View, filenameTextField.value);
+            ioUtilities.SaveGraph();
         }
 
         private void OnLoadButtonPressed()
@@ -111,8 +135,8 @@ namespace DS.Windows
             if(string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
-                DS_IOUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
-                DS_IOUtilities.LoadGraph();
+                ioUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
+                ioUtilities.LoadGraph();
             }
         }
 
