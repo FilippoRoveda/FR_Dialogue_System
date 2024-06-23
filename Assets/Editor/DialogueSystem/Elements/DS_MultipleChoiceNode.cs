@@ -31,9 +31,7 @@ namespace DS.Elements
         {
             base.Draw();
 
-            Port inputChoicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
-            inputChoicePort.portName = "DialogueConnection";
-            inputContainer.Add(inputChoicePort);
+            CreateInputPort();
 
             Button addChoiceButton = DS_ElementsUtilities.CreateButton("Add Choice", () => OnAddChoiceButtonPressed());
 
@@ -71,7 +69,7 @@ namespace DS.Elements
         /// </summary>
         /// <param name="choicePort"></param>
         /// <param name="choiceData"></param>
-        private void OnDeleteChoiceClick(Port choicePort, DS_NodeChoiceData choiceData)
+        private void OnDeleteChoicePressed(Port choicePort, DS_NodeChoiceData choiceData)
         {
             if (Choices.Count == 1) return;
 
@@ -96,7 +94,7 @@ namespace DS.Elements
             choicePort.portName = "";
             choicePort.userData = choiceData;
 
-            Button deleteChoiceButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteChoiceClick(choicePort, choiceData));
+            Button deleteChoiceButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteChoicePressed(choicePort, choiceData));
 
             deleteChoiceButton.AddToClassList("ds-node-button");
 

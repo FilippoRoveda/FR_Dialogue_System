@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
-  m_Name: 1
+  m_Name: DialogueName
   m_EditorClassIdentifier: 
-  dialogueName: 1
-  text: Dialogue Text
+  dialogueName: DialogueName
+  text: Event Text
   choices:
-  - choiceText: Next Choice
-    nextDialogue: {fileID: 11400000, guid: 1cd22a4fd5e54144aa8687cc4a34e570, type: 2}
-  dialogueType: 0
-  isStartingDialogue: 1
+  - choiceText: Event Output
+    nextDialogue: {fileID: 0}
+  dialogueType: 4
+  isStartingDialogue: 0
+  events:
+  - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}

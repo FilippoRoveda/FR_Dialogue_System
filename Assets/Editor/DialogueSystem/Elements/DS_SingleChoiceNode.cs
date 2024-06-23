@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 
 
 namespace DS.Elements
 {
-    using Utilities;
     using Enumerations;
     using Windows;
     using Data.Save;
@@ -27,19 +25,9 @@ namespace DS.Elements
         public override void Draw()
         {
             base.Draw();
+            CreateInputPort();
 
-            Port inputChoicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
-            inputChoicePort.portName = "DialogueConnection";
-            inputContainer.Add(inputChoicePort);
-
-            foreach (DS_NodeChoiceData choice in Choices)
-            {
-                Port choicePort = this.CreatePort(choice.ChoiceText, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
-                choicePort.portName = choice.ChoiceText;
-                choicePort.userData = choice;
-
-                outputContainer.Add(choicePort);
-            }
+            CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
         #endregion

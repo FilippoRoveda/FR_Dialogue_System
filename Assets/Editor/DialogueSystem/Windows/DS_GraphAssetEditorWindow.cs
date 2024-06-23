@@ -4,8 +4,8 @@ using UnityEditor.UIElements;
 
 namespace DS.Windows
 {
-    using DS.Data.Save;
-    using DS.Utilities;
+    using Data.Save;
+    using Utilities;
 
     public class DS_GraphAssetEditorWindow : DS_MainEditorWindow
     {

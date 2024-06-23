@@ -56,25 +56,20 @@ namespace DS.Elements
         public virtual void Draw()
         {
             //Dialogue name text field 
-            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField(DialogueName, null,  callback => OnDialogueNameChanged(callback));
+            TextField dialogueNameField = DS_ElementsUtilities.CreateTextField(DialogueName, null, callback => OnDialogueNameChanged(callback));
 
             dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
 
             titleContainer.Insert(0, dialogueNameField);
-
-            //Port choicePort = this.CreatePort("DialogueConnection", Orientation.Horizontal, Direction.Input, Port.Capacity.Single);
-            //choicePort.portName = "DialogueConnection";
-            //inputContainer.Add(choicePort);
-
+           
             VisualElement customDataContainer = new VisualElement();
             customDataContainer.AddToClassList("ds-node-custom-data-container");
 
-
             //Dialogue text foldout and text field
             Foldout dialogueTextFoldout = DS_ElementsUtilities.CreateFoldout("DialogueText");
-            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea(Text, null, callback => 
-            { 
-                Text = callback.newValue; 
+            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea(Text, null, callback =>
+            {
+                Text = callback.newValue;
             });
 
             dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
@@ -83,6 +78,8 @@ namespace DS.Elements
             customDataContainer.Add(dialogueTextFoldout);
             extensionContainer.Add(customDataContainer);
         }
+
+
 
         #region Overrides
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -152,6 +149,27 @@ namespace DS.Elements
         }
         #endregion
 
+        #region Node parts creation
+        protected void CreateInputPort(string inputPortName = "DialogueConnection", Port.Capacity capacity = Port.Capacity.Multi)
+        {
+            Port choicePort = this.CreatePort(inputPortName, Orientation.Horizontal, Direction.Input, capacity);
+            choicePort.portName = inputPortName;
+            inputContainer.Add(choicePort);
+        }
+
+        protected void CreateOutputPortFromChoices()
+        {
+            foreach (DS_NodeChoiceData choice in Choices)
+            {
+                Port choicePort = this.CreatePort(choice.ChoiceText, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
+                choicePort.portName = choice.ChoiceText;
+                choicePort.userData = choice;
+
+                outputContainer.Add(choicePort);
+            }
+        }
+        #endregion
+
         #region Utilities
 
         /// <summary>
@@ -169,6 +187,12 @@ namespace DS.Elements
         protected void SetDialogueType(DS_DialogueType dialogueType)
         {
             DialogueType = dialogueType;
+        }
+
+        protected void AddNodeChoice(string choiceText)
+        {
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = choiceText };
+            Choices.Add(choiceData);
         }
 
         /// <summary>

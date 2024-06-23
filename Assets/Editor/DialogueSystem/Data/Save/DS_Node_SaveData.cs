@@ -4,6 +4,7 @@ using UnityEngine;
 namespace DS.Data.Save
 {
     using DS.Elements;
+    using DS.ScriptableObjects;
     using Enumerations;
 
     /// <summary>
@@ -86,6 +87,14 @@ namespace DS.Data.Save
                 dialogueType = value;
             }
         }
+
+        [SerializeField] private List<DS_DialogueEventSO> events;
+        public List<DS_DialogueEventSO> Events
+        {
+            get { return events; }
+            set { events = value; }
+        }
+
         [SerializeField] private Vector2 position;
         public Vector2 Position 
         { 
@@ -116,6 +125,21 @@ namespace DS.Data.Save
 
             Choices = choices;
             Text = node.Text;
+
+            if (node.DialogueType == DS_DialogueType.Event)
+            {
+                events = new List<DS_DialogueEventSO>();
+                var _eventNode = (DS_EventNode)node;
+                if (_eventNode.DialogueEvents != null && _eventNode.DialogueEvents.Count > 0)
+                {
+                    foreach (var _event in _eventNode.DialogueEvents)
+                    {
+                        Debug.Log(_event.name);
+                        events.Add(_event);
+                    }
+                }
+            }
+            else events = null;
 
             if(node.Group != null) GroupID = node.Group.ID;
             else GroupID = null;

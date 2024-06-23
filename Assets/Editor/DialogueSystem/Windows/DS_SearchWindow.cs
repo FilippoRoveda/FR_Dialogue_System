@@ -41,6 +41,14 @@ namespace DS.Windows
                 {
                     level = 2, userData = DS_DialogueType.MultipleChoice
                 },
+                new SearchTreeEntry(new GUIContent("Event Node", indentationTexture))
+                {
+                    level = 2, userData = DS_DialogueType.Event
+                },
+                new SearchTreeEntry(new GUIContent("End Node", indentationTexture))
+                {
+                    level = 2, userData = DS_DialogueType.End
+                },
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Group"), 1),
                 new SearchTreeEntry(new GUIContent("Single Group", indentationTexture))
                 {
@@ -67,6 +75,14 @@ namespace DS.Windows
                 case DS_DialogueType.MultipleChoice:
                     DS_MultipleChoiceNode multipleChoiceNode = (DS_MultipleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.MultipleChoice);
                     graphView.AddElement(multipleChoiceNode);
+                    return true;
+                case DS_DialogueType.Event:
+                    DS_EventNode eventNode = (DS_EventNode)graphView.CreateNode("EventNode", localMousePosition, DS_DialogueType.Event);
+                    graphView.AddElement(eventNode);
+                    return true;
+                case DS_DialogueType.End:
+                    DS_EndNode endNode = (DS_EndNode)graphView.CreateNode("EndNode", localMousePosition, DS_DialogueType.End);
+                    graphView.AddElement(endNode);
                     return true;
                 case Group _:
                      graphView.CreateGroup("DialogueGroup", localMousePosition);

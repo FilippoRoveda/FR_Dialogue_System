@@ -324,6 +324,8 @@ namespace DS.Windows
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Starting Node", DS_DialogueType.Start));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Event Node", DS_DialogueType.Event));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create End Node", DS_DialogueType.End));
             this.AddManipulator(CreateGroup_CtxMenu_Option());
         }
         /// <summary>
@@ -785,8 +787,6 @@ namespace DS.Windows
                 }
             } while (hasOverlap == true);
         }
-
-
         private void ResolveOverlap(Node nodeA, Node nodeB)
         {
             Rect rectA = nodeA.GetPosition();

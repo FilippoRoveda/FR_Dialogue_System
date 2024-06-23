@@ -11,6 +11,8 @@ namespace DS.Utilities
     using Windows;
     using Data.Save;
     using ScriptableObjects;
+    using UnityEditor.PackageManager;
+    using Unity.VisualScripting.YamlDotNet.Core.Events;
 
     public class DS_IOUtilities
     {
@@ -180,7 +182,10 @@ namespace DS.Utilities
             }
 
             dialogue.Initialize(node.DialogueName, node.Text, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
-
+            if(node.DialogueType == Enumerations.DS_DialogueType.Event)
+            {
+                dialogue.SaveEvents(((DS_EventNode)node).DialogueEvents);
+            }
 
             createdDialoguesSO.Add(node.ID, dialogue);
             SaveAsset(dialogue);
@@ -299,6 +304,18 @@ namespace DS.Utilities
                 node.Choices = clonedChoices;
                 node.Text = nodeData.Text;
 
+                if(node.DialogueType == Enumerations.DS_DialogueType.Event)
+                {
+                    DS_EventNode eventNode = (DS_EventNode)node;
+                    if (nodeData.Events != null && nodeData.Events.Count > 0)
+                    {
+                        foreach (var _event in nodeData.Events)
+                        {
+                            eventNode.DialogueEvents.Add(_event);
+                        }
+                    }
+                }
+
                 node.Draw();
                 graphView.AddElement(node);
 
@@ -367,9 +384,12 @@ namespace DS.Utilities
         {
             return graphElement =>
             {
-                if (graphElement.GetType() == typeof(DS_SingleChoiceNode) || graphElement.GetType() == typeof(DS_MultipleChoiceNode) || graphElement.GetType() == typeof(DS_StartNode))
+                if (graphElement.GetType() == typeof(DS_SingleChoiceNode) ||
+                    graphElement.GetType() == typeof(DS_MultipleChoiceNode) ||
+                    graphElement.GetType() == typeof(DS_StartNode) ||
+                    graphElement.GetType() == typeof(DS_EndNode) ||
+                    graphElement.GetType() == typeof(DS_EventNode))
                 {
-                    Debug.Log("Fetched a node");
                     nodes.Add((DS_BaseNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(DS_Group))
