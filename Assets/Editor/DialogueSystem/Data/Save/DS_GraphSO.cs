@@ -6,7 +6,6 @@ namespace DS.Data.Save
     public class DS_GraphSO : ScriptableObject
     {
         [SerializeField] private string graphName;
-
         /// <summary>
         /// Filename for the graph.
         /// </summary>
@@ -15,8 +14,9 @@ namespace DS.Data.Save
             get { return graphName; } 
             set {  graphName = value; } 
         }
-        [SerializeField] private List<DS_Group_SaveData> groups;
 
+
+        [SerializeField] private List<DS_Group_SaveData> groups;
         /// <summary>
         /// List of group save data for the groups contained in this graph.
         /// </summary>
@@ -25,6 +25,8 @@ namespace DS.Data.Save
             get { return groups; } 
             set {  groups = value; } 
         }
+
+
         /// <summary>
         /// List of nodes for DS_Nodes contained in this graph.
         /// </summary>
@@ -34,6 +36,7 @@ namespace DS.Data.Save
             get { return nodes; }
             set {  nodes = value; } 
         }
+
         [SerializeField] private List<string> oldGroupsNames;
         /// <summary>
         /// List of old group names for updating graph functions.
@@ -43,6 +46,8 @@ namespace DS.Data.Save
             get { return oldGroupsNames; } 
             set {  oldGroupsNames = value; } 
         }
+
+
         [SerializeField] private List<string> oldUngroupedNames;
         /// <summary>
         /// List of old ungrouped nodes names for updating graph functions.
@@ -52,6 +57,8 @@ namespace DS.Data.Save
             get { return oldUngroupedNames; } 
             set { oldUngroupedNames = value; }
         }
+
+
         [SerializeField] private SerializableDictionary<string, List<string>> oldGroupedNodesNames;
         /// <summary>
         /// Serialized dictionary that as key hold the name of an old group and as value hold a list of old nodes for updating graph functions.
