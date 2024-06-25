@@ -9,18 +9,20 @@ namespace DS.Data.Save
     [System.Serializable]
     public class DS_Group_SaveData
     {
+        [SerializeField] private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
         [SerializeField] private string id;
         public string ID 
         { 
             get {  return id; } 
             set {  id = value; } 
         }
-        [SerializeField] private string name;
-        public string Name 
-        { 
-            get { return name; } 
-            set {  name = value; } 
-        }
+
         [SerializeField] private Vector2 position;
         public Vector2 Position 
         { 

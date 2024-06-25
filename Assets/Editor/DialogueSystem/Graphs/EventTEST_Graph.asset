@@ -20,14 +20,34 @@ MonoBehaviour:
     text: Event Text
     choices:
     - choiceText: Event Output
-      nextNodeID: 
+      nextNodeID: 146b6fdb-c220-4558-9de0-92dfbf4b3e11
     groupID: 
     dialogueType: 4
     events:
     - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
-    position: {x: 280, y: 181}
+    position: {x: 561, y: 214}
+  - nodeID: 146b6fdb-c220-4558-9de0-92dfbf4b3e11
+    name: 3
+    text: End Dialogue Text
+    choices: []
+    groupID: 
+    dialogueType: 3
+    events: []
+    position: {x: 1030, y: 231}
+  - nodeID: bf0c4aba-ddae-4b05-8d72-dd2ec9db3c6c
+    name: 1
+    text: Start Dialogue Text
+    choices:
+    - choiceText: Starting Choice
+      nextNodeID: 495b0afa-6a9f-4d2e-ae37-830557c2d6cf
+    groupID: 
+    dialogueType: 2
+    events: []
+    position: {x: 211, y: 214}
   oldGroupsNames: []
   oldUngroupedNames:
   - DialogueName
+  - 3
+  - 1
   oldGroupedNodesNames:
     list: []

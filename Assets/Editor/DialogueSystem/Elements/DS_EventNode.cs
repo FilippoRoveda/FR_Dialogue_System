@@ -71,7 +71,7 @@ namespace DS.Elements
         {
             ObjectField objectField = new ObjectField()
             {
-                objectType = typeof(DS_DialogueEventSO),
+                objectType = typeof(DS_DialogueEventSO),              
                 value = _event
             };
 

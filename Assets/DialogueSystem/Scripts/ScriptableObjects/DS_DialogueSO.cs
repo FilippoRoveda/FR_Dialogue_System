@@ -89,6 +89,6 @@ namespace DS.ScriptableObjects
             {
                 Events.Add(_event);
             }
-        }
+        }      
     }
 }

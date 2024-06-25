@@ -17,3 +17,5 @@ MonoBehaviour:
     list: []
   ungroupedDialogues:
   - {fileID: 11400000, guid: ac8efbf203a8be5429425a79b88ba59c, type: 2}
+  - {fileID: 11400000, guid: c403101b4139c034ba4df64930278ecc, type: 2}
+  - {fileID: 11400000, guid: ea8fb222c88cd3c4fb5321908ce9a90f, type: 2}

@@ -13,6 +13,19 @@ namespace DS.Data.Save
     [System.Serializable]
     public class DS_Node_SaveData
     {
+        [SerializeField] private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+
         [SerializeField] private string nodeID;
         public string NodeID 
         {
@@ -25,17 +38,7 @@ namespace DS.Data.Save
                 nodeID = value;
             } 
         }
-        [SerializeField] private string name;
-        public string Name 
-        {  get
-            {
-                return name;
-            }
-           set
-            {
-                name = value;
-            }
-        }
+
         [SerializeField] private string text;
         public string Text 
         { 

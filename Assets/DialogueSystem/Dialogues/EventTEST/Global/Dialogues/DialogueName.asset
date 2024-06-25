@@ -16,7 +16,7 @@ MonoBehaviour:
   text: Event Text
   choices:
   - choiceText: Event Output
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: c403101b4139c034ba4df64930278ecc, type: 2}
   dialogueType: 4
   isStartingDialogue: 0
   events:
