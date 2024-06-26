@@ -13,7 +13,7 @@ namespace DS.Elements
     using Enumerations;
     using Utilities;
     using Windows;
-    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
+
 
     /// <summary>
     /// Base dialogue system node class.
@@ -52,7 +52,7 @@ namespace DS.Elements
         protected TextField dialogueTextTextField;
 
         protected DS_GraphView graphView;
-        protected Color defaultColor;
+        protected StyleColor defaultColor;
         private Rect oldPostition;
 
 
@@ -178,7 +178,8 @@ namespace DS.Elements
         }
         public void SetDefaultColor(StyleColor defaultColor)
         {
-            this.defaultColor = defaultColor.value;
+            this.defaultColor = defaultColor;
+
         }
         public void SetErrorStyle(Color errorColor)
         {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Search;
+using UnityEditor;
 
 namespace DS.Elements
 {
@@ -10,15 +11,18 @@ namespace DS.Elements
     using Utilities;
     using Enumerations;
     using Windows;
-    using UnityEditor;
+
 
     public class DS_EventNode : DS_BaseNode
     {
-        private List<ObjectField> objectFields;
+        [SerializeField] private List<ObjectField> objectFields;
         [SerializeField] private List<DS_DialogueEventSO> dialogueEvents;
+
         public List<DS_DialogueEventSO> DialogueEvents 
         { get { return dialogueEvents; } set { dialogueEvents = value; } }
 
+
+        #region Override
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             base.Initialize(nodeName, context, spawnPosition);
@@ -50,51 +54,20 @@ namespace DS.Elements
             CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
+        protected override void SetNodeStyle()
+        {
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-event-node_main-container");
+            SetDefaultColor(mainContainer.style.backgroundColor);
+        }
 
+        #endregion
+        #region Callbacks
         private void OnAddEventButtonPressed()
         {
             ObjectField objectField = CreateObjectField();
             mainContainer.Add(objectField);
         }
-
-        private ObjectField CreateObjectField(DS_DialogueEventSO _event = null)
-        {
-            ObjectField objectField = new ObjectField()
-            {
-                objectType = typeof(DS_DialogueEventSO),              
-                value = _event
-            };
-
-            objectField.RegisterValueChangedCallback(value => 
-            {
-                _event = objectField.value as DS_DialogueEventSO;
-                if (objectField.value == null && dialogueEvents.Contains(_event) == false)
-                {
-                    objectField.value = _event;
-                    dialogueEvents.Add(_event);
-                }
-                else if(objectField.value != null && dialogueEvents.Contains(_event) == false)
-                {
-                    dialogueEvents.Remove((DS_DialogueEventSO)objectField.value);
-                    objectField.value = _event;
-                    dialogueEvents.Add(_event);
-                }
-                else
-                {
-                    EditorUtility.DisplayDialog("Event Repetition Error", "You could not add the same event more than once for the same node!", "Close");
-                }
-                
-            });
-            objectField.SetValueWithoutNotify(_event);
-
-
-            Button deleteEventButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (DS_DialogueEventSO)objectField.value));
-            deleteEventButton.AddToClassList("ds-node-button");
-            objectField.Add(deleteEventButton);
-
-            return objectField;
-        }
-
         private void OnDeleteEventPressed(ObjectField objectField, DS_DialogueEventSO eventSO)
         {
             if (objectFields.Count == 1) return;
@@ -105,6 +78,52 @@ namespace DS.Elements
             }
             mainContainer.Remove(objectField);
         }
+        #endregion
+
+        #region Elements creation
+        private ObjectField CreateObjectField(DS_DialogueEventSO _event = null)
+        {
+            ObjectField objectField = new ObjectField()
+            {
+                objectType = typeof(DS_DialogueEventSO),
+                value = _event
+            };
+
+            objectField.RegisterValueChangedCallback(OnFieldEventChanged(_event, objectField));
+            objectField.SetValueWithoutNotify(_event);
+
+
+            Button deleteEventButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (DS_DialogueEventSO)objectField.value));
+            deleteEventButton.AddToClassList("ds-node-button");
+            objectField.Add(deleteEventButton);
+
+            return objectField;
+        }
+
+        private EventCallback<ChangeEvent<Object>> OnFieldEventChanged( DS_DialogueEventSO _event, ObjectField objectField)
+        {
+            return value =>
+            {
+                _event = objectField.value as DS_DialogueEventSO;
+                if (objectField.value == null && dialogueEvents.Contains(_event) == false)
+                {
+                    objectField.value = _event;
+                    dialogueEvents.Add(_event);
+                }
+                else if (objectField.value != null && dialogueEvents.Contains(_event) == false)
+                {
+                    dialogueEvents.Remove((DS_DialogueEventSO)objectField.value);
+                    objectField.value = _event;
+                    dialogueEvents.Add(_event);
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog("Event Repetition Error", "You could not add the same event more than once for the same node!", "Close");
+                }
+            };
+        }
+        #endregion
+
 
         /// <summary>
         /// Return true if this node is a starting node.
@@ -114,5 +133,7 @@ namespace DS.Elements
         {
             return false;
         }
+
+
     }
 }

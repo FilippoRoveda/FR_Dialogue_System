@@ -30,6 +30,12 @@ namespace DS.Elements
             CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
+        protected override void SetNodeStyle()
+        {
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-single-node_main-container");
+            SetDefaultColor(mainContainer.style.backgroundColor);
+        }
         #endregion
     }
 }

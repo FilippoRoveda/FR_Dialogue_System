@@ -1,30 +1,35 @@
-/* CONTAINERS */
-.ds-start-node_extension-container
+
+.ds-node_main-container:
 {
-	background-color: #1C1D1E;
-	padding: 2px;
+	background-color: #1D1D1E;
 }
 .ds-start-node_main-container:
 {
-	background-color: #1C1D1E;
+	background-color: #16FF00;
 }
-.ds-start-node-custom-data-container
+.ds-end-node_main-container:
 {
-	background-color: #2C2325;
-	border-radius: 4px;
-	padding: 8px;
+	background-color: #FF0000;
 }
-
+.ds-single-node_main-container:
+{
+	background-color: #0E00FF;
+}
+.ds-multiple-node_main-container:
+{
+	background-color: #8E00FF;
+}
+.ds-event-node_main-container:
+{
+	background-color: #FFFF00;
+}
 
 .ds-node_extension-container
 {
 	background-color: #1D1D1E;
 	padding: 2px;
 }
-.ds-node_main-container:
-{
-	background-color: #1D1D1E;
-}
+
 .ds-node-custom-data-container
 {
 	background-color: #212325;

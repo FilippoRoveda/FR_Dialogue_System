@@ -3,8 +3,7 @@ using UnityEngine.UIElements;
 
 namespace DS.Elements
 {
-
-    using DS.Utilities;
+    using Utilities;
     using Enumerations;
     using Windows;
 
@@ -21,6 +20,12 @@ namespace DS.Elements
             base.Draw();
             CreateInputPort("EndNode connection");
             RefreshExpandedState();
+        }
+        protected override void SetNodeStyle()
+        {
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-end-node_main-container");
+            SetDefaultColor(mainContainer.style.backgroundColor);
         }
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {

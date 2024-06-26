@@ -25,6 +25,12 @@ namespace DS.Elements
             CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
+        protected override void SetNodeStyle()
+        {
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-start-node_main-container");
+            SetDefaultColor(mainContainer.style.backgroundColor);
+        }
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {            
             evt.menu.AppendAction("Disconnect Output Ports", actionEvent => DisconnectPorts(outputContainer));
