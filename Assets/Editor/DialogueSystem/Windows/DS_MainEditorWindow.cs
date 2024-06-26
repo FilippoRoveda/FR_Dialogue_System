@@ -8,6 +8,7 @@ namespace DS.Windows
 {
     using DS.Enumerations;
     using System;
+    using UnityEngine.Events;
     using Utilities;
 
     /// <summary>
@@ -16,14 +17,17 @@ namespace DS.Windows
     public class DS_MainEditorWindow : EditorWindow
     {
         protected DS_IOUtilities ioUtilities;
-
         protected Toolbar toolbar;
 
-        private readonly DS_LenguageType defaultLenguage = DS_LenguageType.Italian;
-        private DS_LenguageType currentLenguage;
-        private readonly string defaultFileName = "DialogueFileName";
 
-        protected static TextField filenameTextField;
+
+        private readonly DS_LenguageType defaultLenguage = DS_LenguageType.Italian;
+        public DS_LenguageType currentLenguage;
+
+        protected readonly string defaultSavedGraphPath = "Assets/Editor/DialogueSystem/Graphs";
+        protected readonly string defaultFileName = "DialogueFileName";
+
+        protected TextField filenameTextField;
 
         protected Button saveGraphButton;
         private Button loadButton;
@@ -35,7 +39,7 @@ namespace DS.Windows
 
         protected DS_GraphView graph_View;
 
-      
+        public UnityEvent<DS_LenguageType> EditorWindowLenguageChanged = new();
 
         [MenuItem("DialogueSystem/Main_Editor_Window")]
         public static void Open()
@@ -69,7 +73,9 @@ namespace DS.Windows
         {
             toolbarMenu.text = "Lenguage: " + lenguage.ToString();
             currentLenguage = lenguage;
+
             Logger.Error("To implement lenguage selection!");
+            EditorWindowLenguageChanged?.Invoke(currentLenguage);
             return null;
         }
 
@@ -162,7 +168,7 @@ namespace DS.Windows
         #endregion
 
         #region Utilities
-        public static void UpdateFilename(string newFilename)
+        public void UpdateFilename(string newFilename)
         {
             filenameTextField.value = newFilename;
         }

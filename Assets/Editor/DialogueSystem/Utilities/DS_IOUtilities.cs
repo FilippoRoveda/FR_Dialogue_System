@@ -160,7 +160,7 @@ namespace DS.Utilities
 
         private void SaveNodeInGraphData(DS_BaseNode node, DS_GraphSO graphData)
         {
-            DS_Node_SaveData nodeData = new DS_Node_SaveData(node);
+            DS_Node_SaveData nodeData = new(node);
             graphData.Nodes.Add(nodeData);
         }
         private void SaveNodeToSO(DS_BaseNode node, DS_DialogueContainerSO dialogueContainer)
@@ -179,7 +179,7 @@ namespace DS.Utilities
                 dialogueContainer.DialogueGroups.AddItem(createdGroupsSO[node.Group.ID], dialogue);
             }
 
-            dialogue.Initialize(node.DialogueName, node.Text, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
+            dialogue.Initialize(node.DialogueName, node.Texts, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
             if(node.DialogueType == Enumerations.DS_DialogueType.Event)
             {
                 dialogue.SaveEvents(((DS_EventNode)node).DialogueEvents);
@@ -195,7 +195,7 @@ namespace DS.Utilities
             List<Data.DS_DialogueChoiceData> dialogueChoices = new();
             foreach(DS_NodeChoiceData choiceData in nodeChoices)
             {
-                Data.DS_DialogueChoiceData dialogueChoice = new() { ChoiceText = choiceData.ChoiceText };
+                Data.DS_DialogueChoiceData dialogueChoice = new() { ChoiceTexts = choiceData.ChoiceTexts };
                 dialogueChoices.Add(dialogueChoice);
             }
             return dialogueChoices;
@@ -275,7 +275,7 @@ namespace DS.Utilities
                     );
                 return;
             }
-            DS_MainEditorWindow.UpdateFilename(graphData.GraphName);
+            graphView.EditorWindow.UpdateFilename(graphData.GraphName);
 
             LoadGroups(graphData.Groups);
             LoadNodes(graphData.Nodes);
@@ -300,7 +300,7 @@ namespace DS.Utilities
                 node.ID = nodeData.NodeID;
                 List<DS_NodeChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
                 node.Choices = clonedChoices;
-                node.Text = nodeData.Text;
+                node.Texts = nodeData.Texts;
 
                 if(node.DialogueType == Enumerations.DS_DialogueType.Event)
                 {

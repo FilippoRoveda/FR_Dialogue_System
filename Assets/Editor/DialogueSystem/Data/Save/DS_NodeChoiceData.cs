@@ -1,19 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 
 namespace DS.Data.Save
 {
+    using Utilities;
     /// <summary>
     /// Class that hold choice informations to be saved inside DS_Node_SaveData.
     /// </summary>
     [System.Serializable]
     public class DS_NodeChoiceData
-    {
-        [SerializeField] private string choiceText;
-        public string ChoiceText 
+    { 
+        [SerializeField] private List<LenguageData<string>> choiceTexts;
+        public List<LenguageData<string>> ChoiceTexts 
         {
-            get {  return choiceText; } 
-            set { choiceText = value; }
+            get {  return choiceTexts; } 
+            set { choiceTexts = value; }
         }
 
         //Linked choice name?
@@ -24,11 +26,18 @@ namespace DS.Data.Save
             set {  nextNodeID = value; }
         }
 
-        public DS_NodeChoiceData() { }
+        public DS_NodeChoiceData() 
+        {
+            ChoiceTexts = DS_LenguageUtilities.InitLenguageDataSet<string>();
+        }
+        public DS_NodeChoiceData(string defaultChoiceText)
+        {
+            ChoiceTexts = DS_LenguageUtilities.InitLenguageDataSet(defaultChoiceText);
+        }
         public DS_NodeChoiceData(DS_NodeChoiceData choice)
         {
-            ChoiceText = choice.ChoiceText;
-            NextNodeID = choice.NextNodeID;
+            ChoiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
+            NextNodeID = choice.NextNodeID;          
         }
     }
 }

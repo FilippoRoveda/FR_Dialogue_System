@@ -40,8 +40,6 @@ public static class TextUtility
         }
     }
 
-    // While unnecessary for this project, I've used the method seen here: https://stackoverflow.com/a/37368176
-    // Benchmarks: https://stackoverflow.com/a/37347881
     public static string RemoveWhitespaces(this string text)
     {
         int textLength = text.Length;
@@ -65,7 +63,8 @@ public static class TextUtility
         return new string(textCharacters, 0, currentWhitespacelessTextLength);
     }
 
-	// See here for alternatives: https://stackoverflow.com/questions/3210393/how-do-i-remove-all-non-alphanumeric-characters-from-a-string-except-dash
+
+
 	public static string RemoveSpecialCharacters(this string text)
 	{
 		int textLength = text.Length;

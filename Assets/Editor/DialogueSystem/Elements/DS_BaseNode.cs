@@ -9,9 +9,11 @@ using System.Linq;
 namespace DS.Elements
 {
     using Data.Save;
+    using Data;
     using Enumerations;
     using Utilities;
     using Windows;
+    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
     /// <summary>
     /// Base dialogue system node class.
@@ -24,14 +26,30 @@ namespace DS.Elements
         /// <summary>
         /// List of DS_Choice_SaveData representing the output choice for the node.
         /// </summary>
-        [SerializeField] public List<DS_NodeChoiceData> Choices { get; set; }
+        [SerializeField] public List<DS_NodeChoiceData> Choices;
         /// <summary>
         /// Content text of this node.
         /// </summary>
-        [SerializeField] public string Text { get; set; }
+        [SerializeField] public List<LenguageData<string>> Texts = new List<LenguageData<string>>();
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CurrentText
+        {
+            get
+            {
+                return Texts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data;
+            }
+            private set 
+            {
+                Texts.SetLenguageData(graphView.GetEditorCurrentLenguage(), value);
+            }
+        }
         [SerializeField] public DS_DialogueType DialogueType { get; private set; }
         [SerializeField] public DS_Group Group { get; set; } //Da far diventare group ID come stringa
 
+
+        protected TextField dialogueTextTextField;
 
         protected DS_GraphView graphView;
         protected Color defaultColor;
@@ -41,17 +59,17 @@ namespace DS.Elements
         public virtual void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             ID = Guid.NewGuid().ToString();
-            DialogueName = nodeName;
+            DialogueName = nodeName;        
             Choices = new List<DS_NodeChoiceData>();
-            Text = "Dialogue Text";
-            defaultColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
             graphView = context;
 
-            SetPosition(new Rect(spawnPosition, Vector2.zero));
-
-            extensionContainer.AddToClassList("ds-node_extension-container");
-            mainContainer.AddToClassList("ds-node_main-container");
+            Texts = DS_LenguageUtilities.InitLenguageDataSet("Dialogue Text"); ///
+            SetNodeStyle();
+            graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
         }
+
+
 
         public virtual void Draw()
         {
@@ -67,9 +85,10 @@ namespace DS.Elements
 
             //Dialogue text foldout and text field
             Foldout dialogueTextFoldout = DS_ElementsUtilities.CreateFoldout("DialogueText");
-            TextField dialogueTextTextField = DS_ElementsUtilities.CreateTextArea(Text, null, callback =>
+
+            dialogueTextTextField = DS_ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
             {
-                Text = callback.newValue;
+                Texts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data = callback.newValue; 
             });
 
             dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
@@ -136,9 +155,31 @@ namespace DS.Elements
                 graphView.Add_Node_ToGroup(this, groupRef);
             }
         }
+
+        protected virtual void OnGraphViewLenguageChanged(DS_LenguageType newLenguage)
+        {
+            dialogueTextTextField.SetValueWithoutNotify(CurrentText);
+
+            foreach (var element in outputContainer.Children())
+            {
+                var port = (Port)element;
+                var field = port.contentContainer.Children().ToList().Find(x => x.GetType() == typeof(TextField)) as TextField;
+                field.SetValueWithoutNotify(((DS_NodeChoiceData)port.userData).ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data);
+            }
+        }
         #endregion
 
         #region Appearence style
+        protected virtual void SetNodeStyle()
+        {
+            extensionContainer.AddToClassList("ds-node_extension-container");
+            mainContainer.AddToClassList("ds-node_main-container");
+            SetDefaultColor(mainContainer.style.backgroundColor);
+        }
+        public void SetDefaultColor(StyleColor defaultColor)
+        {
+            this.defaultColor = defaultColor.value;
+        }
         public void SetErrorStyle(Color errorColor)
         {
             mainContainer.style.backgroundColor = errorColor;
@@ -161,13 +202,33 @@ namespace DS.Elements
         {
             foreach (DS_NodeChoiceData choice in Choices)
             {
-                Port choicePort = this.CreatePort(choice.ChoiceText, Orientation.Horizontal, Direction.Output, Port.Capacity.Multi);
-                choicePort.portName = choice.ChoiceText;
-                choicePort.userData = choice;
-
-                outputContainer.Add(choicePort);
+                CreateChoicePort(choice);
             }
         }
+
+        protected virtual Port CreateChoicePort(object _choice)
+        {
+            DS_NodeChoiceData choice = (DS_NodeChoiceData)_choice;
+
+            Port choicePort = this.CreatePort(choice.ChoiceTexts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data,
+                                Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
+            choicePort.portName = "";
+            choicePort.userData = choice;
+
+            TextField choiceTextField = DS_ElementsUtilities.CreateTextField(choice.ChoiceTexts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data,
+                                            null,
+                                            callback => UpdateChoiceLenguageData(callback, choice));
+
+
+            choiceTextField.AddToClassLists("ds-node-textfield", "ds-node-choice-textfield", "ds-node-textfield_hidden");
+            choiceTextField.style.flexDirection = FlexDirection.Column;
+
+            choicePort.Insert(1, choiceTextField);
+            outputContainer.Add(choicePort);
+            return choicePort;
+        }
+
+
         #endregion
 
         #region Utilities
@@ -191,7 +252,7 @@ namespace DS.Elements
 
         protected void AddNodeChoice(string choiceText)
         {
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = choiceText };
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData(choiceText);
             Choices.Add(choiceData);
         }
 
@@ -218,7 +279,10 @@ namespace DS.Elements
             DisconnectPorts(outputContainer);
         }
 
-
+        protected void UpdateChoiceLenguageData(ChangeEvent<string> callback, DS_NodeChoiceData choice)
+        {
+            choice.ChoiceTexts.Find(x => x.LenguageType == graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
+        }
 
         /// <summary>
         /// Return true if this node is a starting node.

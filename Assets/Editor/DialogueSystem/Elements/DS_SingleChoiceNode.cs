@@ -19,7 +19,7 @@ namespace DS.Elements
             base.Initialize(nodeName, context, spawnPosition);
             SetDialogueType(DS_DialogueType.SingleChoice);
 
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = "Next Choice" };
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Next Choice");
             Choices.Add(choiceData);
         }
         public override void Draw()

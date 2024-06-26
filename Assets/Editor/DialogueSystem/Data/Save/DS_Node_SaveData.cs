@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace DS.Data.Save
 {
-    using DS.Elements;
-    using DS.ScriptableObjects;
+    using Elements;
+    using ScriptableObjects;
+    using Utilities;
     using Enumerations;
 
     /// <summary>
@@ -39,16 +40,16 @@ namespace DS.Data.Save
             } 
         }
 
-        [SerializeField] private string text;
-        public string Text 
+        [SerializeField] private List<LenguageData<string>> texts;
+        public List<LenguageData<string>> Texts
         { 
             get
             {
-                return text;
+                return texts;
             }
             set
             {
-                text = value;
+                texts = value;
             }
         }
         [SerializeField] private List<DS_NodeChoiceData> choices;
@@ -91,6 +92,7 @@ namespace DS.Data.Save
             }
         }
 
+
         [SerializeField] private List<DS_DialogueEventSO> events;
         public List<DS_DialogueEventSO> Events
         {
@@ -111,7 +113,10 @@ namespace DS.Data.Save
             }
         }
 
-        public DS_Node_SaveData() { }
+        public DS_Node_SaveData() 
+        {
+            Texts = DS_LenguageUtilities.InitLenguageDataSet<string>();
+        }
         public DS_Node_SaveData(DS_BaseNode node)
         {
             //Debug.Log($"Saving DS_Node_Data for {node.DialogueName}");
@@ -126,8 +131,13 @@ namespace DS.Data.Save
                 choices.Add(choice_SaveData);
             }
 
-            Choices = choices;
-            Text = node.Text;
+
+            Choices = new List<DS_NodeChoiceData>(choices);
+
+            
+            Texts = new List<LenguageData<string>>(node.Texts);
+            Texts = DS_LenguageUtilities.UpdateLenguageDataSet(Texts);
+
 
             if (node.DialogueType == DS_DialogueType.Event)
             {

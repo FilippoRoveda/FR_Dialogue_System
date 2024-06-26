@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,24 +21,15 @@ namespace DS.Elements
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            ID = Guid.NewGuid().ToString();
-            DialogueName = nodeName;
-            Choices = new List<DS_NodeChoiceData>();
-            defaultColor = new Color(12f / 255f, 12f / 255f, 2f / 255f);
-            graphView = context;
-            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            base.Initialize(nodeName, context, spawnPosition);
 
-
-            Text = "Event Text";
+            Texts = DS_LenguageUtilities.InitLenguageDataSet("Event Text");
             SetDialogueType(DS_DialogueType.Event);
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Event Output");
+            Choices.Add(choiceData);
 
             objectFields = new();
             dialogueEvents = new();
-
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = "Event Output" };
-            Choices.Add(choiceData);
-            extensionContainer.AddToClassList("ds-start-node_extension-container");
-            mainContainer.AddToClassList("ds-start-node_main-container");
         }
 
         public override void Draw()

@@ -51,7 +51,7 @@ namespace DS.Windows
 
         private void LoadTargetGraphAsset()
         {
-            string filePath = $"Assets/Editor/DialogueSystem/Graphs/{assetGraph.GraphName}_Graph.asset";
+            string filePath = $"{defaultSavedGraphPath}/{assetGraph.GraphName}_Graph.asset";
             if (string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();

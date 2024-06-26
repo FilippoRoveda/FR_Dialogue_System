@@ -7,9 +7,10 @@ using UnityEngine.UIElements;
 namespace DS.Windows
 {
     using Data.Error;
-    using DS.Data.Save;
+    using Data.Save;
     using Elements;
     using Enumerations;
+    using UnityEngine.Events;
     using Utilities;
 
     /// <summary>
@@ -18,6 +19,8 @@ namespace DS.Windows
     public class DS_GraphView : GraphView
     {
         private DS_MainEditorWindow editorWindow; //Reference to the editor window class
+        public DS_MainEditorWindow EditorWindow { get { return editorWindow; } private set { editorWindow = value; } }
+        public DS_LenguageType GetEditorCurrentLenguage() { return editorWindow.currentLenguage; }
         private DS_SearchWindow searchWindow; //Reference to the search window owned class
 
         private GridBackground gridBackground;
@@ -60,6 +63,7 @@ namespace DS.Windows
         { KeyCode.DownArrow, false },
         { KeyCode.RightArrow, false }
     };
+        public UnityEvent<DS_LenguageType> GraphLenguageChanged = new();
 
         public DS_GraphView(DS_MainEditorWindow editorWindow)
         {
@@ -85,6 +89,7 @@ namespace DS.Windows
             Add_MinimapStyles();
             Add_Manipulators();
 
+            this.editorWindow.EditorWindowLenguageChanged.AddListener(OnEditorLenguageChanged);
             RegisterCallback<KeyDownEvent>(OnKeyDown);
             RegisterCallback<KeyUpEvent>(OnKeyUp);
 
@@ -271,6 +276,9 @@ namespace DS.Windows
                 {
                     foreach (Edge edge in changes.edgesToCreate)
                     {
+
+
+
                         DS_BaseNode nextNode = (DS_BaseNode)edge.input.node;
                         DS_NodeChoiceData choiceData = (DS_NodeChoiceData)edge.output.userData;
                         choiceData.NextNodeID = nextNode.ID;
@@ -305,6 +313,13 @@ namespace DS.Windows
             };
         }
 
+        #endregion
+
+        #region Callbacks
+        private void OnEditorLenguageChanged(DS_LenguageType newLenguage)
+        {
+            GraphLenguageChanged?.Invoke(newLenguage);
+        }
         #endregion
 
         #region Manipulators

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,25 +6,18 @@ namespace DS.Elements
     using Data.Save;
     using Windows;
     using Enumerations;
+    using Utilities;
 
     public class DS_StartNode : DS_BaseNode
     {
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            ID = Guid.NewGuid().ToString();
-            DialogueName = nodeName;
-            Choices = new List<DS_NodeChoiceData>();
-            defaultColor = new Color(27f / 255f, 27f / 255f, 7f / 255f);
-            graphView = context;
-            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            base.Initialize(nodeName, context, spawnPosition);
 
-
-            Text = "Start Dialogue Text";
+            Texts = DS_LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
             SetDialogueType(DS_DialogueType.Start);
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData() { ChoiceText = "Starting Choice" };
+            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Starting Choice");
             Choices.Add(choiceData);
-            extensionContainer.AddToClassList("ds-start-node_extension-container");
-            mainContainer.AddToClassList("ds-start-node_main-container");
         }
         public override void Draw()
         {
