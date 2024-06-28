@@ -1,0 +1,16 @@
+{
+    "name": "DS.Editor.Save.Inspectors",
+    "rootNamespace": "",
+    "references": [
+        "GUID:446f4624e3e1c8346ba0e147a7bbca7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

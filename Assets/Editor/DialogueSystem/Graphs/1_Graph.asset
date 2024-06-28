@@ -15,109 +15,103 @@ MonoBehaviour:
   graphName: 1
   groups: []
   nodes:
-  - name: 5
-    nodeID: 7504b85a-a1ea-4f64-ad16-6e8d63acf020
-    texts:
-    - LenguageType: 0
-      Data: 1
-    - LenguageType: 1
-      Data: 2222
-    choices: []
-    groupID: 
-    dialogueType: 3
-    events: []
-    position: {x: 1102, y: 409}
-  - name: 2
-    nodeID: d3a4324b-7218-4c52-a0a6-5466c6d9d770
-    texts:
-    - LenguageType: 0
-      Data: iiiiiiiiiiiiiiiii
-    - LenguageType: 1
-      Data: 222
-    choices:
-    - choiceTexts:
-      - LenguageType: 0
-        Data: A
-      - LenguageType: 1
-        Data: B
-      nextNodeID: a1b3298d-1f22-4b4b-bc3d-a20d6a042a51
-    groupID: 
-    dialogueType: 0
-    events: []
-    position: {x: 321, y: 105}
-  - name: 3
-    nodeID: a1b3298d-1f22-4b4b-bc3d-a20d6a042a51
-    texts:
-    - LenguageType: 0
-      Data: 1
-    - LenguageType: 1
-      Data: 222
-    choices:
-    - choiceTexts:
-      - LenguageType: 0
-        Data: a
-      - LenguageType: 1
-        Data: b
-      nextNodeID: 9341fcd8-badf-44cd-a90a-f75d18c7dfe5
-    - choiceTexts:
-      - LenguageType: 0
-        Data: a
-      - LenguageType: 1
-        Data: b
-      nextNodeID: 7504b85a-a1ea-4f64-ad16-6e8d63acf020
-    - choiceTexts:
-      - LenguageType: 0
-        Data: A
-      - LenguageType: 1
-        Data: b
-      nextNodeID: 7504b85a-a1ea-4f64-ad16-6e8d63acf020
-    groupID: 
-    dialogueType: 1
-    events: []
-    position: {x: 540, y: 346}
   - name: 1
-    nodeID: 6ea17652-aff4-4b92-83cb-aaf247877e3d
+    nodeID: e0f897c4-53f5-4c55-81ad-70170ab46311
     texts:
     - LenguageType: 0
-      Data: italian
+      Data: A
     - LenguageType: 1
-      Data: 222
+      Data: BBB
     choices:
     - choiceTexts:
       - LenguageType: 0
-        Data: A
+        Data: AAAAA
       - LenguageType: 1
-        Data: B
-      nextNodeID: d3a4324b-7218-4c52-a0a6-5466c6d9d770
+        Data: BBB
+      nextNodeID: 3898cc6d-4201-4894-8688-239e478808fa
     groupID: 
     dialogueType: 2
     events: []
-    position: {x: 128, y: 94}
-  - name: 4
-    nodeID: 9341fcd8-badf-44cd-a90a-f75d18c7dfe5
+    position: {x: 318, y: 187}
+  - name: 2
+    nodeID: 3898cc6d-4201-4894-8688-239e478808fa
     texts:
     - LenguageType: 0
-      Data: 1
+      Data: A
     - LenguageType: 1
-      Data: 222
+      Data: BBB
     choices:
     - choiceTexts:
       - LenguageType: 0
-        Data: A
+        Data: AAAA
       - LenguageType: 1
-        Data: B
-      nextNodeID: 7504b85a-a1ea-4f64-ad16-6e8d63acf020
+        Data: BBBB
+      nextNodeID: f40459a3-85c8-48fa-ae3c-5477b0255454
+    groupID: 
+    dialogueType: 0
+    events: []
+    position: {x: 663, y: 143}
+  - name: 4
+    nodeID: 6d4b8938-0cde-4213-9981-221889c75510
+    texts:
+    - LenguageType: 0
+      Data: A
+    - LenguageType: 1
+      Data: BBBBB
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: AAA
+      - LenguageType: 1
+        Data: Event Output
+      nextNodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
     groupID: 
     dialogueType: 4
     events:
     - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
-    position: {x: 825, y: 94}
+    position: {x: 1008, y: 82}
+  - name: 3
+    nodeID: f40459a3-85c8-48fa-ae3c-5477b0255454
+    texts:
+    - LenguageType: 0
+      Data: A
+    - LenguageType: 1
+      Data: BBB
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: AA
+      - LenguageType: 1
+        Data: BBB
+      nextNodeID: 6d4b8938-0cde-4213-9981-221889c75510
+    - choiceTexts:
+      - LenguageType: 0
+        Data: AA
+      - LenguageType: 1
+        Data: BB
+      nextNodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
+    groupID: 
+    dialogueType: 1
+    events: []
+    position: {x: 641, y: 314}
+  - name: 5
+    nodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
+    texts:
+    - LenguageType: 0
+      Data: AAA
+    - LenguageType: 1
+      Data: BBBBB
+    choices: []
+    groupID: 
+    dialogueType: 3
+    events: []
+    position: {x: 1106, y: 359}
   oldGroupsNames: []
   oldUngroupedNames:
-  - 5
-  - 2
-  - 3
   - 1
+  - 2
   - 4
+  - 3
+  - 5
   oldGroupedNodesNames:
     list: []

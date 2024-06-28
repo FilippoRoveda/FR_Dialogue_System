@@ -15,9 +15,9 @@ MonoBehaviour:
   dialogueName: 5
   texts:
   - LenguageType: 0
-    Data: 1
+    Data: AAA
   - LenguageType: 1
-    Data: 2222
+    Data: BBBBB
   choices: []
   dialogueType: 3
   isStartingDialogue: 0

@@ -15,15 +15,15 @@ MonoBehaviour:
   dialogueName: 1
   texts:
   - LenguageType: 0
-    Data: italian
+    Data: A
   - LenguageType: 1
-    Data: 222
+    Data: BBB
   choices:
   - choiceTexts:
     - LenguageType: 0
-      Data: A
+      Data: AAAAA
     - LenguageType: 1
-      Data: B
+      Data: BBB
     nextDialogue: {fileID: 11400000, guid: 2d149b5eacff30e43afc901a3c8bb237, type: 2}
   dialogueType: 2
   isStartingDialogue: 1

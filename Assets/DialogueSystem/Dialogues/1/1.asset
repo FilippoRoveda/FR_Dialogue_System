@@ -16,8 +16,8 @@ MonoBehaviour:
   dialogueGroups:
     list: []
   ungroupedDialogues:
-  - {fileID: 11400000, guid: 87af9a20293b6424dac08ceb98eeb0e1, type: 2}
-  - {fileID: 11400000, guid: 2d149b5eacff30e43afc901a3c8bb237, type: 2}
-  - {fileID: 11400000, guid: 25c57fa3c07a4c04cb3f7c82bb926560, type: 2}
   - {fileID: 11400000, guid: 106e456381a6c5c49a6bdaf542611aab, type: 2}
+  - {fileID: 11400000, guid: 2d149b5eacff30e43afc901a3c8bb237, type: 2}
   - {fileID: 11400000, guid: 7521bfc22244dd844997f757e570158d, type: 2}
+  - {fileID: 11400000, guid: 25c57fa3c07a4c04cb3f7c82bb926560, type: 2}
+  - {fileID: 11400000, guid: 87af9a20293b6424dac08ceb98eeb0e1, type: 2}

@@ -15,27 +15,21 @@ MonoBehaviour:
   dialogueName: 3
   texts:
   - LenguageType: 0
-    Data: 1
+    Data: A
   - LenguageType: 1
-    Data: 222
+    Data: BBB
   choices:
   - choiceTexts:
     - LenguageType: 0
-      Data: a
+      Data: AA
     - LenguageType: 1
-      Data: b
+      Data: BBB
     nextDialogue: {fileID: 11400000, guid: 7521bfc22244dd844997f757e570158d, type: 2}
   - choiceTexts:
     - LenguageType: 0
-      Data: a
+      Data: AA
     - LenguageType: 1
-      Data: b
-    nextDialogue: {fileID: 11400000, guid: 87af9a20293b6424dac08ceb98eeb0e1, type: 2}
-  - choiceTexts:
-    - LenguageType: 0
-      Data: A
-    - LenguageType: 1
-      Data: b
+      Data: BB
     nextDialogue: {fileID: 11400000, guid: 87af9a20293b6424dac08ceb98eeb0e1, type: 2}
   dialogueType: 1
   isStartingDialogue: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DS.Data.Error
+namespace DS.Editor.Errors
 {
     /// <summary>
     /// Class that generate a random color for error purpose.

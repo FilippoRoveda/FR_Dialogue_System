@@ -1,0 +1,16 @@
+{
+    "name": "DS.Runtime.Save.Data",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c0c1ccd11e08b6449a4dc0b02499599d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

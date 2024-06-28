@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
-namespace DS.Data.Error
+namespace DS.Editor.Errors
 {
     /// <summary>
     /// Class that hold error color for a list or DS_Groups.
@@ -8,11 +9,11 @@ namespace DS.Data.Error
     public class DS_GroupErrorData
     {
         public ErrorColor ErrorColor { get; set; }
-        public List<DS_Group> Groups { get; set; }
+        public List<Group> Groups { get; set; }
         public DS_GroupErrorData()
         {
             ErrorColor = new ErrorColor();
-            Groups = new List<DS_Group>();
+            Groups = new List<Group>();
         }
     }
 }

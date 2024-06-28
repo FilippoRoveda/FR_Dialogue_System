@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace DS.Utilities
+namespace DS.Editor.Utilities
 {
     /// <summary>
     /// Utilities class to facilitate common style .uss related operations.

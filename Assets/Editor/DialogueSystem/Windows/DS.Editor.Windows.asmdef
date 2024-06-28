@@ -1,0 +1,23 @@
+{
+    "name": "DS.Editor.Windows",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4dc5fed5639146e4cb2a07bea26ca5f5",
+        "GUID:fdead1e2eb975464c8b019e5c2aab9ea",
+        "GUID:a68a1ab5f8f93c24486f3a66d0d32629",
+        "GUID:c9e86b48e00298647a28c8417e0490da",
+        "GUID:e0c51346635f1ab4e9c36d9f4597201b",
+        "GUID:446f4624e3e1c8346ba0e147a7bbca7f",
+        "GUID:c0c1ccd11e08b6449a4dc0b02499599d",
+        "GUID:f2fd584e4ad8ce8429da87c6aba5fce2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

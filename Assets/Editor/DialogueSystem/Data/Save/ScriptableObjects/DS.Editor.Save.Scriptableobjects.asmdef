@@ -1,0 +1,17 @@
+{
+    "name": "DS.Editor.Save.Scriptableobjects",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fdead1e2eb975464c8b019e5c2aab9ea",
+        "GUID:f2fd584e4ad8ce8429da87c6aba5fce2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
