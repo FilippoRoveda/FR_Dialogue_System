@@ -1,0 +1,17 @@
+{
+    "name": "DS.Runtime.Gameplay",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c0c1ccd11e08b6449a4dc0b02499599d",
+        "GUID:f2fd584e4ad8ce8429da87c6aba5fce2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

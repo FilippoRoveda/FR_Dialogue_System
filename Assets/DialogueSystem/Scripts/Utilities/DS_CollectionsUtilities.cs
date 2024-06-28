@@ -1,7 +1,6 @@
-using DS.Runtime.Utilities;
 using System.Collections.Generic;
 
-namespace DS.Editor.Utilities
+namespace DS.Runtime.Utilities
 {
     /// <summary>
     /// Utilities for handling custom colletions in the Dialogue System.
