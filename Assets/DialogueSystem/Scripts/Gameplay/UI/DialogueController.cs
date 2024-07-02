@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueController : MonoBehaviour
+namespace DS.Runtime.UI
 {
-    
+    public class DialogueController : MonoBehaviour
+    {
+
+    }
 }

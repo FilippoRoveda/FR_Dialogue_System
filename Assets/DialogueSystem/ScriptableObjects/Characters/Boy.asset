@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d74e7319c9b1f447abe1eb489cc501e, type: 3}
-  m_Name: AAA
+  m_Name: Boy
   m_EditorClassIdentifier: 
   _id: f5bb6829-ef95-458e-ac34-1e615ffa2572
-  _name: AAA
-  _completeName: AAA AAAA
-  _icon: {fileID: 0}
+  _name: Boy
+  _completeName: Sojula Boy
+  _icon: {fileID: 21300000, guid: 6456d2ab3b03cd24a995c2ef951e2baa, type: 3}

@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
-  m_Name: 2
+  m_Name: EndDialpgue2
   m_EditorClassIdentifier: 
-  dialogueName: 2
+  dialogueName: EndDialpgue2
   texts:
   - LenguageType: 0
-    Data: A
+    Data: "Non voglio pi\xF9 parlare con te, vai via."
   - LenguageType: 1
-    Data: BBB
-  choices:
-  - choiceTexts:
-    - LenguageType: 0
-      Data: AAAA
-    - LenguageType: 1
-      Data: BBBB
-    nextDialogue: {fileID: 11400000, guid: 25c57fa3c07a4c04cb3f7c82bb926560, type: 2}
-  dialogueType: 0
+    Data: Go away!
+  choices: []
+  dialogueType: 3
   isStartingDialogue: 0
   events: []

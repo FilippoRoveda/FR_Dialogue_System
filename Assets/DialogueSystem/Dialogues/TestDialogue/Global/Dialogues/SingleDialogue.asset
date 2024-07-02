@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
-  m_Name: 5
+  m_Name: SingleDialogue
   m_EditorClassIdentifier: 
-  dialogueName: 5
+  dialogueName: SingleDialogue
   texts:
   - LenguageType: 0
-    Data: AAA
+    Data: Ma come no?! Ve che ti denuncio!
   - LenguageType: 1
-    Data: BBBBB
-  choices: []
-  dialogueType: 3
+    Data: What's happening?
+  choices:
+  - choiceTexts:
+    - LenguageType: 0
+      Data: Piacere io sono Massimino il trace.
+    - LenguageType: 1
+      Data: How you dare?
+    nextDialogue: {fileID: 11400000, guid: 0c6ea1cdf5949104e9726ce0b0434d9f, type: 2}
+  dialogueType: 0
   isStartingDialogue: 0
   events: []

@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae2064f60b7d1642a8d354be18fd331, type: 3}
+  m_Name: TestDialogue_Graph
+  m_EditorClassIdentifier: 
+  graphName: TestDialogue
+  groups: []
+  nodes:
+  - name: SingleDialogue
+    nodeID: 3898cc6d-4201-4894-8688-239e478808fa
+    texts:
+    - LenguageType: 0
+      Data: Ma come no?! Ve che ti denuncio!
+    - LenguageType: 1
+      Data: What's happening?
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Piacere io sono Massimino il trace.
+      - LenguageType: 1
+        Data: How you dare?
+      nextNodeID: f40459a3-85c8-48fa-ae3c-5477b0255454
+    groupID: 
+    dialogueType: 0
+    events: []
+    position: {x: 286, y: 441}
+  - name: MultipleDialogue
+    nodeID: 6d4b8938-0cde-4213-9981-221889c75510
+    texts:
+    - LenguageType: 0
+      Data: Allora faccio partire la denuncia
+    - LenguageType: 1
+      Data: Gino Event.
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Va bene.
+      - LenguageType: 1
+        Data: Go to end come on.
+      nextNodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
+    groupID: 
+    dialogueType: 4
+    events:
+    - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
+    position: {x: 1098, y: 276}
+  - name: StartingDialogue2
+    nodeID: dea674e0-9208-4e4c-92ac-6b8f1e928eb7
+    texts:
+    - LenguageType: 0
+      Data: Ancora tu?!
+    - LenguageType: 1
+      Data: You again?
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Rieccomi qui.
+      - LenguageType: 1
+        Data: Yes
+      nextNodeID: 6340f5b5-267e-4381-a054-ab881073d41f
+    groupID: 
+    dialogueType: 2
+    events: []
+    position: {x: 49, y: 711}
+  - name: StartingDialogue
+    nodeID: e0f897c4-53f5-4c55-81ad-70170ab46311
+    texts:
+    - LenguageType: 0
+      Data: Ciao, sono una ragazza!
+    - LenguageType: 1
+      Data: Hi, im a girl
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Non mi interessa.
+      - LenguageType: 1
+        Data: Hi
+      nextNodeID: 3898cc6d-4201-4894-8688-239e478808fa
+    groupID: 
+    dialogueType: 2
+    events: []
+    position: {x: 42, y: 441}
+  - name: EndDialpgue2
+    nodeID: 6340f5b5-267e-4381-a054-ab881073d41f
+    texts:
+    - LenguageType: 0
+      Data: "Non voglio pi\xF9 parlare con te, vai via."
+    - LenguageType: 1
+      Data: Go away!
+    choices: []
+    groupID: 
+    dialogueType: 3
+    events: []
+    position: {x: 331, y: 711}
+  - name: 3
+    nodeID: f40459a3-85c8-48fa-ae3c-5477b0255454
+    texts:
+    - LenguageType: 0
+      Data: Piacere io sono Galla Placidia.
+    - LenguageType: 1
+      Data: I will tell someone your error.
+    choices:
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Lo dico ad Onorio.
+      - LenguageType: 1
+        Data: Tell Gino.
+      nextNodeID: 6d4b8938-0cde-4213-9981-221889c75510
+    - choiceTexts:
+      - LenguageType: 0
+        Data: Sei molto intelligente.
+      - LenguageType: 1
+        Data: Tell Nino.
+      nextNodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
+    groupID: 
+    dialogueType: 1
+    events: []
+    position: {x: 716, y: 425}
+  - name: EndDialogue
+    nodeID: 8d7dac81-29fd-4c56-84ea-456cc8fb07ff
+    texts:
+    - LenguageType: 0
+      Data: Lo sapevo dai, ciao.
+    - LenguageType: 1
+      Data: End dialogue for me, a girl.
+    choices: []
+    groupID: 
+    dialogueType: 3
+    events: []
+    position: {x: 1543, y: 473}
+  oldGroupsNames: []
+  oldUngroupedNames:
+  - SingleDialogue
+  - MultipleDialogue
+  - StartingDialogue2
+  - StartingDialogue
+  - EndDialpgue2
+  - 3
+  - EndDialogue
+  oldGroupedNodesNames:
+    list: []
