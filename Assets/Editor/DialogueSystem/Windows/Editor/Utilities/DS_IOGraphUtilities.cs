@@ -111,7 +111,7 @@ namespace DS.Editor.Windows.Utilities
 
         private void SaveGroupInGraphData(DS_Group group, DS_GraphSO graphData)
         {
-            DS_Group_SaveData groupData = new DS_Group_SaveData(group.ID, group.title, group.GetPosition().position);
+            DS_GroupData groupData = new DS_GroupData(group.ID, group.title, group.GetPosition().position);
             graphData.Groups.Add(groupData);
         }
 
@@ -159,7 +159,7 @@ namespace DS.Editor.Windows.Utilities
                 }
                 else
                 {
-                    Debug.Log("Adding node to ungrouped dictionary in utilities");
+                    //Debug.Log("Adding node to ungrouped dictionary in utilities");
                     ungroupedNodeNames.Add(node.DialogueName);
                 }
             }
@@ -173,13 +173,22 @@ namespace DS.Editor.Windows.Utilities
 
         private void SaveNodeInGraphData(DS_BaseNode node, DS_GraphSO graphData)
         {
+            switch(node.DialogueType)
+            {
+                case Enumerations.DS_DialogueType.Event:
+                    break;
+                case Enumerations.DS_DialogueType.End:
+                    break;
+                default:
+                    break;
+            }
             var events = new List<DS_DialogueEventSO>();
             if (node is DS_EventNode eventNode)
             {
                 events = eventNode.DialogueEvents;
             } else events = null;
 
-            DS_Node_SaveData nodeData = new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
+            DS_NodeData nodeData = new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
                                             events ?? null, node.Group == null? null : node.Group.ID, node.GetPosition().position);
             graphData.Nodes.Add(nodeData);
         }
@@ -210,10 +219,10 @@ namespace DS.Editor.Windows.Utilities
         }
 
 
-        private List<DS_DialogueChoiceData> NodeToDialogueChoice(List<DS_NodeChoiceData> nodeChoices)
+        private List<DS_DialogueChoiceData> NodeToDialogueChoice(List<DS_ChoiceData> nodeChoices)
         {
             List<DS_DialogueChoiceData> dialogueChoices = new();
-            foreach(DS_NodeChoiceData choiceData in nodeChoices)
+            foreach(DS_ChoiceData choiceData in nodeChoices)
             {
                 DS_DialogueChoiceData dialogueChoice = new() { ChoiceTexts = choiceData.ChoiceTexts };
                 dialogueChoices.Add(dialogueChoice);
@@ -229,12 +238,12 @@ namespace DS.Editor.Windows.Utilities
 
                 for(int choiceIndex = 0; choiceIndex < node.Choices.Count; choiceIndex++)
                 {
-                    DS_NodeChoiceData choice = node.Choices[choiceIndex];
+                    DS_ChoiceData choice = node.Choices[choiceIndex];
 
                     if (string.IsNullOrEmpty(choice.NextNodeID)) continue;
 
                     dialogue.Choices[choiceIndex].NextDialogue = createdDialoguesSO[choice.NextNodeID];
-                    Debug.Log($"Saving some edge linked to node called ");
+                    //Debug.Log($"Saving some edge linked to node called ");
                     IOUtilities.SaveAsset(dialogue);
                 }
             }
@@ -301,9 +310,9 @@ namespace DS.Editor.Windows.Utilities
             LoadNodes(graphData.Nodes);
             LoadNodesConnections();
         }
-        private void LoadGroups(List<DS_Group_SaveData> groups)
+        private void LoadGroups(List<DS_GroupData> groups)
         {
-            foreach(DS_Group_SaveData groupData in groups)
+            foreach(DS_GroupData groupData in groups)
             {
                 DS_Group group = graphView.CreateGroup(groupData.Name, groupData.Position);
                 group.ID = groupData.ID;
@@ -311,14 +320,14 @@ namespace DS.Editor.Windows.Utilities
                 loadedGroups.Add(group.ID, group);
             }
         }
-        private void LoadNodes(List<DS_Node_SaveData> nodes)
+        private void LoadNodes(List<DS_NodeData> nodes)
         {
-            foreach (DS_Node_SaveData nodeData in nodes)
+            foreach (DS_NodeData nodeData in nodes)
             {
                 DS_BaseNode node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
 
                 node.ID = nodeData.NodeID;
-                List<DS_NodeChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
+                List<DS_ChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
                 node.Choices = clonedChoices;
                 node.Texts = nodeData.Texts;
 
@@ -354,7 +363,7 @@ namespace DS.Editor.Windows.Utilities
             {
                 foreach(Port choicePort in loadedNode.Value.outputContainer.Children())
                 {
-                    DS_NodeChoiceData choiceData = (DS_NodeChoiceData) choicePort.userData;
+                    DS_ChoiceData choiceData = (DS_ChoiceData) choicePort.userData;
 
                     if(string.IsNullOrEmpty(choiceData.NextNodeID) == false)
                     {
@@ -419,13 +428,13 @@ namespace DS.Editor.Windows.Utilities
         }
      
 
-        public List<DS_NodeChoiceData> CloneChoices(List<DS_NodeChoiceData> choiceList)
+        public List<DS_ChoiceData> CloneChoices(List<DS_ChoiceData> choiceList)
         {
-            List<DS_NodeChoiceData> choices = new List<DS_NodeChoiceData>();
+            List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
             if (choiceList == null) { Debug.Log("!!"); }
-            foreach (DS_NodeChoiceData choice in choiceList)
+            foreach (DS_ChoiceData choice in choiceList)
             {
-                DS_NodeChoiceData choice_SaveData = new DS_NodeChoiceData(choice);
+                DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
                 choices.Add(choice_SaveData);
             }
 

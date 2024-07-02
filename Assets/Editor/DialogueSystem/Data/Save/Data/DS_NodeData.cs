@@ -11,9 +11,9 @@ namespace DS.Editor.Data
     /// Class that hold node informations to be contained in a graph scriptable object.
     /// </summary>
     [System.Serializable]
-    public class DS_Node_SaveData
+    public class DS_NodeData
     {
-        [SerializeField] private string name;
+        [SerializeField] protected string name;
         public string Name
         {
             get
@@ -26,7 +26,7 @@ namespace DS.Editor.Data
             }
         }
 
-        [SerializeField] private string nodeID;
+        [SerializeField] protected string nodeID;
         public string NodeID 
         {
             get
@@ -39,7 +39,7 @@ namespace DS.Editor.Data
             } 
         }
 
-        [SerializeField] private List<LenguageData<string>> texts;
+        [SerializeField] protected List<LenguageData<string>> texts;
         public List<LenguageData<string>> Texts
         { 
             get
@@ -51,8 +51,8 @@ namespace DS.Editor.Data
                 texts = value;
             }
         }
-        [SerializeField] private List<DS_NodeChoiceData> choices;
-        public List<DS_NodeChoiceData> Choices
+        [SerializeField] protected List<DS_ChoiceData> choices;
+        public List<DS_ChoiceData> Choices
         {  get
             { 
                 return choices;
@@ -63,7 +63,7 @@ namespace DS.Editor.Data
             }
         }
 
-        [SerializeField] private string groupID;
+        [SerializeField] protected string groupID;
         /// <summary>
         /// Group ID for the group that hold this node.
         /// </summary>
@@ -78,7 +78,7 @@ namespace DS.Editor.Data
                 groupID = value;
             }
         }
-        [SerializeField] private DS_DialogueType dialogueType;
+        [SerializeField] protected DS_DialogueType dialogueType;
         public DS_DialogueType DialogueType 
         { 
             get
@@ -92,14 +92,14 @@ namespace DS.Editor.Data
         }
 
 
-        [SerializeField] private List<DS_DialogueEventSO> events;
+        [SerializeField] protected List<DS_DialogueEventSO> events;
         public List<DS_DialogueEventSO> Events
         {
             get { return events; }
             set { events = value; }
         }
 
-        [SerializeField] private Vector2 position;
+        [SerializeField] protected Vector2 position;
         public Vector2 Position 
         { 
             get
@@ -112,12 +112,12 @@ namespace DS.Editor.Data
             }
         }
 
-        public DS_Node_SaveData() 
+        public DS_NodeData() 
         {
             Texts = DS_LenguageUtilities.InitLenguageDataSet<string>();
         }
 
-        public DS_Node_SaveData(string NodeID, string DialogueName, List<DS_NodeChoiceData> Choices,
+        public DS_NodeData(string NodeID, string DialogueName, List<DS_ChoiceData> Choices,
                                 List<LenguageData<string>> Texts, DS_DialogueType dialogueType,
                                 List<DS_DialogueEventSO> Events, string GroupID, Vector2 Position)
         {
@@ -125,17 +125,17 @@ namespace DS.Editor.Data
             this.NodeID = NodeID;
             Name = DialogueName;
 
-            List<DS_NodeChoiceData> choices = new List<DS_NodeChoiceData>();
-            foreach(DS_NodeChoiceData choice in Choices)
+            List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
+            foreach(DS_ChoiceData choice in Choices)
             {
-                DS_NodeChoiceData choice_SaveData = new DS_NodeChoiceData(choice);
+                DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
                 //Debug.Log($"Saving a choice LINKED TO {choice.NextNodeID}");
                 Debug.Log(choice_SaveData.ChoiceTexts);
                 choices.Add(choice_SaveData);
             }
 
 
-            this.Choices = new List<DS_NodeChoiceData>(choices);
+            this.Choices = new List<DS_ChoiceData>(choices);
 
             
             this.Texts = new List<LenguageData<string>>(Texts);

@@ -28,7 +28,7 @@ namespace DS.Editor.Windows.Elements
 
             Texts = DS_LenguageUtilities.InitLenguageDataSet("Event Text");
             SetDialogueType(DS_DialogueType.Event);
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Event Output");
+            DS_ChoiceData choiceData = new DS_ChoiceData("Event Output");
             Choices.Add(choiceData);
 
             objectFields = new();

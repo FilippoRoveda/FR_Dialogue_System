@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DS.Runtime.UI
 {
-    public class DialogueController : MonoBehaviour
+    public class DialogueUIController : MonoBehaviour
     {
 
     }

@@ -7,7 +7,7 @@ namespace DS.Editor.Data
     /// Class that hold group informations to be contained in a graph scriptable object.
     /// </summary>
     [System.Serializable]
-    public class DS_Group_SaveData
+    public class DS_GroupData
     {
         [SerializeField] private string name;
         public string Name
@@ -32,8 +32,8 @@ namespace DS.Editor.Data
 
         // lista di nodi che ha all'interno? per poi instanziarli nuovamente come suoi
 
-        public DS_Group_SaveData() { }
-        public DS_Group_SaveData(string groupID, string groupTitle, Vector2 groupPosition)
+        public DS_GroupData() { }
+        public DS_GroupData(string groupID, string groupTitle, Vector2 groupPosition)
         {
             ID = groupID;
             Name = groupTitle;

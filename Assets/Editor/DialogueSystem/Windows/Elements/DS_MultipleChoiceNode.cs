@@ -22,7 +22,7 @@ namespace DS.Editor.Windows.Elements
             SetDialogueType(DS_DialogueType.MultipleChoice);
             choiceCounter = 1;
 
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("New Choice 1");
+            DS_ChoiceData choiceData = new DS_ChoiceData("New Choice 1");
             Choices.Add(choiceData);
         }
         public override void Draw()
@@ -37,7 +37,7 @@ namespace DS.Editor.Windows.Elements
 
             mainContainer.Insert(1, addChoiceButton);
 
-            foreach (DS_NodeChoiceData choice in Choices)
+            foreach (DS_ChoiceData choice in Choices)
             {
                 Port choicePort = CreateDeletableChoicePort(choice);
                 outputContainer.Add(choicePort);
@@ -61,7 +61,7 @@ namespace DS.Editor.Windows.Elements
         /// </summary>
         private void OnAddChoiceButtonPressed()
         {
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData($"New choice {choiceCounter + 1}");
+            DS_ChoiceData choiceData = new DS_ChoiceData($"New choice {choiceCounter + 1}");
             choiceCounter++;
 
             Port choicePort = CreateDeletableChoicePort(choiceData);
@@ -74,7 +74,7 @@ namespace DS.Editor.Windows.Elements
         /// </summary>
         /// <param name="choicePort"></param>
         /// <param name="choiceData"></param>
-        private void OnDeleteChoicePressed(Port choicePort, DS_NodeChoiceData choiceData)
+        private void OnDeleteChoicePressed(Port choicePort, DS_ChoiceData choiceData)
         {
             if (Choices.Count == 1) return;
 
@@ -94,7 +94,7 @@ namespace DS.Editor.Windows.Elements
         /// <returns></returns>
         protected Port CreateDeletableChoicePort(object _choice)
         {
-            DS_NodeChoiceData choiceData= (DS_NodeChoiceData)_choice;
+            DS_ChoiceData choiceData= (DS_ChoiceData)_choice;
 
             Port choicePort = base.CreateChoicePort(_choice);
 

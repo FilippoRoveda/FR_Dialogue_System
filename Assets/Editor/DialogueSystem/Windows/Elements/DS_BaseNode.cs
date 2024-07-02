@@ -25,7 +25,7 @@ namespace DS.Editor.Windows.Elements
         /// <summary>
         /// List of DS_Choice_SaveData representing the output choice for the node.
         /// </summary>
-        [SerializeField] public List<DS_NodeChoiceData> Choices;
+        [SerializeField] public List<DS_ChoiceData> Choices;
         /// <summary>
         /// Content text of this node.
         /// </summary>
@@ -52,14 +52,13 @@ namespace DS.Editor.Windows.Elements
 
         protected DS_GraphView graphView;
         protected StyleColor defaultColor;
-        private Rect oldPostition;
 
 
         public virtual void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             ID = Guid.NewGuid().ToString();
             DialogueName = nodeName;        
-            Choices = new List<DS_NodeChoiceData>();
+            Choices = new List<DS_ChoiceData>();
             SetPosition(new Rect(spawnPosition, Vector2.zero));
             graphView = context;
 
@@ -109,7 +108,6 @@ namespace DS.Editor.Windows.Elements
 
         public override void SetPosition(Rect newPos)
         {
-            oldPostition = GetPosition();
             base.SetPosition(newPos);
         }
         #endregion
@@ -163,7 +161,7 @@ namespace DS.Editor.Windows.Elements
             {
                 var port = (Port)element;
                 var field = port.contentContainer.Children().ToList().Find(x => x.GetType() == typeof(TextField)) as TextField;
-                field.SetValueWithoutNotify(((DS_NodeChoiceData)port.userData).ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data);
+                field.SetValueWithoutNotify(((DS_ChoiceData)port.userData).ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data);
             }
         }
         #endregion
@@ -200,7 +198,7 @@ namespace DS.Editor.Windows.Elements
 
         protected void CreateOutputPortFromChoices()
         {
-            foreach (DS_NodeChoiceData choice in Choices)
+            foreach (DS_ChoiceData choice in Choices)
             {
                 CreateChoicePort(choice);
             }
@@ -208,7 +206,7 @@ namespace DS.Editor.Windows.Elements
 
         protected virtual Port CreateChoicePort(object _choice)
         {
-            DS_NodeChoiceData choice = (DS_NodeChoiceData)_choice;
+            DS_ChoiceData choice = (DS_ChoiceData)_choice;
 
             Port choicePort = this.CreatePort(choice.ChoiceTexts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data,
                                 Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
@@ -252,7 +250,7 @@ namespace DS.Editor.Windows.Elements
 
         protected void AddNodeChoice(string choiceText)
         {
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData(choiceText);
+            DS_ChoiceData choiceData = new DS_ChoiceData(choiceText);
             Choices.Add(choiceData);
         }
 
@@ -279,7 +277,7 @@ namespace DS.Editor.Windows.Elements
             DisconnectPorts(outputContainer);
         }
 
-        protected void UpdateChoiceLenguageData(ChangeEvent<string> callback, DS_NodeChoiceData choice)
+        protected void UpdateChoiceLenguageData(ChangeEvent<string> callback, DS_ChoiceData choice)
         {
             choice.ChoiceTexts.Find(x => x.LenguageType == graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
         }

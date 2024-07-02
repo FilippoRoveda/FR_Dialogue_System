@@ -11,7 +11,6 @@ namespace DS.Editor.Windows
     using Data;
     using Elements;
     using Enumerations;
-    using Utilities;
     using Editor.Utilities;
     using Runtime.Utilities;
 
@@ -282,7 +281,7 @@ namespace DS.Editor.Windows
 
 
                         DS_BaseNode nextNode = (DS_BaseNode)edge.input.node;
-                        DS_NodeChoiceData choiceData = (DS_NodeChoiceData)edge.output.userData;
+                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
                         choiceData.NextNodeID = nextNode.ID;
                         DS_Logger.Warning($"Edge created between node: {((DS_BaseNode)edge.output.node).DialogueName} and node: {nextNode.DialogueName}");
                     }
@@ -295,7 +294,7 @@ namespace DS.Editor.Windows
                         if (element.GetType() == typeof(Edge))
                         {
                             Edge edge = (Edge)element;
-                            DS_NodeChoiceData choiceData = (DS_NodeChoiceData)edge.output.userData;
+                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
                             choiceData.NextNodeID = "";
                         }
                     }

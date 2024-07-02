@@ -9,7 +9,7 @@ namespace DS.Editor.Data
     /// Class that hold choice informations to be saved inside DS_Node_SaveData.
     /// </summary>
     [System.Serializable]
-    public class DS_NodeChoiceData
+    public class DS_ChoiceData
     { 
         [SerializeField] private List<LenguageData<string>> choiceTexts;
         public List<LenguageData<string>> ChoiceTexts 
@@ -18,7 +18,6 @@ namespace DS.Editor.Data
             set { choiceTexts = value; }
         }
 
-        //Linked choice name?
         [SerializeField] private string nextNodeID;
         public string NextNodeID 
         {
@@ -26,15 +25,15 @@ namespace DS.Editor.Data
             set {  nextNodeID = value; }
         }
 
-        public DS_NodeChoiceData() 
+        public DS_ChoiceData() 
         {
             ChoiceTexts = DS_LenguageUtilities.InitLenguageDataSet<string>();
         }
-        public DS_NodeChoiceData(string defaultChoiceText)
+        public DS_ChoiceData(string defaultChoiceText)
         {
             ChoiceTexts = DS_LenguageUtilities.InitLenguageDataSet(defaultChoiceText);
         }
-        public DS_NodeChoiceData(DS_NodeChoiceData choice)
+        public DS_ChoiceData(DS_ChoiceData choice)
         {
             ChoiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
             NextNodeID = choice.NextNodeID;          

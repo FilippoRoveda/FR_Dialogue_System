@@ -18,7 +18,7 @@ namespace DS.Editor.Windows.Elements
             base.Initialize(nodeName, context, spawnPosition);
             SetDialogueType(DS_DialogueType.SingleChoice);
 
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Next Choice");
+            DS_ChoiceData choiceData = new DS_ChoiceData("Next Choice");
             Choices.Add(choiceData);
         }
         public override void Draw()

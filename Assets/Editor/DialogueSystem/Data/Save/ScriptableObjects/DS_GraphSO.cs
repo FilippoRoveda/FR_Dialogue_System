@@ -18,11 +18,11 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        [SerializeField] private List<DS_Group_SaveData> groups;
+        [SerializeField] private List<DS_GroupData> groups;
         /// <summary>
         /// List of group save data for the groups contained in this graph.
         /// </summary>
-        public List<DS_Group_SaveData> Groups 
+        public List<DS_GroupData> Groups 
         { 
             get { return groups; } 
             set {  groups = value; } 
@@ -32,8 +32,8 @@ namespace DS.Editor.ScriptableObjects
         /// <summary>
         /// List of nodes for DS_Nodes contained in this graph.
         /// </summary>
-        [SerializeField] private List<DS_Node_SaveData> nodes;
-        public List<DS_Node_SaveData> Nodes 
+        [SerializeField] private List<DS_NodeData> nodes;
+        public List<DS_NodeData> Nodes 
         { 
             get { return nodes; }
             set {  nodes = value; } 
@@ -75,8 +75,8 @@ namespace DS.Editor.ScriptableObjects
         public void Initialize(string fileName)
         {
             GraphName = fileName;
-            Groups = new List<DS_Group_SaveData>();
-            Nodes = new List<DS_Node_SaveData>();
+            Groups = new List<DS_GroupData>();
+            Nodes = new List<DS_NodeData>();
         }
     }
 }

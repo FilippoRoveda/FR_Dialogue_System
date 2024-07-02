@@ -5,6 +5,7 @@ using UnityEngine;
 namespace DS.Editor.Windows
 {
     using Runtime.ScriptableObjects;
+    using UnityEngine.TextCore.Text;
     using Utilities;
 
     public class DS_CharacterEditorWindow : EditorWindow
@@ -54,7 +55,9 @@ namespace DS.Editor.Windows
             foreach (CharacterSO character in characters)
             {
                 EditorGUILayout.BeginHorizontal();
+                
 
+                EditorGUILayout.ObjectField("", character.Icon, typeof(Sprite), allowSceneObjects: false);
                 if (GUILayout.Button(character.Name, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
                 {
                     selectedCharacter = character;
@@ -64,6 +67,8 @@ namespace DS.Editor.Windows
                     DeleteCharacter(character);
                     break;
                 }
+                GUILayout.FlexibleSpace();
+
 
                 EditorGUILayout.EndHorizontal();
             }

@@ -15,7 +15,7 @@ namespace DS.Editor.Windows.Elements
 
             Texts = DS_LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
             SetDialogueType(DS_DialogueType.Start);
-            DS_NodeChoiceData choiceData = new DS_NodeChoiceData("Starting Choice");
+            DS_ChoiceData choiceData = new DS_ChoiceData("Starting Choice");
             Choices.Add(choiceData);
         }
         public override void Draw()
