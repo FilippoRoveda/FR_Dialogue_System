@@ -11,7 +11,7 @@ namespace DS.Editor.Windows.Elements
     using Editor.Data;
     using Runtime.Data;
     using Enumerations;
-    using Utilities;
+    using Editor.Utilities;
 
 
     /// <summary>

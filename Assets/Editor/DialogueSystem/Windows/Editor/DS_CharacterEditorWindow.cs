@@ -1,102 +1,112 @@
-using DS.Runtime.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class DS_CharacterEditorWindow : EditorWindow
+namespace DS.Editor.Windows
 {
-    private List<CharacterSO> characters = new List<CharacterSO>();
-    private string newCharacterName = "NewCharacter";
-    private string NewCharacterName
-    {
-        get { return newCharacterName + "_" + characters.Count.ToString(); }
-    }
-    private Vector2 scrollPos;
-    private CharacterSO selectedCharacter;
+    using Runtime.ScriptableObjects;
+    using Utilities;
 
-    [MenuItem("DialogueSystem/Character Manager")]
-    public static void ShowWindow()
+    public class DS_CharacterEditorWindow : EditorWindow
     {
-        GetWindow<DS_CharacterEditorWindow>("Character Editor");
-    }
+        private DS_IOUtilities IOUtilities = new DS_IOUtilities();
+        private readonly string charactersFolderPath = "Assets/DialogueSystem/ScriptableObjects/Characters";
 
-    private void OnEnable()
-    {
-        LoadCharacters();
-    }
 
-    private void OnGUI()
-    {
-        GUILayout.Label("Character Editor", EditorStyles.boldLabel);
-
-        if (GUILayout.Button("Create New Character"))
+        private string newCharacterName = "NewCharacter";
+        private string NewCharacterName
         {
-            CreateNewCharacter();
+            get { return newCharacterName + "_" + characters.Count.ToString(); }
         }
 
-        GUILayout.Space(10);
+        private List<CharacterSO> characters = new List<CharacterSO>();
+        private CharacterSO selectedCharacter;
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
-        foreach (CharacterSO character in characters)
+        private Vector2 scrollPos;
+
+
+        [MenuItem("DialogueSystem/Character Manager")]
+        public static void ShowWindow()
         {
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button(character.Name, GUILayout.Width(60)))
+            GetWindow<DS_CharacterEditorWindow>("Character Editor");
+        }
+
+        #region Unity callbacks
+        private void OnEnable()
+        {
+            LoadAllCharacters();
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.Label("Character Editor", EditorStyles.boldLabel);
+
+            if (GUILayout.Button("Create New Character", GUILayout.MaxWidth(200)))
             {
-                selectedCharacter = character;
+                CreateNewCharacter();
             }
-            if (GUILayout.Button("Delete", GUILayout.Width(60)))
+
+            GUILayout.Space(10);
+
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+
+            foreach (CharacterSO character in characters)
             {
-                DeleteCharacter(character);
-                break;
+                EditorGUILayout.BeginHorizontal();
+
+                if (GUILayout.Button(character.Name, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
+                {
+                    selectedCharacter = character;
+                }
+                if (GUILayout.Button("Delete", GUILayout.Width(60)))
+                {
+                    DeleteCharacter(character);
+                    break;
+                }
+
+                EditorGUILayout.EndHorizontal();
             }
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndScrollView();
+
+            GUILayout.Space(10);
+
+            if (selectedCharacter != null)
+            {
+                EditorGUILayout.LabelField("Selected Character", EditorStyles.boldLabel);
+                UnityEditor.Editor editor = UnityEditor.Editor.CreateEditor(selectedCharacter);
+                editor.OnInspectorGUI();
+            }
         }
-        EditorGUILayout.EndScrollView();
-
-        GUILayout.Space(10);
-
-        if (selectedCharacter != null)
+        #endregion
+        private void LoadAllCharacters()
         {
-            EditorGUILayout.LabelField("Selected Character", EditorStyles.boldLabel);
-            Editor editor = Editor.CreateEditor(selectedCharacter);
-            editor.OnInspectorGUI();
+            characters.Clear();
+            List<string> allCharacters = IOUtilities.ListAssetsInFolder(charactersFolderPath);
+            foreach (string character in allCharacters) 
+            {
+                var characterSO = IOUtilities.LoadAsset<CharacterSO>(charactersFolderPath, character);
+                characters.Add(characterSO);
+            }
         }
-    }
 
-    private void LoadCharacters()
-    {
-        characters.Clear();
-        string[] guids = AssetDatabase.FindAssets("t:CharacterSO");
-        foreach (string guid in guids)
+        private void CreateNewCharacter()
         {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            CharacterSO character = AssetDatabase.LoadAssetAtPath<CharacterSO>(path);
-            characters.Add(character);
+            var newCharacter = IOUtilities.CreateAsset<CharacterSO>(charactersFolderPath, NewCharacterName);
+            newCharacter.Initialize(NewCharacterName, NewCharacterName);
+            IOUtilities.SaveAsset(newCharacter);
+            LoadAllCharacters();
         }
-    }
 
-    private void CreateNewCharacter()
-    {
-        CharacterSO newCharacter = CreateInstance<CharacterSO>();
-        string newName = NewCharacterName;
-        string path = $"Assets/DialogueSystem/ScriptableObjects/Characters/{newName}.asset";
-        newCharacter.Name = newName;
-        AssetDatabase.CreateAsset(newCharacter, path);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        LoadCharacters();
-    }
-
-    private void DeleteCharacter(CharacterSO character)
-    {
-        if (character != null)
+        private void DeleteCharacter(CharacterSO character)
         {
-            string path = AssetDatabase.GetAssetPath(character);
-            AssetDatabase.DeleteAsset(path);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            LoadCharacters();
+            if (character != null)
+            {
+                IOUtilities.RemoveAsset(charactersFolderPath, character.name);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                LoadAllCharacters();
+            }
         }
     }
 }

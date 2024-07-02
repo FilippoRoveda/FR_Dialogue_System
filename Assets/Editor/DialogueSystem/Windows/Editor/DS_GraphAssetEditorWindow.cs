@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 namespace DS.Editor.Windows
 {
     using Editor.ScriptableObjects;
-    using Utilities;
+    using Editor.Utilities;
     using Elements;
 
     public class DS_GraphAssetEditorWindow : DS_MainEditorWindow

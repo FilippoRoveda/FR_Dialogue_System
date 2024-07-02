@@ -9,6 +9,7 @@ using UnityEngine.Events;
 namespace DS.Editor.Windows
 {
     using Enumerations;
+    using Editor.Utilities;
     using Utilities;
     using Elements;
 
@@ -17,7 +18,7 @@ namespace DS.Editor.Windows
     /// </summary>
     public class DS_MainEditorWindow : EditorWindow
     {
-        protected DS_IOUtilities ioUtilities;
+        protected DS_IOGraphUtilities ioUtilities;
         protected Toolbar toolbar;
 
 
@@ -82,7 +83,7 @@ namespace DS.Editor.Windows
 
         protected void AddGraphView()
         {
-            ioUtilities = new DS_IOUtilities();
+            ioUtilities = new DS_IOGraphUtilities();
             graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
