@@ -4,8 +4,7 @@ using UnityEngine;
 namespace DS.Editor.Data
 {
     using Runtime.Data; 
-    using Enumerations;
-    using Runtime.ScriptableObjects;
+    using Enums;
 
     /// <summary>
     /// Class that hold node informations to be contained in a graph scriptable object.
@@ -91,14 +90,6 @@ namespace DS.Editor.Data
             }
         }
 
-
-        [SerializeField] protected List<DS_DialogueEventSO> events;
-        public List<DS_DialogueEventSO> Events
-        {
-            get { return events; }
-            set { events = value; }
-        }
-
         [SerializeField] protected Vector2 position;
         public Vector2 Position 
         { 
@@ -117,16 +108,16 @@ namespace DS.Editor.Data
             Texts = DS_LenguageUtilities.InitLenguageDataSet<string>();
         }
 
-        public DS_NodeData(string NodeID, string DialogueName, List<DS_ChoiceData> Choices,
-                                List<LenguageData<string>> Texts, DS_DialogueType dialogueType,
-                                List<DS_DialogueEventSO> Events, string GroupID, Vector2 Position)
+        public DS_NodeData(string _nodeID, string _dialogueName, List<DS_ChoiceData> _choices,
+                                List<LenguageData<string>> _texts, DS_DialogueType _dialogueType,
+                                string _groupID, Vector2 _position)
         {
             //Debug.Log($"Saving DS_Node_Data for {node.DialogueName}");
-            this.NodeID = NodeID;
-            Name = DialogueName;
+            this.NodeID = _nodeID;
+            Name = _dialogueName;
 
             List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
-            foreach(DS_ChoiceData choice in Choices)
+            foreach(DS_ChoiceData choice in _choices)
             {
                 DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
                 //Debug.Log($"Saving a choice LINKED TO {choice.NextNodeID}");
@@ -134,33 +125,16 @@ namespace DS.Editor.Data
                 choices.Add(choice_SaveData);
             }
 
-
             this.Choices = new List<DS_ChoiceData>(choices);
-
             
-            this.Texts = new List<LenguageData<string>>(Texts);
-            this.Texts = DS_LenguageUtilities.UpdateLenguageDataSet(Texts);
+            this.Texts = new List<LenguageData<string>>(_texts);
+            this.Texts = DS_LenguageUtilities.UpdateLenguageDataSet(_texts);    
 
-
-            if (dialogueType == DS_DialogueType.Event)
-            {
-                events = new List<DS_DialogueEventSO>();
-                if (Events != null && Events.Count > 0)
-                {
-                    foreach (var _event in Events)
-                    {
-                        Debug.Log(_event.name);
-                        events.Add(_event);
-                    }
-                }
-            }
-            else events = null;
-
-            if(GroupID != null) this.GroupID = GroupID;
+            if(_groupID != null) this.GroupID = _groupID;
             else this.GroupID = null;
 
-            this.DialogueType =  dialogueType;
-            this.Position = Position;
+            this.DialogueType =  _dialogueType;
+            this.Position = _position;
         }
     }
 }

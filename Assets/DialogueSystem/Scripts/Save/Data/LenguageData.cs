@@ -1,6 +1,6 @@
 namespace DS.Runtime.Data
 {
-    using Enumerations;
+    using Enums;
 
     [System.Serializable]
     public class LenguageData<T>

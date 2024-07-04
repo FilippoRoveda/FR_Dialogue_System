@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 namespace DS.Editor.Windows
 {
-    using Enumerations;
+    using Enums;
     using Editor.Utilities;
     using Utilities;
     using Elements;
@@ -63,7 +63,7 @@ namespace DS.Editor.Windows
         protected void AddToolbarMenu()
         {
             toolbarMenu = new ToolbarMenu();
-            foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
+            foreach(DS_LenguageType lenguage in (DS_LenguageType[])System.Enum.GetValues(typeof(DS_LenguageType)))
             {
                 toolbarMenu.menu.AppendAction(lenguage.ToString(), callback => SelectLenguage(lenguage, toolbarMenu));
             }

@@ -10,7 +10,7 @@ namespace DS.Editor.Windows.Elements
 {
     using Editor.Data;
     using Runtime.Data;
-    using Enumerations;
+    using Enums;
     using Editor.Utilities;
 
 

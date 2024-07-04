@@ -1,4 +1,4 @@
-namespace DS.Enumerations
+namespace DS.Enums
 {
     /// <summary>
     /// Enumerator to indicate the node dialogue type.

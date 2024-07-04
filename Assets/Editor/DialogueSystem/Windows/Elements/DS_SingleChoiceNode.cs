@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DS.Editor.Windows.Elements
 {
-    using Enumerations;
+    using Enums;
     using Editor.Data;
 
     /// <summary>

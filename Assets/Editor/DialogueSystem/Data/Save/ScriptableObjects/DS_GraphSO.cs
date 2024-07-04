@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace DS.Editor.ScriptableObjects
 {
+
     using Runtime.Utilities;
     using Data;
+    using DS.Enums;
+
     public class DS_GraphSO : ScriptableObject
     {
         [SerializeField] private string graphName;
@@ -29,15 +32,14 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        /// <summary>
-        /// List of nodes for DS_Nodes contained in this graph.
-        /// </summary>
         [SerializeField] private List<DS_NodeData> nodes;
-        public List<DS_NodeData> Nodes 
-        { 
-            get { return nodes; }
-            set {  nodes = value; } 
-        }
+        [SerializeField] private List<DS_EventNodeData> eventNodes;
+        [SerializeField] private List<DS_EndNodeData> endNodes;
+
+        public List<DS_NodeData> Nodes { get => nodes; set => nodes = value; }
+        public List<DS_EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
+        public List<DS_EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
+
 
         [SerializeField] private List<string> oldGroupsNames;
         /// <summary>
@@ -72,11 +74,14 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
+
         public void Initialize(string fileName)
         {
             GraphName = fileName;
             Groups = new List<DS_GroupData>();
-            Nodes = new List<DS_NodeData>();
+            nodes = new List<DS_NodeData>();
+            eventNodes = new List<DS_EventNodeData>();
+            endNodes = new List<DS_EndNodeData>();
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 namespace DS.Editor.Windows.Elements
 {
     using Editor.Data;
-    using Enumerations;
+    using Enums;
 
     /// <summary>
     /// Child class that represent a multiple choice version of the base DS_Node.

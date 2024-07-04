@@ -1,4 +1,4 @@
-namespace DS.Enumerations
+namespace DS.Enums
 {
     public enum DS_LenguageType
     {

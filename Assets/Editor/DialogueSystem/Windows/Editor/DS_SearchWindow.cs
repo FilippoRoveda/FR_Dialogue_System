@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DS.Editor.Windows
 {
-    using Enumerations;
+    using Enums;
     using Elements;
 
     /// <summary>

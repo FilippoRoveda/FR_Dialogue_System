@@ -4,11 +4,12 @@ using UnityEngine.UIElements;
 namespace DS.Editor.Windows.Elements
 {
     using Runtime.Data;
-    using Enumerations;
+    using Enums;
 
     public class DS_EndNode : DS_BaseNode
     {
         [SerializeField] private bool isRepetableDialogue = false;
+        public bool IsRepetableDialogue { get { return isRepetableDialogue; }  set { isRepetableDialogue = value; } }
 
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)

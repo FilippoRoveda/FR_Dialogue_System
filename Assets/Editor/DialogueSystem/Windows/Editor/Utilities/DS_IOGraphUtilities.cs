@@ -151,7 +151,19 @@ namespace DS.Editor.Windows.Utilities
             foreach(DS_BaseNode node in nodes)
             {
                 SaveNodeInGraphData(node, graphData);
-                SaveNodeToSO(node, dialogueContainer);
+                switch (node.DialogueType)
+                {
+                    case Enums.DS_DialogueType.Event:
+                        SaveNodeToSO<DS_EventDialogueSO>(node, dialogueContainer);
+                        break;
+                    case Enums.DS_DialogueType.End:
+                        SaveNodeToSO<DS_EndDialogueSO>(node, dialogueContainer);
+                        break;
+                    default:
+                        SaveNodeToSO<DS_DialogueSO>(node, dialogueContainer);
+                        break;
+                }
+                
 
                 if (node.Group != null)
                 {
@@ -173,45 +185,63 @@ namespace DS.Editor.Windows.Utilities
 
         private void SaveNodeInGraphData(DS_BaseNode node, DS_GraphSO graphData)
         {
-            switch(node.DialogueType)
+            switch (node.DialogueType)
             {
-                case Enumerations.DS_DialogueType.Event:
+                case Enums.DS_DialogueType.Event:
+                    DS_EventNodeData eventNodeData = GetEventNodeData((DS_EventNode)node);
+                    graphData.EventNodes.Add(eventNodeData);
                     break;
-                case Enumerations.DS_DialogueType.End:
+                case Enums.DS_DialogueType.End:
+                    DS_EndNodeData endNodeData = GetEndNodeData((DS_EndNode)node);
+                    graphData.EndNodes.Add(endNodeData);
                     break;
                 default:
+                    DS_NodeData nodeData = GetNodeData(node);
+                    graphData.Nodes.Add(nodeData);
                     break;
             }
-            var events = new List<DS_DialogueEventSO>();
-            if (node is DS_EventNode eventNode)
+                   
+            static DS_NodeData GetNodeData(DS_BaseNode node)
             {
-                events = eventNode.DialogueEvents;
-            } else events = null;
-
-            DS_NodeData nodeData = new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
-                                            events ?? null, node.Group == null? null : node.Group.ID, node.GetPosition().position);
-            graphData.Nodes.Add(nodeData);
+                return new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
+                                                       node.Group == null ? null : node.Group.ID, node.GetPosition().position);
+            }
+            static DS_EventNodeData GetEventNodeData(DS_EventNode node)
+            {
+                return new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
+                                                       node.Group == null ? null : node.Group.ID, node.GetPosition().position, node.DialogueEvents);
+            }
+            static DS_EndNodeData GetEndNodeData(DS_EndNode node)
+            {
+                return new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
+                                                       node.Group == null ? null : node.Group.ID, node.GetPosition().position, node.IsRepetableDialogue);
+            }
         }
-        private void SaveNodeToSO(DS_BaseNode node, DS_DialogueContainerSO dialogueContainer)
+        private void SaveNodeToSO<T>(DS_BaseNode node, DS_DialogueContainerSO dialogueContainer) where T :DS_DialogueSO
         {
-            DS_DialogueSO dialogue;
-            
+            T dialogue;
+
             if(node.Group == null)
             {
-                dialogue = IOUtilities.CreateAsset<DS_DialogueSO>($"{containerFolderPath}/Global/Dialogues", node.DialogueName);
+                dialogue = IOUtilities.CreateAsset<T>($"{containerFolderPath}/Global/Dialogues", node.DialogueName);
                 dialogueContainer.UngroupedDialogues.Add(dialogue);
             }
             else 
             {
-                dialogue = IOUtilities.CreateAsset<DS_DialogueSO>($"{containerFolderPath}/Groups/{node.Group.title}/Dialogues", node.DialogueName);
+                dialogue = IOUtilities.CreateAsset<T>($"{containerFolderPath}/Groups/{node.Group.title}/Dialogues", node.DialogueName);
 
                 dialogueContainer.DialogueGroups.AddItem(createdGroupsSO[node.Group.ID], dialogue);
             }
 
             dialogue.Initialize(node.DialogueName, node.Texts, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
-            if(node.DialogueType == Enumerations.DS_DialogueType.Event)
+
+            if(node.DialogueType == Enums.DS_DialogueType.Event)
             {
-                dialogue.SaveEvents(((DS_EventNode)node).DialogueEvents);
+                (dialogue as DS_EventDialogueSO).SaveEvents(((DS_EventNode)node).DialogueEvents);
+            }
+            else if (node.DialogueType == Enums.DS_DialogueType.End)
+            {
+                (dialogue as DS_EndDialogueSO).SetRepetableDialogue(((DS_EndNode)node).IsRepetableDialogue);
             }
 
             createdDialoguesSO.Add(node.ID, dialogue);
@@ -308,8 +338,14 @@ namespace DS.Editor.Windows.Utilities
 
             LoadGroups(graphData.Groups);
             LoadNodes(graphData.Nodes);
+            LoadEventNodes(graphData.EventNodes);
+            LoadEndNodes(graphData.EndNodes);
             LoadNodesConnections();
         }
+
+
+
+
         private void LoadGroups(List<DS_GroupData> groups)
         {
             foreach(DS_GroupData groupData in groups)
@@ -324,39 +360,58 @@ namespace DS.Editor.Windows.Utilities
         {
             foreach (DS_NodeData nodeData in nodes)
             {
-                DS_BaseNode node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
-
-                node.ID = nodeData.NodeID;
-                List<DS_ChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
-                node.Choices = clonedChoices;
-                node.Texts = nodeData.Texts;
-
-                if(node.DialogueType == Enumerations.DS_DialogueType.Event)
-                {
-                    DS_EventNode eventNode = (DS_EventNode)node;
-                    if (nodeData.Events != null && nodeData.Events.Count > 0)
-                    {
-                        foreach (var _event in nodeData.Events)
-                        {
-                            eventNode.DialogueEvents.Add(_event);
-                        }
-                    }
-                }
-
-                node.Draw();
-                graphView.AddElement(node);
-
-                if (string.IsNullOrEmpty(nodeData.GroupID) == false)
-                {
-                    DS_Group group = loadedGroups[nodeData.GroupID];
-                    node.Group = group;
-                    group.AddElement(node);
-                    
-                }
-                loadedNodes.Add(node.ID, node);
+                LoadNode(nodeData, true);
             }
         }
 
+        private void LoadEventNodes(List<DS_EventNodeData> eventNodes)
+        {
+            foreach (DS_EventNodeData evntNodeData in eventNodes)
+            {
+                var node = (DS_EventNode)LoadNode(evntNodeData, false);
+                if (evntNodeData.Events != null && evntNodeData.Events.Count != 0)
+                {
+                    foreach (var _event in evntNodeData.Events)
+                    {
+                        node.DialogueEvents.Add(_event);
+                    }
+                }else node.DialogueEvents = new List<DS_EventSO> { };
+                node.Draw();
+            }
+        }
+        private void LoadEndNodes(List<DS_EndNodeData> endNodes)
+        {
+            foreach (DS_EndNodeData endNodeData in endNodes)
+            {
+                var node = (DS_EndNode)LoadNode(endNodeData, false);
+                node.IsRepetableDialogue = endNodeData.IsDialogueRepetable;
+                node.Draw();
+            }
+        }
+
+        private DS_BaseNode LoadNode(DS_NodeData nodeData, bool draw = false)
+        {
+            DS_BaseNode node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
+
+            node.ID = nodeData.NodeID;
+            List<DS_ChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
+            node.Choices = clonedChoices;
+            node.Texts = nodeData.Texts;
+
+            if(draw == true )node.Draw();
+            graphView.AddElement(node);
+
+            if (string.IsNullOrEmpty(nodeData.GroupID) == false)
+            {
+                DS_Group group = loadedGroups[nodeData.GroupID];
+                node.Group = group;
+                group.AddElement(node);
+
+            }
+            loadedNodes.Add(node.ID, node);
+
+            return node;
+        }
         private void LoadNodesConnections()
         {
             foreach(KeyValuePair<string, DS_BaseNode> loadedNode in loadedNodes)

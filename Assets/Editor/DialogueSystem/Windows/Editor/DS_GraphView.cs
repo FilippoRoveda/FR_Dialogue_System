@@ -10,7 +10,7 @@ namespace DS.Editor.Windows
     using Errors;
     using Data;
     using Elements;
-    using Enumerations;
+    using Enums;
     using Editor.Utilities;
     using Runtime.Utilities;
 

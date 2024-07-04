@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace DS.Runtime.Gameplay
 {
-    using ScriptableObjects;
-    public class Player : MonoBehaviour
-    {
+    using Runtime.ScriptableObjects;
+    using Runtime.Utilities;
+
+    public class Player : Singleton<Player>
+    {      
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
 
@@ -12,9 +14,12 @@ namespace DS.Runtime.Gameplay
         [SerializeField] private bool _movementEnabled = true;
 
         [SerializeField] private CharacterSO _characterData;
+        public CharacterSO PlayerData {  get { return _characterData; } }
+
         #region Unity callbacks
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             InitializeComponents();
         }
 

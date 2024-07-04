@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DS.Runtime.ScriptableObjects
 {
-    using Utilities;
+    using Runtime.Utilities;
 
     [System.Serializable]
     public class DS_DialogueContainerSO : ScriptableObject
@@ -41,66 +41,30 @@ namespace DS.Runtime.ScriptableObjects
             DialogueGroups = new SerializableDictionary<DS_DialogueGroupSO, List<DS_DialogueSO>>();
             UngroupedDialogues = new List<DS_DialogueSO>();
         }
-        /// <summary>
-        /// Get all groups name saved in this container.
-        /// </summary>
-        /// <returns></returns>
-        public List<string> GetGroupNames()
-        {
-            List<string> groupNames = new List<string>();
-            foreach (DS_DialogueGroupSO dialogueGroup in DialogueGroups.Keys)
-            {
-                groupNames.Add(dialogueGroup.GroupName);
-            }
-            return groupNames;
-        }
 
-        /// <summary>
-        /// Get all DS_DialogueSO grouped dialogues inside the selected DS_DialogueGroupSO if that is owned by the current Container.
-        /// </summary>
-        /// <param name="dialogueGroup">Reference to thr DS_DialogueGroupSO to look after.</param>
-        /// <returns></returns>
-        public List<string> GetGroupedDialogueNames(DS_DialogueGroupSO dialogueGroup, bool startingDialoguesOnly = false)
+
+        public List<DS_DialogueSO> GetStartingDialogues()
         {
-            if (dialogueGroups.ContainsKey(dialogueGroup) == true)
+            List<DS_DialogueSO> startingDialogues = new List<DS_DialogueSO>();
+            foreach(DS_DialogueGroupSO group in DialogueGroups.Keys)
             {
-                List<DS_DialogueSO> groupedDialogues = DialogueGroups[dialogueGroup];
-                List<string> groupedDialogueNames = new List<string>();
-                foreach (DS_DialogueSO groupedDialogue in groupedDialogues)
+                foreach(DS_DialogueSO dialogue in DialogueGroups[group])
                 {
-                    if(startingDialoguesOnly == true && groupedDialogue.IsStartingDialogue == false)
+                    if(dialogue.IsStartingDialogue == true)
                     {
-                        continue; 
+                        startingDialogues.Add(dialogue);
                     }
-                    groupedDialogueNames.Add(groupedDialogue.DialogueName);
                 }
-                return groupedDialogueNames;
             }
-            else
+            foreach(DS_DialogueSO dialogue in UngroupedDialogues)
             {
-#if UNITY_EDITOR
-                Debug.LogError($"Group dictionary fot this Dialogue Container does not conatain DS_DialogueGroup Key {dialogueGroup} with name {dialogueGroup.GroupName}");
-                return null;
-#endif
+                if (dialogue.IsStartingDialogue == true)
+                {
+                    startingDialogues.Add(dialogue);
+                }
             }
+            return startingDialogues;
         }
 
-        /// <summary>
-        /// Get all ungrouped DS_DialogueSO names contained in this container.
-        /// </summary>
-        /// <returns></returns>
-        public List<string> GetUngroupedDialogueNames(bool startingDialoguesOnly = false)
-        {
-            List<string> ungroupedDialogueNames = new List<string>();
-            foreach (DS_DialogueSO ungroupedDialogue in UngroupedDialogues)
-            {
-                if (startingDialoguesOnly == true && ungroupedDialogue.IsStartingDialogue == false)
-                {
-                    continue;
-                }
-                ungroupedDialogueNames.Add(ungroupedDialogue.DialogueName);
-            }
-            return ungroupedDialogueNames;
-        }
     }
 }

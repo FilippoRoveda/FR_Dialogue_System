@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace DS.Runtime.Data
 {
-    using ScriptableObjects;
-    using Data;
+    using Runtime.ScriptableObjects;
 
     /// <summary>
     /// Data structure for a dialogue choice.

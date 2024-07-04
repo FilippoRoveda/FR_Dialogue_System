@@ -9,15 +9,15 @@ namespace DS.Editor.Windows.Elements
     using Runtime.Data;
     using Editor.Data;
     using Runtime.ScriptableObjects;
-    using Enumerations;
+    using Enums;
 
 
     public class DS_EventNode : DS_BaseNode
     {
         [SerializeField] private List<ObjectField> objectFields;
-        [SerializeField] private List<DS_DialogueEventSO> dialogueEvents;
+        [SerializeField] private List<DS_EventSO> dialogueEvents;
 
-        public List<DS_DialogueEventSO> DialogueEvents 
+        public List<DS_EventSO> DialogueEvents 
         { get { return dialogueEvents; } set { dialogueEvents = value; } }
 
 
@@ -67,7 +67,7 @@ namespace DS.Editor.Windows.Elements
             ObjectField objectField = CreateObjectField();
             mainContainer.Add(objectField);
         }
-        private void OnDeleteEventPressed(ObjectField objectField, DS_DialogueEventSO eventSO)
+        private void OnDeleteEventPressed(ObjectField objectField, DS_EventSO eventSO)
         {
             if (objectFields.Count == 1) return;
             objectFields.Remove(objectField);
@@ -80,11 +80,11 @@ namespace DS.Editor.Windows.Elements
         #endregion
 
         #region Elements creation
-        private ObjectField CreateObjectField(DS_DialogueEventSO _event = null)
+        private ObjectField CreateObjectField(DS_EventSO _event = null)
         {
             ObjectField objectField = new ObjectField()
             {
-                objectType = typeof(DS_DialogueEventSO),
+                objectType = typeof(DS_EventSO),
                 value = _event
             };
 
@@ -92,18 +92,18 @@ namespace DS.Editor.Windows.Elements
             objectField.SetValueWithoutNotify(_event);
 
 
-            Button deleteEventButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (DS_DialogueEventSO)objectField.value));
+            Button deleteEventButton = DS_ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (DS_EventSO)objectField.value));
             deleteEventButton.AddToClassList("ds-node-button");
             objectField.Add(deleteEventButton);
 
             return objectField;
         }
 
-        private EventCallback<ChangeEvent<Object>> OnFieldEventChanged( DS_DialogueEventSO _event, ObjectField objectField)
+        private EventCallback<ChangeEvent<Object>> OnFieldEventChanged( DS_EventSO _event, ObjectField objectField)
         {
             return value =>
             {
-                _event = objectField.value as DS_DialogueEventSO;
+                _event = objectField.value as DS_EventSO;
                 if (objectField.value == null && dialogueEvents.Contains(_event) == false)
                 {
                     objectField.value = _event;
@@ -111,7 +111,7 @@ namespace DS.Editor.Windows.Elements
                 }
                 else if (objectField.value != null && dialogueEvents.Contains(_event) == false)
                 {
-                    dialogueEvents.Remove((DS_DialogueEventSO)objectField.value);
+                    dialogueEvents.Remove((DS_EventSO)objectField.value);
                     objectField.value = _event;
                     dialogueEvents.Add(_event);
                 }
