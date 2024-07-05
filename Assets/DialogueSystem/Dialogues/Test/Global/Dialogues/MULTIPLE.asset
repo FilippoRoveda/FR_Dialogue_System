@@ -19,18 +19,24 @@ MonoBehaviour:
       di lui"
   - LenguageType: 1
     Data: EEEEE
+  - LenguageType: 2
+    Data: 
   choices:
   - choiceTexts:
     - LenguageType: 0
       Data: Mi dispiace, ora amo DinDon.
     - LenguageType: 1
       Data: EEEE
+    - LenguageType: 2
+      Data: 
     nextDialogue: {fileID: 11400000, guid: 293b7fac2cdb4db4680c41a3d59c3297, type: 2}
   - choiceTexts:
     - LenguageType: 0
       Data: Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..
     - LenguageType: 1
       Data: EEEEE
+    - LenguageType: 2
+      Data: 
     nextDialogue: {fileID: 11400000, guid: 3036e6b78d2eb0f418822dcaaa46933d, type: 2}
   dialogueType: 1
   isStartingDialogue: 0

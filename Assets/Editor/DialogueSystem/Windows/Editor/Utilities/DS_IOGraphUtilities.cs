@@ -395,8 +395,9 @@ namespace DS.Editor.Windows.Utilities
 
             node.ID = nodeData.NodeID;
             List<DS_ChoiceData> clonedChoices = CloneChoices(nodeData.Choices);
+
             node.Choices = clonedChoices;
-            node.Texts = nodeData.Texts;
+            node.Texts = new(DS_LenguageUtilities.UpdateLenguageDataSet(nodeData.Texts));
 
             if(draw == true )node.Draw();
             graphView.AddElement(node);
@@ -486,10 +487,11 @@ namespace DS.Editor.Windows.Utilities
         public List<DS_ChoiceData> CloneChoices(List<DS_ChoiceData> choiceList)
         {
             List<DS_ChoiceData> choices = new List<DS_ChoiceData>();
-            if (choiceList == null) { Debug.Log("!!"); }
+
             foreach (DS_ChoiceData choice in choiceList)
             {
                 DS_ChoiceData choice_SaveData = new DS_ChoiceData(choice);
+                choice_SaveData.ChoiceTexts = new(DS_LenguageUtilities.UpdateLenguageDataSet(choice_SaveData.ChoiceTexts));
                 choices.Add(choice_SaveData);
             }
 

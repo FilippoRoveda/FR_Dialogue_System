@@ -18,6 +18,8 @@ MonoBehaviour:
     Data: Addio mio caro.
   - LenguageType: 1
     Data: IIIIIIII
+  - LenguageType: 2
+    Data: 
   choices: []
   dialogueType: 3
   isStartingDialogue: 0

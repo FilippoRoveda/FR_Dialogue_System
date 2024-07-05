@@ -10,7 +10,7 @@ namespace DS.Runtime.Data
         public static List<LenguageData<T>> InitLenguageDataSet<T>(T defaultData = null) where T : class
         {
             var dataList = new List<LenguageData<T>>();
-            foreach (DS_LenguageType lenguage in (DS_LenguageType[])System.Enum.GetValues(typeof(DS_LenguageType)))
+            foreach (DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
             {
                 dataList.Add(new LenguageData<T>
                 {
@@ -22,7 +22,7 @@ namespace DS.Runtime.Data
         }
         public static List<LenguageData<T>> UpdateLenguageDataSet<T>(List<LenguageData<T>> dataList, T defaultData = null) where T : class
         {
-            foreach (DS_LenguageType lenguage in (DS_LenguageType[])System.Enum.GetValues(typeof(DS_LenguageType)))
+            foreach (DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
             {
                 if (dataList.Find(x => x.LenguageType == lenguage) == null)
                 {

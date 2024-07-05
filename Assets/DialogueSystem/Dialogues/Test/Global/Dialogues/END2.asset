@@ -18,6 +18,8 @@ MonoBehaviour:
     Data: Prima dammi la password del WI-FI.
   - LenguageType: 1
     Data: End Dialogue Text
+  - LenguageType: 2
+    Data: 
   choices: []
   dialogueType: 3
   isStartingDialogue: 0

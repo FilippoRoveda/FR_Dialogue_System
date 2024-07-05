@@ -4,7 +4,7 @@ using TMPro;
 
 namespace DS.Runtime.Gameplay
 {
-    using DS.Enums;
+    using Enums;
     using Runtime.Data;
 
     public class DialogueTextUI : MonoBehaviour

@@ -18,12 +18,16 @@ MonoBehaviour:
     Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
   - LenguageType: 1
     Data: EEEEEE
+  - LenguageType: 2
+    Data: 
   choices:
   - choiceTexts:
     - LenguageType: 0
       Data: Ora levati dai coglioni.
     - LenguageType: 1
       Data: EEEE
+    - LenguageType: 2
+      Data: 
     nextDialogue: {fileID: 11400000, guid: b390351ac6ea37a43be2aa3722bf88a5, type: 2}
   dialogueType: 4
   isStartingDialogue: 0

@@ -25,12 +25,16 @@ MonoBehaviour:
         sul letto di sopra.'
     - LenguageType: 1
       Data: EEEE
+    - LenguageType: 2
+      Data: 
     choices:
     - choiceTexts:
       - LenguageType: 0
         Data: Anche a me mancano.
       - LenguageType: 1
         Data: EEEE
+      - LenguageType: 2
+        Data: 
       nextNodeID: da7c9651-d6f2-4076-920c-09babb442df8
     groupID: 
     dialogueType: 0
@@ -45,12 +49,16 @@ MonoBehaviour:
         mancato.'
     - LenguageType: 1
       Data: EE
+    - LenguageType: 2
+      Data: 
     choices:
     - choiceTexts:
       - LenguageType: 0
         Data: Anche tu mia cara.
       - LenguageType: 1
         Data: EE
+      - LenguageType: 2
+        Data: 
       nextNodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
     groupID: 
     dialogueType: 2
@@ -63,18 +71,24 @@ MonoBehaviour:
         di lui"
     - LenguageType: 1
       Data: EEEEE
+    - LenguageType: 2
+      Data: 
     choices:
     - choiceTexts:
       - LenguageType: 0
         Data: Mi dispiace, ora amo DinDon.
       - LenguageType: 1
         Data: EEEE
+      - LenguageType: 2
+        Data: 
       nextNodeID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
     - choiceTexts:
       - LenguageType: 0
         Data: Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..
       - LenguageType: 1
         Data: EEEEE
+      - LenguageType: 2
+        Data: 
       nextNodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
     groupID: 
     dialogueType: 1
@@ -87,12 +101,16 @@ MonoBehaviour:
       Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
     - LenguageType: 1
       Data: EEEEEE
+    - LenguageType: 2
+      Data: 
     choices:
     - choiceTexts:
       - LenguageType: 0
         Data: Ora levati dai coglioni.
       - LenguageType: 1
         Data: EEEE
+      - LenguageType: 2
+        Data: 
       nextNodeID: 66576643-b43d-4454-807f-d912fb2a89a1
     groupID: 
     dialogueType: 4
@@ -107,6 +125,8 @@ MonoBehaviour:
       Data: Prima dammi la password del WI-FI.
     - LenguageType: 1
       Data: End Dialogue Text
+    - LenguageType: 2
+      Data: 
     choices: []
     groupID: 
     dialogueType: 3
@@ -119,6 +139,8 @@ MonoBehaviour:
       Data: Addio mio caro.
     - LenguageType: 1
       Data: IIIIIIII
+    - LenguageType: 2
+      Data: 
     choices: []
     groupID: 
     dialogueType: 3
@@ -129,8 +151,8 @@ MonoBehaviour:
   - Single
   - Start
   - MULTIPLE
-  - END2
   - EVENT
+  - END2
   - END
   oldGroupedNodesNames:
     list: []

@@ -20,12 +20,16 @@ MonoBehaviour:
       ho trovato. Mi sei mancato.'
   - LenguageType: 1
     Data: EE
+  - LenguageType: 2
+    Data: 
   choices:
   - choiceTexts:
     - LenguageType: 0
       Data: Anche tu mia cara.
     - LenguageType: 1
       Data: EE
+    - LenguageType: 2
+      Data: 
     nextDialogue: {fileID: 11400000, guid: 2b1ed815843edc04fa1f42ee1f248cdf, type: 2}
   dialogueType: 2
   isStartingDialogue: 1

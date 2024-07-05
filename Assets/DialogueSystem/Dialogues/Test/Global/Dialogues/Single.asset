@@ -21,12 +21,16 @@ MonoBehaviour:
       letto di sopra.'
   - LenguageType: 1
     Data: EEEE
+  - LenguageType: 2
+    Data: 
   choices:
   - choiceTexts:
     - LenguageType: 0
       Data: Anche a me mancano.
     - LenguageType: 1
       Data: EEEE
+    - LenguageType: 2
+      Data: 
     nextDialogue: {fileID: 11400000, guid: 430bf62cad7aa814ca33d877a4e9c665, type: 2}
   dialogueType: 0
   isStartingDialogue: 0
