@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae2064f60b7d1642a8d354be18fd331, type: 3}
+  m_Name: Test_Graph
+  m_EditorClassIdentifier: 
+  graphName: Test
+  groups: []
+  nodes:
+  - name: Single
+    nodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
+    texts:
+    - Data: 'Ricordo come fosse ier le nostre notti di passione
+
+        trascorse
+        sul letto di sopra.'
+      LenguageType: 0
+    - Data: Single dialogue
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Anche a me mancano.
+        LenguageType: 0
+      - Data: Single choice
+        LenguageType: 1
+      - Data: 
+        LenguageType: 2
+      - Data: 
+        LenguageType: 3
+      choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
+      nextNodeID: da7c9651-d6f2-4076-920c-09babb442df8
+    groupID: 
+    dialogueType: 0
+    position: {x: 315, y: 242}
+  - name: Start
+    nodeID: c65f38c8-3a59-4996-b94a-61f88c735a4f
+    texts:
+    - Data: 'Ciao DIOOOVincenzo detto EnzoVin, finalmente ti
+
+        ho trovato.
+        Mi sei mancato.'
+      LenguageType: 0
+    - Data: Start dialogue
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Anche tu mia cara.
+        LenguageType: 0
+      - Data: Start choice
+        LenguageType: 1
+      - Data: 
+        LenguageType: 2
+      - Data: 
+        LenguageType: 3
+      choiceID: 31ba20ad-3d5a-472d-86f1-a799128c5ad6
+      nextNodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
+    groupID: 
+    dialogueType: 2
+    position: {x: 13, y: 242}
+  - name: MULTIPLE
+    nodeID: da7c9651-d6f2-4076-920c-09babb442df8
+    texts:
+    - Data: "Non lasciarmi pi\xF9, so che ami DinDon ora, ma ripensaci, io sono meglio
+        di lui"
+      LenguageType: 0
+    - Data: Multiple dialogue
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Mi dispiace, ora amo DinDon.
+        LenguageType: 0
+      - Data: Multiple choice 1
+        LenguageType: 1
+      - Data: 
+        LenguageType: 2
+      - Data: 
+        LenguageType: 3
+      choiceID: 86975739-1a8a-4ffc-856a-43b279724d54
+      nextNodeID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
+    - choiceTexts:
+      - Data: Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..
+        LenguageType: 0
+      - Data: Multiple choice 2
+        LenguageType: 1
+      - Data: 
+        LenguageType: 2
+      - Data: 
+        LenguageType: 3
+      choiceID: 24794971-380d-47ae-a227-b01fd0d8f8ba
+      nextNodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
+    groupID: 
+    dialogueType: 1
+    position: {x: 691, y: 220}
+  eventNodes:
+  - name: EVENT
+    nodeID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
+    texts:
+    - Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
+      LenguageType: 0
+    - Data: Event dialogue
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Ora levati dai coglioni.
+        LenguageType: 0
+      - Data: Event choice
+        LenguageType: 1
+      - Data: 
+        LenguageType: 2
+      - Data: 
+        LenguageType: 3
+      choiceID: 142d4a94-e06b-4b9e-8df1-ce14cf3585d5
+      nextNodeID: 66576643-b43d-4454-807f-d912fb2a89a1
+    groupID: 
+    dialogueType: 4
+    position: {x: 1321, y: 23}
+    events:
+    - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
+  endNodes:
+  - name: END2
+    nodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
+    texts:
+    - Data: Prima dammi la password del WI-FI.
+      LenguageType: 0
+    - Data: End Dialogue 2
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choices: []
+    groupID: 
+    dialogueType: 3
+    position: {x: 1699, y: 276}
+    isDialogueRepetable: 1
+  - name: END
+    nodeID: 66576643-b43d-4454-807f-d912fb2a89a1
+    texts:
+    - Data: Addio mio caro.
+      LenguageType: 0
+    - Data: End dialogue q
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: '
+
+'
+      LenguageType: 3
+    choices: []
+    groupID: 
+    dialogueType: 3
+    position: {x: 1720, y: 23}
+    isDialogueRepetable: 1
+  oldGroupsNames: []
+  oldUngroupedNames:
+  - Single
+  - Start
+  - MULTIPLE
+  - EVENT
+  - END2
+  - END
+  oldGroupedNodesNames:
+    list: []

@@ -13,24 +13,30 @@ MonoBehaviour:
   m_Name: Single
   m_EditorClassIdentifier: 
   dialogueName: Single
+  dialogueID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
   texts:
-  - LenguageType: 0
-    Data: 'Ricordo come fosse ier le nostre notti di passione
+  - Data: 'Ricordo come fosse ier le nostre notti di passione
 
       trascorse sul
       letto di sopra.'
-  - LenguageType: 1
-    Data: EEEE
-  - LenguageType: 2
-    Data: 
+    LenguageType: 0
+  - Data: Single dialogue
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices:
   - choiceTexts:
-    - LenguageType: 0
-      Data: Anche a me mancano.
-    - LenguageType: 1
-      Data: EEEE
-    - LenguageType: 2
-      Data: 
+    - Data: Anche a me mancano.
+      LenguageType: 0
+    - Data: Single choice
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
     nextDialogue: {fileID: 11400000, guid: 430bf62cad7aa814ca33d877a4e9c665, type: 2}
   dialogueType: 0
   isStartingDialogue: 0

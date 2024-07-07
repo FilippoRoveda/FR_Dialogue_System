@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: END
   m_EditorClassIdentifier: 
   dialogueName: END
+  dialogueID: 66576643-b43d-4454-807f-d912fb2a89a1
   texts:
-  - LenguageType: 0
-    Data: Addio mio caro.
-  - LenguageType: 1
-    Data: IIIIIIII
-  - LenguageType: 2
-    Data: 
+  - Data: Addio mio caro.
+    LenguageType: 0
+  - Data: End dialogue q
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices: []
   dialogueType: 3
   isStartingDialogue: 0

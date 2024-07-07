@@ -6,7 +6,6 @@ namespace DS.Editor.ScriptableObjects
 
     using Runtime.Utilities;
     using Data;
-    using DS.Enums;
 
     public class DS_GraphSO : ScriptableObject
     {
@@ -82,6 +81,69 @@ namespace DS.Editor.ScriptableObjects
             nodes = new List<DS_NodeData>();
             eventNodes = new List<DS_EventNodeData>();
             endNodes = new List<DS_EndNodeData>();
+        }
+
+        public List<DS_NodeData> GetAllNodes()
+        {
+            List<DS_NodeData> allNodes = new List<DS_NodeData>();
+            foreach (DS_NodeData node in Nodes)
+            {
+                allNodes.Add(node);
+            }
+            foreach (DS_NodeData evntNode in EventNodes)
+            {
+                allNodes.Add(evntNode);
+            }
+            foreach (DS_NodeData endNode in EndNodes)
+            {
+                allNodes.Add(endNode);
+            }
+            return allNodes;           
+        }
+
+        List<DS_NodeData> allNodes;
+        public List<DS_NodeData> GetAllOrderedNodes()
+        {
+            List<DS_NodeData> orderedNodes = new List<DS_NodeData>();
+
+            allNodes = GetAllNodes();
+            var startingNodes = allNodes.FindAll(x => x.DialogueType == Enums.DS_DialogueType.Start);
+            foreach(var startNode in startingNodes)
+            {
+                allNodes.Remove(startNode);
+            }
+
+            foreach (var node in startingNodes)
+            {
+                GetAllLinkedNodes(node, ref orderedNodes);
+            }
+            foreach(var node in endNodes)
+            {
+                orderedNodes.Remove(node);
+            }
+            orderedNodes.AddRange(endNodes);
+            return orderedNodes;
+        }
+       
+    private void GetAllLinkedNodes(DS_NodeData node, ref List<DS_NodeData> output)
+        {
+            if(output == null) output = new List<DS_NodeData>();
+
+            if(output.Contains(node) == false) output.Add(node);
+
+            if(node.Choices == null || node.Choices.Count == 0) return;
+
+            foreach(var choice in node.Choices)
+            {
+                var nextNode = allNodes.Find(x => x.NodeID == choice.NextNodeID);
+                if(allNodes.Contains(nextNode)) allNodes.Remove(nextNode);
+
+                if (output.Contains(nextNode) == false)
+                {
+                    GetAllLinkedNodes(nextNode, ref output);
+                }
+            }
+            return;
         }
     }
 }

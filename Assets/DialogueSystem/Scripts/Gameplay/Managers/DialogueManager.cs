@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 namespace DS.Runtime.Gameplay
 {
-    using Editor.Utilities;
     using Runtime.ScriptableObjects;
     using Runtime.Utilities;
 
@@ -20,7 +19,9 @@ namespace DS.Runtime.Gameplay
         {
             if(isDialogueRunning == true)
             {
-                DS_Logger.Error("Another dialogue is currently running!");
+#if UNITY_EDITOR
+                Debug.LogError("Another dialogue is currently running!");
+#endif
             }
             else 
             {
@@ -41,7 +42,9 @@ namespace DS.Runtime.Gameplay
             }
             else
             {
-                DS_Logger.Error("No dialogue is currently running or no matching dialogue to end was running in this manager!");
+#if UNITY_EDITOR
+                Debug.LogError("No dialogue is currently running or no matching dialogue to end was running in this manager!");
+#endif
             }
         }
     }

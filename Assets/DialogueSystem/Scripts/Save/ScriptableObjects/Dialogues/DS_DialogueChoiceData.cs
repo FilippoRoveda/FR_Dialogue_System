@@ -21,6 +21,13 @@ namespace DS.Runtime.Data
             set {  choiceTexts = value; } 
         }
 
+        [SerializeField] private string choiceID;
+        public string ChoiceID
+        {
+            get { return choiceID; }
+            set { choiceID = value; }
+        }
+
         [SerializeField] private DS_DialogueSO nextDialogue;
         /// <summary>
         /// Reference the next dialogue scriptable object data.

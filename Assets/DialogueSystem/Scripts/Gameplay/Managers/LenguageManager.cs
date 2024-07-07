@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace DS.Runtime
 {
     using Enums;
-    using Utilities;
+    using Runtime.Utilities;
     public class LenguageManager : Singleton<LenguageManager>
     {
         [SerializeField] private DS_LenguageType currentLenguage = DS_LenguageType.Italian;

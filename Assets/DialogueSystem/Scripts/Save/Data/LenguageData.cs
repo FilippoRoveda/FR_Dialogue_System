@@ -5,7 +5,7 @@ namespace DS.Runtime.Data
     [System.Serializable]
     public class LenguageData<T>
     {
-        public DS_LenguageType LenguageType;
         public T Data;
+        public DS_LenguageType LenguageType;   
     }
 }

@@ -36,7 +36,7 @@ namespace DS.Editor.Windows.Utilities
         /// <summary>
         /// Base editor assets path for all saved diallgues graphs.
         /// </summary>
-        public static readonly string commonEditorPath = "Assets/Editor/DialogueSystem/Graphs";
+        public static readonly string commonEditorPath = "Assets/Editor/Files/Graphs";
 
 
         private string graphFileName;
@@ -118,8 +118,8 @@ namespace DS.Editor.Windows.Utilities
         private void SaveGroupToSO(DS_Group group, DS_DialogueContainerSO dialogueContainer)
         {
             string groupName = group.title;
-            CreateFolders($"{containerFolderPath}/Groups", groupName);
-            CreateFolders($"{containerFolderPath}/Groups/{groupName}", "Dialogues");
+            IOUtilities.CreateFolder($"{containerFolderPath}/Groups", groupName);
+            IOUtilities.CreateFolder($"{containerFolderPath}/Groups/{groupName}", "Dialogues");
 
             DS_DialogueGroupSO dialogueGroup = IOUtilities.CreateAsset<DS_DialogueGroupSO>($"{containerFolderPath}/Groups/{groupName}", groupName);
             dialogueGroup.Initialize(groupName);
@@ -233,7 +233,7 @@ namespace DS.Editor.Windows.Utilities
                 dialogueContainer.DialogueGroups.AddItem(createdGroupsSO[node.Group.ID], dialogue);
             }
 
-            dialogue.Initialize(node.DialogueName, node.Texts, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
+            dialogue.Initialize(node.DialogueName, node.ID, node.Texts, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
 
             if(node.DialogueType == Enums.DS_DialogueType.Event)
             {
@@ -255,6 +255,7 @@ namespace DS.Editor.Windows.Utilities
             foreach(DS_ChoiceData choiceData in nodeChoices)
             {
                 DS_DialogueChoiceData dialogueChoice = new() { ChoiceTexts = choiceData.ChoiceTexts };
+                dialogueChoice.ChoiceID = choiceData.ChoiceID;
                 dialogueChoices.Add(dialogueChoice);
             }
             return dialogueChoices;
@@ -441,24 +442,19 @@ namespace DS.Editor.Windows.Utilities
         /// </summary>
         private void CreateStaticFolders()
         {
-            CreateFolders("Assets/Editor/DialogueSystem", "Graphs");
-            CreateFolders("Assets", "DialogueSystem");
-            CreateFolders("Assets/DialogueSystem", "Dialogues");
-            CreateFolders("Assets/DialogueSystem/Dialogues", graphFileName);
-            CreateFolders(containerFolderPath, "Global");
-            CreateFolders(containerFolderPath, "Groups");
-            CreateFolders($"{containerFolderPath}/Global", "Dialogues");
+            IOUtilities.CreateFolder("Assets/Editor/Files", "Graphs");
+            IOUtilities.CreateFolder("Assets", "DialogueSystem");
+            IOUtilities.CreateFolder("Assets/DialogueSystem", "Dialogues");
+            IOUtilities.CreateFolder("Assets/DialogueSystem/Dialogues", graphFileName);
+            IOUtilities.CreateFolder(containerFolderPath, "Global");
+            IOUtilities.CreateFolder(containerFolderPath, "Groups");
+            IOUtilities.CreateFolder($"{containerFolderPath}/Global", "Dialogues");
 
         }
         #endregion
 
         #region Utility methods
-        public void CreateFolders(string path, string folderName)
-        {
-            if (AssetDatabase.IsValidFolder($"{path}/{folderName}") == true) return;
-            else AssetDatabase.CreateFolder(path, folderName);
-            
-        }
+
         public void GetElementsFromGraphView()
         {
             graphView.graphElements.ForEach(FetchGraphElements());

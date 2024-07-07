@@ -43,6 +43,22 @@ namespace DS.Runtime.ScriptableObjects
         }
 
 
+        public List<DS_DialogueSO> GetAllDialogues()
+        {
+            List<DS_DialogueSO> dialogues = new List<DS_DialogueSO>();
+            foreach (DS_DialogueGroupSO group in DialogueGroups.Keys)
+            {
+                foreach (DS_DialogueSO dialogue in DialogueGroups[group])
+                {
+                    dialogues.Add(dialogue);
+                }
+            }
+            foreach (DS_DialogueSO dialogue in UngroupedDialogues)
+            {
+                dialogues.Add(dialogue);
+            }
+            return dialogues;
+        }
         public List<DS_DialogueSO> GetStartingDialogues()
         {
             List<DS_DialogueSO> startingDialogues = new List<DS_DialogueSO>();

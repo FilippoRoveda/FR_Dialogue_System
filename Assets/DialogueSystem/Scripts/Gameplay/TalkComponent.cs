@@ -5,7 +5,6 @@ using UnityEngine;
 namespace DS.Runtime.Gameplay
 {
     using Runtime.ScriptableObjects;
-    using Editor.Utilities;
 
     public class TalkComponent : MonoBehaviour
     {
@@ -70,8 +69,9 @@ namespace DS.Runtime.Gameplay
             var nextDialogue = availableDialogues[0];
             currentSpokeDialogue = nextDialogue;
 
-            DS_Logger.Message("Starting dialogue: " + nextDialogue.DialogueName);
-
+    #if UNITY_EDITOR
+                Debug.LogError("Starting dialogue: " + nextDialogue.DialogueName);
+    #endif
             DialogueManager.DialogueEnded.AddListener(OnDialogueEnded);
             DialogueManager.Instance.StartDialogue(this, nextDialogue);
         }
@@ -89,8 +89,12 @@ namespace DS.Runtime.Gameplay
                 }
                 currentSpokeDialogue = default;
             }
-            else DS_Logger.Error("Current spoke dialogue does not match the ending dialogue.", Color.red);
-
+            else
+            {
+#if UNITY_EDITOR
+                Debug.LogError("Current spoke dialogue does not match the ending dialogue.");
+#endif            
+            }
             DialogueManager.DialogueEnded.RemoveListener(OnDialogueEnded);
 
             EnableTalks();

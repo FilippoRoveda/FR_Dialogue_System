@@ -11,13 +11,20 @@ namespace DS.Runtime.ScriptableObjects
     /// </summary>
     public class DS_DialogueSO : ScriptableObject
     {
-        //Add a field for the node id?
         [SerializeField] protected string dialogueName;
         public string DialogueName
         {
             get { return dialogueName; }
             set { dialogueName = value; }
         }
+
+        [SerializeField] protected string dialogueID;
+        public string DialogueID
+        {
+            get { return dialogueID; }
+        }
+
+
 
         [SerializeField] protected List<LenguageData<string>> texts;
 
@@ -64,9 +71,10 @@ namespace DS.Runtime.ScriptableObjects
         /// <param name="choices"></param>
         /// <param name="dialogueType"></param>
         /// <param name="isStartingDialogue"></param>
-        public virtual void Initialize(string dialogueName, List<LenguageData<string>> texts, List<DS_DialogueChoiceData> choices, DS_DialogueType dialogueType, bool isStartingDialogue)
+        public virtual void Initialize(string dialogueName, string dialogueID, List<LenguageData<string>> texts, List<DS_DialogueChoiceData> choices, DS_DialogueType dialogueType, bool isStartingDialogue)
         {
             DialogueName = dialogueName;
+            this.dialogueID = dialogueID;
             Texts = texts;
             Choices = choices;
             IsStartingDialogue = isStartingDialogue;

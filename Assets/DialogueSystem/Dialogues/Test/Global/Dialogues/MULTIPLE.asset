@@ -13,30 +13,39 @@ MonoBehaviour:
   m_Name: MULTIPLE
   m_EditorClassIdentifier: 
   dialogueName: MULTIPLE
+  dialogueID: da7c9651-d6f2-4076-920c-09babb442df8
   texts:
-  - LenguageType: 0
-    Data: "Non lasciarmi pi\xF9, so che ami DinDon ora, ma ripensaci, io sono meglio
+  - Data: "Non lasciarmi pi\xF9, so che ami DinDon ora, ma ripensaci, io sono meglio
       di lui"
-  - LenguageType: 1
-    Data: EEEEE
-  - LenguageType: 2
-    Data: 
+    LenguageType: 0
+  - Data: Multiple dialogue
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices:
   - choiceTexts:
-    - LenguageType: 0
-      Data: Mi dispiace, ora amo DinDon.
-    - LenguageType: 1
-      Data: EEEE
-    - LenguageType: 2
-      Data: 
+    - Data: Mi dispiace, ora amo DinDon.
+      LenguageType: 0
+    - Data: Multiple choice 1
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choiceID: 86975739-1a8a-4ffc-856a-43b279724d54
     nextDialogue: {fileID: 11400000, guid: 293b7fac2cdb4db4680c41a3d59c3297, type: 2}
   - choiceTexts:
-    - LenguageType: 0
-      Data: Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..
-    - LenguageType: 1
-      Data: EEEEE
-    - LenguageType: 2
-      Data: 
+    - Data: Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..
+      LenguageType: 0
+    - Data: Multiple choice 2
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choiceID: 24794971-380d-47ae-a227-b01fd0d8f8ba
     nextDialogue: {fileID: 11400000, guid: 3036e6b78d2eb0f418822dcaaa46933d, type: 2}
   dialogueType: 1
   isStartingDialogue: 0

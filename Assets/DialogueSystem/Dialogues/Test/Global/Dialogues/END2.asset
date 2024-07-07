@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: END2
   m_EditorClassIdentifier: 
   dialogueName: END2
+  dialogueID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
   texts:
-  - LenguageType: 0
-    Data: Prima dammi la password del WI-FI.
-  - LenguageType: 1
-    Data: End Dialogue Text
-  - LenguageType: 2
-    Data: 
+  - Data: Prima dammi la password del WI-FI.
+    LenguageType: 0
+  - Data: End Dialogue 2
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices: []
   dialogueType: 3
   isStartingDialogue: 0

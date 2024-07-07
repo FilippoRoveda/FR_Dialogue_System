@@ -4,6 +4,7 @@ namespace DS.Enums
     {
         Italian,
         English,
-        Latin
+        Latin,
+        Spanish
     }
 }

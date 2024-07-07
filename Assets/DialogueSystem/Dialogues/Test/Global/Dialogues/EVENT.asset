@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: EVENT
   m_EditorClassIdentifier: 
   dialogueName: EVENT
+  dialogueID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
   texts:
-  - LenguageType: 0
-    Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
-  - LenguageType: 1
-    Data: EEEEEE
-  - LenguageType: 2
-    Data: 
+  - Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
+    LenguageType: 0
+  - Data: Event dialogue
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices:
   - choiceTexts:
-    - LenguageType: 0
-      Data: Ora levati dai coglioni.
-    - LenguageType: 1
-      Data: EEEE
-    - LenguageType: 2
-      Data: 
+    - Data: Ora levati dai coglioni.
+      LenguageType: 0
+    - Data: Event choice
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choiceID: 142d4a94-e06b-4b9e-8df1-ce14cf3585d5
     nextDialogue: {fileID: 11400000, guid: b390351ac6ea37a43be2aa3722bf88a5, type: 2}
   dialogueType: 4
   isStartingDialogue: 0

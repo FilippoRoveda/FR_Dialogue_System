@@ -13,23 +13,29 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   dialogueName: Start
+  dialogueID: c65f38c8-3a59-4996-b94a-61f88c735a4f
   texts:
-  - LenguageType: 0
-    Data: 'Ciao Vincenzo detto EnzoVin, finalmente ti
+  - Data: 'Ciao Vincenzo detto EnzoVin, finalmente ti
 
       ho trovato. Mi sei mancato.'
-  - LenguageType: 1
-    Data: EE
-  - LenguageType: 2
-    Data: 
+    LenguageType: 0
+  - Data: Start dialogue
+    LenguageType: 1
+  - Data: 
+    LenguageType: 2
+  - Data: 
+    LenguageType: 3
   choices:
   - choiceTexts:
-    - LenguageType: 0
-      Data: Anche tu mia cara.
-    - LenguageType: 1
-      Data: EE
-    - LenguageType: 2
-      Data: 
+    - Data: Anche tu mia cara.
+      LenguageType: 0
+    - Data: Start choice
+      LenguageType: 1
+    - Data: 
+      LenguageType: 2
+    - Data: 
+      LenguageType: 3
+    choiceID: 31ba20ad-3d5a-472d-86f1-a799128c5ad6
     nextDialogue: {fileID: 11400000, guid: 2b1ed815843edc04fa1f42ee1f248cdf, type: 2}
   dialogueType: 2
   isStartingDialogue: 1

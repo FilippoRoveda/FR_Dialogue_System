@@ -1,0 +1,14 @@
+Guid ID,Italian,English,Latin,Spanish
+c65f38c8-3a59-4996-b94a-61f88c735a4f,"Ciao DIOOOVincenzo detto EnzoVin, finalmente ti
+ho trovato. Mi sei mancato.","Start dialogue","",""
+31ba20ad-3d5a-472d-86f1-a799128c5ad6,"Anche tu mia cara.","Start choice","",""
+c7965d8a-6cf4-4ba2-bdbd-791320c96f5c,"Ricordo come fosse ier le nostre notti di passione
+trascorse sul letto di sopra.","Single dialogue","",""
+9840bb7d-23ed-4480-b66a-7b0ee7590112,"Anche a me mancano.","Single choice","",""
+da7c9651-d6f2-4076-920c-09babb442df8,"Non lasciarmi più, so che ami DinDon ora, ma ripensaci, io sono meglio di lui","Multiple dialogue","",""
+86975739-1a8a-4ffc-856a-43b279724d54,"Mi dispiace, ora amo DinDon.","Multiple choice 1","",""
+24794971-380d-47ae-a227-b01fd0d8f8ba,"Hai ragione, sali sul mio letto di sopra volante ed andiamocene via..","Multiple choice 2","",""
+bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0,"Hai ragione, lui è molto più sexy di me.","Event dialogue","",""
+142d4a94-e06b-4b9e-8df1-ce14cf3585d5,"Ora levati dai coglioni.","Event choice","",""
+6dfca4d2-2eb7-4066-a314-7574c1c71ae8,"Prima dammi la password del WI-FI.","End Dialogue 2","",""
+66576643-b43d-4454-807f-d912fb2a89a1,"Addio mio caro.","End dialogue q","",""

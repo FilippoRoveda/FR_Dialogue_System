@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +12,12 @@ namespace DS.Editor.Windows.Utilities
     /// </summary>
     public class DS_IOUtilities
     {
+        public void CreateFolder(string path, string folderName)
+        {
+            if (AssetDatabase.IsValidFolder($"{path}/{folderName}") == true) return;
+            else AssetDatabase.CreateFolder(path, folderName);
+        }
+
         public T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
         {
             string fullPath = $"{path}/{assetName}.asset";
@@ -29,7 +37,7 @@ namespace DS.Editor.Windows.Utilities
             return AssetDatabase.LoadAssetAtPath<T>(fullPath);
         }
 
-        private List<T> LoadAssetsByType<T>() where T : ScriptableObject
+        public List<T> LoadAssetsByType<T>() where T : ScriptableObject
         {
             string typeName = typeof(T).Name;
             Debug.Log(typeName);
@@ -77,5 +85,25 @@ namespace DS.Editor.Windows.Utilities
             }
             return assetNames;
         }
+
+
+        #region Resources
+        private static readonly string ResorcesPath = Application.dataPath + "/Resources";
+        private static string[] Directories { get { return Directory.GetDirectories(ResorcesPath, "*", SearchOption.AllDirectories); } }
+        public static List<T> FindAllFromResources<T>()
+        {
+            List<T> list = new List<T>();
+            foreach (string directory in Directories)
+            {
+                string subDirectory = directory.Substring(ResorcesPath.Length + 1);
+                T[] objects = Resources.LoadAll(subDirectory, typeof(T)).Cast<T>().ToArray();
+                foreach (T _object in objects)
+                {
+                    if (list.Contains(_object) == false) list.Add(_object);
+                }
+            }
+            return list;
+        }
+        #endregion
     }
 }
