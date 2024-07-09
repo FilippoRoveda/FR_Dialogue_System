@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace DS.Runtime.Inspectors
@@ -16,3 +17,4 @@ namespace DS.Runtime.Inspectors
         }
     }
 }
+#endif

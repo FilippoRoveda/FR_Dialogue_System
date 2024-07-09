@@ -7,7 +7,11 @@ namespace DS.Runtime.ScriptableObjects
     /// </summary>
     public class DS_DialogueGroupSO : ScriptableObject
     {
-        [SerializeField] [IsInteractable(false)] private string groupName;
+        [SerializeField]
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
+        private string groupName;
         public string GroupName 
         {  
             get { return groupName; }

@@ -5,7 +5,6 @@ using UnityEngine;
 namespace DS.Editor.Windows
 {
     using Runtime.ScriptableObjects;
-    using UnityEngine.TextCore.Text;
     using Utilities;
 
     public class DS_CharacterEditorWindow : EditorWindow
@@ -27,7 +26,7 @@ namespace DS.Editor.Windows
         private Vector2 scrollPos;
 
 
-        [MenuItem("DialogueSystem/Character Manager")]
+        [MenuItem("DialogueSystem/Character Editor")]
         public static void ShowWindow()
         {
             GetWindow<DS_CharacterEditorWindow>("Character Editor");

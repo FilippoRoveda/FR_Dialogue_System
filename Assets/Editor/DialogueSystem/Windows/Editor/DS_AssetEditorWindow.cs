@@ -8,14 +8,14 @@ namespace DS.Editor.Windows
     using Editor.Utilities;
     using Elements;
 
-    public class DS_GraphAssetEditorWindow : DS_MainEditorWindow
+    public class DS_AssetEditorWindow : DS_EditorWindow
     {
         public DS_GraphSO assetGraph = null;
 
 
         public static void OpenWindow(DS_GraphSO asset)
         {
-            var windows = Resources.FindObjectsOfTypeAll<DS_GraphAssetEditorWindow>();
+            var windows = Resources.FindObjectsOfTypeAll<DS_AssetEditorWindow>();
             foreach (var window in windows)
             {
                 if (window.assetGraph == asset)
@@ -25,7 +25,7 @@ namespace DS.Editor.Windows
                 }
             }
 
-            DS_GraphAssetEditorWindow windowInstance = CreateInstance<DS_GraphAssetEditorWindow>();
+            DS_AssetEditorWindow windowInstance = CreateInstance<DS_AssetEditorWindow>();
             windowInstance.SetAsset(asset);
             windowInstance.SetTitleContent();
             windowInstance.Show();

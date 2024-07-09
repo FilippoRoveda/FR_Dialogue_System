@@ -1,7 +1,5 @@
 using DS.Runtime.ScriptableObjects;
 using System.Collections.Generic;
-using UnityEngine;
-using System;
 using DS.Runtime.Data;
 using DS.Editor.ScriptableObjects;
 using DS.Editor.Windows.Utilities;
@@ -11,8 +9,9 @@ public class UpdateLenguagesHelper
     DS_IOUtilities IOUtils = new DS_IOUtilities();
     public void UpdateLenguages()
     {
-        List<DS_DialogueContainerSO> containers = IOUtils.LoadAssetsByType<DS_DialogueContainerSO>();
-        foreach(var container in containers)
+        //List<DS_DialogueContainerSO> containers = IOUtils.LoadAssetsByType<DS_DialogueContainerSO>();
+        List<DS_DialogueContainerSO> containers = IOUtils.LoadAssetsFromPath<DS_DialogueContainerSO>("Assets/DialogueSystem/Dialogues");
+        foreach (var container in containers)
         {
             foreach(var node in container.GetAllDialogues())
             {
@@ -23,8 +22,9 @@ public class UpdateLenguagesHelper
                 }
             }
         }
-        List<DS_GraphSO> graphs = IOUtils.LoadAssetsByType<DS_GraphSO>();
-        foreach(var graph in graphs)
+        //List<DS_GraphSO> graphs = IOUtils.LoadAssetsByType<DS_GraphSO>();
+        List<DS_GraphSO> graphs = IOUtils.LoadAssetsFromPath<DS_GraphSO>("Assets/Editor/Files/Graphs");
+        foreach (var graph in graphs)
         {
             foreach (var node in graph.GetAllNodes()) 
             {

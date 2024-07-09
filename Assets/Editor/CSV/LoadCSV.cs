@@ -1,7 +1,6 @@
 using DS.Editor.Data;
 using DS.Editor.ScriptableObjects;
 using DS.Editor.Windows.Utilities;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -13,13 +12,15 @@ public class LoadCSV
     DS_IOUtilities IO;
     CSVReader CSVReader;
     private readonly string CSVFilesPath = "Assets/Editor/Files/CSV/";
+    private readonly string graphFilesPath = "Assets/Editor/Files/Graphs";
     public LoadCSV() { CSVReader = new(); IO = new(); }
 
     public bool LoadAllCSVInToGraphs() 
     {
         bool errorFlag = false;
 
-        List<DS_GraphSO> graphs = IO.LoadAssetsByType<DS_GraphSO>();
+        //List<DS_GraphSO> graphs = IO.LoadAssetsByType<DS_GraphSO>();
+        List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
         foreach (DS_GraphSO graph in graphs)
         {
             LoadCSVInToGraph(graph, out errorFlag);

@@ -15,7 +15,7 @@ namespace DS.Editor.Windows
             if (item is DS_GraphSO)
             {
                 DS_GraphSO assetGraph = item as DS_GraphSO;
-                DS_GraphAssetEditorWindow.OpenWindow(assetGraph);
+                DS_AssetEditorWindow.OpenWindow(assetGraph);
                 return true;
             }
             else return false;

@@ -19,8 +19,8 @@ namespace DS.Editor.Windows
     /// </summary>
     public class DS_GraphView : GraphView
     {
-        private DS_MainEditorWindow editorWindow; //Reference to the editor window class
-        public DS_MainEditorWindow EditorWindow { get { return editorWindow; } private set { editorWindow = value; } }
+        private DS_EditorWindow editorWindow; //Reference to the editor window class
+        public DS_EditorWindow EditorWindow { get { return editorWindow; } private set { editorWindow = value; } }
         public DS_LenguageType GetEditorCurrentLenguage() { return editorWindow.currentLenguage; }
         private DS_SearchWindow searchWindow; //Reference to the search window owned class
 
@@ -66,7 +66,7 @@ namespace DS.Editor.Windows
     };
         public UnityEvent<DS_LenguageType> GraphLenguageChanged = new();
 
-        public DS_GraphView(DS_MainEditorWindow editorWindow)
+        public DS_GraphView(DS_EditorWindow editorWindow)
         {
             //Fields initializings
             this.editorWindow = editorWindow;

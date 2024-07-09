@@ -5,7 +5,11 @@ namespace DS.Runtime.ScriptableObjects
 {
     public class CharacterSO : ScriptableObject
     {
-        [IsInteractable(false)][SerializeField] protected string _id = null;
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
+        [SerializeField]
+        protected string _id = null;
         [SerializeField] protected string _name = null;
         [SerializeField] protected string _completeName = null;
         [SerializeField] protected Sprite _icon = null;
@@ -29,11 +33,13 @@ namespace DS.Runtime.ScriptableObjects
         { 
             get { return _name; } 
             set 
-            { 
+            {
+#if UNITY_EDITOR
                 _name = value;
                 string assetPath = UnityEditor.AssetDatabase.GetAssetPath(GetInstanceID());
                 UnityEditor.AssetDatabase.RenameAsset(assetPath, value);
-               
+#endif
+
             } 
         }
         public string CompleteName { get { return _completeName; } set { _completeName = value; } }

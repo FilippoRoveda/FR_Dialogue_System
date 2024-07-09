@@ -52,6 +52,29 @@ namespace DS.Editor.Windows.Utilities
 
             return list;
         }
+        public List<T> LoadAssetsFromPath<T>(string folderPath) where T : ScriptableObject
+        {
+            List<T> list = new List<T>();
+
+            if (AssetDatabase.IsValidFolder(folderPath) == false)
+            {
+                Debug.LogError($"Invalid folder path: {folderPath}");
+                return list;
+            }
+
+            string[] guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { folderPath });
+
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                T asset = AssetDatabase.LoadAssetAtPath<T>(path);
+                if (asset != null)
+                {
+                    list.Add(asset);
+                }
+            }
+            return list;
+        }
 
         public void SaveAsset(UnityEngine.Object asset)
         {

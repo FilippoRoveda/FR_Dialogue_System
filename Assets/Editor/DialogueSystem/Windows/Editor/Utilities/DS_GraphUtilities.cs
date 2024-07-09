@@ -19,7 +19,7 @@ namespace DS.Editor.Windows.Utilities
     using Runtime.Utilities;
 
 
-    public class DS_IOGraphUtilities
+    public class DS_GraphUtilities
     {
         /// <summary>
         /// 

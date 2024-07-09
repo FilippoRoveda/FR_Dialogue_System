@@ -8,12 +8,20 @@ namespace DS.Runtime.Gameplay
 
     public class DialogueManager : Singleton<DialogueManager>
     {
-        [SerializeField][IsInteractable(false)] private bool isDialogueRunning = false;
+        [SerializeField]
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
+        private bool isDialogueRunning = false;
 
         public static UnityEvent<TalkComponent, DS_DialogueSO> DialogueStarted = new UnityEvent<TalkComponent, DS_DialogueSO>();
         public static UnityEvent<DS_DialogueSO, bool> DialogueEnded = new UnityEvent<DS_DialogueSO, bool>();
 
-        [SerializeField][IsInteractable(false)] private DS_DialogueSO currentStartedDialogue;
+        [SerializeField]
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
+        private DS_DialogueSO currentStartedDialogue;
 
         public void StartDialogue(TalkComponent talkComponent, DS_DialogueSO startDialogue)
         {

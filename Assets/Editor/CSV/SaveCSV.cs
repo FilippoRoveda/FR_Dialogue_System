@@ -3,16 +3,15 @@ using DS.Editor.Windows.Utilities;
 using DS.Enums;
 using DS.Runtime.Data;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
 public class SaveCSV
 {
     DS_IOUtilities IO = new();
     private readonly string CSVFilesPath = "Assets/Editor/Files/CSV/";
-    
+    private readonly string graphFilesPath = "Assets/Editor/Files/Graphs";
+
     private string graphName = "";
     private readonly string csvExtension = ".csv";
     string FileName { get { return graphName + csvExtension; } }
@@ -20,6 +19,7 @@ public class SaveCSV
     private string csvSeparator = ",";
     private List<string> csvHeaders;
     private string idName = "Guid ID";
+    private string dialogueName = "Dialogue/Choice Name";
 
     public SaveCSV() { CreateStaticFolders(); }
 
@@ -30,7 +30,7 @@ public class SaveCSV
 
     public void SaveAllGraphsToCSV() 
     {
-        List<DS_GraphSO> graphs = IO.LoadAssetsByType<DS_GraphSO>();
+        List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
 
         foreach (var graph in graphs)
         {
@@ -41,6 +41,7 @@ public class SaveCSV
             {
                 List<string> nodeTexts = new List<string>();
                 nodeTexts.Add(nodeData.NodeID);
+                nodeTexts.Add(nodeData.Name);
                 foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
                 {
                     string lenguageText = nodeData.Texts.GetLenguageData(lenguage).Data.Replace("\"", "\"\"");
@@ -51,10 +52,13 @@ public class SaveCSV
 
                 if (nodeData.Choices != null && nodeData.Choices.Count != 0)
                 {
+                    int counter = 1;
                     foreach (var choice in nodeData.Choices)
                     {
                         List<string> nodeChoiceTexts = new List<string>();
                         nodeChoiceTexts.Add(choice.ChoiceID);
+                        nodeChoiceTexts.Add($"_____{nodeData.Name} Choice [{counter}]");
+                        counter++;
                         foreach (DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
                         {
                             string choiceText = choice.ChoiceTexts.GetLenguageData(lenguage).Data.Replace("\"", "'\"\"'");
@@ -119,6 +123,7 @@ public class SaveCSV
     {
         csvHeaders = new List<string>();
         csvHeaders.Add(idName);
+        csvHeaders.Add(dialogueName);
         foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
         {
             csvHeaders.Add(lenguage.ToString());

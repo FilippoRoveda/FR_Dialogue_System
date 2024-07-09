@@ -16,9 +16,9 @@ namespace DS.Editor.Windows
     /// <summary>
     /// 
     /// </summary>
-    public class DS_MainEditorWindow : EditorWindow
+    public class DS_EditorWindow : EditorWindow
     {
-        protected DS_IOGraphUtilities ioUtilities;
+        protected DS_GraphUtilities ioUtilities;
         protected Toolbar toolbar;
 
 
@@ -43,10 +43,10 @@ namespace DS.Editor.Windows
 
         public UnityEvent<DS_LenguageType> EditorWindowLenguageChanged = new();
 
-        [MenuItem("DialogueSystem/Main_Editor_Window")]
+        [MenuItem("DialogueSystem/Editor Window")]
         public static void Open()
         {
-            DS_MainEditorWindow wnd = CreateInstance<DS_MainEditorWindow>();
+            DS_EditorWindow wnd = CreateInstance<DS_EditorWindow>();
             wnd.titleContent = new GUIContent("DS_Main_Editor_Window");          
             wnd.Show();
         }
@@ -83,7 +83,7 @@ namespace DS.Editor.Windows
 
         protected void AddGraphView()
         {
-            ioUtilities = new DS_IOGraphUtilities();
+            ioUtilities = new DS_GraphUtilities();
             graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
@@ -141,7 +141,7 @@ namespace DS.Editor.Windows
 
         private void OnLoadButtonPressed()
         {
-            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/DialogueSystem/Graphs", "asset");
+            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/Files/Graphs", "asset");
             if(string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();

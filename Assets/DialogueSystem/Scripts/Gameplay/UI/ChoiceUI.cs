@@ -16,7 +16,10 @@ namespace DS.Runtime.Gameplay
         [SerializeField] private DS_DialogueChoiceData holdedChoiceData;
 
         [SerializeField] private Button button;
-        [IsVisible(false)] public UnityEvent<DS_DialogueSO> ChoiceSelected = new UnityEvent<DS_DialogueSO>();
+#if UNITY_EDITOR
+        [IsVisible(false)]
+#endif 
+        public UnityEvent<DS_DialogueSO> ChoiceSelected = new UnityEvent<DS_DialogueSO>();
 
         #region Unity callbacks
         private void OnEnable()

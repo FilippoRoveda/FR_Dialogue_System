@@ -27,10 +27,10 @@ namespace DS.Runtime.Gameplay
         [SerializeField] private Button endDialogueButton;
 
 
-        [IsInteractable(false)][SerializeField] private TalkComponent startSpeaker;
-        [IsInteractable(false)][SerializeField] private DS_DialogueSO startingDialogue;
+        [SerializeField] private TalkComponent startSpeaker;
+        [SerializeField] private DS_DialogueSO startingDialogue;
 
-        [IsInteractable(false)][SerializeField] private DS_DialogueSO currentDialogue;
+        [SerializeField] private DS_DialogueSO currentDialogue;
 
         #region Unity callbacks
         private void Awake()
