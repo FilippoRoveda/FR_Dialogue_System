@@ -25,9 +25,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Single dialogue
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choices:
     - choiceTexts:
@@ -35,9 +35,9 @@ MonoBehaviour:
         LenguageType: 0
       - Data: Single choice
         LenguageType: 1
-      - Data: 
+      - Data: A
         LenguageType: 2
-      - Data: 
+      - Data: AA
         LenguageType: 3
       choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
       nextNodeID: da7c9651-d6f2-4076-920c-09babb442df8
@@ -54,9 +54,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Start dialogue
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choices:
     - choiceTexts:
@@ -64,9 +64,9 @@ MonoBehaviour:
         LenguageType: 0
       - Data: Start choice
         LenguageType: 1
-      - Data: 
+      - Data: A
         LenguageType: 2
-      - Data: 
+      - Data: AA
         LenguageType: 3
       choiceID: 31ba20ad-3d5a-472d-86f1-a799128c5ad6
       nextNodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
@@ -81,9 +81,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Multiple dialogue
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choices:
     - choiceTexts:
@@ -91,9 +91,9 @@ MonoBehaviour:
         LenguageType: 0
       - Data: Multiple choice 1
         LenguageType: 1
-      - Data: 
+      - Data: A
         LenguageType: 2
-      - Data: 
+      - Data: AA
         LenguageType: 3
       choiceID: 86975739-1a8a-4ffc-856a-43b279724d54
       nextNodeID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
@@ -102,9 +102,9 @@ MonoBehaviour:
         LenguageType: 0
       - Data: Multiple choice 2
         LenguageType: 1
-      - Data: 
+      - Data: A
         LenguageType: 2
-      - Data: 
+      - Data: AA
         LenguageType: 3
       choiceID: 24794971-380d-47ae-a227-b01fd0d8f8ba
       nextNodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
@@ -119,9 +119,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Event dialogue
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choices:
     - choiceTexts:
@@ -129,9 +129,9 @@ MonoBehaviour:
         LenguageType: 0
       - Data: Event choice
         LenguageType: 1
-      - Data: 
+      - Data: A
         LenguageType: 2
-      - Data: 
+      - Data: AA
         LenguageType: 3
       choiceID: 142d4a94-e06b-4b9e-8df1-ce14cf3585d5
       nextNodeID: 66576643-b43d-4454-807f-d912fb2a89a1
@@ -148,9 +148,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: End Dialogue 2
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choices: []
     groupID: 
@@ -164,7 +164,7 @@ MonoBehaviour:
       LenguageType: 0
     - Data: End dialogue q
       LenguageType: 1
-    - Data: 
+    - Data: AA
       LenguageType: 2
     - Data: '
 

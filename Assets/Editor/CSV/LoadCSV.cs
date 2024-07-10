@@ -99,14 +99,14 @@ public class LoadCSV
     }
     public void LoadInToNodeText(List<string> lenguageHeader, List<string> rowData, DS_NodeData node) 
     {
-        for(int i = 1; i < lenguageHeader.Count; i++)
+        for(int i = 2; i < lenguageHeader.Count; i++)
         {
             node.Texts.Find(x => x.LenguageType.ToString() == lenguageHeader[i]).Data = rowData[i];
         }
     }
     public void LoadInToChoice(List<string> lenguageHeader, List<string> rowData, DS_ChoiceData choice) 
     {
-        for (int i = 1; i < lenguageHeader.Count; i++)
+        for (int i = 2; i < lenguageHeader.Count; i++)
         {
             choice.ChoiceTexts.Find(x => x.LenguageType.ToString() == lenguageHeader[i]).Data = rowData[i];
         }
