@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
   m_Name: Single
   m_EditorClassIdentifier: 
   dialogueName: Single
@@ -22,9 +22,9 @@ MonoBehaviour:
     LenguageType: 0
   - Data: Single dialogue
     LenguageType: 1
-  - Data: 
+  - Data: A
     LenguageType: 2
-  - Data: 
+  - Data: AA
     LenguageType: 3
   choices:
   - choiceTexts:
@@ -32,9 +32,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Single choice
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
     nextDialogue: {fileID: 11400000, guid: 430bf62cad7aa814ca33d877a4e9c665, type: 2}

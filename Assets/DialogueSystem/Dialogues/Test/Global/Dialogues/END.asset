@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5488c60700b8a8f42b9eb87772d16e8b, type: 3}
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
   m_Name: END
   m_EditorClassIdentifier: 
   dialogueName: END
@@ -19,9 +19,11 @@ MonoBehaviour:
     LenguageType: 0
   - Data: End dialogue q
     LenguageType: 1
-  - Data: 
+  - Data: AA
     LenguageType: 2
-  - Data: 
+  - Data: '
+
+'
     LenguageType: 3
   choices: []
   dialogueType: 3

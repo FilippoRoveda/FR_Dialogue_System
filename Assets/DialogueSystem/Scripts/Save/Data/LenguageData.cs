@@ -6,6 +6,6 @@ namespace DS.Runtime.Data
     public class LenguageData<T>
     {
         public T Data;
-        public DS_LenguageType LenguageType;   
+        public LenguageType LenguageType;   
     }
 }

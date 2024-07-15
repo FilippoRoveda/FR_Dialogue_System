@@ -21,15 +21,15 @@ namespace DS.Editor.Windows
     {
         private DS_EditorWindow editorWindow; //Reference to the editor window class
         public DS_EditorWindow EditorWindow { get { return editorWindow; } private set { editorWindow = value; } }
-        public DS_LenguageType GetEditorCurrentLenguage() { return editorWindow.currentLenguage; }
+        public LenguageType GetEditorCurrentLenguage() { return editorWindow.currentLenguage; }
         private DS_SearchWindow searchWindow; //Reference to the search window owned class
 
         private GridBackground gridBackground;
         private MiniMap miniMap;
 
-        public SerializableDictionary<string, DS_NodeErrorData> ungroupedNodes;
-        public SerializableDictionary<DS_Group, SerializableDictionary<string, DS_NodeErrorData>> groupedNodes;
-        public SerializableDictionary<string, DS_GroupErrorData> groups;
+        public SerializableDictionary<string, NodeErrorData> ungroupedNodes;
+        public SerializableDictionary<DS_Group, SerializableDictionary<string, NodeErrorData>> groupedNodes;
+        public SerializableDictionary<string, GroupErrorData> groups;
 
         private int nameErrorsAmount;
         public int NameErrorsAmount
@@ -64,16 +64,16 @@ namespace DS.Editor.Windows
         { KeyCode.DownArrow, false },
         { KeyCode.RightArrow, false }
     };
-        public UnityEvent<DS_LenguageType> GraphLenguageChanged = new();
+        public UnityEvent<LenguageType> GraphLenguageChanged = new();
 
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
             //Fields initializings
             this.editorWindow = editorWindow;
-            ungroupedNodes = new SerializableDictionary<string, DS_NodeErrorData>();
-            groupedNodes = new SerializableDictionary<DS_Group, SerializableDictionary<string, DS_NodeErrorData>>();
+            ungroupedNodes = new SerializableDictionary<string, NodeErrorData>();
+            groupedNodes = new SerializableDictionary<DS_Group, SerializableDictionary<string, NodeErrorData>>();
 
-            groups = new SerializableDictionary<string, DS_GroupErrorData>();
+            groups = new SerializableDictionary<string, GroupErrorData>();
 
             //Update callbacks setups
             UpdateDeleteSelection();
@@ -146,7 +146,7 @@ namespace DS.Editor.Windows
         {
             deleteSelection = (operationName, askUser) =>
             {
-                DS_Logger.Error("Delete Selection callback");
+                Logger.Error("Delete Selection callback");
 
                 List<DS_Group> groupsToDelete = new List<DS_Group>();
                 List<Edge> edgesToDelete = new List<Edge>();
@@ -209,7 +209,7 @@ namespace DS.Editor.Windows
         {
             elementsAddedToGroup = (group, elements) =>
             {
-                DS_Logger.Error("Elements addition to group callback");
+                Logger.Error("Elements addition to group callback");
                 foreach (GraphElement element in elements)
                 {
                     if ((element is DS_BaseNode) == false) continue;
@@ -227,7 +227,7 @@ namespace DS.Editor.Windows
         {
             elementsRemovedFromGroup = (group, elements) =>
             {
-                DS_Logger.Error("Elements removed from group callback");
+                Logger.Error("Elements removed from group callback");
                 foreach (GraphElement element in elements)
                 {
                     if (!(element is DS_BaseNode)) continue;
@@ -281,9 +281,9 @@ namespace DS.Editor.Windows
 
 
                         DS_BaseNode nextNode = (DS_BaseNode)edge.input.node;
-                        DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                        ChoiceData choiceData = (ChoiceData)edge.output.userData;
                         choiceData.NextNodeID = nextNode.ID;
-                        DS_Logger.Warning($"Edge created between node: {((DS_BaseNode)edge.output.node).DialogueName} and node: {nextNode.DialogueName}");
+                        Logger.Warning($"Edge created between node: {((DS_BaseNode)edge.output.node).DialogueName} and node: {nextNode.DialogueName}");
                     }
                 }
 
@@ -294,7 +294,7 @@ namespace DS.Editor.Windows
                         if (element.GetType() == typeof(Edge))
                         {
                             Edge edge = (Edge)element;
-                            DS_ChoiceData choiceData = (DS_ChoiceData)edge.output.userData;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
                             choiceData.NextNodeID = "";
                         }
                     }
@@ -317,7 +317,7 @@ namespace DS.Editor.Windows
         #endregion
 
         #region Callbacks
-        private void OnEditorLenguageChanged(DS_LenguageType newLenguage)
+        private void OnEditorLenguageChanged(LenguageType newLenguage)
         {
             GraphLenguageChanged?.Invoke(newLenguage);
         }
@@ -337,11 +337,11 @@ namespace DS.Editor.Windows
             this.AddManipulator(new RectangleSelector());
             //this.AddManipulator(new FreehandSelector());
 
-            this.AddManipulator(CreateNode_CtxMenu_Option("Create Starting Node", DS_DialogueType.Start));
-            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DS_DialogueType.SingleChoice));
-            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DS_DialogueType.MultipleChoice));
-            this.AddManipulator(CreateNode_CtxMenu_Option("Create Event Node", DS_DialogueType.Event));
-            this.AddManipulator(CreateNode_CtxMenu_Option("Create End Node", DS_DialogueType.End));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Starting Node", DialogueType.Start));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DialogueType.Single));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DialogueType.Multiple));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Event Node", DialogueType.Event));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create End Node", DialogueType.End));
             this.AddManipulator(CreateGroup_CtxMenu_Option());
         }
         /// <summary>
@@ -361,7 +361,7 @@ namespace DS.Editor.Windows
         /// <param name="actionTitle">The context option title.</param>
         /// <param name="dialogueType">Dialogue type that this option handle.</param>
         /// <returns></returns>
-        private IManipulator CreateNode_CtxMenu_Option(string actionTitle, DS_DialogueType dialogueType)
+        private IManipulator CreateNode_CtxMenu_Option(string actionTitle, DialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
                 menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => 
@@ -377,9 +377,9 @@ namespace DS.Editor.Windows
         /// <param name="spawnPosition">The screen spawn position for the node.</param>
         /// <param name="dialogueType">Enumerator selecting which type of node to spawn.</param>
         /// <returns>Pointer to the created node as a generic DS_Node.</returns>
-        public DS_BaseNode CreateNode(string nodeName, Vector2 spawnPosition, DS_DialogueType dialogueType, bool shouldDraw = true)
+        public DS_BaseNode CreateNode(string nodeName, Vector2 spawnPosition, DialogueType dialogueType, bool shouldDraw = true)
         {
-            Type nodeType = Type.GetType($"DS.Editor.Windows.Elements.DS_{dialogueType}Node"); //Generating the Type variable according to the indicated Name.
+            Type nodeType = Type.GetType($"DS.Editor.Windows.Elements.DS_{dialogueType}Node");
             DS_BaseNode node = (DS_BaseNode) Activator.CreateInstance(nodeType);
             node.Initialize(nodeName, this, spawnPosition);
             if(shouldDraw == true) node.Draw();
@@ -537,23 +537,23 @@ namespace DS.Editor.Windows
         /// <param name="node">The node that need to be added to the dictionary.</param>
         public void Add_Node_ToUngrouped(DS_BaseNode node)
         {
-            DS_Logger.Error("Ungrouped addition");
+            Logger.Error("Ungrouped addition");
             string nodeName = node.DialogueName.ToLower();
 
             if (ungroupedNodes.ContainsKey(nodeName) == false)
             {
-                DS_NodeErrorData nodeErrorData = new();
+                NodeErrorData nodeErrorData = new();
                 nodeErrorData.Nodes.Add(node);
 
                 ungroupedNodes.Add(nodeName, nodeErrorData);
-                DS_Logger.Message($"NEW KEY: [{nodeName}] COUNT: [{nodeErrorData.Nodes.Count}]");
+                Logger.Message($"NEW KEY: [{nodeName}] COUNT: [{nodeErrorData.Nodes.Count}]");
             }
             else
             {
                 ungroupedNodes[nodeName].Nodes.Add(node);
                 Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.Color;
 
-                DS_Logger.Message($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+                Logger.Message($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
 
                 node.SetErrorStyle(groupErrorColor);
                 if (ungroupedNodes[nodeName].Nodes.Count == 2)
@@ -563,10 +563,10 @@ namespace DS.Editor.Windows
                 }
             }
 
-            DS_Logger.Error("Ungrouped recap");
+            Logger.Error("Ungrouped recap");
             foreach (var key in ungroupedNodes.Keys)
             {
-                DS_Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
+                Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
             }
         }
         /// <summary>
@@ -575,16 +575,16 @@ namespace DS.Editor.Windows
         /// <param name="node">Node to remove from ungrouped nodes.</param>
         public void Remove_Node_FromUngrouped(DS_BaseNode node)
         {
-            DS_Logger.Error("Ungrouped removing");
+            Logger.Error("Ungrouped removing");
 
             string nodeName = node.DialogueName.ToLower();
             List<Node> nodeList = ungroupedNodes[nodeName].Nodes;
 
-            DS_Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             nodeList.Remove(node);
             node.ResetStyle();
 
-            DS_Logger.Message($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            Logger.Message($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             if (nodeList.Count == 1)
             {
                 --NameErrorsAmount;
@@ -593,14 +593,14 @@ namespace DS.Editor.Windows
             }
             if (nodeList.Count == 0)
             {
-                DS_Logger.Warning($"UNGROUPED REMOVED KEY: {nodeName}");
+                Logger.Warning($"UNGROUPED REMOVED KEY: {nodeName}");
                 ungroupedNodes.Remove(nodeName); return;
             }
 
-            DS_Logger.Error("Ungrouped recap");
+            Logger.Error("Ungrouped recap");
             foreach (var key in ungroupedNodes.Keys)
             {
-                DS_Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
+                Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
             }
         }
         /// <summary>
@@ -611,50 +611,50 @@ namespace DS.Editor.Windows
         /// <exception cref="NotImplementedException"></exception>
         public void Add_Node_ToGroup(DS_BaseNode node, DS_Group group)
         {
-            DS_Logger.Error("Grouped nodes");
+            Logger.Error("Grouped nodes");
             string nodeName = node.DialogueName.ToLower();
             node.SetGroup(group);
 
             if (groupedNodes.ContainsKey(group) == false)
             {
-                DS_Logger.Warning($"ADDING KEY [[{group.name}][{group.title}]");
-                var innerDictionary = new SerializableDictionary<string, DS_NodeErrorData>();
+                Logger.Warning($"ADDING KEY [[{group.name}][{group.title}]");
+                var innerDictionary = new SerializableDictionary<string, NodeErrorData>();
 
                 groupedNodes.Add(group, innerDictionary);   
             }
 
             if (groupedNodes[group].ContainsKey(nodeName) == false)
             {
-                DS_Logger.Warning($"ADD INNER-DICT TO KEY [[{group.name}][{group.title}]");
+                Logger.Warning($"ADD INNER-DICT TO KEY [[{group.name}][{group.title}]");
 
-                DS_NodeErrorData nodeErrorData = new DS_NodeErrorData();
+                NodeErrorData nodeErrorData = new NodeErrorData();
                 nodeErrorData.Nodes.Add(node);
                 groupedNodes[group].Add(nodeName, nodeErrorData);
-                DS_Logger.Message($"Node added as new: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                Logger.Message($"Node added as new: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 return;
             }
             else
             {
-                DS_Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 List<Node> groupedNodeList = groupedNodes[group][nodeName].Nodes;
                 groupedNodes[group][nodeName].Nodes.Add(node);
                 Color errorColor = groupedNodes[group][nodeName].ErrorData.Color;
                 node.SetErrorStyle(errorColor);
 
-                DS_Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
                 if (groupedNodeList.Count == 2)
                 {
                     ++NameErrorsAmount;
                     ((DS_BaseNode)groupedNodeList[0]).SetErrorStyle(errorColor);
                 }  
             }
-            DS_Logger.Error("Grouped nodes recap");
+            Logger.Error("Grouped nodes recap");
             foreach (var key in groupedNodes.Keys)
             {
-                DS_Logger.Warning($"KEY:[{key}]");
+                Logger.Warning($"KEY:[{key}]");
                 foreach (var key2 in groupedNodes[key].Keys)
                 {
-                    DS_Logger.Warning($"Inner key:[{key2}] + COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+                    Logger.Warning($"Inner key:[{key2}] + COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
                 }
             }
         }
@@ -665,7 +665,7 @@ namespace DS.Editor.Windows
         /// <param name="group"></param>
         public bool Remove_Node_FromGroup(DS_BaseNode node, DS_Group group)
         {
-            DS_Logger.Error("Groupednodes");
+            Logger.Error("Groupednodes");
             string nodeName = node.DialogueName.ToLower();
             node.RemoveFromGroup();
 
@@ -676,7 +676,7 @@ namespace DS.Editor.Windows
             List<Node> groupedNodesList = groupedNodes[group][nodeName].Nodes;
             groupedNodesList.Remove(node);
 
-            DS_Logger.Warning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
+            Logger.Warning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
             node.ResetStyle();
 
             if (groupedNodesList.Count == 1)
@@ -687,21 +687,21 @@ namespace DS.Editor.Windows
             if (groupedNodesList.Count == 0) 
             {
                 groupedNodes[group].Remove(nodeName);
-                DS_Logger.Warning($"REMOVING INNER KEY [{nodeName}]");
+                Logger.Warning($"REMOVING INNER KEY [{nodeName}]");
             } 
             if (groupedNodes[group].Count == 0) 
             {
                 groupedNodes.Remove(group);
-                DS_Logger.Warning($"REMOVING GROUP KEY [{group.name}/{group.title}]");
+                Logger.Warning($"REMOVING GROUP KEY [{group.name}/{group.title}]");
             }
 
-            DS_Logger.Error("Grouped nodes recap");
+            Logger.Error("Grouped nodes recap");
             foreach (var key in groupedNodes.Keys)
             {
-                DS_Logger.Warning($"GROUP KEY:[{key}]");
+                Logger.Warning($"GROUP KEY:[{key}]");
                 foreach (var key2 in groupedNodes[key].Keys)
                 {
-                    DS_Logger.Warning($"INNER NODENAME KEY:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+                    Logger.Warning($"INNER NODENAME KEY:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
                 }
             }
             return true;
@@ -712,16 +712,16 @@ namespace DS.Editor.Windows
         /// <param name="group"></param>
         public void Add_Group_ToDictionary(DS_Group group)
         {
-            DS_Logger.Error("Groups addition");
+            Logger.Error("Groups addition");
             string groupTitle = group.title.ToLower();
 
             if(groups.ContainsKey(groupTitle) == false)
             {
-                DS_GroupErrorData groupErrorData = new DS_GroupErrorData();
+                GroupErrorData groupErrorData = new GroupErrorData();
                 groupErrorData.Groups.Add(group);
                 groups.Add(groupTitle, groupErrorData);
 
-                DS_Logger.Message($"NEW KEY: {groupTitle}  / COUNT: {groups[groupTitle].Groups.Count}");
+                Logger.Message($"NEW KEY: {groupTitle}  / COUNT: {groups[groupTitle].Groups.Count}");
 
             }
             else 
@@ -731,7 +731,7 @@ namespace DS.Editor.Windows
                 Color errorColor = groups[groupTitle].ErrorColor.Color;
                 group.SetErrorStyle(errorColor);
 
-                DS_Logger.Message($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
+                Logger.Message($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
 
                 if (groupList.Count == 2)
                 {
@@ -739,10 +739,10 @@ namespace DS.Editor.Windows
                     ((DS_Group)groupList[0]).SetErrorStyle(errorColor);
                 }
             }
-            DS_Logger.Error("Groups recap");
+            Logger.Error("Groups recap");
             foreach (var key in groups.Keys)
             {
-                DS_Logger.Warning($"KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
+                Logger.Warning($"KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
             }
         }
         /// <summary>
@@ -751,16 +751,16 @@ namespace DS.Editor.Windows
         /// <param name="group"></param>
         public void Remove_Group_FromDictionary(DS_Group group)
         {
-            DS_Logger.Error("Group removing");
+            Logger.Error("Group removing");
             string groupTitle = group.oldTitle.ToLower();
 
             List<Group> groupList = groups[groupTitle].Groups;
-            DS_Logger.Message($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
+            Logger.Message($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
 
             groupList.Remove(group);
             group.ResetStyle();
 
-            DS_Logger.Message($"AFTER: {groups[groupTitle].Groups.Count}");
+            Logger.Message($"AFTER: {groups[groupTitle].Groups.Count}");
 
             if (groupList.Count == 1)
             {
@@ -771,13 +771,13 @@ namespace DS.Editor.Windows
             else if(groupList.Count == 0)
             {
                 groups.Remove(groupTitle);
-                DS_Logger.Warning($" DELETED KEY: {groupTitle}");
+                Logger.Warning($" DELETED KEY: {groupTitle}");
             }
 
-            DS_Logger.Error("Groups recap");
+            Logger.Error("Groups recap");
             foreach (var key in groups.Keys)
             {
-                DS_Logger.Warning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
+                Logger.Warning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
             }
         }
         #endregion

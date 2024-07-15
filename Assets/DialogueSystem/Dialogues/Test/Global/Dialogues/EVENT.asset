@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe71d175c2ee8c439fe789a6f5fe0b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
   m_Name: EVENT
   m_EditorClassIdentifier: 
   dialogueName: EVENT
@@ -19,9 +19,9 @@ MonoBehaviour:
     LenguageType: 0
   - Data: Event dialogue
     LenguageType: 1
-  - Data: 
+  - Data: A
     LenguageType: 2
-  - Data: 
+  - Data: AA
     LenguageType: 3
   choices:
   - choiceTexts:
@@ -29,9 +29,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Event choice
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choiceID: 142d4a94-e06b-4b9e-8df1-ce14cf3585d5
     nextDialogue: {fileID: 11400000, guid: b390351ac6ea37a43be2aa3722bf88a5, type: 2}

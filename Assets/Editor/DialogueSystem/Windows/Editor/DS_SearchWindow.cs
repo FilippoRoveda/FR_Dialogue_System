@@ -31,23 +31,23 @@ namespace DS.Editor.Windows
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Node"), 1),
                 new SearchTreeEntry(new GUIContent("Start Node", indentationTexture))
                 {
-                    level = 2, userData = DS_DialogueType.Start
+                    level = 2, userData = DialogueType.Start
                 },
                 new SearchTreeEntry(new GUIContent("Single Choice", indentationTexture))
                 {
-                    level = 2, userData = DS_DialogueType.SingleChoice
+                    level = 2, userData = DialogueType.Single
                 },
                 new SearchTreeEntry(new GUIContent("Multiple Choice", indentationTexture))
                 {
-                    level = 2, userData = DS_DialogueType.MultipleChoice
+                    level = 2, userData = DialogueType.Multiple
                 },
                 new SearchTreeEntry(new GUIContent("Event Node", indentationTexture))
                 {
-                    level = 2, userData = DS_DialogueType.Event
+                    level = 2, userData = DialogueType.Event
                 },
                 new SearchTreeEntry(new GUIContent("End Node", indentationTexture))
                 {
-                    level = 2, userData = DS_DialogueType.End
+                    level = 2, userData = DialogueType.End
                 },
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Group"), 1),
                 new SearchTreeEntry(new GUIContent("Single Group", indentationTexture))
@@ -64,24 +64,24 @@ namespace DS.Editor.Windows
 
             switch (SearchTreeEntry.userData) 
             {
-                case DS_DialogueType.Start:
-                    DS_StartNode startNode = (DS_StartNode)graphView.CreateNode("StartNode", localMousePosition, DS_DialogueType.Start);
+                case DialogueType.Start:
+                    DS_StartNode startNode = (DS_StartNode)graphView.CreateNode("StartNode", localMousePosition, DialogueType.Start);
                     graphView.AddElement(startNode);
                     return true;
-                case DS_DialogueType.SingleChoice:
-                    DS_SingleChoiceNode singleChoiceNode = (DS_SingleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.SingleChoice);
+                case DialogueType.Single:
+                    DS_SingleNode singleChoiceNode = (DS_SingleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Single);
                     graphView.AddElement(singleChoiceNode);
                     return true;
-                case DS_DialogueType.MultipleChoice:
-                    DS_MultipleChoiceNode multipleChoiceNode = (DS_MultipleChoiceNode) graphView.CreateNode("DialogueName", localMousePosition, DS_DialogueType.MultipleChoice);
+                case DialogueType.Multiple:
+                    DS_MultipleNode multipleChoiceNode = (DS_MultipleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Multiple);
                     graphView.AddElement(multipleChoiceNode);
                     return true;
-                case DS_DialogueType.Event:
-                    DS_EventNode eventNode = (DS_EventNode)graphView.CreateNode("EventNode", localMousePosition, DS_DialogueType.Event);
+                case DialogueType.Event:
+                    DS_EventNode eventNode = (DS_EventNode)graphView.CreateNode("EventNode", localMousePosition, DialogueType.Event);
                     graphView.AddElement(eventNode);
                     return true;
-                case DS_DialogueType.End:
-                    DS_EndNode endNode = (DS_EndNode)graphView.CreateNode("EndNode", localMousePosition, DS_DialogueType.End);
+                case DialogueType.End:
+                    DS_EndNode endNode = (DS_EndNode)graphView.CreateNode("EndNode", localMousePosition, DialogueType.End);
                     graphView.AddElement(endNode);
                     return true;
                 case Group _:

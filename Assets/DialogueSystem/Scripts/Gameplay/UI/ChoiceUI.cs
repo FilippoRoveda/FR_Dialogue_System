@@ -13,13 +13,13 @@ namespace DS.Runtime.Gameplay
     public class ChoiceUI : MonoBehaviour
     {
         [SerializeField] private TMP_Text choiceText;
-        [SerializeField] private DS_DialogueChoiceData holdedChoiceData;
+        [SerializeField] private DialogueChoiceData holdedChoiceData;
 
         [SerializeField] private Button button;
 #if UNITY_EDITOR
         [IsVisible(false)]
 #endif 
-        public UnityEvent<DS_DialogueSO> ChoiceSelected = new UnityEvent<DS_DialogueSO>();
+        public UnityEvent<DialogueSO> ChoiceSelected = new UnityEvent<DialogueSO>();
 
         #region Unity callbacks
         private void OnEnable()
@@ -37,7 +37,7 @@ namespace DS.Runtime.Gameplay
         }
         #endregion
 
-        public void SetupChoiceUI(DS_DialogueChoiceData choiceData)
+        public void SetupChoiceUI(DialogueChoiceData choiceData)
         {
             choiceText.text = choiceData.ChoiceTexts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
             holdedChoiceData = choiceData;
@@ -58,7 +58,7 @@ namespace DS.Runtime.Gameplay
             ChoiceSelected?.Invoke(holdedChoiceData.NextDialogue);
 
         }
-        private void OnLenguageChanged(DS_LenguageType newLenguage)
+        private void OnLenguageChanged(LenguageType newLenguage)
         {
             if (holdedChoiceData != null)
             {

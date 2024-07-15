@@ -7,19 +7,19 @@ namespace DS.Runtime
     using Runtime.Utilities;
     public class LenguageManager : Singleton<LenguageManager>
     {
-        [SerializeField] private DS_LenguageType currentLenguage = DS_LenguageType.Italian;
+        [SerializeField] private LenguageType currentLenguage = LenguageType.Italian;
 
-        public DS_LenguageType CurrentLenguage { get => currentLenguage; }
+        public LenguageType CurrentLenguage { get => currentLenguage; }
 
-        public static UnityEvent<DS_LenguageType> LenguageChanged;
+        public static UnityEvent<LenguageType> LenguageChanged;
 
         protected override void Awake()
         {
             base.Awake();
-            LenguageChanged = new UnityEvent<DS_LenguageType>();
+            LenguageChanged = new UnityEvent<LenguageType>();
         }
         
-        public void ChangeLenguage(DS_LenguageType newLenguage)
+        public void ChangeLenguage(LenguageType newLenguage)
         {
             currentLenguage = newLenguage;
             LenguageChanged?.Invoke(currentLenguage);

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace DS.Editor.Windows
 {
+    using Editor.Utilities;
     using Runtime.ScriptableObjects;
-    using Utilities;
 
     public class DS_CharacterEditorWindow : EditorWindow
     {
-        private DS_IOUtilities IOUtilities = new DS_IOUtilities();
+        private IOUtilities IOUtilities = new IOUtilities();
         private readonly string charactersFolderPath = "Assets/DialogueSystem/ScriptableObjects/Characters";
 
 

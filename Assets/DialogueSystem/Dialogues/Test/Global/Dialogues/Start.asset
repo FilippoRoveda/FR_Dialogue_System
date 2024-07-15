@@ -9,21 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f507b59d8077041878e859772c083b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: 
   dialogueName: Start
   dialogueID: c65f38c8-3a59-4996-b94a-61f88c735a4f
   texts:
-  - Data: 'Ciao Vincenzo detto EnzoVin, finalmente ti
+  - Data: 'Ciao DIOOOVincenzo detto EnzoVin, finalmente ti
 
-      ho trovato. Mi sei mancato.'
+      ho trovato. Mi
+      sei mancato.'
     LenguageType: 0
   - Data: Start dialogue
     LenguageType: 1
-  - Data: 
+  - Data: A
     LenguageType: 2
-  - Data: 
+  - Data: AA
     LenguageType: 3
   choices:
   - choiceTexts:
@@ -31,9 +32,9 @@ MonoBehaviour:
       LenguageType: 0
     - Data: Start choice
       LenguageType: 1
-    - Data: 
+    - Data: A
       LenguageType: 2
-    - Data: 
+    - Data: AA
       LenguageType: 3
     choiceID: 31ba20ad-3d5a-472d-86f1-a799128c5ad6
     nextDialogue: {fileID: 11400000, guid: 2b1ed815843edc04fa1f42ee1f248cdf, type: 2}

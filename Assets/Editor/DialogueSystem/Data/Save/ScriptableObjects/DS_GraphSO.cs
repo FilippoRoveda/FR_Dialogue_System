@@ -20,24 +20,24 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        [SerializeField] private List<DS_GroupData> groups;
+        [SerializeField] private List<GroupData> groups;
         /// <summary>
         /// List of group save data for the groups contained in this graph.
         /// </summary>
-        public List<DS_GroupData> Groups 
+        public List<GroupData> Groups 
         { 
             get { return groups; } 
             set {  groups = value; } 
         }
 
 
-        [SerializeField] private List<DS_NodeData> nodes;
-        [SerializeField] private List<DS_EventNodeData> eventNodes;
-        [SerializeField] private List<DS_EndNodeData> endNodes;
+        [SerializeField] private List<NodeData> nodes;
+        [SerializeField] private List<EventNodeData> eventNodes;
+        [SerializeField] private List<EndNodeData> endNodes;
 
-        public List<DS_NodeData> Nodes { get => nodes; set => nodes = value; }
-        public List<DS_EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
-        public List<DS_EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
+        public List<NodeData> Nodes { get => nodes; set => nodes = value; }
+        public List<EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
+        public List<EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
 
 
         [SerializeField] private List<string> oldGroupsNames;
@@ -77,37 +77,37 @@ namespace DS.Editor.ScriptableObjects
         public void Initialize(string fileName)
         {
             GraphName = fileName;
-            Groups = new List<DS_GroupData>();
-            nodes = new List<DS_NodeData>();
-            eventNodes = new List<DS_EventNodeData>();
-            endNodes = new List<DS_EndNodeData>();
+            Groups = new List<GroupData>();
+            nodes = new List<NodeData>();
+            eventNodes = new List<EventNodeData>();
+            endNodes = new List<EndNodeData>();
         }
 
-        public List<DS_NodeData> GetAllNodes()
+        public List<NodeData> GetAllNodes()
         {
-            List<DS_NodeData> allNodes = new List<DS_NodeData>();
-            foreach (DS_NodeData node in Nodes)
+            List<NodeData> allNodes = new List<NodeData>();
+            foreach (NodeData node in Nodes)
             {
                 allNodes.Add(node);
             }
-            foreach (DS_NodeData evntNode in EventNodes)
+            foreach (NodeData evntNode in EventNodes)
             {
                 allNodes.Add(evntNode);
             }
-            foreach (DS_NodeData endNode in EndNodes)
+            foreach (NodeData endNode in EndNodes)
             {
                 allNodes.Add(endNode);
             }
             return allNodes;           
         }
 
-        List<DS_NodeData> allNodes;
-        public List<DS_NodeData> GetAllOrderedNodes()
+        List<NodeData> allNodes;
+        public List<NodeData> GetAllOrderedNodes()
         {
-            List<DS_NodeData> orderedNodes = new List<DS_NodeData>();
+            List<NodeData> orderedNodes = new List<NodeData>();
 
             allNodes = GetAllNodes();
-            var startingNodes = allNodes.FindAll(x => x.DialogueType == Enums.DS_DialogueType.Start);
+            var startingNodes = allNodes.FindAll(x => x.DialogueType == Enums.DialogueType.Start);
             foreach(var startNode in startingNodes)
             {
                 allNodes.Remove(startNode);
@@ -125,9 +125,9 @@ namespace DS.Editor.ScriptableObjects
             return orderedNodes;
         }
        
-    private void GetAllLinkedNodes(DS_NodeData node, ref List<DS_NodeData> output)
+    private void GetAllLinkedNodes(NodeData node, ref List<NodeData> output)
         {
-            if(output == null) output = new List<DS_NodeData>();
+            if(output == null) output = new List<NodeData>();
 
             if(output.Contains(node) == false) output.Add(node);
 

@@ -28,9 +28,9 @@ namespace DS.Runtime.Gameplay
 
 
         [SerializeField] private TalkComponent startSpeaker;
-        [SerializeField] private DS_DialogueSO startingDialogue;
+        [SerializeField] private DialogueSO startingDialogue;
 
-        [SerializeField] private DS_DialogueSO currentDialogue;
+        [SerializeField] private DialogueSO currentDialogue;
 
         #region Unity callbacks
         private void Awake()
@@ -68,7 +68,7 @@ namespace DS.Runtime.Gameplay
         }
 
         #region Callbacks
-        public void OnDialogueStart(TalkComponent talkComponent, DS_DialogueSO startingDialogue) 
+        public void OnDialogueStart(TalkComponent talkComponent, DialogueSO startingDialogue) 
         {
             container.SetActive(true);
 
@@ -81,14 +81,14 @@ namespace DS.Runtime.Gameplay
         public void OnEndDialogueButtonPressed()
         {
             bool isRepetable = false;
-            if (currentDialogue.DialogueType == Enums.DS_DialogueType.End) isRepetable = ((DS_EndDialogueSO)currentDialogue).IsDialogueRepetable;
+            if (currentDialogue.DialogueType == Enums.DialogueType.End) isRepetable = ((EndDialogueSO)currentDialogue).IsDialogueRepetable;
             DialogueManager.Instance.EndDialogue(startingDialogue, isRepetable);
 
             ClearFields();
             container.SetActive(false);
         }
 
-        public void OnChoiceSelected(DS_DialogueSO nextDialogue)
+        public void OnChoiceSelected(DialogueSO nextDialogue)
         {
             Debug.Log($"Next dialogue pressed: {nextDialogue.DialogueName}");
             SetupDialogue(nextDialogue);
@@ -97,13 +97,13 @@ namespace DS.Runtime.Gameplay
         #endregion
 
 
-        public void SetupDialogue(DS_DialogueSO dialogue) 
+        public void SetupDialogue(DialogueSO dialogue) 
         {
             currentDialogue = dialogue;
 
-            if(dialogue.DialogueType == Enums.DS_DialogueType.Event)
+            if(dialogue.DialogueType == Enums.DialogueType.Event)
             {
-                foreach(var _event in ((DS_EventDialogueSO)dialogue).Events)
+                foreach(var _event in ((EventDialogueSO)dialogue).Events)
                 {
                     _event.Execute();
                 }
@@ -145,7 +145,7 @@ namespace DS.Runtime.Gameplay
         }
         public void SetupChoices()
         {
-            if(currentDialogue.DialogueType == Enums.DS_DialogueType.End | currentDialogue.Choices == null | currentDialogue.Choices.Count == 0)
+            if(currentDialogue.DialogueType == Enums.DialogueType.End | currentDialogue.Choices == null | currentDialogue.Choices.Count == 0)
             {
                 endDialogueButton.gameObject.SetActive(true);
                 return;

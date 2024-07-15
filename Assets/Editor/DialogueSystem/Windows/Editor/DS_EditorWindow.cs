@@ -18,13 +18,13 @@ namespace DS.Editor.Windows
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
-        protected DS_GraphUtilities ioUtilities;
+        protected GraphIOSystem ioUtilities;
         protected Toolbar toolbar;
 
 
 
-        private readonly DS_LenguageType defaultLenguage = DS_LenguageType.Italian;
-        public DS_LenguageType currentLenguage;
+        private readonly LenguageType defaultLenguage = LenguageType.Italian;
+        public LenguageType currentLenguage;
 
         protected readonly string defaultSavedGraphPath = "Assets/Editor/DialogueSystem/Graphs";
         protected readonly string defaultFileName = "DialogueFileName";
@@ -41,7 +41,7 @@ namespace DS.Editor.Windows
 
         protected DS_GraphView graph_View;
 
-        public UnityEvent<DS_LenguageType> EditorWindowLenguageChanged = new();
+        public UnityEvent<LenguageType> EditorWindowLenguageChanged = new();
 
         [MenuItem("DialogueSystem/Editor Window")]
         public static void Open()
@@ -63,7 +63,7 @@ namespace DS.Editor.Windows
         protected void AddToolbarMenu()
         {
             toolbarMenu = new ToolbarMenu();
-            foreach(DS_LenguageType lenguage in (DS_LenguageType[])System.Enum.GetValues(typeof(DS_LenguageType)))
+            foreach(LenguageType lenguage in (LenguageType[])System.Enum.GetValues(typeof(LenguageType)))
             {
                 toolbarMenu.menu.AppendAction(lenguage.ToString(), callback => SelectLenguage(lenguage, toolbarMenu));
             }
@@ -71,19 +71,19 @@ namespace DS.Editor.Windows
             toolbar.Add(toolbarMenu);
         }
 
-        protected Action<DropdownMenuAction> SelectLenguage(DS_LenguageType lenguage, ToolbarMenu toolbarMenu)
+        protected Action<DropdownMenuAction> SelectLenguage(LenguageType lenguage, ToolbarMenu toolbarMenu)
         {
             toolbarMenu.text = "Lenguage: " + lenguage.ToString();
             currentLenguage = lenguage;
 
-            DS_Logger.Error("To implement lenguage selection!");
+            Logger.Error("To implement lenguage selection!");
             EditorWindowLenguageChanged?.Invoke(currentLenguage);
             return null;
         }
 
         protected void AddGraphView()
         {
-            ioUtilities = new DS_GraphUtilities();
+            ioUtilities = new GraphIOSystem();
             graph_View = new DS_GraphView(this);
             graph_View.StretchToParentSize();
             rootVisualElement.Add(graph_View);
@@ -94,7 +94,7 @@ namespace DS.Editor.Windows
         /// </summary>
         protected void AddStyles()
         {
-            rootVisualElement.AddStyleSheet("DS_Variables.uss");
+            //rootVisualElement.AddStyleSheet("DS_Variables.uss");
         }
 
         /// <summary>
@@ -103,12 +103,12 @@ namespace DS.Editor.Windows
         protected virtual void AddToolbar()
         {
             toolbar = new Toolbar();
-            filenameTextField = DS_ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
-            saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
-            loadButton = DS_ElementsUtilities.CreateButton("Load", () => OnLoadButtonPressed());
-            clearButton = DS_ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
-            resetButton = DS_ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
-            toggleMinimapButton = DS_ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
+            filenameTextField = ElementsUtilities.CreateTextField(defaultFileName, "File Name:", callback => OnFilenameChanged(callback));
+            saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
+            loadButton = ElementsUtilities.CreateButton("Load", () => OnLoadButtonPressed());
+            clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
+            resetButton = ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
+            toggleMinimapButton = ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
 
 
             toolbar.Add(filenameTextField);

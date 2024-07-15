@@ -1,132 +1,136 @@
-using DS.Editor.ScriptableObjects;
-using DS.Editor.Windows.Utilities;
-using DS.Enums;
-using DS.Runtime.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class SaveCSV
+namespace DS.Editor.CSV
 {
-    DS_IOUtilities IO = new();
-    private readonly string CSVFilesPath = "Assets/Editor/Files/CSV/";
-    private readonly string graphFilesPath = "Assets/Editor/Files/Graphs";
+    using Enums;
+    using Runtime.Data;
+    using Editor.ScriptableObjects;
+    using Editor.Utilities;
 
-    private string graphName = "";
-    private readonly string csvExtension = ".csv";
-    string FileName { get { return graphName + csvExtension; } }
-
-    private string csvSeparator = ",";
-    private List<string> csvHeaders;
-    private string idName = "Guid ID";
-    private string dialogueName = "Dialogue/Choice Name";
-
-    public SaveCSV() { CreateStaticFolders(); }
-
-    public void Initalize()
+    public class SaveCSV
     {
-        SetHeaders();
-    }
+        IOUtilities IO = new();
+        private readonly string CSVFilesPath = "Assets/Editor/Files/CSV/";
+        private readonly string graphFilesPath = "Assets/Editor/Files/Graphs";
 
-    public void SaveAllGraphsToCSV() 
-    {
-        List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
+        private string graphName = "";
+        private readonly string csvExtension = ".csv";
+        string FileName { get { return graphName + csvExtension; } }
 
-        foreach (var graph in graphs)
+        private string csvSeparator = ",";
+        private List<string> csvHeaders;
+        private string idName = "Guid ID";
+        private string dialogueName = "Dialogue/Choice Name";
+
+        public SaveCSV() { CreateStaticFolders(); }
+
+        public void Initalize()
         {
-            graphName = graph.GraphName;
-            CreateFile(FileName);
+            SetHeaders();
+        }
 
-            foreach (var nodeData in graph.GetAllOrderedNodes())
+        public void SaveAllGraphsToCSV()
+        {
+            List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
+
+            foreach (var graph in graphs)
             {
-                List<string> nodeTexts = new List<string>();
-                nodeTexts.Add(nodeData.NodeID);
-                nodeTexts.Add(nodeData.Name);
-                foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
-                {
-                    string lenguageText = nodeData.Texts.GetLenguageData(lenguage).Data.Replace("\"", "\"\"");
-                    nodeTexts.Add($"\"{lenguageText}\"");
-                }
-                AppendToFile(nodeTexts);
+                graphName = graph.GraphName;
+                CreateFile(FileName);
 
-
-                if (nodeData.Choices != null && nodeData.Choices.Count != 0)
+                foreach (var nodeData in graph.GetAllOrderedNodes())
                 {
-                    int counter = 1;
-                    foreach (var choice in nodeData.Choices)
+                    List<string> nodeTexts = new List<string>();
+                    nodeTexts.Add(nodeData.NodeID);
+                    nodeTexts.Add(nodeData.Name);
+                    foreach (LenguageType lenguage in (LenguageType[])Enum.GetValues(typeof(LenguageType)))
                     {
-                        List<string> nodeChoiceTexts = new List<string>();
-                        nodeChoiceTexts.Add(choice.ChoiceID);
-                        nodeChoiceTexts.Add($"_____{nodeData.Name} Choice [{counter}]");
-                        counter++;
-                        foreach (DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
+                        string lenguageText = nodeData.Texts.GetLenguageData(lenguage).Data.Replace("\"", "\"\"");
+                        nodeTexts.Add($"\"{lenguageText}\"");
+                    }
+                    AppendToFile(nodeTexts);
+
+
+                    if (nodeData.Choices != null && nodeData.Choices.Count != 0)
+                    {
+                        int counter = 1;
+                        foreach (var choice in nodeData.Choices)
                         {
-                            string choiceText = choice.ChoiceTexts.GetLenguageData(lenguage).Data.Replace("\"", "'\"\"'");
-                            nodeChoiceTexts.Add($"\"{choiceText}\"");
+                            List<string> nodeChoiceTexts = new List<string>();
+                            nodeChoiceTexts.Add(choice.ChoiceID);
+                            nodeChoiceTexts.Add($"_____{nodeData.Name} Choice [{counter}]");
+                            counter++;
+                            foreach (LenguageType lenguage in (LenguageType[])Enum.GetValues(typeof(LenguageType)))
+                            {
+                                string choiceText = choice.ChoiceTexts.GetLenguageData(lenguage).Data.Replace("\"", "'\"\"'");
+                                nodeChoiceTexts.Add($"\"{choiceText}\"");
+                            }
+                            AppendToFile(nodeChoiceTexts);
                         }
-                        AppendToFile(nodeChoiceTexts);
                     }
                 }
             }
         }
-    }
 
-    public void CreateFile(string fileName) 
-    {
-        string headerString = GetHeaderString();
-        if (File.Exists(CSVFilesPath + fileName))
+        public void CreateFile(string fileName)
         {
-            File.WriteAllText(CSVFilesPath + fileName, headerString);
-        }
-        else
-        {
-            using (StreamWriter sw = File.CreateText(CSVFilesPath + fileName))
+            string headerString = GetHeaderString();
+            if (File.Exists(CSVFilesPath + fileName))
             {
-                
-                sw.WriteLine(headerString);
+                File.WriteAllText(CSVFilesPath + fileName, headerString);
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(CSVFilesPath + fileName))
+                {
+
+                    sw.WriteLine(headerString);
+                }
             }
         }
-    }
 
-    private string GetHeaderString()
-    {
-        string headerString = "";
-        foreach (string header in csvHeaders)
+        private string GetHeaderString()
         {
-            if (headerString != "") headerString += csvSeparator;
-            headerString += header;
-        }
-        headerString += "\n";
-        return headerString;
-    }
-
-    public void AppendToFile(List<string> strings)
-    {
-        using (StreamWriter sw = File.AppendText(CSVFilesPath + FileName))
-        {
-            string finalString = "";
-            foreach (string _string in strings)
+            string headerString = "";
+            foreach (string header in csvHeaders)
             {
-                if (finalString != "") finalString += csvSeparator;
-                finalString += _string;
+                if (headerString != "") headerString += csvSeparator;
+                headerString += header;
             }
-            sw.WriteLine(finalString);
+            headerString += "\n";
+            return headerString;
         }
-    }
 
-    public void CreateStaticFolders()
-    {
-        IO.CreateFolder("Assets/Editor", "Files");
-        IO.CreateFolder("Assets/Editor/Files", "CSV");
-    }
-    public void SetHeaders()
-    {
-        csvHeaders = new List<string>();
-        csvHeaders.Add(idName);
-        csvHeaders.Add(dialogueName);
-        foreach(DS_LenguageType lenguage in (DS_LenguageType[])Enum.GetValues(typeof(DS_LenguageType)))
+        public void AppendToFile(List<string> strings)
         {
-            csvHeaders.Add(lenguage.ToString());
+            using (StreamWriter sw = File.AppendText(CSVFilesPath + FileName))
+            {
+                string finalString = "";
+                foreach (string _string in strings)
+                {
+                    if (finalString != "") finalString += csvSeparator;
+                    finalString += _string;
+                }
+                sw.WriteLine(finalString);
+            }
+        }
+
+        public void CreateStaticFolders()
+        {
+            IO.CreateFolder("Assets/Editor", "Files");
+            IO.CreateFolder("Assets/Editor/Files", "CSV");
+        }
+        public void SetHeaders()
+        {
+            csvHeaders = new List<string>();
+            csvHeaders.Add(idName);
+            csvHeaders.Add(dialogueName);
+            foreach (LenguageType lenguage in (LenguageType[])Enum.GetValues(typeof(LenguageType)))
+            {
+                csvHeaders.Add(lenguage.ToString());
+            }
         }
     }
 }

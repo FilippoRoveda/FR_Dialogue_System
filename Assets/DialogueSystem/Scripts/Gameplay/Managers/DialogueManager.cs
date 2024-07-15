@@ -14,16 +14,16 @@ namespace DS.Runtime.Gameplay
 #endif
         private bool isDialogueRunning = false;
 
-        public static UnityEvent<TalkComponent, DS_DialogueSO> DialogueStarted = new UnityEvent<TalkComponent, DS_DialogueSO>();
-        public static UnityEvent<DS_DialogueSO, bool> DialogueEnded = new UnityEvent<DS_DialogueSO, bool>();
+        public static UnityEvent<TalkComponent, DialogueSO> DialogueStarted = new UnityEvent<TalkComponent, DialogueSO>();
+        public static UnityEvent<DialogueSO, bool> DialogueEnded = new UnityEvent<DialogueSO, bool>();
 
         [SerializeField]
 #if UNITY_EDITOR
         [IsInteractable(false)]
 #endif
-        private DS_DialogueSO currentStartedDialogue;
+        private DialogueSO currentStartedDialogue;
 
-        public void StartDialogue(TalkComponent talkComponent, DS_DialogueSO startDialogue)
+        public void StartDialogue(TalkComponent talkComponent, DialogueSO startDialogue)
         {
             if(isDialogueRunning == true)
             {
@@ -40,7 +40,7 @@ namespace DS.Runtime.Gameplay
             }
         }
 
-        public void EndDialogue(DS_DialogueSO endedDialogue, bool isRepeatable)
+        public void EndDialogue(DialogueSO endedDialogue, bool isRepeatable)
         {
             if(isDialogueRunning == true && currentStartedDialogue == endedDialogue)
             {

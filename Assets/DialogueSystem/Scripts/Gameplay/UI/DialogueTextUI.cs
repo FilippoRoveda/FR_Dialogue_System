@@ -39,7 +39,7 @@ namespace DS.Runtime.Gameplay
             holdedTexts = null;
         }
         #region Callbacks
-        private void OnLenguageChanged(DS_LenguageType newLenguage)
+        private void OnLenguageChanged(LenguageType newLenguage)
         {
             if (holdedTexts != null)
             {

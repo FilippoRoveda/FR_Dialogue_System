@@ -8,16 +8,16 @@ namespace DS.Runtime.Gameplay
 
     public class TalkComponent : MonoBehaviour
     {
-        [SerializeField] private List<DS_DialogueContainerSO> dialogues;
+        [SerializeField] private List<DialogueContainerSO> dialogues;
 
         [SerializeField] private Charcter _charcter;
         public Charcter Charcter { get { return _charcter; } }
 
         [SerializeField] private TalkZone _talkZone;
 
-        [SerializeField] List<DS_DialogueSO> availableDialogues = new();
+        [SerializeField] List<DialogueSO> availableDialogues = new();
 
-        [SerializeField] DS_DialogueSO currentSpokeDialogue;
+        [SerializeField] DialogueSO currentSpokeDialogue;
 
         #region Unity callbacks
         private void Awake()
@@ -52,7 +52,7 @@ namespace DS.Runtime.Gameplay
             {
                 var startingDialogues = dialogue.GetStartingDialogues();
 
-                foreach (DS_DialogueSO _dialogue in startingDialogues)
+                foreach (DialogueSO _dialogue in startingDialogues)
                 {
                     Debug.Log(_dialogue.DialogueName);
 
@@ -76,7 +76,7 @@ namespace DS.Runtime.Gameplay
             DialogueManager.Instance.StartDialogue(this, nextDialogue);
         }
 
-        private void OnDialogueEnded(DS_DialogueSO endedDialogue, bool couldBeRepeated)
+        private void OnDialogueEnded(DialogueSO endedDialogue, bool couldBeRepeated)
         {
             Debug.Log("dIALOGYE ENDING");
             if (currentSpokeDialogue == endedDialogue)

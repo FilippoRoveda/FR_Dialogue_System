@@ -67,10 +67,10 @@ namespace DS.Editor.Windows
         protected override void AddToolbar()
         {
             toolbar = new Toolbar();
-            filenameTextField = DS_ElementsUtilities.CreateTextField(assetGraph.GraphName, "File Name:");
-            saveGraphButton = DS_ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
-            clearButton = DS_ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
-            toggleMinimapButton = DS_ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
+            filenameTextField = ElementsUtilities.CreateTextField(assetGraph.GraphName, "File Name:");
+            saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
+            clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
+            toggleMinimapButton = ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
 
 
             toolbar.Add(filenameTextField);

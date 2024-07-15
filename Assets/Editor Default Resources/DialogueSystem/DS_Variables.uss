@@ -1,7 +1,0 @@
-:root
-{
-	--greyOne: #2b2b2b;
-	--greyTwo: #778899;
- 	--greyThree: #2f4f4f;
-	--spacings25: 25; 
-}
