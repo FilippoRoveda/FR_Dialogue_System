@@ -17,6 +17,9 @@ MonoBehaviour:
   nodes:
   - name: Single
     nodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
+    groupID: 
+    dialogueType: 0
+    position: {x: 315, y: 242}
     texts:
     - Data: 'Ricordo come fosse ier le nostre notti di passione
 
@@ -41,11 +44,11 @@ MonoBehaviour:
         LenguageType: 3
       choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
       nextNodeID: da7c9651-d6f2-4076-920c-09babb442df8
-    groupID: 
-    dialogueType: 0
-    position: {x: 315, y: 242}
   - name: Start
     nodeID: c65f38c8-3a59-4996-b94a-61f88c735a4f
+    groupID: 
+    dialogueType: 2
+    position: {x: 13, y: 242}
     texts:
     - Data: 'Ciao DIOOOVincenzo detto EnzoVin, finalmente ti
 
@@ -70,11 +73,11 @@ MonoBehaviour:
         LenguageType: 3
       choiceID: 31ba20ad-3d5a-472d-86f1-a799128c5ad6
       nextNodeID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
-    groupID: 
-    dialogueType: 2
-    position: {x: 13, y: 242}
   - name: MULTIPLE
     nodeID: da7c9651-d6f2-4076-920c-09babb442df8
+    groupID: 
+    dialogueType: 1
+    position: {x: 691, y: 220}
     texts:
     - Data: "Non lasciarmi pi\xF9, so che ami DinDon ora, ma ripensaci, io sono meglio
         di lui"
@@ -108,12 +111,38 @@ MonoBehaviour:
         LenguageType: 3
       choiceID: 24794971-380d-47ae-a227-b01fd0d8f8ba
       nextNodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
+  - name: A
+    nodeID: 61923e93-d8d2-454f-9cc7-52d6ea9df62f
     groupID: 
-    dialogueType: 1
-    position: {x: 691, y: 220}
+    dialogueType: 2
+    position: {x: 133, y: 23}
+    texts:
+    - Data: Amaronn
+      LenguageType: 0
+    - Data: Amaronn
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: A1
+        LenguageType: 0
+      - Data: A11
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: 7c08a0f2-58d5-4263-ae6d-4f59b6cc344f
+      nextNodeID: 
   eventNodes:
   - name: EVENT
     nodeID: bd3c8bd7-fb5f-4f1b-9930-3c620c06c8d0
+    groupID: 
+    dialogueType: 4
+    position: {x: 1321, y: 23}
     texts:
     - Data: "Hai ragione, lui \xE8 molto pi\xF9 sexy di me."
       LenguageType: 0
@@ -135,14 +164,14 @@ MonoBehaviour:
         LenguageType: 3
       choiceID: 142d4a94-e06b-4b9e-8df1-ce14cf3585d5
       nextNodeID: 66576643-b43d-4454-807f-d912fb2a89a1
-    groupID: 
-    dialogueType: 4
-    position: {x: 1321, y: 23}
     events:
     - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
   endNodes:
   - name: END2
     nodeID: 6dfca4d2-2eb7-4066-a314-7574c1c71ae8
+    groupID: 
+    dialogueType: 3
+    position: {x: 1699, y: 276}
     texts:
     - Data: Prima dammi la password del WI-FI.
       LenguageType: 0
@@ -152,13 +181,12 @@ MonoBehaviour:
       LenguageType: 2
     - Data: AA
       LenguageType: 3
-    choices: []
-    groupID: 
-    dialogueType: 3
-    position: {x: 1699, y: 276}
     isDialogueRepetable: 1
   - name: END
     nodeID: 66576643-b43d-4454-807f-d912fb2a89a1
+    groupID: 
+    dialogueType: 3
+    position: {x: 1720, y: 23}
     texts:
     - Data: Addio mio caro.
       LenguageType: 0
@@ -168,18 +196,16 @@ MonoBehaviour:
       LenguageType: 2
     - Data: '
 
+
 '
       LenguageType: 3
-    choices: []
-    groupID: 
-    dialogueType: 3
-    position: {x: 1720, y: 23}
     isDialogueRepetable: 1
   oldGroupsNames: []
   oldUngroupedNames:
   - Single
   - Start
   - MULTIPLE
+  - A
   - EVENT
   - END2
   - END

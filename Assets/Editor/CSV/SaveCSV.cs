@@ -8,6 +8,7 @@ namespace DS.Editor.CSV
     using Runtime.Data;
     using Editor.ScriptableObjects;
     using Editor.Utilities;
+    using DS.Editor.Data;
 
     public class SaveCSV
     {
@@ -42,21 +43,31 @@ namespace DS.Editor.CSV
 
                 foreach (var nodeData in graph.GetAllOrderedNodes())
                 {
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
+                    if (nodeData.DialogueType == Enums.DialogueType.Branch) continue;
+
+                    var textNode = (TextedNodeData)nodeData;
+                    textNode.Texts = LenguageUtilities.UpdateLenguageDataSet(textNode.Texts);
+
                     List<string> nodeTexts = new List<string>();
                     nodeTexts.Add(nodeData.NodeID);
                     nodeTexts.Add(nodeData.Name);
                     foreach (LenguageType lenguage in (LenguageType[])Enum.GetValues(typeof(LenguageType)))
                     {
-                        string lenguageText = nodeData.Texts.GetLenguageData(lenguage).Data.Replace("\"", "\"\"");
+                        string lenguageText = textNode.Texts.GetLenguageData(lenguage).Data.Replace("\"", "\"\"");
                         nodeTexts.Add($"\"{lenguageText}\"");
                     }
                     AppendToFile(nodeTexts);
 
 
-                    if (nodeData.Choices != null && nodeData.Choices.Count != 0)
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
+                    if (nodeData.DialogueType == Enums.DialogueType.End) continue;
+                    var dialogueNode = (DialogueNodeData)nodeData;
+
+                    if (dialogueNode.Choices != null && dialogueNode.Choices.Count != 0)
                     {
                         int counter = 1;
-                        foreach (var choice in nodeData.Choices)
+                        foreach (var choice in dialogueNode.Choices)
                         {
                             List<string> nodeChoiceTexts = new List<string>();
                             nodeChoiceTexts.Add(choice.ChoiceID);

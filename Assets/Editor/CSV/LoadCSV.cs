@@ -53,6 +53,9 @@ namespace DS.Editor.CSV
 
                 foreach (var node in graph.GetAllOrderedNodes())
                 {
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
+                    if (node.DialogueType == Enums.DialogueType.Branch) continue;
+
                     var row = csvData.Find(x => x[0] == node.NodeID);
 
                     if (row == null || row.Count == 0)
@@ -68,13 +71,19 @@ namespace DS.Editor.CSV
                     else
                     {
                         csvData.Remove(row);
-                        LoadInToNodeText(headers, row, node);
+                        LoadInToNodeText(headers, row, (TextedNodeData)node);
                     }
 
-                    if (node.Choices != null && node.Choices.Count != 0)
+
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
+                    if (node.DialogueType == Enums.DialogueType.End) continue;
+
+                    var dialogueNode = (DialogueNodeData)node;
+
+                    if (dialogueNode.Choices != null && dialogueNode.Choices.Count != 0)
                     {
 
-                        foreach (var choice in node.Choices)
+                        foreach (var choice in dialogueNode.Choices)
                         {
                             row = csvData.Find(x => x[0] == choice.ChoiceID);
 
@@ -99,7 +108,7 @@ namespace DS.Editor.CSV
                 }
             }
         }
-        public void LoadInToNodeText(List<string> lenguageHeader, List<string> rowData, NodeData node)
+        public void LoadInToNodeText(List<string> lenguageHeader, List<string> rowData, TextedNodeData node)
         {
             for (int i = 2; i < lenguageHeader.Count; i++)
             {

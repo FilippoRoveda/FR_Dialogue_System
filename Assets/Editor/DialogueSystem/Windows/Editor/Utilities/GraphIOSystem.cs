@@ -171,7 +171,6 @@ namespace DS.Editor.Windows.Utilities
                 }
                 else
                 {
-                    //Debug.Log("Adding node to ungrouped dictionary in utilities");
                     ungroupedNodeNames.Add(node.DialogueName);
                 }
             }
@@ -196,12 +195,12 @@ namespace DS.Editor.Windows.Utilities
                     graphData.EndNodes.Add(endNodeData);
                     break;
                 default:
-                    NodeData nodeData = GetNodeData(node);
+                    DialogueNodeData nodeData = GetNodeData(node);
                     graphData.Nodes.Add(nodeData);
                     break;
             }
                    
-            static NodeData GetNodeData(DS_BaseNode node)
+            static DialogueNodeData GetNodeData(DS_BaseNode node)
             {
                 return new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
                                                        node.Group == null ? null : node.Group.ID, node.GetPosition().position);
@@ -213,7 +212,7 @@ namespace DS.Editor.Windows.Utilities
             }
             static EndNodeData GetEndNodeData(DS_EndNode node)
             {
-                return new(node.ID, node.DialogueName, node.Choices, node.Texts, node.DialogueType,
+                return new(node.ID, node.DialogueName, node.Texts, node.DialogueType,
                                                        node.Group == null ? null : node.Group.ID, node.GetPosition().position, node.IsRepetableDialogue);
             }
         }
@@ -357,9 +356,9 @@ namespace DS.Editor.Windows.Utilities
                 loadedGroups.Add(group.ID, group);
             }
         }
-        private void LoadNodes(List<NodeData> nodes)
+        private void LoadNodes(List<DialogueNodeData> nodes)
         {
-            foreach (NodeData nodeData in nodes)
+            foreach (DialogueNodeData nodeData in nodes)
             {
                 LoadNode(nodeData, true);
             }
@@ -384,13 +383,28 @@ namespace DS.Editor.Windows.Utilities
         {
             foreach (EndNodeData endNodeData in endNodes)
             {
-                var node = (DS_EndNode)LoadNode(endNodeData, false);
+                var node = graphView.CreateNode(endNodeData.Name, endNodeData.Position, endNodeData.DialogueType, false) as DS_EndNode;
+
+                node.ID = endNodeData.NodeID;
+                node.Texts = new(LenguageUtilities.UpdateLenguageDataSet(endNodeData.Texts));
+
+                graphView.AddElement(node);
+
+                if (string.IsNullOrEmpty(endNodeData.GroupID) == false)
+                {
+                    DS_Group group = loadedGroups[endNodeData.GroupID];
+                    node.Group = group;
+                    group.AddElement(node);
+
+                }
+                loadedNodes.Add(node.ID, node);
+
                 node.IsRepetableDialogue = endNodeData.IsDialogueRepetable;
                 node.Draw();
             }
         }
 
-        private DS_BaseNode LoadNode(NodeData nodeData, bool draw = false)
+        private DS_BaseNode LoadNode(DialogueNodeData nodeData, bool draw = false)
         {
             DS_BaseNode node = graphView.CreateNode(nodeData.Name, nodeData.Position, nodeData.DialogueType, false);
 

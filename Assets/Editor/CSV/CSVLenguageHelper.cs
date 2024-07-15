@@ -6,6 +6,9 @@ namespace DS.Editor.CSV
     using Runtime.ScriptableObjects;
     using Editor.ScriptableObjects;
     using Editor.Utilities;
+    using DS.Editor.Data;
+    using System.Xml;
+
     public class CSVLenguageHelper
     {
         IOUtilities IOUtils = new IOUtilities();
@@ -30,10 +33,20 @@ namespace DS.Editor.CSV
             {
                 foreach (var node in graph.GetAllNodes())
                 {
-                    node.Texts = LenguageUtilities.UpdateLenguageDataSet(node.Texts);
-                    if (node.Choices != null && node.Choices.Count != 0)
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
+                    if(node.DialogueType == Enums.DialogueType.Branch) continue;
+
+                    var textNode = (TextedNodeData)node;
+                    textNode.Texts = LenguageUtilities.UpdateLenguageDataSet(textNode.Texts);
+
+                    //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
+                    if (node.DialogueType == Enums.DialogueType.End) continue;
+
+                    var dialogueNode = (DialogueNodeData)node;
+
+                    if (dialogueNode.Choices != null && dialogueNode.Choices.Count != 0)
                     {
-                        foreach (var choice in node.Choices)
+                        foreach (var choice in dialogueNode.Choices)
                         {
                             choice.ChoiceTexts = LenguageUtilities.UpdateLenguageDataSet(choice.ChoiceTexts);
                         }

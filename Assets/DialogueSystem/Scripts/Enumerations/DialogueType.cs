@@ -24,6 +24,10 @@ namespace DS.Enums
         /// <summary>
         /// 
         /// </summary>
-        Event
+        Event,
+        /// <summary>
+        /// 
+        /// </summary>
+        Branch
     }
 }

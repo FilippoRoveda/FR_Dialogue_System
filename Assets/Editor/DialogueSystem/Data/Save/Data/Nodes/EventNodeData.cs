@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace DS.Editor.Data
     using Runtime.Data;
 
     [System.Serializable]
-    public class EventNodeData : NodeData
+    public class EventNodeData : DialogueNodeData
     {
         [SerializeField] protected List<DS_EventSO> events;
         public List<DS_EventSO> Events

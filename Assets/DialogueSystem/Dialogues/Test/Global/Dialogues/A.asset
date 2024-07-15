@@ -10,33 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
-  m_Name: Single
+  m_Name: A
   m_EditorClassIdentifier: 
-  dialogueName: Single
-  dialogueID: c7965d8a-6cf4-4ba2-bdbd-791320c96f5c
+  dialogueName: A
+  dialogueID: 61923e93-d8d2-454f-9cc7-52d6ea9df62f
   texts:
-  - Data: 'Ricordo come fosse ier le nostre notti di passione
-
-      trascorse sul
-      letto di sopra.'
-    LenguageType: 0
-  - Data: Single dialogue
-    LenguageType: 1
   - Data: A
+    LenguageType: 0
+  - Data: A
+    LenguageType: 1
+  - Data: Start Dialogue Text
     LenguageType: 2
-  - Data: AA
+  - Data: Start Dialogue Text
     LenguageType: 3
   choices:
   - choiceTexts:
-    - Data: Anche a me mancano.
-      LenguageType: 0
-    - Data: Single choice
-      LenguageType: 1
     - Data: A
+      LenguageType: 0
+    - Data: A
+      LenguageType: 1
+    - Data: Starting Choice
       LenguageType: 2
-    - Data: AA
+    - Data: Starting Choice
       LenguageType: 3
-    choiceID: 9840bb7d-23ed-4480-b66a-7b0ee7590112
-    nextDialogue: {fileID: 11400000, guid: 430bf62cad7aa814ca33d877a4e9c665, type: 2}
-  dialogueType: 0
-  isStartingDialogue: 0
+    choiceID: 7c08a0f2-58d5-4263-ae6d-4f59b6cc344f
+    nextDialogue: {fileID: 0}
+  dialogueType: 2
+  isStartingDialogue: 1

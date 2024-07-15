@@ -31,11 +31,11 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        [SerializeField] private List<NodeData> nodes;
+        [SerializeField] private List<DialogueNodeData> nodes;
         [SerializeField] private List<EventNodeData> eventNodes;
         [SerializeField] private List<EndNodeData> endNodes;
 
-        public List<NodeData> Nodes { get => nodes; set => nodes = value; }
+        public List<DialogueNodeData> Nodes { get => nodes; set => nodes = value; }
         public List<EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
         public List<EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
 
@@ -78,33 +78,33 @@ namespace DS.Editor.ScriptableObjects
         {
             GraphName = fileName;
             Groups = new List<GroupData>();
-            nodes = new List<NodeData>();
+            nodes = new List<DialogueNodeData>();
             eventNodes = new List<EventNodeData>();
             endNodes = new List<EndNodeData>();
         }
 
-        public List<NodeData> GetAllNodes()
+        public List<BaseNodeData> GetAllNodes()
         {
-            List<NodeData> allNodes = new List<NodeData>();
-            foreach (NodeData node in Nodes)
+            List<BaseNodeData> allNodes = new List<BaseNodeData>();
+            foreach (DialogueNodeData node in Nodes)
             {
                 allNodes.Add(node);
             }
-            foreach (NodeData evntNode in EventNodes)
+            foreach (DialogueNodeData evntNode in EventNodes)
             {
                 allNodes.Add(evntNode);
             }
-            foreach (NodeData endNode in EndNodes)
+            foreach (BaseNodeData endNode in EndNodes)
             {
                 allNodes.Add(endNode);
             }
             return allNodes;           
         }
 
-        List<NodeData> allNodes;
-        public List<NodeData> GetAllOrderedNodes()
+        List<BaseNodeData> allNodes;
+        public List<BaseNodeData> GetAllOrderedNodes()
         {
-            List<NodeData> orderedNodes = new List<NodeData>();
+            List<BaseNodeData> orderedNodes = new List<BaseNodeData>();
 
             allNodes = GetAllNodes();
             var startingNodes = allNodes.FindAll(x => x.DialogueType == Enums.DialogueType.Start);
@@ -125,22 +125,27 @@ namespace DS.Editor.ScriptableObjects
             return orderedNodes;
         }
        
-    private void GetAllLinkedNodes(NodeData node, ref List<NodeData> output)
+    private void GetAllLinkedNodes(BaseNodeData node, ref List<BaseNodeData> output)
         {
-            if(output == null) output = new List<NodeData>();
+            if(output == null) output = new List<BaseNodeData>();
 
             if(output.Contains(node) == false) output.Add(node);
-
-            if(node.Choices == null || node.Choices.Count == 0) return;
-
-            foreach(var choice in node.Choices)
+            if (node.DialogueType != Enums.DialogueType.End)
             {
-                var nextNode = allNodes.Find(x => x.NodeID == choice.NextNodeID);
-                if(allNodes.Contains(nextNode)) allNodes.Remove(nextNode);
+                var dialogueNode = (DialogueNodeData)node;
+                if (dialogueNode.Choices == null || dialogueNode.Choices.Count == 0) return;
 
-                if (output.Contains(nextNode) == false)
+                foreach (var choice in dialogueNode.Choices)
                 {
-                    GetAllLinkedNodes(nextNode, ref output);
+                    if(choice.NextNodeID == "" || choice.NextNodeID == string.Empty || choice.NextNodeID == null)
+                    { continue; }
+                    var nextNode = allNodes.Find(x => x.NodeID == choice.NextNodeID);
+                    if (allNodes.Contains(nextNode)) allNodes.Remove(nextNode);
+
+                    if (output.Contains(nextNode) == false)
+                    {
+                        GetAllLinkedNodes(nextNode, ref output);
+                    }
                 }
             }
             return;
