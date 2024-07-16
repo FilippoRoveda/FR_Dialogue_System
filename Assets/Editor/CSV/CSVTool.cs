@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace DS.Editor.CSV
+namespace DS.CSV
 {
     public class CSVTool : MonoBehaviour
     {

@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace DS.Editor.CSV
+namespace DS.CSV
 {
     using Enums;
     using Runtime.Data;
+
+    using Editor.Data;
     using Editor.ScriptableObjects;
     using Editor.Utilities;
-    using DS.Editor.Data;
+
 
     public class SaveCSV
     {
@@ -47,7 +49,7 @@ namespace DS.Editor.CSV
                     if (nodeData.DialogueType == Enums.DialogueType.Branch) continue;
 
                     var textNode = (TextedNodeData)nodeData;
-                    textNode.Texts = LenguageUtilities.UpdateLenguageDataSet(textNode.Texts);
+                    textNode.UpdateTextsLenguage();
 
                     List<string> nodeTexts = new List<string>();
                     nodeTexts.Add(nodeData.NodeID);

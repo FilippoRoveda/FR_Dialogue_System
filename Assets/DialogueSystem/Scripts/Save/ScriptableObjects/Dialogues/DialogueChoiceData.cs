@@ -28,6 +28,7 @@ namespace DS.Runtime.Data
             set { choiceID = value; }
         }
 
+
         [SerializeField] private BaseDialogueSO nextDialogue;
         /// <summary>
         /// Reference the next dialogue scriptable object data.

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 
-namespace DS.Editor.CSV
+namespace DS.CSV
 {
-    using Runtime.Data;
-    using Runtime.ScriptableObjects;
     using Editor.Data;
     using Editor.ScriptableObjects;
     using Editor.Utilities;
@@ -14,33 +12,8 @@ namespace DS.Editor.CSV
         IOUtilities IOUtils = new IOUtilities();
         public void UpdateLenguages()
         {
-
-            List<DialogueContainerSO> containers = IOUtils.LoadAssetsFromPath<DialogueContainerSO>("Assets/DialogueSystem/Dialogues");
-            foreach (var container in containers)
-            {
-                foreach (var node in container.GetAllDialogues())
-                {
-                    //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
-                    if (node.DialogueType != Enums.DialogueType.Branch)
-                    {
-                        var textNode = (TextedDialogueSO)node;
-                        textNode.Texts = LenguageUtilities.UpdateLenguageDataSet(textNode.Texts);
-                    }
-
-                    //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
-                    if (node.DialogueType == Enums.DialogueType.End) continue;
-
-                    var dialogueNode = (DialogueSO)node;
-                    if (dialogueNode.Choices != null && dialogueNode.Choices.Count != 0)
-                    {
-                        foreach (var choice in dialogueNode.Choices)
-                        {
-                            choice.ChoiceTexts = LenguageUtilities.UpdateLenguageDataSet(choice.ChoiceTexts);
-                        }
-                    }
-                }
-            }
-
+            //Update only the editor graph so object, then open it and savi it overriding the generated 
+            //runtime objects
             List<DS_GraphSO> graphs = IOUtils.LoadAssetsFromPath<DS_GraphSO>("Assets/Editor/Files/Graphs");
             foreach (var graph in graphs)
             {
@@ -50,7 +23,7 @@ namespace DS.Editor.CSV
                     if(node.DialogueType != Enums.DialogueType.Branch)
                     {
                         var textNode = (TextedNodeData)node;
-                        textNode.Texts = LenguageUtilities.UpdateLenguageDataSet(textNode.Texts);
+                        textNode.UpdateTextsLenguage();
                     }
 
 
@@ -64,7 +37,7 @@ namespace DS.Editor.CSV
                     {
                         foreach (var choice in dialogueNode.Choices)
                         {
-                            choice.ChoiceTexts = LenguageUtilities.UpdateLenguageDataSet(choice.ChoiceTexts);
+                            choice.UpdateTextsLenguages();
                         }
                     }
                 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -5,14 +6,13 @@ using System.Collections.Generic;
 namespace DS.Editor.Data
 {
     using Runtime.Data;
-    using System;
 
     /// <summary>
     /// Class that hold choice informations to be saved inside DS_Node_SaveData.
     /// </summary>
     [System.Serializable]
     public class ChoiceData
-    {       
+    {
 
         [SerializeField] private List<LenguageData<string>> choiceTexts;
         public List<LenguageData<string>> ChoiceTexts 
@@ -34,6 +34,7 @@ namespace DS.Editor.Data
             set {  nextNodeID = value; }
         }
 
+
         public ChoiceData() 
         {
             choiceID = Guid.NewGuid().ToString();
@@ -48,7 +49,11 @@ namespace DS.Editor.Data
         {
             choiceID = choice.ChoiceID;
             ChoiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
-            NextNodeID = choice.NextNodeID;          
+            NextNodeID = choice.NextNodeID;
+        }
+        public void UpdateTextsLenguages()
+        {
+            ChoiceTexts = LenguageUtilities.UpdateLenguageDataSet(ChoiceTexts);
         }
     }
 }

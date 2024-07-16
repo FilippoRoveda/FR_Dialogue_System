@@ -4,7 +4,6 @@ using System.Collections.Generic;
 namespace DS.Runtime.Data
 {
     using Enums;
-
     public static class LenguageUtilities
     {
         public static List<LenguageData<T>> InitLenguageDataSet<T>(T defaultData = null) where T : class

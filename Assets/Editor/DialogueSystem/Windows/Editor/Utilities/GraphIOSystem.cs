@@ -328,7 +328,7 @@ namespace DS.Editor.Windows.Utilities
                         IOUtilities.RemoveFolder($"{containerFolderPath}/Groups/{oldGroupedNodes.Key}");
                     }
                 }
-                graphData.OldGroupedNodesNames = new SerializableDictionary<string, List<string>>(currentGroupedNodeNames);
+                graphData.OldGroupedNodesNames = new Dictionary<string, List<string>>(currentGroupedNodeNames);
             }
         }
         private void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, DS_GraphSO graphData)

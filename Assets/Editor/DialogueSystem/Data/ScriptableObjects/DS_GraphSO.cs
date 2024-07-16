@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace DS.Editor.ScriptableObjects
 {
-
-    using Runtime.Utilities;
-    using Data;
+    using Editor.Data;
 
     public class DS_GraphSO : ScriptableObject
     {
@@ -63,11 +61,11 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        [SerializeField] private SerializableDictionary<string, List<string>> oldGroupedNodesNames;
+        [SerializeField] private Dictionary<string, List<string>> oldGroupedNodesNames;
         /// <summary>
         /// Serialized dictionary that as key hold the name of an old group and as value hold a list of old nodes for updating graph functions.
         /// </summary>
-        public SerializableDictionary<string, List<string>> OldGroupedNodesNames 
+        public Dictionary<string, List<string>> OldGroupedNodesNames 
         { 
             get { return oldGroupedNodesNames; }
             set { oldGroupedNodesNames = value; }

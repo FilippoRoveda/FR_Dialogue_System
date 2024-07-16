@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace DS.Editor.CSV
+namespace DS.CSV
 {
     using Editor.Data;
     using Editor.ScriptableObjects;

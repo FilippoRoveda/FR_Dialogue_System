@@ -19,6 +19,7 @@ namespace DS.Editor.Windows.Elements
     /// </summary>
     public class DS_BaseNode : Node
     {
+        #region Datas
         [SerializeField] public string ID {  get; set; }
         [SerializeField] public string DialogueName { get; set; }
 
@@ -47,7 +48,7 @@ namespace DS.Editor.Windows.Elements
         [SerializeField] public DialogueType DialogueType { get; private set; }
         [SerializeField] public DS_Group Group { get; set; } //Da far diventare group ID come stringa
 
-
+        #endregion
         protected TextField dialogueTextTextField;
 
         protected DS_GraphView graphView;
@@ -66,7 +67,6 @@ namespace DS.Editor.Windows.Elements
             SetNodeStyle();
             graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
         }
-
 
 
         public virtual void Draw()
@@ -222,11 +222,10 @@ namespace DS.Editor.Windows.Elements
             choiceTextField.style.flexDirection = FlexDirection.Column;
 
             choicePort.Insert(1, choiceTextField);
+
             outputContainer.Add(choicePort);
             return choicePort;
         }
-
-
         #endregion
 
         #region Utilities

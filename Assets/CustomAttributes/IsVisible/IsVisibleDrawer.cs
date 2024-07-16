@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 [CustomPropertyDrawer(typeof(IsVisible))]
 public class ConditionalVisibleDrawer : PropertyDrawer
@@ -37,7 +36,6 @@ public class ConditionalVisibleDrawer : PropertyDrawer
         {
             return (bool)conditionProperty.GetValue(target);
         }
-        //DS.Utilities.Logger.Warning($"IsVisibleDrawer: No matching field or property found for {conditionFieldName}");
         return false;
     }
 }

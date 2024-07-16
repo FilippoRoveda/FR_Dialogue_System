@@ -6,6 +6,7 @@ namespace DS.Editor.Data
 {
     using Runtime.Data;
     using Enums;
+    using UnityEditor.TestTools.TestRunner.Api;
 
     [System.Serializable]
     public class TextedNodeData : BaseNodeData
@@ -35,6 +36,11 @@ namespace DS.Editor.Data
 
             this.Texts = new List<LenguageData<string>>(_texts);
             this.Texts = LenguageUtilities.UpdateLenguageDataSet(_texts);
+        }
+
+        public void UpdateTextsLenguage()
+        {
+            Texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
         }
     }
 }

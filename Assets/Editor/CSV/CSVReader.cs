@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-namespace DS.Editor.CSV
+namespace DS.CSV
 {
     public class CSVReader
     {
