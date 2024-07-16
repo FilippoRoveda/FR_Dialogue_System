@@ -31,14 +31,15 @@ namespace DS.Editor.ScriptableObjects
         }
 
 
-        [SerializeField] private List<DialogueNodeData> nodes;
+        [SerializeField] private List<DialogueNodeData> dialogueNodes; //Start, Single, Multiple
         [SerializeField] private List<EventNodeData> eventNodes;
         [SerializeField] private List<EndNodeData> endNodes;
+        //[SerializeField] private List<BranchNodeData> branchNodes;
 
-        public List<DialogueNodeData> Nodes { get => nodes; set => nodes = value; }
+        public List<DialogueNodeData> DialogueNodes { get => dialogueNodes; set => dialogueNodes = value; }
         public List<EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
         public List<EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
-
+        //public List<BranchNodeData> BranchNodes { get => branchNodes; set => branchNodes = value; }
 
         [SerializeField] private List<string> oldGroupsNames;
         /// <summary>
@@ -78,7 +79,7 @@ namespace DS.Editor.ScriptableObjects
         {
             GraphName = fileName;
             Groups = new List<GroupData>();
-            nodes = new List<DialogueNodeData>();
+            dialogueNodes = new List<DialogueNodeData>();
             eventNodes = new List<EventNodeData>();
             endNodes = new List<EndNodeData>();
         }
@@ -86,7 +87,7 @@ namespace DS.Editor.ScriptableObjects
         public List<BaseNodeData> GetAllNodes()
         {
             List<BaseNodeData> allNodes = new List<BaseNodeData>();
-            foreach (DialogueNodeData node in Nodes)
+            foreach (DialogueNodeData node in DialogueNodes)
             {
                 allNodes.Add(node);
             }
@@ -98,6 +99,10 @@ namespace DS.Editor.ScriptableObjects
             {
                 allNodes.Add(endNode);
             }
+            //foreach (BranchNodeData branchNode in BranchNodes)
+            //{
+            //    allNodes.Add(branchNode);
+            //}
             return allNodes;           
         }
 

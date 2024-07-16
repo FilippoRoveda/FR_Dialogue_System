@@ -14,22 +14,22 @@ namespace DS.Runtime.ScriptableObjects
             get { return graphName; }
             set { graphName = value; }
         }
-        [SerializeField] private SerializableDictionary<DialogueGroupSO, List<DialogueSO>> dialogueGroups;
+        [SerializeField] private SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>> dialogueGroups;
 
         /// <summary>
         /// Dictionary containing as key a group scriptable object and as a value a list of owned dialogue scriptable objects.
         /// </summary>
-        public SerializableDictionary<DialogueGroupSO, List<DialogueSO>> DialogueGroups
+        public SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>> DialogueGroups
         {
             get { return dialogueGroups; }
             set { dialogueGroups = value; }
         }
 
-        [SerializeField] private List<DialogueSO> ungroupedDialogues;
+        [SerializeField] private List<BaseDialogueSO> ungroupedDialogues;
         /// <summary>
         /// List of ungrouped dialogues scriptable objects.
         /// </summary>
-        public List<DialogueSO> UngroupedDialogues
+        public List<BaseDialogueSO> UngroupedDialogues
         {
             get { return ungroupedDialogues; }
             set { ungroupedDialogues = value; }
@@ -38,33 +38,33 @@ namespace DS.Runtime.ScriptableObjects
         public void Initialize(string filename)
         {
             GraphName = filename;
-            DialogueGroups = new SerializableDictionary<DialogueGroupSO, List<DialogueSO>>();
-            UngroupedDialogues = new List<DialogueSO>();
+            DialogueGroups = new SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>>();
+            UngroupedDialogues = new List<BaseDialogueSO>();
         }
 
 
-        public List<DialogueSO> GetAllDialogues()
+        public List<BaseDialogueSO> GetAllDialogues()
         {
-            List<DialogueSO> dialogues = new List<DialogueSO>();
+            List<BaseDialogueSO> dialogues = new List<BaseDialogueSO>();
             foreach (DialogueGroupSO group in DialogueGroups.Keys)
             {
-                foreach (DialogueSO dialogue in DialogueGroups[group])
+                foreach (BaseDialogueSO dialogue in DialogueGroups[group])
                 {
                     dialogues.Add(dialogue);
                 }
             }
-            foreach (DialogueSO dialogue in UngroupedDialogues)
+            foreach (BaseDialogueSO dialogue in UngroupedDialogues)
             {
                 dialogues.Add(dialogue);
             }
             return dialogues;
         }
-        public List<DialogueSO> GetStartingDialogues()
+        public List<BaseDialogueSO> GetStartingDialogues()
         {
-            List<DialogueSO> startingDialogues = new List<DialogueSO>();
+            List<BaseDialogueSO> startingDialogues = new List<BaseDialogueSO>();
             foreach(DialogueGroupSO group in DialogueGroups.Keys)
             {
-                foreach(DialogueSO dialogue in DialogueGroups[group])
+                foreach(BaseDialogueSO dialogue in DialogueGroups[group])
                 {
                     if(dialogue.IsStartingDialogue == true)
                     {
@@ -72,7 +72,7 @@ namespace DS.Runtime.ScriptableObjects
                     }
                 }
             }
-            foreach(DialogueSO dialogue in UngroupedDialogues)
+            foreach(BaseDialogueSO dialogue in UngroupedDialogues)
             {
                 if (dialogue.IsStartingDialogue == true)
                 {

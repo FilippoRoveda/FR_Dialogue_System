@@ -46,7 +46,7 @@ namespace DS.Editor.Windows.Utilities
         private List<DS_BaseNode> nodes;
 
         public Dictionary<string, DialogueGroupSO> createdGroupsSO;
-        public Dictionary<string, DialogueSO> createdDialoguesSO;
+        public Dictionary<string, BaseDialogueSO> createdDialoguesSO;
 
         private Dictionary<string, DS_Group> loadedGroups;
         private Dictionary<string, DS_BaseNode> loadedNodes;
@@ -67,7 +67,7 @@ namespace DS.Editor.Windows.Utilities
             groups = new List<DS_Group>();
             nodes = new List<DS_BaseNode>();
             createdGroupsSO = new Dictionary<string, DialogueGroupSO>();
-            createdDialoguesSO = new Dictionary<string, DialogueSO>();
+            createdDialoguesSO = new Dictionary<string, BaseDialogueSO>();
 
             loadedGroups = new Dictionary<string, DS_Group>();
             loadedNodes = new Dictionary<string, DS_BaseNode>();
@@ -126,7 +126,7 @@ namespace DS.Editor.Windows.Utilities
 
             createdGroupsSO.Add(group.ID, dialogueGroup);
 
-            dialogueContainer.DialogueGroups.Add(dialogueGroup, new List<DialogueSO>());
+            dialogueContainer.DialogueGroups.Add(dialogueGroup, new List<BaseDialogueSO>());
 
             IOUtilities.SaveAsset(dialogueGroup);
         }
@@ -151,8 +151,12 @@ namespace DS.Editor.Windows.Utilities
             foreach(DS_BaseNode node in nodes)
             {
                 SaveNodeInGraphData(node, graphData);
+
                 switch (node.DialogueType)
                 {
+                    case Enums.DialogueType.Branch:
+                        SaveNodeToSO<BranchDialogueSO>(node, dialogueContainer);
+                        break;
                     case Enums.DialogueType.Event:
                         SaveNodeToSO<EventDialogueSO>(node, dialogueContainer);
                         break;
@@ -186,6 +190,11 @@ namespace DS.Editor.Windows.Utilities
         {
             switch (node.DialogueType)
             {
+                case Enums.DialogueType.Branch:
+                    //BranchNodeData branchNodeData = GetBranchNodeData((DS_BranchNode)node);
+                    //branchNodeData peculiar functions
+                    //graphData.BranchesNodes.Add(branchNodeData);
+                    break;
                 case Enums.DialogueType.Event:
                     EventNodeData eventNodeData = GetEventNodeData((DS_EventNode)node);
                     graphData.EventNodes.Add(eventNodeData);
@@ -196,7 +205,7 @@ namespace DS.Editor.Windows.Utilities
                     break;
                 default:
                     DialogueNodeData nodeData = GetNodeData(node);
-                    graphData.Nodes.Add(nodeData);
+                    graphData.DialogueNodes.Add(nodeData);
                     break;
             }
                    
@@ -216,7 +225,7 @@ namespace DS.Editor.Windows.Utilities
                                                        node.Group == null ? null : node.Group.ID, node.GetPosition().position, node.IsRepetableDialogue);
             }
         }
-        private void SaveNodeToSO<T>(DS_BaseNode node, DialogueContainerSO dialogueContainer) where T :DialogueSO
+        private void SaveNodeToSO<T>(DS_BaseNode node, DialogueContainerSO dialogueContainer) where T : BaseDialogueSO
         {
             T dialogue;
 
@@ -232,16 +241,28 @@ namespace DS.Editor.Windows.Utilities
                 dialogueContainer.DialogueGroups.AddItem(createdGroupsSO[node.Group.ID], dialogue);
             }
 
-            dialogue.Initialize(node.DialogueName, node.ID, node.Texts, NodeToDialogueChoice(node.Choices), node.DialogueType, node.IsStartingNode());
-
-            if(node.DialogueType == Enums.DialogueType.Event)
+            switch(node.DialogueType)
             {
-                (dialogue as EventDialogueSO).SaveEvents(((DS_EventNode)node).DialogueEvents);
-            }
-            else if (node.DialogueType == Enums.DialogueType.End)
-            {
-                (dialogue as EndDialogueSO).SetRepetableDialogue(((DS_EndNode)node).IsRepetableDialogue);
-            }
+                case Enums.DialogueType.Branch:                 
+                    var branchDialogue = (dialogue as BranchDialogueSO);
+                    branchDialogue.Initialize(node.DialogueName, node.ID, node.DialogueType, node.IsStartingNode());
+                    //
+                    break;
+                case Enums.DialogueType.End:
+                    var endDialogue = (dialogue as EndDialogueSO);
+                    endDialogue.Initialize(node.DialogueName, node.ID, node.DialogueType, node.IsStartingNode(), node.Texts);
+                    endDialogue.SetRepetableDialogue(((DS_EndNode)node).IsRepetableDialogue);
+                    break;
+                case Enums.DialogueType.Event:
+                    var eventDialogue = (dialogue as EventDialogueSO);
+                    eventDialogue.Initialize(node.DialogueName, node.ID, node.DialogueType, node.IsStartingNode(), node.Texts, NodeToDialogueChoice(node.Choices));
+                    eventDialogue.SaveEvents(((DS_EventNode)node).DialogueEvents);
+                    break;
+                default:
+                    var fullDialoue = (dialogue as DialogueSO);
+                    fullDialoue.Initialize(node.DialogueName, node.ID, node.DialogueType, node.IsStartingNode(), node.Texts, NodeToDialogueChoice(node.Choices));
+                    break;
+             }
 
             createdDialoguesSO.Add(node.ID, dialogue);
             IOUtilities.SaveAsset(dialogue);
@@ -264,18 +285,24 @@ namespace DS.Editor.Windows.Utilities
         {
            foreach(DS_BaseNode node in nodes)
             {
-                DialogueSO dialogue = createdDialoguesSO[node.ID];
+                BaseDialogueSO dialogue = createdDialoguesSO[node.ID];
 
-                for(int choiceIndex = 0; choiceIndex < node.Choices.Count; choiceIndex++)
+                if (node.DialogueType != Enums.DialogueType.End) // Aggiungere caso per branch
                 {
-                    ChoiceData choice = node.Choices[choiceIndex];
+                    var choicedDialogue = dialogue as DialogueSO;
 
-                    if (string.IsNullOrEmpty(choice.NextNodeID)) continue;
+                    for (int choiceIndex = 0; choiceIndex < node.Choices.Count; choiceIndex++)
+                    {
+                        ChoiceData choice = node.Choices[choiceIndex];
 
-                    dialogue.Choices[choiceIndex].NextDialogue = createdDialoguesSO[choice.NextNodeID];
-                    
-                    IOUtilities.SaveAsset(dialogue);
+                        if (string.IsNullOrEmpty(choice.NextNodeID)) continue;
+
+                        choicedDialogue.Choices[choiceIndex].NextDialogue = createdDialoguesSO[choice.NextNodeID];
+
+                        IOUtilities.SaveAsset(dialogue);
+                    }
                 }
+                else continue;
             }
         }
 
@@ -337,7 +364,8 @@ namespace DS.Editor.Windows.Utilities
             graphView.EditorWindow.UpdateFilename(graphData.GraphName);
 
             LoadGroups(graphData.Groups);
-            LoadNodes(graphData.Nodes);
+            //LoadBranchNodes(graphData.BranchNodes);
+            LoadNodes(graphData.DialogueNodes);
             LoadEventNodes(graphData.EventNodes);
             LoadEndNodes(graphData.EndNodes);
             LoadNodesConnections();

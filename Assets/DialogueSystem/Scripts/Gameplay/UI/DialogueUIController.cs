@@ -28,9 +28,9 @@ namespace DS.Runtime.Gameplay
 
 
         [SerializeField] private TalkComponent startSpeaker;
-        [SerializeField] private DialogueSO startingDialogue;
+        [SerializeField] private TextedDialogueSO startingDialogue;
 
-        [SerializeField] private DialogueSO currentDialogue;
+        [SerializeField] private TextedDialogueSO currentDialogue;
 
         #region Unity callbacks
         private void Awake()
@@ -80,12 +80,12 @@ namespace DS.Runtime.Gameplay
         }
         public void OnEndDialogueButtonPressed()
         {
-            bool isRepetable = false;
-            if (currentDialogue.DialogueType == Enums.DialogueType.End) isRepetable = ((EndDialogueSO)currentDialogue).IsDialogueRepetable;
-            DialogueManager.Instance.EndDialogue(startingDialogue, isRepetable);
+            //bool isRepetable = false;
+            //if (currentDialogue.DialogueType == Enums.DialogueType.End) isRepetable = ((EndDialogueSO)currentDialogue).IsDialogueRepetable;
+            //DialogueManager.Instance.EndDialogue(startingDialogue, isRepetable);
 
-            ClearFields();
-            container.SetActive(false);
+            //ClearFields();
+            //container.SetActive(false);
         }
 
         public void OnChoiceSelected(DialogueSO nextDialogue)
@@ -145,16 +145,16 @@ namespace DS.Runtime.Gameplay
         }
         public void SetupChoices()
         {
-            if(currentDialogue.DialogueType == Enums.DialogueType.End | currentDialogue.Choices == null | currentDialogue.Choices.Count == 0)
-            {
-                endDialogueButton.gameObject.SetActive(true);
-                return;
-            }
-            for(int i = 0; i < currentDialogue.Choices.Count; i++)
-            {
-                choicesUI[i].SetupChoiceUI(currentDialogue.Choices[i]);
-                choicesUI[i].gameObject.SetActive(true);
-            }
+            //if(currentDialogue.DialogueType == Enums.DialogueType.End | currentDialogue.Choices == null | currentDialogue.Choices.Count == 0)
+            //{
+            //    endDialogueButton.gameObject.SetActive(true);
+            //    return;
+            //}
+            //for(int i = 0; i < currentDialogue.Choices.Count; i++)
+            //{
+            //    choicesUI[i].SetupChoiceUI(currentDialogue.Choices[i]);
+            //    choicesUI[i].gameObject.SetActive(true);
+            //}
         }    
     }
 }
