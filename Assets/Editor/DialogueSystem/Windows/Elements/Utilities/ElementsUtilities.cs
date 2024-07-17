@@ -2,7 +2,7 @@ using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
     /// <summary>
     /// Utilities class that contain utilities to facilitate Graph ELements.
@@ -81,7 +81,7 @@ namespace DS.Editor.Windows.Elements
         /// <param name="direction">Direction of the port.</param>
         /// <param name="capacity">Connection capacity of the port.</param>
         /// <returns>The generated port.</returns>
-        public static Port CreatePort( this DS_BaseNode node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
+        public static Port CreatePort( this BaseNode node, string portName = "", Orientation orientation = Orientation.Horizontal, Direction direction = Direction.Input, Port.Capacity capacity = Port.Capacity.Single)
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
             return port;

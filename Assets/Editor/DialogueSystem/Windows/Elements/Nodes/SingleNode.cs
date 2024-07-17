@@ -1,16 +1,20 @@
 using UnityEngine;
 
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
     using Enums;
     using Editor.Data;
+    using DS.Editor.Windows;
+    using UnityEditor.Experimental.GraphView;
 
     /// <summary>
     /// Child class that represent a single choice version of the base DS_Node.
     /// </summary>
-    public class DS_SingleNode : DS_BaseNode
+    public class SingleNode : DialogueNode
     {
+        protected Port inputPort;
+        protected Port outputPort;
 
         #region Unity callbacks
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
@@ -19,14 +23,15 @@ namespace DS.Editor.Windows.Elements
             SetDialogueType(DialogueType.Single);
 
             ChoiceData choiceData = new ChoiceData("Next Choice");
-            Choices.Add(choiceData);
+            Data.Choices.Add(choiceData);
         }
         public override void Draw()
         {
             base.Draw();
-            CreateInputPort();
 
-            CreateOutputPortFromChoices();
+            inputPort = CreateInputPort();
+            outputPort = CreateOutputPortFromChoices()[0];
+
             RefreshExpandedState();
         }
         protected override void SetNodeStyle()

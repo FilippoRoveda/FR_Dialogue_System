@@ -2,7 +2,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using System;
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
     /// <summary>
     /// Base class for DialogueSystem node group.

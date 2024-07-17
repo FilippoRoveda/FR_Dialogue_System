@@ -5,6 +5,7 @@ namespace DS.Editor.Data
 {
     using Runtime.Data; 
     using Enums;
+    using DS.Editor.Elements;
 
     /// <summary>
     /// Class that hold node informations to be contained in a graph scriptable object.
@@ -28,25 +29,20 @@ namespace DS.Editor.Data
        
         public DialogueNodeData() : base()
         {
-            
+            choices = new List<ChoiceData>();
         }
 
-        public DialogueNodeData(string _nodeID, string _dialogueName, List<ChoiceData> _choices,
-                                List<LenguageData<string>> _texts, DialogueType _dialogueType,
-                                string _groupID, Vector2 _position) 
-                                : base(_nodeID, _dialogueName, _texts, _dialogueType, _groupID, _position)
-        {
-            
-            
+        public DialogueNodeData(DialogueNode node) : base(node)
+        {          
             List<ChoiceData> choices = new List<ChoiceData>();
-            foreach(ChoiceData choice in _choices)
+            foreach(ChoiceData choice in node.Data.Choices)
             {
                 ChoiceData choice_SaveData = new ChoiceData(choice);
                 
                 choices.Add(choice_SaveData);
             }
 
-            this.Choices = new List<ChoiceData>(choices);                    
+            Choices = new List<ChoiceData>(choices);                    
         }
     }
 }

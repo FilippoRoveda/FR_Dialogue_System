@@ -18,28 +18,25 @@ namespace DS.Editor.Windows
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
-        protected GraphIOSystem ioUtilities;
-        protected Toolbar toolbar;
-
-
+        protected GraphIOSystem saveSystem;
 
         private readonly LenguageType defaultLenguage = LenguageType.Italian;
         public LenguageType currentLenguage;
 
-        protected readonly string defaultSavedGraphPath = "Assets/Editor/DialogueSystem/Graphs";
+        protected readonly string defaultSavedGraphPath = "Assets/Editor/Files/Graphs";
         protected readonly string defaultFileName = "DialogueFileName";
 
+        protected Toolbar toolbar;
         protected TextField filenameTextField;
-
         protected Button saveGraphButton;
-        private Button loadButton;
         protected Button clearButton;
-        private Button resetButton;
         protected Button toggleMinimapButton;
-
         protected ToolbarMenu toolbarMenu;
 
-        protected DS_GraphView graph_View;
+        private Button loadButton;
+        private Button resetButton;
+
+        protected DS_GraphView linkedGraphView;
 
         public UnityEvent<LenguageType> EditorWindowLenguageChanged = new();
 
@@ -75,18 +72,17 @@ namespace DS.Editor.Windows
         {
             toolbarMenu.text = "Lenguage: " + lenguage.ToString();
             currentLenguage = lenguage;
-
-            Logger.Error("To implement lenguage selection!");
+            Debug.Log("Changing lenguage");
             EditorWindowLenguageChanged?.Invoke(currentLenguage);
             return null;
         }
 
         protected void AddGraphView()
         {
-            ioUtilities = new GraphIOSystem();
-            graph_View = new DS_GraphView(this);
-            graph_View.StretchToParentSize();
-            rootVisualElement.Add(graph_View);
+            saveSystem = new GraphIOSystem();
+            linkedGraphView = new DS_GraphView(this);
+            linkedGraphView.StretchToParentSize();
+            rootVisualElement.Add(linkedGraphView);
         }
 
         /// <summary>
@@ -135,24 +131,24 @@ namespace DS.Editor.Windows
                 return;
             }
 
-            ioUtilities.Initialize(graph_View, filenameTextField.value);
-            ioUtilities.SaveGraph();
+            saveSystem.Initialize(linkedGraphView, filenameTextField.value);
+            saveSystem.SaveGraph();
         }
 
         private void OnLoadButtonPressed()
         {
-            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/Files/Graphs", "asset");
+            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", defaultSavedGraphPath, "asset");
             if(string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
-                ioUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
-                ioUtilities.LoadGraph();
+                saveSystem.Initialize(linkedGraphView, Path.GetFileNameWithoutExtension(filePath));
+                saveSystem.LoadGraph();
             }
         }
 
         protected void OnClearButtonPressed()
         {
-            graph_View?.ClearGraph();
+            linkedGraphView?.ClearGraph();
         }
 
         private void OnResetGraphButtonPressed()
@@ -163,7 +159,7 @@ namespace DS.Editor.Windows
 
         protected void OnToggleMinimapButtonPressed()
         {
-            graph_View.ToggleMinimap();
+            linkedGraphView.ToggleMinimap();
 
             toggleMinimapButton.ToggleInClassList("ds-toolbar_button_selected");
         }

@@ -65,23 +65,23 @@ namespace DS.Editor.Windows
             switch (SearchTreeEntry.userData) 
             {
                 case DialogueType.Start:
-                    DS_StartNode startNode = (DS_StartNode)graphView.CreateNode("StartNode", localMousePosition, DialogueType.Start);
+                    StartNode startNode = (StartNode)graphView.CreateNode("StartNode", localMousePosition, DialogueType.Start);
                     graphView.AddElement(startNode);
                     return true;
                 case DialogueType.Single:
-                    DS_SingleNode singleChoiceNode = (DS_SingleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Single);
+                    SingleNode singleChoiceNode = (SingleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Single);
                     graphView.AddElement(singleChoiceNode);
                     return true;
                 case DialogueType.Multiple:
-                    DS_MultipleNode multipleChoiceNode = (DS_MultipleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Multiple);
+                    MultipleNode multipleChoiceNode = (MultipleNode) graphView.CreateNode("DialogueName", localMousePosition, DialogueType.Multiple);
                     graphView.AddElement(multipleChoiceNode);
                     return true;
                 case DialogueType.Event:
-                    DS_EventNode eventNode = (DS_EventNode)graphView.CreateNode("EventNode", localMousePosition, DialogueType.Event);
+                    EventNode eventNode = (EventNode)graphView.CreateNode("EventNode", localMousePosition, DialogueType.Event);
                     graphView.AddElement(eventNode);
                     return true;
                 case DialogueType.End:
-                    DS_EndNode endNode = (DS_EndNode)graphView.CreateNode("EndNode", localMousePosition, DialogueType.End);
+                    EndNode endNode = (EndNode)graphView.CreateNode("EndNode", localMousePosition, DialogueType.End);
                     graphView.AddElement(endNode);
                     return true;
                 case Group _:

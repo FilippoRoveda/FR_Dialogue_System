@@ -5,78 +5,30 @@ namespace DS.Editor.ScriptableObjects
 {
     using Editor.Data;
 
-    public class DS_GraphSO : ScriptableObject
+    public class GraphSO : ScriptableObject
     {
-        [SerializeField] private string graphName;
-        /// <summary>
-        /// Filename for the graph.
-        /// </summary>
-        public string GraphName 
-        {
-            get { return graphName; } 
-            set {  graphName = value; } 
-        }
+        [SerializeField] public string graphName;
 
 
-        [SerializeField] private List<GroupData> groups;
-        /// <summary>
-        /// List of group save data for the groups contained in this graph.
-        /// </summary>
-        public List<GroupData> Groups 
-        { 
-            get { return groups; } 
-            set {  groups = value; } 
-        }
+        [SerializeField] public List<GroupData> groups;
 
 
-        [SerializeField] private List<DialogueNodeData> dialogueNodes; //Start, Single, Multiple
-        [SerializeField] private List<EventNodeData> eventNodes;
-        [SerializeField] private List<EndNodeData> endNodes;
+        [SerializeField] public List<DialogueNodeData> dialogueNodes; //Start, Single, Multiple
+        [SerializeField] public List<EventNodeData> eventNodes;
+        [SerializeField] public List<EndNodeData> endNodes;
         //[SerializeField] private List<BranchNodeData> branchNodes;
 
-        public List<DialogueNodeData> DialogueNodes { get => dialogueNodes; set => dialogueNodes = value; }
-        public List<EventNodeData> EventNodes { get => eventNodes; set => eventNodes = value; }
-        public List<EndNodeData> EndNodes { get => endNodes; set => endNodes = value; }
-        //public List<BranchNodeData> BranchNodes { get => branchNodes; set => branchNodes = value; }
 
-        [SerializeField] private List<string> oldGroupsNames;
-        /// <summary>
-        /// List of old group names for updating graph functions.
-        /// </summary>
-        public List<string> OldGroupsNames 
-        { 
-            get { return oldGroupsNames; } 
-            set {  oldGroupsNames = value; } 
-        }
-
-
-        [SerializeField] private List<string> oldUngroupedNames;
-        /// <summary>
-        /// List of old ungrouped nodes names for updating graph functions.
-        /// </summary>
-        public List<string> OldUngroupedNodesNames 
-        { 
-            get { return oldUngroupedNames; } 
-            set { oldUngroupedNames = value; }
-        }
-
-
-        [SerializeField] private Dictionary<string, List<string>> oldGroupedNodesNames;
-        /// <summary>
-        /// Serialized dictionary that as key hold the name of an old group and as value hold a list of old nodes for updating graph functions.
-        /// </summary>
-        public Dictionary<string, List<string>> OldGroupedNodesNames 
-        { 
-            get { return oldGroupedNodesNames; }
-            set { oldGroupedNodesNames = value; }
-        }
+        [SerializeField] public List<string> oldGroupsNames;
+        [SerializeField] public List<string> oldUngroupedNames;
+        [SerializeField] public Dictionary<string, List<string>> oldGroupedNodesNames;
 
 
 
         public void Initialize(string fileName)
         {
-            GraphName = fileName;
-            Groups = new List<GroupData>();
+            graphName = fileName;
+            groups = new List<GroupData>();
             dialogueNodes = new List<DialogueNodeData>();
             eventNodes = new List<EventNodeData>();
             endNodes = new List<EndNodeData>();
@@ -85,15 +37,15 @@ namespace DS.Editor.ScriptableObjects
         public List<BaseNodeData> GetAllNodes()
         {
             List<BaseNodeData> allNodes = new List<BaseNodeData>();
-            foreach (DialogueNodeData node in DialogueNodes)
+            foreach (DialogueNodeData node in dialogueNodes)
             {
                 allNodes.Add(node);
             }
-            foreach (DialogueNodeData evntNode in EventNodes)
+            foreach (DialogueNodeData evntNode in eventNodes)
             {
                 allNodes.Add(evntNode);
             }
-            foreach (BaseNodeData endNode in EndNodes)
+            foreach (BaseNodeData endNode in endNodes)
             {
                 allNodes.Add(endNode);
             }

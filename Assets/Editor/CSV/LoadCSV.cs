@@ -22,19 +22,19 @@ namespace DS.CSV
         {
             bool errorFlag = false;
 
-            List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
-            foreach (DS_GraphSO graph in graphs)
+            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(graphFilesPath);
+            foreach (GraphSO graph in graphs)
             {
                 LoadCSVInToGraph(graph, out errorFlag);
                 IO.SaveAsset(graph);
             }
             return errorFlag;
         }
-        public void LoadCSVInToGraph(DS_GraphSO graph, out bool errorFlag)
+        public void LoadCSVInToGraph(GraphSO graph, out bool errorFlag)
         {
             errorFlag = false;
 
-            var graphCSVPath = CSVFilesPath + graph.GraphName + ".csv";
+            var graphCSVPath = CSVFilesPath + graph.graphName + ".csv";
             var csvData = CSVReader.ParseCSV(File.ReadAllText(graphCSVPath));
 
             if (csvData == null || csvData.Count == 0)

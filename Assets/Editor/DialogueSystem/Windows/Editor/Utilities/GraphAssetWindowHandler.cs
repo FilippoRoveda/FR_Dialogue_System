@@ -12,9 +12,9 @@ namespace DS.Editor.Windows
         {
             UnityEngine.Object item = EditorUtility.InstanceIDToObject(_instanceID);
 
-            if (item is DS_GraphSO)
+            if (item is GraphSO)
             {
-                DS_GraphSO assetGraph = item as DS_GraphSO;
+                GraphSO assetGraph = item as GraphSO;
                 DS_AssetEditorWindow.OpenWindow(assetGraph);
                 return true;
             }

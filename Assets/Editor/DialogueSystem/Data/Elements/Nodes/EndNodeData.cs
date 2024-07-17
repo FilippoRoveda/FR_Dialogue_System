@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DS.Editor.Data
 {
+    using DS.Editor.Elements;
     using DS.Enums;
     using Runtime.Data;
 
@@ -18,12 +19,11 @@ namespace DS.Editor.Data
         {
             
         }
-        public EndNodeData(string _nodeID, string _dialogueName, List<LenguageData<string>> _texts, 
-                           DialogueType _dialogueType, string _groupID, Vector2 _position, bool _isDialogueRepetable) 
-                           : base(_nodeID, _dialogueName, _texts, _dialogueType, _groupID, _position)
+        public EndNodeData(EndNode node) 
+                           : base(node)
         {
 
-            IsDialogueRepetable = _isDialogueRepetable;
+            IsDialogueRepetable = node.Data.IsDialogueRepetable;
         }
     }
 }

@@ -7,12 +7,14 @@ using UnityEngine.Events;
 
 namespace DS.Editor.Windows
 {
-    using Errors;
-    using Data;
-    using Elements;
     using Enums;
-    using Editor.Utilities;
     using Runtime.Utilities;
+
+    using Editor.Errors;
+    using Editor.Data;
+    using Elements;
+    using Editor.Utilities;
+
 
     /// <summary>
     /// Dialogue system GraphView window class.
@@ -27,9 +29,9 @@ namespace DS.Editor.Windows
         private GridBackground gridBackground;
         private MiniMap miniMap;
 
-        public SerializableDictionary<string, NodeErrorData> ungroupedNodes;
-        public SerializableDictionary<DS_Group, SerializableDictionary<string, NodeErrorData>> groupedNodes;
-        public SerializableDictionary<string, GroupErrorData> groups;
+        public Dictionary<string, NodeErrorData> ungroupedNodes;
+        public Dictionary<DS_Group, SerializableDictionary<string, NodeErrorData>> groupedNodes;
+        public Dictionary<string, GroupErrorData> groups;
 
         private int nameErrorsAmount;
         public int NameErrorsAmount
@@ -51,29 +53,26 @@ namespace DS.Editor.Windows
         }
 
 
-        private float viewMovementSpeed = 40.0f;
-        public float ViewMovementSpeed
-        {
-            get; set;
-        }
+        public float viewMovementSpeed = 40.0f;
 
         private Dictionary<KeyCode, bool> keyStates = new Dictionary<KeyCode, bool>
-    {
-        { KeyCode.UpArrow, false },
-        { KeyCode.LeftArrow, false },
-        { KeyCode.DownArrow, false },
-        { KeyCode.RightArrow, false }
-    };
+        {
+            { KeyCode.UpArrow, false },
+            { KeyCode.LeftArrow, false },
+            { KeyCode.DownArrow, false },
+            { KeyCode.RightArrow, false }
+        };
+
         public UnityEvent<LenguageType> GraphLenguageChanged = new();
 
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
             //Fields initializings
             this.editorWindow = editorWindow;
-            ungroupedNodes = new SerializableDictionary<string, NodeErrorData>();
-            groupedNodes = new SerializableDictionary<DS_Group, SerializableDictionary<string, NodeErrorData>>();
 
-            groups = new SerializableDictionary<string, GroupErrorData>();
+            ungroupedNodes = new Dictionary<string, NodeErrorData>();
+            groupedNodes = new Dictionary<DS_Group, SerializableDictionary<string, NodeErrorData>>();
+            groups = new Dictionary<string, GroupErrorData>();
 
             //Update callbacks setups
             UpdateDeleteSelection();
@@ -150,11 +149,11 @@ namespace DS.Editor.Windows
 
                 List<DS_Group> groupsToDelete = new List<DS_Group>();
                 List<Edge> edgesToDelete = new List<Edge>();
-                List<DS_BaseNode> nodesToDelete = new List<DS_BaseNode>();
+                List<BaseNode> nodesToDelete = new List<BaseNode>();
 
                 foreach(GraphElement element in selection)
                 {
-                    if(element is DS_BaseNode node)
+                    if(element is BaseNode node)
                     {
                         nodesToDelete.Add(node);
                         continue;
@@ -177,12 +176,12 @@ namespace DS.Editor.Windows
 
                 foreach(DS_Group group in groupsToDelete)
                 {
-                    List<DS_BaseNode> groupNodes = new List<DS_BaseNode>();
+                    List<BaseNode> groupNodes = new List<BaseNode>();
                     foreach (GraphElement element in group.containedElements)
                     {
-                        if (element is DS_BaseNode == true)
+                        if (element is BaseNode == true)
                         {
-                            groupNodes.Add((DS_BaseNode)element);
+                            groupNodes.Add((BaseNode)element);
                         }
                     }
                     group.RemoveElements(groupNodes);
@@ -192,7 +191,7 @@ namespace DS.Editor.Windows
 
                 DeleteElements(edgesToDelete);
 
-                foreach(DS_BaseNode node in nodesToDelete)
+                foreach(BaseNode node in nodesToDelete)
                 {
                     if (node.Group != null)
                     {
@@ -212,11 +211,11 @@ namespace DS.Editor.Windows
                 Logger.Error("Elements addition to group callback");
                 foreach (GraphElement element in elements)
                 {
-                    if ((element is DS_BaseNode) == false) continue;
+                    if ((element is BaseNode) == false) continue;
                     else
                     {
                         DS_Group nodeGroup = (DS_Group)group; 
-                        DS_BaseNode node = (DS_BaseNode)element;
+                        BaseNode node = (BaseNode)element;
                         Remove_Node_FromUngrouped(node);
                         Add_Node_ToGroup(node, nodeGroup);
                     }
@@ -230,11 +229,11 @@ namespace DS.Editor.Windows
                 Logger.Error("Elements removed from group callback");
                 foreach (GraphElement element in elements)
                 {
-                    if (!(element is DS_BaseNode)) continue;
+                    if (!(element is BaseNode)) continue;
                     else
                     {
                         DS_Group nodeGroup = (DS_Group)group;
-                        DS_BaseNode node = (DS_BaseNode)element;
+                        BaseNode node = (BaseNode)element;
                         if(Remove_Node_FromGroup(node, nodeGroup) == false) return;
                         Add_Node_ToUngrouped(node);
                     }
@@ -277,13 +276,10 @@ namespace DS.Editor.Windows
                 {
                     foreach (Edge edge in changes.edgesToCreate)
                     {
-
-
-
-                        DS_BaseNode nextNode = (DS_BaseNode)edge.input.node;
+                        BaseNode nextNode = (BaseNode)edge.input.node;
                         ChoiceData choiceData = (ChoiceData)edge.output.userData;
-                        choiceData.NextNodeID = nextNode.ID;
-                        Logger.Warning($"Edge created between node: {((DS_BaseNode)edge.output.node).DialogueName} and node: {nextNode.DialogueName}");
+                        choiceData.NextNodeID = nextNode.Data.NodeID;
+                        Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node).Data.Name} and node: {nextNode.Data.Name}");
                     }
                 }
 
@@ -304,9 +300,13 @@ namespace DS.Editor.Windows
                 {
                     foreach(GraphElement element in changes.movedElements)
                     {
-                        if(element.GetType() == typeof(DS_BaseNode))
+                        if(element.GetType() == typeof(SingleNode) ||
+                           element.GetType() == typeof(MultipleNode) ||
+                           element.GetType() == typeof(EventNode) ||
+                           element.GetType() == typeof(StartNode) ||
+                           element.GetType() == typeof(EndNode))
                         {
-                            AvoidNodeOverlap((DS_BaseNode)element);
+                            AvoidNodeOverlap((BaseNode)element);
                         }
                     }
                 }
@@ -340,6 +340,7 @@ namespace DS.Editor.Windows
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Starting Node", DialogueType.Start));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", DialogueType.Single));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Multiple Choice)", DialogueType.Multiple));
+            this.AddManipulator(CreateNode_CtxMenu_Option("Create Branch Node", DialogueType.Branch));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Event Node", DialogueType.Event));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create End Node", DialogueType.End));
             this.AddManipulator(CreateGroup_CtxMenu_Option());
@@ -377,12 +378,12 @@ namespace DS.Editor.Windows
         /// <param name="spawnPosition">The screen spawn position for the node.</param>
         /// <param name="dialogueType">Enumerator selecting which type of node to spawn.</param>
         /// <returns>Pointer to the created node as a generic DS_Node.</returns>
-        public DS_BaseNode CreateNode(string nodeName, Vector2 spawnPosition, DialogueType dialogueType, bool shouldDraw = true)
+        public BaseNode CreateNode(string nodeName, Vector2 spawnPosition, DialogueType dialogueType, bool shouldDraw = true)
         {
-            Type nodeType = Type.GetType($"DS.Editor.Windows.Elements.DS_{dialogueType}Node");
-            DS_BaseNode node = (DS_BaseNode) Activator.CreateInstance(nodeType);
+            Type nodeType = Type.GetType($"DS.Editor.Elements.{dialogueType}Node");
+            var node = (BaseNode) Activator.CreateInstance(nodeType);
             node.Initialize(nodeName, this, spawnPosition);
-            if(shouldDraw == true) node.Draw();
+            if (shouldDraw == true) node.Draw();
 
             Add_Node_ToUngrouped(node);
 
@@ -406,9 +407,9 @@ namespace DS.Editor.Windows
 
             foreach(GraphElement selectedElement in selection)
             {
-                if(selectedElement is DS_BaseNode == true)
+                if(selectedElement is BaseNode == true)
                 {
-                    DS_BaseNode node = (DS_BaseNode)selectedElement;
+                    BaseNode node = (BaseNode)selectedElement;
                     group.AddElement(node);
 
                 }
@@ -535,10 +536,10 @@ namespace DS.Editor.Windows
         /// Add the passed node to the ungrouped node dictionary.
         /// </summary>
         /// <param name="node">The node that need to be added to the dictionary.</param>
-        public void Add_Node_ToUngrouped(DS_BaseNode node)
+        public void Add_Node_ToUngrouped(BaseNode node)
         {
             Logger.Error("Ungrouped addition");
-            string nodeName = node.DialogueName.ToLower();
+            string nodeName = node.Data.Name.ToLower();
 
             if (ungroupedNodes.ContainsKey(nodeName) == false)
             {
@@ -559,7 +560,7 @@ namespace DS.Editor.Windows
                 if (ungroupedNodes[nodeName].Nodes.Count == 2)
                 {
                     ++NameErrorsAmount; 
-                    ((DS_BaseNode)ungroupedNodes[nodeName].Nodes[0]).SetErrorStyle(groupErrorColor);
+                    ((BaseNode)ungroupedNodes[nodeName].Nodes[0]).SetErrorStyle(groupErrorColor);
                 }
             }
 
@@ -573,12 +574,12 @@ namespace DS.Editor.Windows
         /// Remove an ungrouped node from its ungrouped node list.
         /// </summary>
         /// <param name="node">Node to remove from ungrouped nodes.</param>
-        public void Remove_Node_FromUngrouped(DS_BaseNode node)
+        public void Remove_Node_FromUngrouped(BaseNode node)
         {
             Logger.Error("Ungrouped removing");
 
-            string nodeName = node.DialogueName.ToLower();
-            List<Node> nodeList = ungroupedNodes[nodeName].Nodes;
+            string nodeName = node.Data.Name.ToLower();
+            List<BaseNode> nodeList = ungroupedNodes[nodeName].Nodes;
 
             Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
             nodeList.Remove(node);
@@ -588,7 +589,7 @@ namespace DS.Editor.Windows
             if (nodeList.Count == 1)
             {
                 --NameErrorsAmount;
-                ((DS_BaseNode)nodeList[0]).ResetStyle(); 
+                nodeList[0].ResetStyle(); 
                 return;
             }
             if (nodeList.Count == 0)
@@ -609,10 +610,10 @@ namespace DS.Editor.Windows
         /// <param name="node"></param>
         /// <param name="group"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void Add_Node_ToGroup(DS_BaseNode node, DS_Group group)
+        public void Add_Node_ToGroup(BaseNode node, DS_Group group)
         {
             Logger.Error("Grouped nodes");
-            string nodeName = node.DialogueName.ToLower();
+            string nodeName = node.Data.Name.ToLower();
             node.SetGroup(group);
 
             if (groupedNodes.ContainsKey(group) == false)
@@ -636,7 +637,7 @@ namespace DS.Editor.Windows
             else
             {
                 Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
-                List<Node> groupedNodeList = groupedNodes[group][nodeName].Nodes;
+                List<BaseNode> groupedNodeList = groupedNodes[group][nodeName].Nodes;
                 groupedNodes[group][nodeName].Nodes.Add(node);
                 Color errorColor = groupedNodes[group][nodeName].ErrorData.Color;
                 node.SetErrorStyle(errorColor);
@@ -645,7 +646,7 @@ namespace DS.Editor.Windows
                 if (groupedNodeList.Count == 2)
                 {
                     ++NameErrorsAmount;
-                    ((DS_BaseNode)groupedNodeList[0]).SetErrorStyle(errorColor);
+                    groupedNodeList[0].SetErrorStyle(errorColor);
                 }  
             }
             Logger.Error("Grouped nodes recap");
@@ -663,17 +664,17 @@ namespace DS.Editor.Windows
         /// </summary>
         /// <param name="node"></param>
         /// <param name="group"></param>
-        public bool Remove_Node_FromGroup(DS_BaseNode node, DS_Group group)
+        public bool Remove_Node_FromGroup(BaseNode node, DS_Group group)
         {
             Logger.Error("Groupednodes");
-            string nodeName = node.DialogueName.ToLower();
+            string nodeName = node.Data.Name.ToLower();
             node.RemoveFromGroup();
 
             if (groupedNodes.ContainsKey(group) == false) 
             {
                 return false;
             }
-            List<Node> groupedNodesList = groupedNodes[group][nodeName].Nodes;
+            List<BaseNode> groupedNodesList = groupedNodes[group][nodeName].Nodes;
             groupedNodesList.Remove(node);
 
             Logger.Warning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
@@ -682,7 +683,7 @@ namespace DS.Editor.Windows
             if (groupedNodesList.Count == 1)
             {
                 --NameErrorsAmount;
-                ((DS_BaseNode)groupedNodesList[0]).ResetStyle();              
+                groupedNodesList[0].ResetStyle();              
             }
             if (groupedNodesList.Count == 0) 
             {
@@ -726,7 +727,7 @@ namespace DS.Editor.Windows
             }
             else 
             {
-                List<Group> groupList = groups[groupTitle].Groups;
+                List<DS_Group> groupList = groups[groupTitle].Groups;
                 groupList.Add(group);
                 Color errorColor = groups[groupTitle].ErrorColor.Color;
                 group.SetErrorStyle(errorColor);
@@ -736,7 +737,7 @@ namespace DS.Editor.Windows
                 if (groupList.Count == 2)
                 {
                     ++NameErrorsAmount;
-                    ((DS_Group)groupList[0]).SetErrorStyle(errorColor);
+                    groupList[0].SetErrorStyle(errorColor);
                 }
             }
             Logger.Error("Groups recap");
@@ -754,7 +755,7 @@ namespace DS.Editor.Windows
             Logger.Error("Group removing");
             string groupTitle = group.oldTitle.ToLower();
 
-            List<Group> groupList = groups[groupTitle].Groups;
+            List<DS_Group> groupList = groups[groupTitle].Groups;
             Logger.Message($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
 
             groupList.Remove(group);
@@ -765,7 +766,7 @@ namespace DS.Editor.Windows
             if (groupList.Count == 1)
             {
                 --NameErrorsAmount;
-                ((DS_Group)groupList[0]).ResetStyle();
+                groupList[0].ResetStyle();
             }
 
             else if(groupList.Count == 0)
@@ -783,9 +784,9 @@ namespace DS.Editor.Windows
         #endregion
 
 
-        private void AvoidNodeOverlap(DS_BaseNode nodeA)
+        private void AvoidNodeOverlap(BaseNode nodeA)
         {
-            List<DS_BaseNode> otherNodes = new List<DS_BaseNode>(this.Query<DS_BaseNode>().ToList());
+            List<BaseNode> otherNodes = new List<BaseNode>(this.Query<BaseNode>().ToList());
             otherNodes.Remove(nodeA);
 
             bool hasOverlap = false;
@@ -793,7 +794,7 @@ namespace DS.Editor.Windows
             {
                 hasOverlap = false;
 
-                foreach (DS_BaseNode nodeB in otherNodes)
+                foreach (BaseNode nodeB in otherNodes)
                 {
                     if (nodeA.IsOverlapping(nodeB))
                     {

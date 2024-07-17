@@ -35,7 +35,7 @@ namespace DS.Runtime.ScriptableObjects
         public virtual void Initialize(string dialogueName, string dialogueID, DialogueType dialogueType, bool isStartingDialogue, List<LenguageData<string>> texts, List<DialogueChoiceData> choices)
         {
             base.Initialize(dialogueName, dialogueID, dialogueType, isStartingDialogue, texts);
-            Choices = choices;
+            Choices = new List<DialogueChoiceData>(choices);
         }
 
     

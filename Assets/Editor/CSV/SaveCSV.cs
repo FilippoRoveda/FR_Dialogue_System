@@ -36,11 +36,11 @@ namespace DS.CSV
 
         public void SaveAllGraphsToCSV()
         {
-            List<DS_GraphSO> graphs = IO.LoadAssetsFromPath<DS_GraphSO>(graphFilesPath);
+            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(graphFilesPath);
 
             foreach (var graph in graphs)
             {
-                graphName = graph.GraphName;
+                graphName = graph.graphName;
                 CreateFile(FileName);
 
                 foreach (var nodeData in graph.GetAllOrderedNodes())

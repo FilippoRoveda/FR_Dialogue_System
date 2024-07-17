@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DS.Editor.Data
 {
     using Runtime.Data;
-    using Enums;
-    using UnityEditor.TestTools.TestRunner.Api;
+    using Editor.Elements;
 
     [System.Serializable]
     public class TextedNodeData : BaseNodeData
@@ -30,12 +28,11 @@ namespace DS.Editor.Data
             texts = LenguageUtilities.UpdateLenguageDataSet(texts);
         }
 
-        public TextedNodeData(string _nodeID, string _dialogueName, List<LenguageData<string>> _texts, DialogueType _dialogueType,
-                                string _groupID, Vector2 _position) : base(_nodeID, _dialogueName, _dialogueType, _groupID, _position)
-        {         
 
-            this.Texts = new List<LenguageData<string>>(_texts);
-            this.Texts = LenguageUtilities.UpdateLenguageDataSet(_texts);
+        public TextedNodeData(TextedNode node) : base(node)
+        {
+            Texts = new List<LenguageData<string>>(node.Data.Texts);
+            Texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
         }
 
         public void UpdateTextsLenguage()

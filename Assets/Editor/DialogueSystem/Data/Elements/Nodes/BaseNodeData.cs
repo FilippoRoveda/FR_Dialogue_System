@@ -1,13 +1,15 @@
+using UnityEngine;
+
 namespace DS.Editor.Data
-{
+{  
     using Enums;
-    using UnityEngine;
+    using Editor.Elements;
 
     /// <summary>
     /// Class that hold node informations to be contained in a graph scriptable object.
     /// </summary>
     [System.Serializable]
-    public abstract class BaseNodeData
+    public class BaseNodeData
     {
         [SerializeField] protected string name;
         public string Name
@@ -36,7 +38,7 @@ namespace DS.Editor.Data
         }
 
               
-        [SerializeField] protected string groupID;
+        [SerializeField] protected string groupID = null;
         /// <summary>
         /// Group ID for the group that hold this node.
         /// </summary>
@@ -81,17 +83,17 @@ namespace DS.Editor.Data
         {
             
         }
+        public BaseNodeData(BaseNode node)
+        {
+            var baseData = node.Data;
 
-        public BaseNodeData(string _nodeID, string _dialogueName, DialogueType _dialogueType, string _groupID, Vector2 _position)
-        {    
-            this.NodeID = _nodeID;
-            Name = _dialogueName;
-         
-            if (_groupID != null) this.GroupID = _groupID;
-            else this.GroupID = null;
+            NodeID = baseData.NodeID;
+            Name = baseData.Name;
 
-            this.DialogueType = _dialogueType;
-            this.Position = _position;
+            if (baseData.groupID != null) GroupID = baseData.groupID;
+
+            DialogueType = baseData.DialogueType;
+            Position = baseData.Position;
         }
     }
 }

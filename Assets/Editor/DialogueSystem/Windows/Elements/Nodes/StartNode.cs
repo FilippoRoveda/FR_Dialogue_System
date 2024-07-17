@@ -1,22 +1,24 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
-    using Runtime.Data;
-    using Editor.Data;
     using Enums;
+    using Runtime.Data;
 
-    public class DS_StartNode : DS_BaseNode
+    using Editor.Data;
+    using Editor.Windows;
+
+    public class StartNode : DialogueNode
     {
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
             base.Initialize(nodeName, context, spawnPosition);
-
-            Texts = LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
             SetDialogueType(DialogueType.Start);
+
+            Data.Texts = LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
             ChoiceData choiceData = new ChoiceData("Starting Choice");
-            Choices.Add(choiceData);
+            Data.Choices.Add(choiceData);
         }
         public override void Draw()
         {

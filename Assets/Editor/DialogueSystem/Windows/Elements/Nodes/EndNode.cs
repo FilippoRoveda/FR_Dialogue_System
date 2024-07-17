@@ -1,22 +1,26 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.Experimental.GraphView;
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
-    using Runtime.Data;
     using Enums;
+    using Runtime.Data;
 
-    public class DS_EndNode : DS_BaseNode
+    using Editor.Windows;
+    using DS.Editor.Data;
+
+    public class EndNode : TextedNode
     {
-        [SerializeField] private bool isRepetableDialogue = false;
-        public bool IsRepetableDialogue { get { return isRepetableDialogue; }  set { isRepetableDialogue = value; } }
+        [SerializeField] private EndNodeData data = new();
+        public new EndNodeData Data { get { return data; } }
 
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {         
             base.Initialize(nodeName, context, spawnPosition);
-            Texts = LenguageUtilities.InitLenguageDataSet("End Dialogue Text");
             SetDialogueType(DialogueType.End);
+            Data.Texts = LenguageUtilities.InitLenguageDataSet("End Dialogue Text");
         }
         public override void Draw()
         {
@@ -36,12 +40,12 @@ namespace DS.Editor.Windows.Elements
             boolFieldLabel.style.marginRight = 10;
             Toggle isRepetableField = new Toggle
             {
-                value = isRepetableDialogue
+                value = Data.IsDialogueRepetable
             };
 
             isRepetableField.RegisterValueChangedCallback(evt =>
             {
-                isRepetableDialogue = evt.newValue;
+                Data.IsDialogueRepetable = evt.newValue;
             });
 
             boolFieldContainer.Add(boolFieldLabel);
@@ -61,6 +65,29 @@ namespace DS.Editor.Windows.Elements
             evt.menu.AppendAction("Disconnect Inputs Ports", actionEvent => DisconnectPorts(inputContainer));
             base.BuildContextualMenu(evt);
         }
+
+
+        /// <summary>
+        /// Disconnect all ports in the passed container.
+        /// </summary>
+        /// <param name="container"></param>
+        public void DisconnectPorts(VisualElement container)
+        {
+            foreach (Port port in container.Children())
+            {
+                if (port.connected == true)
+                {
+                    graphView.DeleteElements(port.connections);
+                }
+            }
+        }
+        protected void CreateInputPort(string inputPortName = "DialogueConnection", Port.Capacity capacity = Port.Capacity.Multi)
+        {
+            Port choicePort = this.CreatePort(inputPortName, Orientation.Horizontal, Direction.Input, capacity);
+            choicePort.portName = inputPortName;
+            inputContainer.Add(choicePort);
+        }
+
         /// <summary>
         /// Return true if this node is a starting node.
         /// </summary>

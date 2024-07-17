@@ -1,18 +1,25 @@
+
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace DS.Editor.Windows.Elements
+namespace DS.Editor.Elements
 {
-    using Editor.Data;
     using Enums;
+    using Editor.Windows;
+    using Editor.Data;
 
     /// <summary>
     /// Child class that represent a multiple choice version of the base DS_Node.
     /// </summary>
-    public class DS_MultipleNode : DS_BaseNode
+    public class MultipleNode : DialogueNode
     {
         private int choiceCounter;
+
+        protected Port inputPort;
+        protected List<Port> outputPorts;
+        protected Button addChoiceButton;
 
         #region Unity callbacks
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
@@ -21,25 +28,25 @@ namespace DS.Editor.Windows.Elements
 
             SetDialogueType(DialogueType.Multiple);
             choiceCounter = 1;
+            outputPorts = new List<Port>();
 
             ChoiceData choiceData = new ChoiceData("New Choice 1");
-            Choices.Add(choiceData);
+            Data.Choices.Add(choiceData);
         }
         public override void Draw()
         {
             base.Draw();
 
-            CreateInputPort();
+            inputPort = CreateInputPort();
 
-            Button addChoiceButton = ElementsUtilities.CreateButton("Add Choice", () => OnAddChoiceButtonPressed());
-
+            addChoiceButton = ElementsUtilities.CreateButton("Add Choice", () => OnAddChoiceButtonPressed());
             addChoiceButton.AddToClassList("ds-node-button");
-
             mainContainer.Insert(1, addChoiceButton);
 
-            foreach (ChoiceData choice in Choices)
+            foreach (ChoiceData choice in Data.Choices)
             {
                 Port choicePort = CreateDeletableChoicePort(choice);
+                outputPorts.Add(choicePort);
                 outputContainer.Add(choicePort);
             }
 
@@ -65,7 +72,8 @@ namespace DS.Editor.Windows.Elements
             choiceCounter++;
 
             Port choicePort = CreateDeletableChoicePort(choiceData);
-            Choices.Add(choiceData);
+            Data.Choices.Add(choiceData);
+            outputPorts.Add(choicePort);
             outputContainer.Add(choicePort);
         }
 
@@ -76,11 +84,12 @@ namespace DS.Editor.Windows.Elements
         /// <param name="choiceData"></param>
         private void OnDeleteChoicePressed(Port choicePort, ChoiceData choiceData)
         {
-            if (Choices.Count == 1) return;
+            if (Data.Choices.Count == 1) return;
 
             else if (choicePort.connected == true) graphView.DeleteElements(choicePort.connections);
 
-            Choices.Remove(choiceData);
+            Data.Choices.Remove(choiceData);
+            outputPorts.Remove(choicePort);
 
             graphView.RemoveElement(choicePort);
         }

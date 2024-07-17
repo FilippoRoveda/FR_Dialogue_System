@@ -10,7 +10,7 @@ namespace DS.Editor.Windows
     public class DS_CharacterEditorWindow : EditorWindow
     {
         private IOUtilities IOUtilities = new IOUtilities();
-        private readonly string charactersFolderPath = "Assets/DialogueSystem/ScriptableObjects/Characters";
+        private readonly string charactersFolderPath = "Assets/DialogueSystem/Data/Characters";
 
 
         private string newCharacterName = "NewCharacter";

@@ -4,16 +4,16 @@ using UnityEditor.UIElements;
 
 namespace DS.Editor.Windows
 {
+    using Elements;
     using Editor.ScriptableObjects;
     using Editor.Utilities;
-    using Elements;
 
     public class DS_AssetEditorWindow : DS_EditorWindow
     {
-        public DS_GraphSO assetGraph = null;
+        public GraphSO assetGraph = null;
 
 
-        public static void OpenWindow(DS_GraphSO asset)
+        public static void OpenWindow(GraphSO asset)
         {
             var windows = Resources.FindObjectsOfTypeAll<DS_AssetEditorWindow>();
             foreach (var window in windows)
@@ -34,9 +34,9 @@ namespace DS.Editor.Windows
        
         private void SetTitleContent()
         {
-            titleContent = new GUIContent($"DS_{assetGraph.GraphName}_Window");
+            titleContent = new GUIContent($"DS_{assetGraph.graphName}_Window");
         }
-        private void SetAsset(DS_GraphSO assetGraph)
+        private void SetAsset(GraphSO assetGraph)
         {
             this.assetGraph = assetGraph;
         }
@@ -52,12 +52,12 @@ namespace DS.Editor.Windows
 
         private void LoadTargetGraphAsset()
         {
-            string filePath = $"{defaultSavedGraphPath}/{assetGraph.GraphName}_Graph.asset";
+            string filePath = $"{defaultSavedGraphPath}/{assetGraph.graphName}_Graph.asset";
             if (string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
-                ioUtilities.Initialize(graph_View, Path.GetFileNameWithoutExtension(filePath));
-                ioUtilities.LoadGraph();
+                saveSystem.Initialize(linkedGraphView, Path.GetFileNameWithoutExtension(filePath));
+                saveSystem.LoadGraph();
             }
         }
 
@@ -67,7 +67,7 @@ namespace DS.Editor.Windows
         protected override void AddToolbar()
         {
             toolbar = new Toolbar();
-            filenameTextField = ElementsUtilities.CreateTextField(assetGraph.GraphName, "File Name:");
+            filenameTextField = ElementsUtilities.CreateTextField(assetGraph.graphName, "File Name:");
             saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
             clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             toggleMinimapButton = ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());

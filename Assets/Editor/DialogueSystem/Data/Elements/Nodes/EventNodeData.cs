@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace DS.Editor.Data
 {
-    using DS.Enums;
+    using DS.Editor.Elements;
     using DS.Runtime.ScriptableObjects;
-    using Runtime.Data;
 
     [System.Serializable]
     public class EventNodeData : DialogueNodeData
@@ -18,15 +17,16 @@ namespace DS.Editor.Data
             get { return events; }
             set { events = value; }
         }
-        public EventNodeData(string _nodeID, string _dialogueName, List<ChoiceData> _choices,
-                                List<LenguageData<string>> _texts, DialogueType _dialogueType,
-                                string _groupID, Vector2 _position, List<DS_EventSO> _events = null) 
-                                : base(_nodeID, _dialogueName,_choices, _texts, _dialogueType, _groupID, _position)
+        public EventNodeData() : base()
         {
             events = new List<DS_EventSO>();
-            if (_events != null && _events.Count > 0)
+        }
+        public EventNodeData(EventNode node) : base(node)
+        {
+            events = new List<DS_EventSO>();
+            if (node.Data.Events != null && node.Data.Events.Count > 0)
             {
-                foreach (var _event in _events)
+                foreach (var _event in node.Data.Events)
                 {
                     events.Add(_event);
                 }

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 namespace DS.Editor.Errors
 {
+    using Editor.Elements;
     /// <summary>
     /// Class that hold error color for a list or DS_Nodes.
     /// </summary>
@@ -10,12 +10,12 @@ namespace DS.Editor.Errors
     public class NodeErrorData
     {
         public ErrorColor ErrorData {  get; set; }
-        public List<Node> Nodes { get; set; }
+        public List<BaseNode> Nodes { get; set; }
 
         public NodeErrorData() 
         {
             ErrorData = new ErrorColor();
-            Nodes = new List<Node>();
+            Nodes = new List<BaseNode>();
         }
     }
 }
