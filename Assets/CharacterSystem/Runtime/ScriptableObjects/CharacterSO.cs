@@ -5,9 +5,6 @@ namespace Characters.Runtime.ScriptableObjects
 {
     public class CharacterSO : ScriptableObject
     {
-#if UNITY_EDITOR
-        [IsInteractable(false)]
-#endif
         [SerializeField]
         protected string _id = null;
         [SerializeField] protected string _name = null;

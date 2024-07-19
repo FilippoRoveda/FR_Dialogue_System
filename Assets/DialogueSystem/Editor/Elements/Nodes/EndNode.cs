@@ -7,7 +7,6 @@ namespace DS.Editor.Elements
     using Editor.Enumerations;
     using Editor.Data;
     using Editor.Windows;
-    using Editor.Utilities;
 
     public class EndNode : TextedNode
     {
@@ -47,27 +46,6 @@ namespace DS.Editor.Elements
         public override void Draw()
         {
             base.Draw();
-            //dialogueNameField = ElementsUtilities.CreateTextField(_nodeName, null, callback => OnDialogueNameChanged(callback));
-            //dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
-            //titleContainer.Insert(0, dialogueNameField);
-
-            //customDataContainer = new VisualElement();
-            //customDataContainer.AddToClassList("ds-node-custom-data-container");
-
-            ////Dialogue text foldout and text field
-            //dialogueTextFoldout = ElementsUtilities.CreateFoldout("DialogueText");
-
-            //dialogueTextTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
-            //{
-            //    data.Texts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
-            //});
-
-            //dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
-
-            //dialogueTextFoldout.Add(dialogueTextTextField);
-            //customDataContainer.Add(dialogueTextFoldout);
-            //extensionContainer.Add(customDataContainer);
-
 
             DrawIsRepetableField();
             CreateInputPort("EndNode connection");
@@ -111,66 +89,18 @@ namespace DS.Editor.Elements
             base.BuildContextualMenu(evt);
         }
 
-
         /// <summary>
-        /// Disconnect all ports in the passed container.
+        /// Disconnect all ports in both input container and output container.
         /// </summary>
-        /// <param name="container"></param>
-        public void DisconnectPorts(VisualElement container)
+        public override void DisconnectAllPorts()
         {
-            foreach (Port port in container.Children())
-            {
-                if (port.connected == true)
-                {
-                    _graphView.DeleteElements(port.connections);
-                }
-            }
+            DisconnectPorts(inputContainer);
         }
         protected void CreateInputPort(string inputPortName = "DialogueConnection", Port.Capacity capacity = Port.Capacity.Multi)
         {
             Port choicePort = this.CreatePort(inputPortName, Orientation.Horizontal, Direction.Input, capacity);
             choicePort.portName = inputPortName;
             inputContainer.Add(choicePort);
-        }
-
-
-        /// <summary>
-        /// Callback called when the dialogue name changes.
-        /// </summary>
-        /// <param name="newDialogueName"></param>
-        protected new void OnDialogueNameChanged(ChangeEvent<string> callback)
-        {
-            TextField target = (TextField)callback.target;
-            target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
-
-            if (string.IsNullOrEmpty(target.value))
-            {
-                if (string.IsNullOrEmpty(_nodeName) == false)
-                {
-                    _graphView.NameErrorsAmount++;
-                }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(_nodeName) == true)
-                {
-                    _graphView.NameErrorsAmount--;
-                }
-            }
-
-            if (Group == null)
-            {
-                _graphView.Remove_Node_FromUngrouped(this);
-                _nodeName = target.value;
-                _graphView.Add_Node_ToUngrouped(this);
-            }
-            else
-            {
-                DS_Group groupRef = Group;
-                _graphView.Remove_Node_FromGroup(this, Group);
-                _nodeName = target.value;
-                _graphView.Add_Node_ToGroup(this, groupRef);
-            }
         }
     }
 }

@@ -1,0 +1,18 @@
+{
+    "name": "CSVPlugin.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:35393b51310368043924be249a297311"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

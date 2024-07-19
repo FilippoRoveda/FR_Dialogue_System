@@ -197,7 +197,12 @@ namespace DS.Editor.Windows
                         Add_Node_ToUngrouped(node);
                     }
                     Remove_Node_FromUngrouped(node);
-                    node.DisconnectAllPorts();
+                    try 
+                    {
+                        ((DialogueNode)node).DisconnectAllPorts();
+                    }
+                    catch (Exception ex) { Debug.LogWarning("Trying to disconnect ports from a nod that does not handle them."); }
+                    
                     RemoveElement(node);
                 }
             };

@@ -174,8 +174,26 @@ namespace DS.Editor.Elements
         {
             return GetPosition().Overlaps(node.GetPosition());
         }
-
-        public virtual void DisconnectAllPorts() { }
+        /// <summary>
+        /// Disconnect all ports in both input container and output container.
+        /// </summary>
+        public virtual void DisconnectAllPorts()
+        {
+        }
+        /// <summary>
+        /// Disconnect all ports in the passed container.
+        /// </summary>
+        /// <param name="container"></param>
+        public void DisconnectPorts(VisualElement container)
+        {
+            foreach (Port port in container.Children())
+            {
+                if (port.connected == true)
+                {
+                    _graphView.DeleteElements(port.connections);
+                }
+            }
+        }
         #endregion
     }
 }

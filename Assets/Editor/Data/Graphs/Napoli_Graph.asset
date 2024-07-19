@@ -21,7 +21,7 @@ MonoBehaviour:
     nodeType: 2
     position: {x: 202, y: 255}
     texts:
-    - Data: 1
+    - Data: 1aaaaaaaaaaaaaaaa
       LenguageType: 0
     - Data: Start Dialogue Text
       LenguageType: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
       LenguageType: 3
     choices:
     - choiceTexts:
-      - Data: 1
+      - Data: 1aaa
         LenguageType: 0
       - Data: Starting Choice
         LenguageType: 1
@@ -45,9 +45,9 @@ MonoBehaviour:
     nodeID: c7dd801d-e88c-42ef-9116-ab028bbb8a79
     groupID: 
     nodeType: 0
-    position: {x: 366, y: 255}
+    position: {x: 378, y: 255}
     texts:
-    - Data: 2
+    - Data: 2aaaaaaaaaaaaaaaaaaaaaaaa
       LenguageType: 0
     - Data: Single Dialogue Text
       LenguageType: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
       LenguageType: 3
     choices:
     - choiceTexts:
-      - Data: 2
+      - Data: 2aaa
         LenguageType: 0
       - Data: Next Single Choice
         LenguageType: 1
@@ -71,9 +71,9 @@ MonoBehaviour:
     nodeID: fdbf5c24-5f1c-4e05-b186-63ba75ce64ad
     groupID: 
     nodeType: 1
-    position: {x: 635, y: 229.5}
+    position: {x: 635, y: 231.15002}
     texts:
-    - Data: 3
+    - Data: sasasasa
       LenguageType: 0
     - Data: Multiple Dialogue Text
       LenguageType: 1
@@ -83,7 +83,7 @@ MonoBehaviour:
       LenguageType: 3
     choices:
     - choiceTexts:
-      - Data: 3
+      - Data: 3aaa
         LenguageType: 0
       - Data: New Choice 1
         LenguageType: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
       choiceID: f9206b9e-a3ae-4d1e-abcf-65fd45bcb4d3
       nextNodeID: f15b545d-f42c-42d4-a903-4d0bc02edfa8
     - choiceTexts:
-      - Data: 33
+      - Data: 33aaa
         LenguageType: 0
       - Data: New choice 2
         LenguageType: 1
@@ -103,7 +103,18 @@ MonoBehaviour:
       - Data: New choice 2
         LenguageType: 3
       choiceID: 319aa703-5714-4d62-a3f1-bdf63b08cca3
-      nextNodeID: 528a843d-7b1f-4719-a601-c073ac522a81
+      nextNodeID: 034eca70-407b-48ff-b6dd-24f42a0673fb
+    - choiceTexts:
+      - Data: New choice 3
+        LenguageType: 0
+      - Data: New choice 3
+        LenguageType: 1
+      - Data: New choice 3
+        LenguageType: 2
+      - Data: New choice 3
+        LenguageType: 3
+      choiceID: 3d2fb469-ea49-4916-9b78-d123d16d8baa
+      nextNodeID: d99d884e-7268-4b2f-b028-b79c7b203efc
   eventNodes:
   - name: 4
     nodeID: f15b545d-f42c-42d4-a903-4d0bc02edfa8
@@ -121,7 +132,7 @@ MonoBehaviour:
       LenguageType: 3
     choices:
     - choiceTexts:
-      - Data: 4
+      - Data: 4aaa
         LenguageType: 0
       - Data: EventOutput
         LenguageType: 1
@@ -131,6 +142,33 @@ MonoBehaviour:
         LenguageType: 3
       choiceID: f3219cce-5196-48c1-8446-b3bdea45d95a
       nextNodeID: 528a843d-7b1f-4719-a601-c073ac522a81
+    events: []
+  - name: DialogueName
+    nodeID: d99d884e-7268-4b2f-b028-b79c7b203efc
+    groupID: 
+    nodeType: 4
+    position: {x: 960, y: 661}
+    texts:
+    - Data: Event Dialogue Text
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: EventOutput
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 66a52756-746c-4e93-981f-3a40a9827a26
+      nextNodeID: 034eca70-407b-48ff-b6dd-24f42a0673fb
     events: []
   endNodes:
   - name: 5
@@ -148,10 +186,29 @@ MonoBehaviour:
     - Data: End Dialogue Text
       LenguageType: 3
     isDialogueRepetable: 1
+  - name: aaaaaaa
+    nodeID: 034eca70-407b-48ff-b6dd-24f42a0673fb
+    groupID: 
+    nodeType: 3
+    position: {x: 1091, y: 480}
+    texts:
+    - Data: aaaaaaa
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: 'End Dialogue Text
+
+'
+      LenguageType: 3
+    isDialogueRepetable: 1
   oldGroupsNames: []
   oldUngroupedNames:
   - 1
   - 2
   - 3
   - 4
+  - DialogueName
   - 5
+  - aaaaaaa

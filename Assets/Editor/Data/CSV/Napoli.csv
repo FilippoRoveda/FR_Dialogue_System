@@ -1,0 +1,13 @@
+Guid ID,Dialogue/Choice Name,Italian,English,Latin,Spanish
+
+97308ed0-fcdc-4f42-8d85-8ab16585a2cc,1,"1aaaaaaaaaaaaaaaa","Start Dialogue Text","Start Dialogue Text","Start Dialogue Text"
+208e5fbc-6446-4a5c-b55b-f9c4c1b4b032,_____1 Choice [1],"1aaa","Starting Choice","Starting Choice","Starting Choice"
+c7dd801d-e88c-42ef-9116-ab028bbb8a79,2,"2aaaaaaaaaaaaaaaaaaaaaaaa","Single Dialogue Text","Single Dialogue Text","Single Dialogue Text"
+c6b2fac0-4f72-422c-be27-3770a2b7d0d5,_____2 Choice [1],"2aaa","Next Single Choice","Next Single Choice","Next Single Choice"
+fdbf5c24-5f1c-4e05-b186-63ba75ce64ad,3,"sasasasa","Multiple Dialogue Text","Multiple Dialogue Text","Multiple Dialogue Text"
+f9206b9e-a3ae-4d1e-abcf-65fd45bcb4d3,_____3 Choice [1],"3aaa","New Choice 1","New Choice 1","New Choice 1"
+319aa703-5714-4d62-a3f1-bdf63b08cca3,_____3 Choice [2],"33aaa","New choice 2","New choice 2","New choice 2"
+f15b545d-f42c-42d4-a903-4d0bc02edfa8,4,"4","Event Dialogue Text","Event Dialogue Text","Event Dialogue Text"
+f3219cce-5196-48c1-8446-b3bdea45d95a,_____4 Choice [1],"4aaa","EventOutput","EventOutput","EventOutput"
+528a843d-7b1f-4719-a601-c073ac522a81,5,"5","End Dialogue Text","End Dialogue Text","End Dialogue Text"
+034eca70-407b-48ff-b6dd-24f42a0673fb,aaaaaaa,"aaaaaaa","End Dialogue Text","End Dialogue Text","End Dialogue Text"

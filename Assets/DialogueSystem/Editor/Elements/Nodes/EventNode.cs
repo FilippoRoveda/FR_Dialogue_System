@@ -10,7 +10,6 @@ namespace DS.Editor.Elements
     using Editor.Data;
     using Editor.Windows;
     using Editor.ScriptableObjects;
-    using DS.Editor.Utilities;
 
     public class EventNode : DialogueNode
     {
@@ -90,45 +89,9 @@ namespace DS.Editor.Elements
         }
 
         #endregion
+
         #region Callbacks
-        ///// <summary>
-        ///// Callback called when the dialogue name changes.
-        ///// </summary>
-        ///// <param name="newDialogueName"></param>
-        //protected override void OnDialogueNameChanged(ChangeEvent<string> callback)
-        //{
-        //    TextField target = (TextField)callback.target;
-        //    target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
 
-        //    if (string.IsNullOrEmpty(target.value))
-        //    {
-        //        if (string.IsNullOrEmpty(Data.Name) == false)
-        //        {
-        //            graphView.NameErrorsAmount++;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (string.IsNullOrEmpty(Data.Name) == true)
-        //        {
-        //            graphView.NameErrorsAmount--;
-        //        }
-        //    }
-
-        //    if (Group == null)
-        //    {
-        //        graphView.Remove_Node_FromUngrouped(this);
-        //        Data.Name = target.value;
-        //        graphView.Add_Node_ToUngrouped(this);
-        //    }
-        //    else
-        //    {
-        //        DS_Group groupRef = Group;
-        //        graphView.Remove_Node_FromGroup(this, Group);
-        //        Data.Name = target.value;
-        //        graphView.Add_Node_ToGroup(this, groupRef);
-        //    }
-        //}
         private void OnAddEventButtonPressed()
         {
             ObjectField objectField = CreateObjectField();

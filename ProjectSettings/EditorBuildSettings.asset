@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DialogueSystem/Scenes/DialogueUITemplate.unity
-    guid: 0370b17a0f4696b43a6aef64d25285e0
+    path: Assets/Game/Scenes/EmptyScene.unity
+    guid: c61e328f76d048c41996ceb8a91f02cc
   m_configObjects: {}
