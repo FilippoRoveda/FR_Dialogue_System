@@ -6,21 +6,34 @@ namespace DS.Editor.Elements
     using Editor.Enumerations;
     using Editor.Data;
     using Editor.Windows;
+    using System.Collections.Generic;
 
     public class StartNode : DialogueNode
     {
+        public StartNode() { }
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(nodeName, context, spawnPosition);
-            SetDialogueType(NodeType.Start);
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
 
-            Data.Texts = LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
+            _texts = LenguageUtilities.InitLenguageDataSet("Start Dialogue Text");
+
+            _choices = new List<ChoiceData>();
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+            _nodeType = NodeType.Start;
+           
             ChoiceData choiceData = new ChoiceData("Starting Choice");
-            Data.Choices.Add(choiceData);
+            _choices.Add(choiceData);
         }
         public override void Draw()
         {
             base.Draw();
+
             CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
@@ -34,14 +47,6 @@ namespace DS.Editor.Elements
         {            
             evt.menu.AppendAction("Disconnect Output Ports", actionEvent => DisconnectPorts(outputContainer));
             base.BuildContextualMenu(evt);
-        }
-        /// <summary>
-        /// Return true if this node is a starting node.
-        /// </summary>
-        /// <returns></returns>
-        public override bool IsStartingNode()
-        {
-            return true;
         }
     }
 }

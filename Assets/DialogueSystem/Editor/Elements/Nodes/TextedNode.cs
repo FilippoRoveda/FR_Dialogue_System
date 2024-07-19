@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 namespace DS.Editor.Elements
@@ -11,19 +12,19 @@ namespace DS.Editor.Elements
 
     public abstract class TextedNode : BaseNode
     {
-        private TextedNodeData data = new();
-        public new TextedNodeData Data { get { return data; } }
-        public string CurrentText
-        {
-            get
+        public List<LenguageData<string>> _texts;
+
+            public string CurrentText
             {
-                return Data.Texts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data;
+                get
+                {
+                    return _texts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data;
+                }
+                private set
+                {
+                    _texts.SetLenguageData(_graphView.GetEditorCurrentLenguage(), value);
+                }
             }
-            private set
-            {
-                Data.Texts.SetLenguageData(graphView.GetEditorCurrentLenguage(), value);
-            }
-        }
 
         protected TextField dialogueTextTextField;
         protected VisualElement customDataContainer;
@@ -31,12 +32,31 @@ namespace DS.Editor.Elements
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(nodeName, context, spawnPosition);
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
 
-            Data.Texts = LenguageUtilities.InitLenguageDataSet("Dialogue Text");
-            graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+            _texts = LenguageUtilities.InitLenguageDataSet("Dialogue Text");
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
         }
 
+        public void Initialize(TextedNodeData _data, DS_GraphView context)
+        {
+
+            _nodeID = _data.NodeID;
+            _nodeName = _data.Name;
+            _position = _data.Position;
+            //SetPosition(new Rect(data.Position, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+
+            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+            Debug.Log("Calling texted node initializer with data");
+        }
         public override void Draw()
         {
             base.Draw();
@@ -49,7 +69,7 @@ namespace DS.Editor.Elements
 
             dialogueTextTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
             {
-                data.Texts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
+                _texts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
             });
 
             dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");

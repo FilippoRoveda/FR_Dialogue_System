@@ -7,6 +7,7 @@ namespace DS.Editor.Elements
     using Editor.Data;
     using DS.Editor.Windows;
     using UnityEditor.Experimental.GraphView;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Child class that represent a single choice version of the base DS_Node.
@@ -16,14 +17,29 @@ namespace DS.Editor.Elements
         protected Port inputPort;
         protected Port outputPort;
 
+        public SingleNode() { }
         #region Unity callbacks
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(nodeName, context, spawnPosition);
-            SetDialogueType(NodeType.Single);
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
 
-            ChoiceData choiceData = new ChoiceData("Next Choice");
-            Data.Choices.Add(choiceData);
+            _texts = LenguageUtilities.InitLenguageDataSet("Single Dialogue Text");
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+
+            _choices = new List<ChoiceData>();
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+
+            _nodeType = NodeType.Single;
+
+            ChoiceData choiceData = new ChoiceData("Next Single Choice");
+            _choices.Add(choiceData);
         }
         public override void Draw()
         {

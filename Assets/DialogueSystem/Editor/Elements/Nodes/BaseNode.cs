@@ -18,11 +18,15 @@ namespace DS.Editor.Elements
     /// </summary>
     public abstract class BaseNode : Node
     {
-        private BaseNodeData data = new();
-        public BaseNodeData Data { get => data; }
+        public string _nodeName;
+        public string _nodeID;
+        public string _groupID;
+        public NodeType _nodeType;
+        public Vector2 _position;
+
         public DS_Group Group { get; set; }
 
-        protected DS_GraphView graphView;
+        protected DS_GraphView _graphView;
         protected TextField dialogueNameField;
         protected StyleColor defaultColor;
 
@@ -30,22 +34,33 @@ namespace DS.Editor.Elements
 
         public virtual void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            Data.NodeID = Guid.NewGuid().ToString();
-            Data.Name = nodeName;                   
-            Data.Position = spawnPosition;
+            _nodeID = Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
             SetPosition(new Rect(spawnPosition, Vector2.zero));
-            graphView = context;
+            _graphView = context;
             SetNodeStyle();
-            //graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+        }
+        public void Initialize(BaseNodeData _data, DS_GraphView context)
+        {
+
+            _nodeID = _data.NodeID;
+            _nodeName = _data.Name;
+            _position = _data.Position;
+            _nodeType = _data.NodeType;
+            SetPosition(new Rect(_position, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+            Debug.Log("Calling base node initializer with data");
         }
 
 
         public virtual void Draw()
         {
             //Dialogue name text field 
-            dialogueNameField = ElementsUtilities.CreateTextField(Data.Name, null, callback => OnDialogueNameChanged(callback));
+            dialogueNameField = ElementsUtilities.CreateTextField(_nodeName, null, callback => OnDialogueNameChanged(callback));
             dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
-            titleContainer.Insert(0, dialogueNameField);                 
+            titleContainer.Insert(0, dialogueNameField);
         }
 
 
@@ -54,9 +69,10 @@ namespace DS.Editor.Elements
 
         public override void SetPosition(Rect newPos)
         {
-            Data.Position = newPos.position;
+            _position = newPos.position;
             base.SetPosition(newPos);
         }
+
         #endregion
 
         #region Callbacks
@@ -72,31 +88,31 @@ namespace DS.Editor.Elements
 
             if(string.IsNullOrEmpty(target.value))
             {
-                if(string.IsNullOrEmpty(Data.Name) == false)
+                if(string.IsNullOrEmpty(_nodeName) == false)
                 {
-                    graphView.NameErrorsAmount++;
+                    _graphView.NameErrorsAmount++;
                 }
             }
             else
             {
-                if (string.IsNullOrEmpty(Data.Name) == true)
+                if (string.IsNullOrEmpty(_nodeName) == true)
                 {
-                    graphView.NameErrorsAmount--;
+                    _graphView.NameErrorsAmount--;
                 }
             }
 
             if (Group == null)
             {
-                graphView.Remove_Node_FromUngrouped(this);
-                Data.Name = target.value;
-                graphView.Add_Node_ToUngrouped(this);
+                _graphView.Remove_Node_FromUngrouped(this);
+                _nodeName = target.value;
+                _graphView.Add_Node_ToUngrouped(this);
             }
             else
             {
                 DS_Group groupRef = Group;
-                graphView.Remove_Node_FromGroup(this, Group);
-                Data.Name = target.value;
-                graphView.Add_Node_ToGroup(this, groupRef);
+                _graphView.Remove_Node_FromGroup(this, Group);
+                _nodeName = target.value;
+                _graphView.Add_Node_ToGroup(this, groupRef);
             }
         }
 
@@ -138,10 +154,6 @@ namespace DS.Editor.Elements
         {
             Group = null;
         }
-        protected void SetDialogueType(NodeType dialogueType)
-        {
-            Data.DialogueType = dialogueType;
-        }
 
         /// <summary>
         /// Return true if this node is a starting node.
@@ -149,8 +161,8 @@ namespace DS.Editor.Elements
         /// <returns></returns>
         public virtual bool IsStartingNode()
         {
-            Port inputPort = (Port) inputContainer.Children().First();
-            return !inputPort.connected;
+            if(_nodeType == NodeType.Start) return true;
+            else return false;
         }
 
         /// <summary>

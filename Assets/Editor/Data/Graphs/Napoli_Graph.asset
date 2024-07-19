@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: Napoli_Graph
+  m_EditorClassIdentifier: 
+  graphName: Napoli
+  groups: []
+  dialogueNodes:
+  - name: 1
+    nodeID: 97308ed0-fcdc-4f42-8d85-8ab16585a2cc
+    groupID: 
+    nodeType: 2
+    position: {x: 202, y: 255}
+    texts:
+    - Data: 1
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: 1
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: 208e5fbc-6446-4a5c-b55b-f9c4c1b4b032
+      nextNodeID: c7dd801d-e88c-42ef-9116-ab028bbb8a79
+  - name: 2
+    nodeID: c7dd801d-e88c-42ef-9116-ab028bbb8a79
+    groupID: 
+    nodeType: 0
+    position: {x: 366, y: 255}
+    texts:
+    - Data: 2
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: 2
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: c6b2fac0-4f72-422c-be27-3770a2b7d0d5
+      nextNodeID: fdbf5c24-5f1c-4e05-b186-63ba75ce64ad
+  - name: 3
+    nodeID: fdbf5c24-5f1c-4e05-b186-63ba75ce64ad
+    groupID: 
+    nodeType: 1
+    position: {x: 635, y: 229.5}
+    texts:
+    - Data: 3
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: 3
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: f9206b9e-a3ae-4d1e-abcf-65fd45bcb4d3
+      nextNodeID: f15b545d-f42c-42d4-a903-4d0bc02edfa8
+    - choiceTexts:
+      - Data: 33
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: 319aa703-5714-4d62-a3f1-bdf63b08cca3
+      nextNodeID: 528a843d-7b1f-4719-a601-c073ac522a81
+  eventNodes:
+  - name: 4
+    nodeID: f15b545d-f42c-42d4-a903-4d0bc02edfa8
+    groupID: 
+    nodeType: 4
+    position: {x: 960.2, y: 144}
+    texts:
+    - Data: 4
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: 4
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: f3219cce-5196-48c1-8446-b3bdea45d95a
+      nextNodeID: 528a843d-7b1f-4719-a601-c073ac522a81
+    events: []
+  endNodes:
+  - name: 5
+    nodeID: 528a843d-7b1f-4719-a601-c073ac522a81
+    groupID: 
+    nodeType: 3
+    position: {x: 1239.8, y: 315}
+    texts:
+    - Data: 5
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  oldGroupsNames: []
+  oldUngroupedNames:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5

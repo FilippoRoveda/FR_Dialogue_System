@@ -7,22 +7,68 @@ namespace DS.Editor.Elements
     using Editor.Enumerations;
     using Editor.Data;
     using Editor.Windows;
+    using Editor.Utilities;
 
     public class EndNode : TextedNode
     {
-        [SerializeField] private EndNodeData data = new();
-        public new EndNodeData Data { get { return data; } }
+        public bool _isDialogueRepetable;
 
-
+        public EndNode() { }    
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
-        {         
-            base.Initialize(nodeName, context, spawnPosition);
-            SetDialogueType(NodeType.End);
-            Data.Texts = LenguageUtilities.InitLenguageDataSet("End Dialogue Text");
+        {
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;        
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+
+            _nodeType = NodeType.End;
+            _texts = LenguageUtilities.InitLenguageDataSet("End Dialogue Text");
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
         }
+
+        public void Initialize(EndNodeData _data, DS_GraphView context)
+        {
+            _nodeID = _data.NodeID;
+            _nodeName = _data.Name;
+            _position = _data.Position;
+            SetPosition(new Rect(_position, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+
+            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+            _isDialogueRepetable = _data.IsDialogueRepetable;
+            Debug.Log("Calling end node initializer with data");
+        }
+
         public override void Draw()
         {
             base.Draw();
+            //dialogueNameField = ElementsUtilities.CreateTextField(_nodeName, null, callback => OnDialogueNameChanged(callback));
+            //dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
+            //titleContainer.Insert(0, dialogueNameField);
+
+            //customDataContainer = new VisualElement();
+            //customDataContainer.AddToClassList("ds-node-custom-data-container");
+
+            ////Dialogue text foldout and text field
+            //dialogueTextFoldout = ElementsUtilities.CreateFoldout("DialogueText");
+
+            //dialogueTextTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
+            //{
+            //    data.Texts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
+            //});
+
+            //dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
+
+            //dialogueTextFoldout.Add(dialogueTextTextField);
+            //customDataContainer.Add(dialogueTextFoldout);
+            //extensionContainer.Add(customDataContainer);
+
+
             DrawIsRepetableField();
             CreateInputPort("EndNode connection");
             RefreshExpandedState();
@@ -38,12 +84,12 @@ namespace DS.Editor.Elements
             boolFieldLabel.style.marginRight = 10;
             Toggle isRepetableField = new Toggle
             {
-                value = Data.IsDialogueRepetable
+                value = _isDialogueRepetable
             };
 
             isRepetableField.RegisterValueChangedCallback(evt =>
             {
-                Data.IsDialogueRepetable = evt.newValue;
+                _isDialogueRepetable = evt.newValue;
             });
 
             boolFieldContainer.Add(boolFieldLabel);
@@ -51,6 +97,7 @@ namespace DS.Editor.Elements
 
             extensionContainer.Insert(0, boolFieldContainer);
         }
+
 
         protected override void SetNodeStyle()
         {
@@ -75,7 +122,7 @@ namespace DS.Editor.Elements
             {
                 if (port.connected == true)
                 {
-                    graphView.DeleteElements(port.connections);
+                    _graphView.DeleteElements(port.connections);
                 }
             }
         }
@@ -86,13 +133,44 @@ namespace DS.Editor.Elements
             inputContainer.Add(choicePort);
         }
 
+
         /// <summary>
-        /// Return true if this node is a starting node.
+        /// Callback called when the dialogue name changes.
         /// </summary>
-        /// <returns></returns>
-        public override bool IsStartingNode()
+        /// <param name="newDialogueName"></param>
+        protected new void OnDialogueNameChanged(ChangeEvent<string> callback)
         {
-            return false;
+            TextField target = (TextField)callback.target;
+            target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
+
+            if (string.IsNullOrEmpty(target.value))
+            {
+                if (string.IsNullOrEmpty(_nodeName) == false)
+                {
+                    _graphView.NameErrorsAmount++;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(_nodeName) == true)
+                {
+                    _graphView.NameErrorsAmount--;
+                }
+            }
+
+            if (Group == null)
+            {
+                _graphView.Remove_Node_FromUngrouped(this);
+                _nodeName = target.value;
+                _graphView.Add_Node_ToUngrouped(this);
+            }
+            else
+            {
+                DS_Group groupRef = Group;
+                _graphView.Remove_Node_FromGroup(this, Group);
+                _nodeName = target.value;
+                _graphView.Add_Node_ToGroup(this, groupRef);
+            }
         }
     }
 }

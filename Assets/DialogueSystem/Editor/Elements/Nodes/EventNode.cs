@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEditor.Experimental.GraphView;
 
 namespace DS.Editor.Elements
 {
@@ -15,59 +14,56 @@ namespace DS.Editor.Elements
 
     public class EventNode : DialogueNode
     {
+        public List<DS_EventSO> _events;
+
         [SerializeField] private List<ObjectField> objectFields;
-
-        private EventNodeData data = new();
-        public new EventNodeData Data { get { return data; } }
-
         protected Button addEventButton;
 
+        public EventNode() { }
 
         #region Override
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(nodeName, context, spawnPosition);
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
 
-            if(Data.NodeID == null || Data.NodeID == string.Empty) Data.NodeID = System.Guid.NewGuid().ToString();
-            Data.Name = nodeName;
-            Data.DialogueType = NodeType.Event;
+            _texts = LenguageUtilities.InitLenguageDataSet("Event Dialogue Text");
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+            _nodeType = NodeType.Event;
+            _choices = new();
             ChoiceData choiceData = new ChoiceData("EventOutput");
-            Data.Choices.Add(choiceData);
+            _choices.Add(choiceData);
 
+            _events = new List<DS_EventSO>();
             objectFields = new();
-            Debug.Log($"Node ID is = {Data.NodeID}");
-            Debug.Log($"Node Name is = {Data.Name}");
-            Debug.Log($"Node group is = {Data.GroupID}");
-            Debug.Log($"Node Type = {Data.DialogueType}");
-            Debug.Log($"Node TextCount is = {Data.Texts.Count}");
-            Debug.Log($"Created event node with {Data.Choices.Count}");
         }
 
+        public void Initialize(EventNodeData _data, DS_GraphView context)
+        {
+            _nodeID = _data.NodeID;
+            _nodeName = _data.Name;
+            _position = _data.Position;
+            SetPosition(new Rect(_position, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
 
+            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+            _choices = new List<ChoiceData>(_data.Choices);
+            if (_data.Events == null || _data.Events.Count == 0) _events = new();
+            else _events = new List<DS_EventSO>(_data.Events);
+            Debug.Log("Calling event node initializer with data");
+        }
 
         public override void Draw()
         {
-            dialogueNameField = ElementsUtilities.CreateTextField(Data.Name, null, callback => OnDialogueNameChanged(callback));
-            dialogueNameField.AddToClassLists("ds-node-textfield", "ds-node-filename-textfield", "ds-node-textfield_hidden");
-            titleContainer.Insert(0, dialogueNameField);
-
-            customDataContainer = new VisualElement();
-            customDataContainer.AddToClassList("ds-node-custom-data-container");
-
-            //Dialogue text foldout and text field
-            dialogueTextFoldout = ElementsUtilities.CreateFoldout("DialogueText");
-
-            dialogueTextTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
-            {
-                data.Texts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
-            });
-
-            dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
-
-            dialogueTextFoldout.Add(dialogueTextTextField);
-            customDataContainer.Add(dialogueTextFoldout);
-            extensionContainer.Add(customDataContainer);
-
+            base.Draw();
 
             CreateInputPort("Event Connection");
             
@@ -75,26 +71,17 @@ namespace DS.Editor.Elements
             addEventButton.AddToClassList("ds-node-button");
             mainContainer.Insert(1, addEventButton);
             
-            foreach(var _event in data.Events)
+            foreach(var _event in _events)
             {
                 ObjectField field = CreateObjectField(_event);
                 objectFields.Add(field);
                 mainContainer.Add(field);
             }
 
-            this.CreateOutputPortFromChoices();
+            CreateOutputPortFromChoices();
             RefreshExpandedState();
         }
         
-        protected override List<Port> CreateOutputPortFromChoices()
-        {
-            List<Port> choices = new List<Port>();
-            foreach (ChoiceData choice in Data.Choices)
-            {
-                choices.Add(CreateChoicePort(choice));
-            }
-            return choices;
-        }
         protected override void SetNodeStyle()
         {
             extensionContainer.AddToClassList("ds-node_extension-container");
@@ -104,44 +91,44 @@ namespace DS.Editor.Elements
 
         #endregion
         #region Callbacks
-        /// <summary>
-        /// Callback called when the dialogue name changes.
-        /// </summary>
-        /// <param name="newDialogueName"></param>
-        protected new void OnDialogueNameChanged(ChangeEvent<string> callback)
-        {
-            TextField target = (TextField)callback.target;
-            target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
+        ///// <summary>
+        ///// Callback called when the dialogue name changes.
+        ///// </summary>
+        ///// <param name="newDialogueName"></param>
+        //protected override void OnDialogueNameChanged(ChangeEvent<string> callback)
+        //{
+        //    TextField target = (TextField)callback.target;
+        //    target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
 
-            if (string.IsNullOrEmpty(target.value))
-            {
-                if (string.IsNullOrEmpty(Data.Name) == false)
-                {
-                    graphView.NameErrorsAmount++;
-                }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(Data.Name) == true)
-                {
-                    graphView.NameErrorsAmount--;
-                }
-            }
+        //    if (string.IsNullOrEmpty(target.value))
+        //    {
+        //        if (string.IsNullOrEmpty(Data.Name) == false)
+        //        {
+        //            graphView.NameErrorsAmount++;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (string.IsNullOrEmpty(Data.Name) == true)
+        //        {
+        //            graphView.NameErrorsAmount--;
+        //        }
+        //    }
 
-            if (Group == null)
-            {
-                graphView.Remove_Node_FromUngrouped(this);
-                Data.Name = target.value;
-                graphView.Add_Node_ToUngrouped(this);
-            }
-            else
-            {
-                DS_Group groupRef = Group;
-                graphView.Remove_Node_FromGroup(this, Group);
-                Data.Name = target.value;
-                graphView.Add_Node_ToGroup(this, groupRef);
-            }
-        }
+        //    if (Group == null)
+        //    {
+        //        graphView.Remove_Node_FromUngrouped(this);
+        //        Data.Name = target.value;
+        //        graphView.Add_Node_ToUngrouped(this);
+        //    }
+        //    else
+        //    {
+        //        DS_Group groupRef = Group;
+        //        graphView.Remove_Node_FromGroup(this, Group);
+        //        Data.Name = target.value;
+        //        graphView.Add_Node_ToGroup(this, groupRef);
+        //    }
+        //}
         private void OnAddEventButtonPressed()
         {
             ObjectField objectField = CreateObjectField();
@@ -151,9 +138,9 @@ namespace DS.Editor.Elements
         {
             if (objectFields.Count == 1) return;
             objectFields.Remove(objectField);
-            if (eventSO != null && Data.Events.Contains(eventSO))
+            if (eventSO != null && _events.Contains(eventSO))
             {
-                Data.Events.Remove(eventSO);
+                _events.Remove(eventSO);
             }
             objectFields.Remove(objectField);
             mainContainer.Remove(objectField);
@@ -163,16 +150,16 @@ namespace DS.Editor.Elements
             return value =>
             {
                 _event = objectField.value as DS_EventSO;
-                if (objectField.value == null && Data.Events.Contains(_event) == false)
+                if (objectField.value == null && _events.Contains(_event) == false)
                 {
                     objectField.value = _event;
-                    Data.Events.Add(_event);
+                    _events.Add(_event);
                 }
-                else if (objectField.value != null && Data.Events.Contains(_event) == false)
+                else if (objectField.value != null && _events.Contains(_event) == false)
                 {
-                    Data.Events.Remove((DS_EventSO)objectField.value);
+                    _events.Remove((DS_EventSO)objectField.value);
                     objectField.value = _event;
-                    Data.Events.Add(_event);
+                    _events.Add(_event);
                 }
                 else
                 {
@@ -203,17 +190,5 @@ namespace DS.Editor.Elements
             return objectField;
         }    
         #endregion
-
-
-        /// <summary>
-        /// Return true if this node is a starting node.
-        /// </summary>
-        /// <returns></returns>
-        public override bool IsStartingNode()
-        {
-            return false;
-        }
-
-
     }
 }

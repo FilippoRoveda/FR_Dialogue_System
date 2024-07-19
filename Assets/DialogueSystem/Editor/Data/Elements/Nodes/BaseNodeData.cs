@@ -53,16 +53,16 @@ namespace DS.Editor.Data
                 groupID = value;
             }
         }
-        [SerializeField] protected NodeType dialogueType;
-        public NodeType DialogueType
+        [SerializeField] protected NodeType nodeType;
+        public NodeType NodeType
         {
             get
             {
-                return dialogueType;
+                return nodeType;
             }
             set
             {
-                dialogueType = value;
+                nodeType = value;
             }
         }
 
@@ -83,17 +83,25 @@ namespace DS.Editor.Data
         {
             
         }
+        public BaseNodeData(BaseNodeData data)
+        {
+            nodeID = data.NodeID;
+            name = data.Name;
+
+            if (data.groupID != null) groupID = data.groupID;
+
+            nodeType = data.NodeType;
+            position = data.Position;
+        }
         public BaseNodeData(BaseNode node)
         {
-            var baseData = node.Data;
+            nodeID = node._nodeID;
+            name = node._nodeName;
 
-            NodeID = baseData.NodeID;
-            Name = baseData.Name;
+            if (node._groupID != null) groupID = node._groupID;
 
-            if (baseData.groupID != null) GroupID = baseData.groupID;
-
-            DialogueType = baseData.DialogueType;
-            Position = baseData.Position;
+            nodeType = node._nodeType;
+            position = node._position;
         }
     }
 }

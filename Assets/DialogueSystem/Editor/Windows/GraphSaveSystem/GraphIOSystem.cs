@@ -38,15 +38,21 @@ namespace DS.Editor.Windows.Utilities
 
         public List<DS_Group> groups;
 
-        public List<BaseNode> nodes;
+
+        public List<DialogueNode> dialogueNodes;
         public List<EventNode> eventNodes;
+        public List<EndNode> endNodes;
+        public List<BranchNode> branchNodes;
 
         //public Dictionary<string, DialogueGroupSO> createdGroupsSO;
         //public Dictionary<string, BaseDialogueSO> createdDialoguesSO;
 
         public Dictionary<string, DS_Group> loadedGroups;
 
-        public Dictionary<string, BaseNode> loadedNodes;
+        public Dictionary<string, DialogueNode> loadedDialogueNodes;
+        public Dictionary<string, EventNode> loadedEventNodes;
+        public Dictionary<string, EndNode> loadedEndNodes;
+        public Dictionary<string, BranchNode> loadedBranchNodes;
 
         /// <summary>
         /// Initialize the static IOUtilities class with informations for the current DS_Graph view created, displayed or loaded in the editor window.
@@ -64,13 +70,20 @@ namespace DS.Editor.Windows.Utilities
             //containerFolderPath = commonAssetsPath + "/" + graphFileName;
 
             groups = new List<DS_Group>();
-            nodes = new List<BaseNode>();
+
+            //nodes = new List<BaseNode>();
             eventNodes = new List<EventNode>();
+            endNodes = new List<EndNode>();
+            dialogueNodes = new List<DialogueNode>();
+            branchNodes = new List<BranchNode>();
             //createdGroupsSO = new Dictionary<string, DialogueGroupSO>();
             //createdDialoguesSO = new Dictionary<string, BaseDialogueSO>();
 
             loadedGroups = new Dictionary<string, DS_Group>();
-            loadedNodes = new Dictionary<string, BaseNode>();
+            loadedDialogueNodes = new Dictionary<string, DialogueNode>();
+            loadedEventNodes = new Dictionary<string, EventNode>();
+            loadedEndNodes = new Dictionary<string, EndNode>();
+            loadedBranchNodes = new Dictionary<string, BranchNode>();
         }
 
         /// <summary>
@@ -89,6 +102,7 @@ namespace DS.Editor.Windows.Utilities
 
             //graphSave.SaveGroups(graphData, dialogueContainer);
             //graphSave.SaveNodes(graphData, dialogueContainer);
+
             graphSave.SaveGroups(graphData);
             graphSave.SaveNodes(graphData);
 
@@ -152,15 +166,15 @@ namespace DS.Editor.Windows.Utilities
             {
                 if (graphElement.GetType() == typeof(SingleNode))
                 {
-                    nodes.Add((SingleNode)graphElement);
+                    dialogueNodes.Add((SingleNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(MultipleNode))
                 {
-                    nodes.Add((MultipleNode)graphElement);
+                    dialogueNodes.Add((MultipleNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(StartNode))
                 {
-                    nodes.Add((StartNode)graphElement);
+                    dialogueNodes.Add((StartNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(EventNode))
                 {
@@ -168,11 +182,11 @@ namespace DS.Editor.Windows.Utilities
                 }
                 else if (graphElement.GetType() == typeof(EndNode))
                 {
-                    nodes.Add((EndNode)graphElement);
+                    endNodes.Add((EndNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(BranchNode))
                 {
-                    nodes.Add((BranchNode)graphElement);
+                    branchNodes.Add((BranchNode)graphElement);
                 }
                 else if (graphElement.GetType() == typeof(DS_Group))
                 {

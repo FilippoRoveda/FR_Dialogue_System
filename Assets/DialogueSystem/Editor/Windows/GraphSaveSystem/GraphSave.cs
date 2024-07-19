@@ -7,7 +7,7 @@ namespace DS.Editor.Windows.Utilities
     using Elements;
     using Editor.Data;
     using Editor.ScriptableObjects;
-    using DS.Editor.Utilities;
+    using Editor.Utilities;
 
     public class GraphSave
     {
@@ -27,15 +27,27 @@ namespace DS.Editor.Windows.Utilities
                 groupNames.Add(group.title);
             }
 
-            //UpdateOldGroups(groupNames, graphData);
+            UpdateOldGroups(groupNames, graphData);
         }
         private void SaveGroupInGraphData(DS_Group group, GraphSO graphData)
         {
             GroupData groupData = new GroupData(group.ID, group.title, group.GetPosition().position);
             graphData.groups.Add(groupData);
         }
+        private void UpdateOldGroups(List<string> currentGroupNames, GraphSO graphData)
+        {
+            if (graphData.oldGroupsNames != null && graphData.oldGroupsNames.Count != 0)
+            {
+                List<string> groupsToRemove = graphData.oldGroupsNames.Except(currentGroupNames).ToList();
+                foreach (string groupToRemove in groupsToRemove)
+                {
+                    _system.BaseIO.RemoveFolder($"{_system.containerFolderPath}/Groups/{groupToRemove}");
+                }
+            }
+            graphData.oldGroupsNames = new List<string>(currentGroupNames);
+        }
 
-        //private void SaveGroupToSO(DS_Group group, DialogueContainerSO dialogueContainer)
+        /*//private void SaveGroupToSO(DS_Group group, DialogueContainerSO dialogueContainer)
         //private void SaveGroupToSO(DS_Group group, DialogueContainerSO dialogueContainer)
         //{
         //    string groupName = group.title;
@@ -51,30 +63,23 @@ namespace DS.Editor.Windows.Utilities
 
         //    _system.BaseIO.SaveAsset(dialogueGroup);
         //}
-        //private void UpdateOldGroups(List<string> currentGroupNames, GraphSO graphData)
-        //{
-        //    if (graphData.oldGroupsNames != null && graphData.oldGroupsNames.Count != 0)
-        //    {
-        //        List<string> groupsToRemove = graphData.oldGroupsNames.Except(currentGroupNames).ToList();
-        //        foreach (string groupToRemove in groupsToRemove)
-        //        {
-        //            _system.BaseIO.RemoveFolder($"{_system.containerFolderPath}/Groups/{groupToRemove}");
-        //        }
-        //    }
-        //    graphData.oldGroupsNames = new List<string>(currentGroupNames);
-        //}
-        //public void SaveNodes(GraphSO graphData, DialogueContainerSO dialogueContainer)
+
+        //public void SaveNodes(GraphSO graphData, DialogueContainerSO dialogueContainer)*/
+
         public void SaveNodes(GraphSO graphData)
         {
-            Dictionary<string, List<string>> groupedNodeNames = new Dictionary<string, List<string>>();
+            SerializableDictionary<string, List<string>> groupedNodeNames = new SerializableDictionary<string, List<string>>();
             List<string> ungroupedNodeNames = new List<string>();
 
-            foreach (var node in _system.nodes)
+            foreach(var node in _system.dialogueNodes) 
             {
-                Editor.Utilities.Logger.Error(node.Data.DialogueType.ToString());
-                SaveNodeInGraphData(node, graphData);
+                Logger.Error("Saving a " +node._nodeType.ToString());
 
-                //switch (node.Data.DialogueType)
+                DialogueNodeData nodeData = new DialogueNodeData(node);
+                Logger.Error("Generetad data of type " + nodeData.NodeType.ToString());
+                graphData.dialogueNodes.Add(nodeData);
+
+                /*//switch (node.Data.DialogueType)
                 //{
                 //    case Enums.NodeType.Branch:
                 //        SaveNodeToSO<BranchDialogueSO>(node, dialogueContainer);
@@ -88,70 +93,61 @@ namespace DS.Editor.Windows.Utilities
                 //    default:
                 //        SaveNodeToSO<DialogueSO>(node, dialogueContainer);
                 //        break;
-                //}
-
+                //}*/
 
                 if (node.Group != null)
                 {
-                    groupedNodeNames[node.Group.title].Add(node.Data.Name);
-                    //groupedNodeNames.AddItem(node.Group.title, node.Data.Name);
+                    groupedNodeNames.AddItem(node.Group.title, node._nodeName);
                 }
                 else
                 {
-                    ungroupedNodeNames.Add(node.Data.Name);
+                    ungroupedNodeNames.Add(node._nodeName);
                 }
             }
-            foreach (var node in _system.eventNodes)
+            foreach (var node in _system.eventNodes) 
             {
-                Editor.Utilities.Logger.Error(node.Data.DialogueType.ToString());
+                Logger.Error("Saving a " + node._nodeType.ToString());
 
-                Logger.Message($"{node.Data.DialogueType}");
+                Logger.Message($"{node._nodeType}");
                 EventNodeData eventNodeData = new EventNodeData(node);
-                Logger.Message($"{eventNodeData.DialogueType}");
+                Logger.Message($"{eventNodeData.NodeType}");
                 graphData.eventNodes.Add(eventNodeData);
 
                 if (node.Group != null)
                 {
-                    groupedNodeNames[node.Group.title].Add(node.Data.Name);
-                    //groupedNodeNames.AddItem(node.Group.title, node.Data.Name);
+                    groupedNodeNames.AddItem(node.Group.title, node._nodeName);
                 }
                 else
                 {
-                    ungroupedNodeNames.Add(node.Data.Name);
+                    ungroupedNodeNames.Add(node._nodeName);
                 }
             }
-                //UpdateDialogueChoicesConnection();
+            foreach (var node in _system.endNodes) 
+            {
+                Logger.Error("Saving a " + node._nodeType.ToString());
+                Logger.Error(node._position.ToString());
+                EndNodeData endNodeData = new EndNodeData(node);
+                Logger.Error(endNodeData.Position.ToString());
 
-                UpdateOldGroupedNodes(groupedNodeNames, graphData);
+                graphData.endNodes.Add(endNodeData);
+                if (node.Group != null)
+                {
+                    groupedNodeNames.AddItem(node.Group.title, node._nodeName);
+                }
+                else
+                {
+                    ungroupedNodeNames.Add(node._nodeName);
+                }
+            }
+            foreach (var node in _system.branchNodes) { }
+
+
+            //UpdateDialogueChoicesConnection();
+            UpdateOldGroupedNodes(groupedNodeNames, graphData);
             UpdateOldUngroupedNodes(ungroupedNodeNames, graphData);
         }
-        private void SaveNodeInGraphData(BaseNode node, GraphSO graphData)
-        {
-            switch (node.Data.DialogueType)
-            {
-                case Enumerations.NodeType.Branch:
-                    //BranchNodeData branchNodeData = GetBranchNodeData((DS_BranchNode)node);
-                    //branchNodeData peculiar functions
-                    //graphData.BranchesNodes.Add(branchNodeData);
-                    break;
-                case Enumerations.NodeType.Event:
-                    Logger.Message($"Saving event node whit {((EventNode)node).Data.Choices.Count}");
-                    EventNodeData eventNodeData = new EventNodeData((EventNode)node);
-                    Logger.Message($"Saving event node Data {eventNodeData.Choices.Count}");
-                    graphData.eventNodes.Add(eventNodeData);
-                    break;
-                case Enumerations.NodeType.End:
-                    EndNodeData endNodeData = new EndNodeData((EndNode)node);
-                    graphData.endNodes.Add(endNodeData);
-                    break;
-                default:
-                    DialogueNodeData nodeData = new DialogueNodeData((DialogueNode)node);
-                    graphData.dialogueNodes.Add(nodeData);
-                    break;
-            }
-
-        }
-        //private void SaveNodeToSO<T>(BaseNode node, DialogueContainerSO dialogueContainer) where T : BaseDialogueSO
+        
+       /* //private void SaveNodeToSO<T>(BaseNode node, DialogueContainerSO dialogueContainer) where T : BaseDialogueSO
         //{
         //    T dialogue;
 
@@ -238,8 +234,8 @@ namespace DS.Editor.Windows.Utilities
         //        }
         //        else continue;
         //    }
-        //}
-        private void UpdateOldGroupedNodes(Dictionary<string, List<string>> currentGroupedNodeNames, GraphSO graphData)
+        //}*/
+        private void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, GraphSO graphData)
         {
             if (graphData.oldGroupedNodesNames != null && graphData.oldGroupedNodesNames.Count != 0)
             {

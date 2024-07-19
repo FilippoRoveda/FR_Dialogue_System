@@ -29,18 +29,21 @@ namespace DS.Editor.Data
         {
             choices = new List<ChoiceData>();
         }
-
+        public DialogueNodeData(DialogueNodeData data) : base(data)
+        {
+            choices = new List<ChoiceData>(data.Choices);
+        }
         public DialogueNodeData(DialogueNode node) : base(node)
         {          
             List<ChoiceData> choices = new List<ChoiceData>();
-            foreach(ChoiceData choice in node.Data.Choices)
+            foreach(ChoiceData choice in node._choices)
             {
                 ChoiceData choice_SaveData = new ChoiceData(choice);
                 
                 choices.Add(choice_SaveData);
             }
 
-            Choices = new List<ChoiceData>(choices);                    
+            this.choices = new List<ChoiceData>(choices);                    
         }
     }
 }

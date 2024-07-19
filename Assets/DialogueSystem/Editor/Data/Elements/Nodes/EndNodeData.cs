@@ -4,6 +4,7 @@ using UnityEngine;
 namespace DS.Editor.Data
 {
     using Editor.Elements;
+    using System.Collections.Generic;
 
     [System.Serializable]
     public class EndNodeData : TextedNodeData
@@ -16,11 +17,22 @@ namespace DS.Editor.Data
         {
             
         }
-        public EndNodeData(EndNode node) 
-                           : base(node)
+        public EndNodeData(EndNodeData data) : base(data)
         {
+            isDialogueRepetable = data.IsDialogueRepetable;
+        }
+        public EndNodeData(EndNode node)  : base()                
+        {
+            nodeID = node._nodeID;
+            name = node._nodeName;
+            texts = new List<LenguageData<string>>(node._texts);
+            texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
+            if (node._groupID != null) groupID = node._groupID;
 
-            IsDialogueRepetable = node.Data.IsDialogueRepetable;
+            nodeType = node._nodeType;
+            position = node._position;
+
+            isDialogueRepetable = node._isDialogueRepetable;
         }
     }
 }

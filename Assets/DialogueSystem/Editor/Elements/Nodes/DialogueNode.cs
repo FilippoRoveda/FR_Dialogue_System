@@ -15,14 +15,38 @@ namespace DS.Editor.Elements
 
     public abstract class DialogueNode : TextedNode
     {
-        private DialogueNodeData data = new();
-        public new DialogueNodeData Data { get { return data; } }
+        public List<ChoiceData> _choices;
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
-            base.Initialize(nodeName, context, spawnPosition);
-            Data.Choices = new List<ChoiceData>();
-            graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+            _nodeID = System.Guid.NewGuid().ToString();
+            _nodeName = nodeName;
+            _position = spawnPosition;
+            SetPosition(new Rect(spawnPosition, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+
+            _texts = LenguageUtilities.InitLenguageDataSet("Dialogue Text");
+
+            _choices = new List<ChoiceData>();
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+        }
+
+        public virtual void Initialize(DialogueNodeData _data, DS_GraphView context)
+        {
+
+            _nodeID = _data.NodeID;
+            _nodeName = _data.Name;
+            _position = _data.Position;
+            SetPosition(new Rect(_data.Position, Vector2.zero));
+            _graphView = context;
+            SetNodeStyle();
+
+            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
+
+            _choices = new List<ChoiceData>(_data.Choices);
+            Debug.Log("Calling dialogue node initializer with data");
         }
 
         #region Overrides
@@ -45,6 +69,7 @@ namespace DS.Editor.Elements
         }
         #endregion
         #region Node parts creation
+
         protected Port CreateInputPort(string inputPortName = "DialogueConnection", Port.Capacity capacity = Port.Capacity.Multi)
         {
             Port choicePort = this.CreatePort(inputPortName, Orientation.Horizontal, Direction.Input, capacity);
@@ -56,7 +81,7 @@ namespace DS.Editor.Elements
         protected virtual List<Port> CreateOutputPortFromChoices()
         {
             List<Port> choices = new List<Port>();
-            foreach (ChoiceData choice in Data.Choices)
+            foreach (ChoiceData choice in _choices)
             {
                 choices.Add(CreateChoicePort(choice));
             }
@@ -67,12 +92,12 @@ namespace DS.Editor.Elements
         {
             ChoiceData choice = (ChoiceData)_choice;
 
-            Port choicePort = this.CreatePort(choice.ChoiceTexts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data,
+            Port choicePort = this.CreatePort(choice.ChoiceTexts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data,
                                 Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
             choicePort.portName = "";
             choicePort.userData = choice;
 
-            TextField choiceTextField = ElementsUtilities.CreateTextField(choice.ChoiceTexts.GetLenguageData(graphView.GetEditorCurrentLenguage()).Data,
+            TextField choiceTextField = ElementsUtilities.CreateTextField(choice.ChoiceTexts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data,
                                             null,
                                             callback => UpdateChoiceLenguageData(callback, choice));
 
@@ -88,10 +113,11 @@ namespace DS.Editor.Elements
         #endregion
 
         #region Utilities
+
         protected void AddNodeChoice(string choiceText)
         {
             ChoiceData choiceData = new ChoiceData(choiceText);
-            Data.Choices.Add(choiceData);
+            _choices.Add(choiceData);
         }
 
         /// <summary>
@@ -104,7 +130,7 @@ namespace DS.Editor.Elements
             {
                 if (port.connected == true)
                 {
-                    graphView.DeleteElements(port.connections);
+                    _graphView.DeleteElements(port.connections);
                 }
             }
         }
@@ -119,7 +145,7 @@ namespace DS.Editor.Elements
 
         protected void UpdateChoiceLenguageData(ChangeEvent<string> callback, ChoiceData choice)
         {
-            choice.ChoiceTexts.Find(x => x.LenguageType == graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
+            choice.ChoiceTexts.Find(x => x.LenguageType == _graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
         }
         #endregion
     }

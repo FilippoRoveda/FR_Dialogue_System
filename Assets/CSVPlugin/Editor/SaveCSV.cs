@@ -41,7 +41,7 @@ namespace CSVPlugin
                 foreach (var nodeData in graph.GetAllOrderedNodes())
                 {
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
-                    if (nodeData.DialogueType == NodeType.Branch) continue;
+                    if (nodeData.NodeType == NodeType.Branch) continue;
 
                     var textNode = (TextedNodeData)nodeData;
                     textNode.UpdateTextsLenguage();
@@ -58,7 +58,7 @@ namespace CSVPlugin
 
 
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
-                    if (nodeData.DialogueType == NodeType.End) continue;
+                    if (nodeData.NodeType == NodeType.End) continue;
                     var dialogueNode = (DialogueNodeData)nodeData;
 
                     if (dialogueNode.Choices != null && dialogueNode.Choices.Count != 0)

@@ -27,16 +27,20 @@ namespace DS.Editor.Data
             texts = LenguageUtilities.UpdateLenguageDataSet(texts);
         }
 
-
+        public TextedNodeData(TextedNodeData data) : base(data)
+        {
+            texts = new List<LenguageData<string>>(data.Texts);
+            texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
+        }
         public TextedNodeData(TextedNode node) : base(node)
         {
-            Texts = new List<LenguageData<string>>(node.Data.Texts);
-            Texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
+            texts = new List<LenguageData<string>>(node._texts);
+            texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
         }
 
         public void UpdateTextsLenguage()
         {
-            Texts = LenguageUtilities.UpdateLenguageDataSet(Texts);
+            texts = LenguageUtilities.UpdateLenguageDataSet(texts);
         }
     }
 }

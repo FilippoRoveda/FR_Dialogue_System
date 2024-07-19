@@ -20,20 +20,25 @@ namespace DS.Editor.Data
         {
             events = new List<DS_EventSO>();
         }
-        public EventNodeData(EventNode node) : base(node)
+        public EventNodeData(EventNodeData data) : base(data)
         {
-            NodeID = node.Data.NodeID;
-            Name = node.Data.Name;
-
-            if (node.Data.groupID != null) GroupID = node.Data.groupID;
-
-            DialogueType = node.Data.DialogueType;
-
-            Choices = node.Data.Choices;
             events = new List<DS_EventSO>();
-            if (node.Data.Events != null && node.Data.Events.Count > 0)
+            if (data.Events != null && data.Events.Count > 0)
             {
-                foreach (var _event in node.Data.Events)
+                foreach (var _event in data.Events)
+                {
+                    events.Add(_event);
+                }
+            }
+            else events = null;
+        }
+
+        public EventNodeData(EventNode node) : base(node)
+        { 
+            events = new List<DS_EventSO>();
+            if (node._events != null && node._events.Count > 0)
+            {
+                foreach (var _event in node._events)
                 {
                     events.Add(_event);
                 }

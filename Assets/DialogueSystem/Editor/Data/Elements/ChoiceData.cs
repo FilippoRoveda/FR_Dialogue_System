@@ -47,8 +47,8 @@ namespace DS.Editor.Data
         public ChoiceData(ChoiceData choice)
         {
             choiceID = choice.ChoiceID;
-            ChoiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
-            NextNodeID = choice.NextNodeID;
+            choiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
+            nextNodeID = choice.NextNodeID;
         }
         public void UpdateTextsLenguages()
         {

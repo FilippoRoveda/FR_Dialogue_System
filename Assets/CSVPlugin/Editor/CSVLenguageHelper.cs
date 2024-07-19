@@ -20,7 +20,7 @@ namespace CSVPlugin
                 foreach (var node in graph.GetAllNodes())
                 {
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
-                    if(node.DialogueType != NodeType.Branch)
+                    if(node.NodeType != NodeType.Branch)
                     {
                         var textNode = (TextedNodeData)node;
                         textNode.UpdateTextsLenguage();
@@ -28,8 +28,8 @@ namespace CSVPlugin
 
 
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
-                    if (node.DialogueType == NodeType.End) continue;
-                    if (node.DialogueType == NodeType.Branch) continue; // do other things
+                    if (node.NodeType == NodeType.End) continue;
+                    if (node.NodeType == NodeType.Branch) continue; // do other things
 
                     var dialogueNode = (DialogueNodeData)node;
 

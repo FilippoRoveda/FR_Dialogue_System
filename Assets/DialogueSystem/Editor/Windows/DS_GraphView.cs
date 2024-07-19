@@ -279,33 +279,52 @@ namespace DS.Editor.Windows
                         if (nodeType == typeof(SingleNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (SingleNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }
                         else if (nodeType == typeof(MultipleNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (MultipleNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }
                         else if (nodeType == typeof(StartNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (StartNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }
                         else if (nodeType == typeof(EventNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (EventNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }
                         else if (nodeType == typeof(EndNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (EndNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }
                         else if (nodeType == typeof(BranchNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
-                        }
-
-                        var nextNode = (BaseNode)edge.input.node;
-                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
-                            choiceData.NextNodeID = nextNode.Data.NodeID;
-                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node).Data.Name} and node: {nextNode.Data.Name}");
-                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node).Data.NodeID} and node: {nextNode.Data.NodeID}");
+                        }                       
                     }
                 }
 
@@ -413,6 +432,25 @@ namespace DS.Editor.Windows
 
             Add_Node_ToUngrouped(node);
 
+            AvoidNodeOverlap(node);
+            return node;
+        }
+        public T CreateNode<T, U>(U data, bool shouldDraw = false) where T : BaseNode where U : BaseNodeData
+        {
+            var _data = (U)data;
+            var node = (T)Activator.CreateInstance(typeof(T));
+            Debug.Log($"Instantiating a {node.GetType()}");
+            Debug.Log($"Data are of type a {_data.GetType()}");
+            Debug.Log(_data.NodeID);
+            Debug.Log(_data.Name);
+            Debug.Log(_data.NodeType);
+            node.Initialize(data, this);
+            Debug.Log(node._nodeID);
+            Debug.Log(node._nodeName);
+            Debug.Log(node._nodeType);
+            if (shouldDraw == true) node.Draw();
+
+            Add_Node_ToUngrouped(node);
             AvoidNodeOverlap(node);
             return node;
         }
@@ -565,7 +603,7 @@ namespace DS.Editor.Windows
         public void Add_Node_ToUngrouped(BaseNode node)
         {
             Logger.Error("Ungrouped addition");
-            string nodeName = node.Data.Name.ToLower();
+            string nodeName = node._nodeName.ToLower();
 
             if (ungroupedNodes.ContainsKey(nodeName) == false)
             {
@@ -604,7 +642,7 @@ namespace DS.Editor.Windows
         {
             Logger.Error("Ungrouped removing");
 
-            string nodeName = node.Data.Name.ToLower();
+            string nodeName = node._nodeName.ToLower();
             List<BaseNode> nodeList = ungroupedNodes[nodeName].Nodes;
 
             Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
@@ -639,7 +677,7 @@ namespace DS.Editor.Windows
         public void Add_Node_ToGroup(BaseNode node, DS_Group group)
         {
             Logger.Error("Grouped nodes");
-            string nodeName = node.Data.Name.ToLower();
+            string nodeName = node._nodeName.ToLower();
             node.SetGroup(group);
 
             if (groupedNodes.ContainsKey(group) == false)
@@ -693,7 +731,7 @@ namespace DS.Editor.Windows
         public bool Remove_Node_FromGroup(BaseNode node, DS_Group group)
         {
             Logger.Error("Groupednodes");
-            string nodeName = node.Data.Name.ToLower();
+            string nodeName = node._nodeName.ToLower();
             node.RemoveFromGroup();
 
             if (groupedNodes.ContainsKey(group) == false) 

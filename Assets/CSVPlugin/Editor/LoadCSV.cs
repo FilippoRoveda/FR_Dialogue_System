@@ -54,7 +54,7 @@ namespace CSVPlugin
                 foreach (var node in graph.GetAllOrderedNodes())
                 {
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
-                    if (node.DialogueType == NodeType.Branch) continue;
+                    if (node.NodeType == NodeType.Branch) continue;
 
                     var row = csvData.Find(x => x[0] == node.NodeID);
 
@@ -76,7 +76,7 @@ namespace CSVPlugin
 
 
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
-                    if (node.DialogueType == NodeType.End) continue;
+                    if (node.NodeType == NodeType.End) continue;
 
                     var dialogueNode = (DialogueNodeData)node;
 

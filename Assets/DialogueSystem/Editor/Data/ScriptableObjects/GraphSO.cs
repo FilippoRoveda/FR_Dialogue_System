@@ -63,7 +63,7 @@ namespace DS.Editor.ScriptableObjects
             List<BaseNodeData> orderedNodes = new List<BaseNodeData>();
 
             allNodes = GetAllNodes();
-            var startingNodes = allNodes.FindAll(x => x.DialogueType == Enumerations.NodeType.Start);
+            var startingNodes = allNodes.FindAll(x => x.NodeType == Enumerations.NodeType.Start);
             foreach(var startNode in startingNodes)
             {
                 allNodes.Remove(startNode);
@@ -86,7 +86,7 @@ namespace DS.Editor.ScriptableObjects
             if(output == null) output = new List<BaseNodeData>();
 
             if(output.Contains(node) == false) output.Add(node);
-            if (node.DialogueType != Enumerations.NodeType.End)
+            if (node.NodeType != Enumerations.NodeType.End)
             {
                 var dialogueNode = (DialogueNodeData)node;
                 if (dialogueNode.Choices == null || dialogueNode.Choices.Count == 0) return;
