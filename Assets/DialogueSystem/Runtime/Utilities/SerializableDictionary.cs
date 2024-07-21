@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace DS.Editor.Utilities
+namespace DS.Runtime.Utilities
 {
     public partial class SerializableDictionary
     {

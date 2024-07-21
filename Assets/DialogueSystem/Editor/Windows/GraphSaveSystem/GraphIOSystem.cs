@@ -24,10 +24,6 @@ namespace DS.Editor.Windows.Utilities
         /// </summary>
         public DS_GraphView graphView;
         /// <summary>
-        /// Base assets path for all saved dialogues.
-        /// </summary>
-        //public static readonly string commonAssetsPath = "Assets/DialogueSystem/CreatedDialogues";
-        /// <summary>
         /// Base editor assets path for all saved diallgues graphs.
         /// </summary>
         public static readonly string commonEditorPath = "Assets/Editor/Data/Graphs";
@@ -43,9 +39,6 @@ namespace DS.Editor.Windows.Utilities
         public List<EventNode> eventNodes;
         public List<EndNode> endNodes;
         public List<BranchNode> branchNodes;
-
-        //public Dictionary<string, DialogueGroupSO> createdGroupsSO;
-        //public Dictionary<string, BaseDialogueSO> createdDialoguesSO;
 
         public Dictionary<string, DS_Group> loadedGroups;
 
@@ -67,17 +60,15 @@ namespace DS.Editor.Windows.Utilities
 
             this.graphView = graphView;
             graphFileName = graphName;
-            //containerFolderPath = commonAssetsPath + "/" + graphFileName;
+            
 
             groups = new List<DS_Group>();
 
-            //nodes = new List<BaseNode>();
             eventNodes = new List<EventNode>();
             endNodes = new List<EndNode>();
             dialogueNodes = new List<DialogueNode>();
             branchNodes = new List<BranchNode>();
-            //createdGroupsSO = new Dictionary<string, DialogueGroupSO>();
-            //createdDialoguesSO = new Dictionary<string, BaseDialogueSO>();
+
 
             loadedGroups = new Dictionary<string, DS_Group>();
             loadedDialogueNodes = new Dictionary<string, DialogueNode>();
@@ -97,17 +88,10 @@ namespace DS.Editor.Windows.Utilities
             GraphSO graphData = BaseIO.CreateAsset<GraphSO>(commonEditorPath, $"/{graphFileName}_Graph");
             graphData.Initialize(graphFileName);
 
-            //DialogueContainerSO dialogueContainer = BaseIO.CreateAsset<DialogueContainerSO>(containerFolderPath, graphFileName);
-            //dialogueContainer.Initialize(graphFileName);
-
-            //graphSave.SaveGroups(graphData, dialogueContainer);
-            //graphSave.SaveNodes(graphData, dialogueContainer);
-
             graphSave.SaveGroups(graphData);
             graphSave.SaveNodes(graphData);
 
             BaseIO.SaveAsset(graphData);
-            //BaseIO.SaveAsset(dialogueContainer);
         }
 
         public void LoadGraph()
@@ -143,13 +127,6 @@ namespace DS.Editor.Windows.Utilities
         private void CreateStaticFolders()
         {
             BaseIO.CreateFolder("Assets/Editor/Data", "Graphs");
-            //BaseIO.CreateFolder("Assets", "DialogueSystem");
-            //BaseIO.CreateFolder("Assets/DialogueSystem", "CreatedDialogues");
-            //BaseIO.CreateFolder("Assets/DialogueSystem/CreatedDialogues", graphFileName);
-           // BaseIO.CreateFolder(containerFolderPath, "Global");
-            //BaseIO.CreateFolder(containerFolderPath, "Groups");
-            //BaseIO.CreateFolder($"{containerFolderPath}/Global", "Dialogues");
-
         }
         #endregion
 

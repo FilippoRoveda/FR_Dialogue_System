@@ -1,7 +1,7 @@
-namespace DS.Editor.Data
+namespace DS.Runtime.Data
 {
-#if UNITY_EDITOR
-    using Editor.Enumerations;
+#if UNITY_STANDALONE
+    using Runtime.Enumerations;
 
     [System.Serializable]
     public partial class LenguageData<T>

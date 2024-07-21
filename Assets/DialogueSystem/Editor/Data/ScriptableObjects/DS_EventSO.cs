@@ -7,6 +7,7 @@ namespace DS.Editor.ScriptableObjects
     [System.Serializable]  
     public class DS_EventSO : ScriptableObject
     {
+        [SerializeField] public string eventName = "TestEvent";
         public virtual void Execute()
         {
             Debug.Log("Evento lanciato");

@@ -1,0 +1,19 @@
+{
+    "name": "DialogueConverter.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:35393b51310368043924be249a297311",
+        "GUID:94cbbcd7c82aa6f4cadefdf7af8e41f9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

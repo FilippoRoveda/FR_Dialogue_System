@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace DS.Editor.Data
+namespace DS.Runtime.Data
 {
-    using Editor.Enumerations;
+    using Runtime.Enumerations;
     public static partial class LenguageUtilities
     {
         public static List<LenguageData<T>> InitLenguageDataSet<T>(T defaultData = null) where T : class

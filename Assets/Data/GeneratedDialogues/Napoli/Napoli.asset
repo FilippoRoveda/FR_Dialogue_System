@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5169bb0909fb4c04b895b35cc779425a, type: 3}
+  m_Name: Napoli
+  m_EditorClassIdentifier: 
+  graphName: Napoli
+  dialogueGroups:
+    list: []
+  ungroupedDialogues:
+  - {fileID: 11400000, guid: ff4990eb93d55784294bc4bf84443bd6, type: 2}
+  - {fileID: 11400000, guid: 5284e5de8529b2e4faa1921b9b69a1d3, type: 2}
+  - {fileID: 11400000, guid: 13135ed538ab14a48bab31e9062e7204, type: 2}
