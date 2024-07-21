@@ -15,6 +15,8 @@ namespace Variables.Editor
             set
             {
 #if UNITY_EDITOR
+                var previewsName = _name;
+                if (string.IsNullOrEmpty(value)) return;
                 _name = value;
 
                 var valueBackUp = Value;

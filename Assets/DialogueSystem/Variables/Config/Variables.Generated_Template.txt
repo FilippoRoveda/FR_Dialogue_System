@@ -1,0 +1,57 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Variables.Runtime
+{
+
+    public class VariablesGenerated : MonoBehaviour
+    {
+        public enum VariablesKey
+        {
+            [VAR_KEYS]
+        }
+
+
+        public static VariablesGenerated Instance = null;
+        public Dictionary<VariablesKey, string> variableMap;
+
+        public Dictionary<string, IntVariable> intVariables;
+        public Dictionary<string, FloatVariable> floatVariables;
+        public Dictionary<string, BoolVariable> boolVariables;
+
+
+        private void Awake()
+        {
+            SetSingleInstance();
+        }
+        private void SetSingleInstance()
+        {
+            if (Instance == null) Instance = this;
+            else this.enabled = false;
+        }
+        private void OnEnable()
+        {
+            InitializeDictionaries();
+        }
+        private void InitializeDictionaries()
+        {
+            variableMap = new Dictionary<VariablesKey, string>()
+            {
+                [MAP_KEYPAIRS]
+            };
+            intVariables = new Dictionary<string, IntVariable>()
+            {
+                [INT_VAR_KEYPAIRS]
+            };
+            floatVariables = new Dictionary<string, FloatVariable>()
+            {
+                [FLOAT_VAR_KEYPAIRS]
+            };
+            boolVariables = new Dictionary<string, BoolVariable>()
+            {
+                [BOOL_VAR_KEYPAIRS]
+            };
+
+        }
+    }
+}

@@ -74,10 +74,16 @@ namespace Variables.Editor
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.BeginVertical();
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("ADD VARIABLE", GUILayout.Width(150), GUILayout.Height(50)))
             {
                 AddVarible();
             }
+            if (GUILayout.Button("COMPILE VARIABLES", GUILayout.Width(150), GUILayout.Height(50)))
+            {
+                VariableCompiler.Compile();
+            }
+            EditorGUILayout.EndHorizontal();
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
             DrawAllVariables();
@@ -108,7 +114,7 @@ namespace Variables.Editor
                     }
                     break;
                 case VariableType.BOOL:
-                    var boolVariables = _varDatabase.GetBoole();
+                    var boolVariables = _varDatabase.GetBooleans();
                     foreach (var var in boolVariables)
                     {
                         DrawBoolVariable(var);

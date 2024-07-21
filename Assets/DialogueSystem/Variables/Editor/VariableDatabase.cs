@@ -134,7 +134,7 @@ namespace Variables.Editor
 
         public List<IntegerVariableData> GetIntegers() => integers;
         public List<FloatVariableData> GetDecimals() => decimals;
-        public List<BooleanVariableData> GetBoole() => booleans;
+        public List<BooleanVariableData> GetBooleans() => booleans;
 
         public void SetVariableName<T>(string id, string name) where T : VariableData<T>
         {
@@ -148,8 +148,6 @@ namespace Variables.Editor
             variable.Name = name;
             VariableEvents.VariableNameChanged.Invoke(id, name);
         }
-
-
         public void SetVariableValue<T>(string id, T value) where T : VariableData<T>
         {
             var variable = GetVariable<T>(id);

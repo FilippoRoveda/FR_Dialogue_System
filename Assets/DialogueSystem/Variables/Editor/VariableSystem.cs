@@ -8,7 +8,6 @@ namespace Variables.Editor
     [InitializeOnLoad]
     public class VariableSystem
     {
-
         static VariableSystem()
         {
             EditorApplication.delayCall += Startup;
