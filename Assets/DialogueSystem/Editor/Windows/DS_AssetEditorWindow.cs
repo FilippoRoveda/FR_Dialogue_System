@@ -70,12 +70,15 @@ namespace DS.Editor.Windows
             filenameTextField = ElementsUtilities.CreateTextField(assetGraph.graphName, "File Name:");
             saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
             clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
+            openVariableEditor = ElementsUtilities.CreateButton("Variable Editor", () => OnVariableEditorButtonPressed());
             toggleMinimapButton = ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
 
 
             toolbar.Add(filenameTextField);
             toolbar.Add(saveGraphButton);
             toolbar.Add(clearButton);
+            toolbar.Add(openVariableEditor);
+
             toolbar.Add(toggleMinimapButton);
 
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");

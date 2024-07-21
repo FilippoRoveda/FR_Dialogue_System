@@ -14,7 +14,7 @@ namespace CSVPlugin
         {
             //Update only the editor graph so object, then open it and savi it overriding the generated 
             //runtime objects
-            List<GraphSO> graphs = IOUtils.LoadAssetsFromPath<GraphSO>("Assets/Editor/Files/Graphs");
+            List<GraphSO> graphs = IOUtils.LoadAssetsFromPath<GraphSO>("Assets/Editor/Data/Graphs");
             foreach (var graph in graphs)
             {
                 foreach (var node in graph.GetAllNodes())

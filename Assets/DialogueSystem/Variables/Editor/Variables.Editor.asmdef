@@ -1,12 +1,10 @@
 {
-    "name": "DialogueSystem.Editor",
+    "name": "Variables.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:97024b95d63d26448b71a04f5c3bab69"
+        "GUID:490affe41d54fa54c8bff38ac37bd01c"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

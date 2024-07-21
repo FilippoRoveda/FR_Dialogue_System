@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 namespace DS.Editor.Windows
 {
+    using Variables.Editor;
+
     using Editor.Enumerations;
     using Editor.Utilities;
     using Windows.Utilities;
@@ -31,6 +33,9 @@ namespace DS.Editor.Windows
         protected Button saveGraphButton;
         protected Button clearButton;
         protected Button toggleMinimapButton;
+        protected Button openVariableEditor;
+        VariableEditorWindow variableEditorWindow;
+        bool isVariableEditorOpen = false;
         protected ToolbarMenu toolbarMenu;
 
         private Button loadButton;
@@ -104,6 +109,7 @@ namespace DS.Editor.Windows
             loadButton = ElementsUtilities.CreateButton("Load", () => OnLoadButtonPressed());
             clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             resetButton = ElementsUtilities.CreateButton("Reset", () => OnResetGraphButtonPressed());
+            openVariableEditor = ElementsUtilities.CreateButton("Variable Editor", () => OnVariableEditorButtonPressed());
             toggleMinimapButton = ElementsUtilities.CreateButton("Toggle Minimap", () => OnToggleMinimapButtonPressed());
 
 
@@ -112,11 +118,27 @@ namespace DS.Editor.Windows
             toolbar.Add(loadButton);
             toolbar.Add(clearButton);
             toolbar.Add(resetButton);
+            toolbar.Add(openVariableEditor);
             toolbar.Add(toggleMinimapButton);
 
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
+        }
+
+        protected void OnVariableEditorButtonPressed()
+        {
+            if(isVariableEditorOpen == true)
+            {
+                isVariableEditorOpen = false;
+                variableEditorWindow.Close();
+                variableEditorWindow = null;
+            }
+            else
+            {
+                variableEditorWindow = VariableEditorWindow.OpenWindowInGraphView<DS_EditorWindow>();
+                isVariableEditorOpen = true;
+            }
         }
 
 
