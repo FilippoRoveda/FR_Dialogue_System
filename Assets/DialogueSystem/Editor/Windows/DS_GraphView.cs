@@ -202,6 +202,11 @@ namespace DS.Editor.Windows
                         ((DialogueNode)node).DisconnectAllPorts();
                     }
                     catch { Debug.LogWarning("Trying to disconnect ports from a nod that does not handle them."); }
+                    try
+                    {
+                        ((BranchNode)node).DisconnectAllPorts();
+                    }
+                    catch { Debug.LogWarning("Trying to disconnect ports from a nod that does not handle them."); }
                     
                     RemoveElement(node);
                 }
@@ -329,6 +334,11 @@ namespace DS.Editor.Windows
                         else if (nodeType == typeof(BranchNode))
                         {
                             Logger.Warning($"Linking to a {nodeType}");
+                            var nextNode = (BranchNode)edge.input.node;
+                            ChoiceData choiceData = (ChoiceData)edge.output.userData;
+                            choiceData.NextNodeID = nextNode._nodeID;
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeName} and node: {nextNode._nodeName}");
+                            Logger.Warning($"Edge created between node: {((BaseNode)edge.output.node)._nodeID} and node: {nextNode._nodeID}");
                         }                       
                     }
                 }

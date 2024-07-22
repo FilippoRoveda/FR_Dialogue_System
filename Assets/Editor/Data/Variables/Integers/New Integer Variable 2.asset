@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5611006fcc18549b777306ef39cf93, type: 3}
   m_Name: New Integer Variable 2
   m_EditorClassIdentifier: 
-  _name: 
-  id: 
+  _name: New Integer Variable 2
+  id: 96a722bf-c3b8-4bd2-ae48-425f9f4dd816
   value: 0

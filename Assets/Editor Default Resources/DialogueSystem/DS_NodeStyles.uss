@@ -98,6 +98,41 @@
 	border-color: #27292C;
 }
 
+
+/*Condition displaying elements*/
+.SOElement
+{
+	background-color: #252713;
+	border-color: #1D1D1E;
+	max-width: 400px;
+	justify-content: flex-end;
+	margin: 5px;
+
+}
+.ds-intElement
+{
+	background-color: #252713;
+	border-color: #1D1D1E;
+	margin: 5px;
+
+}
+.ds-enumElement
+{
+	background-color: #252713;
+	border-color: #1D1D1E;
+	margin: 5px;
+
+}
+
+.ds-condition-button
+{
+	background-color: #252729;
+	border-color: #1D1D1E;
+
+}
+
+
+
 /*BUTTONS*/
 .ds-node-button
 {
@@ -106,6 +141,7 @@
 	margin: 4px;
 	max-height: 25px;
 }
+
 .ds-node-button:hover
 {
 	background-color: #2B2D2F;

@@ -5,7 +5,6 @@ namespace DS.Editor.ScriptableObjects
 {
     using Editor.Data;
 
-    //[CreateAssetMenu(menuName = "sss", fileName = "ss")]
     public class GraphSO : ScriptableObject
     {
         [SerializeField] public string graphName;
@@ -17,14 +16,14 @@ namespace DS.Editor.ScriptableObjects
         [SerializeField] public List<DialogueNodeData> dialogueNodes; //Start, Single, Multiple
         [SerializeField] public List<EventNodeData> eventNodes;
         [SerializeField] public List<EndNodeData> endNodes;
-        //[SerializeField] private List<BranchNodeData> branchNodes;
+        [SerializeField] public List<BranchNodeData> branchNodes;
 
 
         [SerializeField] public List<string> oldGroupsNames;
         [SerializeField] public List<string> oldUngroupedNames;
         [SerializeField] public Dictionary<string, List<string>> oldGroupedNodesNames;
 
-
+        
 
         public void Initialize(string fileName)
         {
@@ -33,6 +32,7 @@ namespace DS.Editor.ScriptableObjects
             dialogueNodes = new List<DialogueNodeData>();
             eventNodes = new List<EventNodeData>();
             endNodes = new List<EndNodeData>();
+            branchNodes = new List<BranchNodeData>();
         }
 
         public List<BaseNodeData> GetAllNodes()
@@ -50,10 +50,10 @@ namespace DS.Editor.ScriptableObjects
             {
                 allNodes.Add(endNode);
             }
-            //foreach (BranchNodeData branchNode in BranchNodes)
-            //{
-            //    allNodes.Add(branchNode);
-            //}
+            foreach (BranchNodeData branchNode in branchNodes)
+            {
+                allNodes.Add(branchNode);
+            }
             return allNodes;           
         }
 
@@ -89,6 +89,7 @@ namespace DS.Editor.ScriptableObjects
             if (node.NodeType != Enumerations.NodeType.End)
             {
                 var dialogueNode = (DialogueNodeData)node;
+                //Aggiungere opzione per branch node
                 if (dialogueNode.Choices == null || dialogueNode.Choices.Count == 0) return;
 
                 foreach (var choice in dialogueNode.Choices)

@@ -1,13 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-
-
 namespace DS.Editor.Windows.Utilities
 {
     using Editor.Elements;
     using Editor.Data;
     using Editor.ScriptableObjects;
-    using Editor.Utilities;
 
     public class GraphSave
     {
@@ -46,7 +41,11 @@ namespace DS.Editor.Windows.Utilities
                 EndNodeData endNodeData = new EndNodeData(node);
                 graphData.endNodes.Add(endNodeData);
             }
-            foreach (var node in _system.branchNodes) { }
+            foreach (var node in _system.branchNodes) 
+            {
+                BranchNodeData branchNodeData = new BranchNodeData(node);
+                graphData.branchNodes.Add(branchNodeData);
+            }
 
         }              
     }

@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 
 
 namespace DS.Editor.Elements
@@ -11,7 +12,7 @@ namespace DS.Editor.Elements
     using Editor.Data;
     using Editor.Utilities;
     using Editor.Windows;
-
+    using Variables.Editor;
 
     public abstract class DialogueNode : TextedNode
     {
@@ -42,11 +43,10 @@ namespace DS.Editor.Elements
             _graphView = context;
             SetNodeStyle();
 
-            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _texts = new List<LenguageData<string>>(_data.Texts);
             _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
 
             _choices = new List<ChoiceData>(_data.Choices);
-            Debug.Log("Calling dialogue node initializer with data");
         }
 
         #region Overrides
@@ -92,6 +92,9 @@ namespace DS.Editor.Elements
         {
             ChoiceData choice = (ChoiceData)_choice;
 
+            Box box = new Box();
+            box.style.flexDirection = FlexDirection.Column;
+
             Port choicePort = this.CreatePort(choice.ChoiceTexts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data,
                                 Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
             choicePort.portName = "";
@@ -102,12 +105,30 @@ namespace DS.Editor.Elements
                                             callback => UpdateChoiceLenguageData(callback, choice));
 
 
+            var toolbarMenu = new ToolbarMenu();
+
+
+            toolbarMenu.text = "Add Condition";
+            toolbarMenu.menu.AppendAction("Int Condition", callback => ElementsUtilities.AddIntCondition(choice.Conditions, box));
+            toolbarMenu.menu.AppendAction("Float Condition", callback => ElementsUtilities.AddFloatCondition(choice.Conditions, box));
+            toolbarMenu.menu.AppendAction("Bool Condition", callback => ElementsUtilities.AddBoolCondition(choice.Conditions, box));
+
+
+            choicePort.Add(toolbarMenu);
+
             choiceTextField.AddToClassLists("ds-node-textfield", "ds-node-choice-textfield", "ds-node-textfield_hidden");
             choiceTextField.style.flexDirection = FlexDirection.Column;
 
-            choicePort.Insert(1, choiceTextField);
 
-            outputContainer.Add(choicePort);
+
+            choicePort.Insert(1, choiceTextField);
+            box.Add(choicePort);
+
+            outputContainer.Add(box);
+
+            foreach (var intCondition in choice.Conditions.IntConditions) { ElementsUtilities.AddIntCondition(choice.Conditions, box, intCondition); }
+            foreach (var floatCondition in choice.Conditions.FloatConditions) { ElementsUtilities.AddFloatCondition(choice.Conditions, box, floatCondition); }
+            foreach (var boolCondition in choice.Conditions.BoolConditions) { ElementsUtilities.AddBoolCondition(choice.Conditions, box, boolCondition); }
             return choicePort;
         }
         #endregion
@@ -120,6 +141,7 @@ namespace DS.Editor.Elements
             _choices.Add(choiceData);
         }
 
+        
         /// <summary>
         /// Disconnect all ports in both input container and output container.
         /// </summary>
@@ -134,5 +156,9 @@ namespace DS.Editor.Elements
             choice.ChoiceTexts.Find(x => x.LenguageType == _graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
         }
         #endregion
+
+
     }
+
+
 }

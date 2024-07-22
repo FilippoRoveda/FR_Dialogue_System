@@ -1,8 +1,9 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Variables.Editor
 {
-    public abstract class VariableData<T> : ScriptableObject
+    public class VariableData<T> : ScriptableObject
     {
 
         /// <summary>
@@ -23,12 +24,14 @@ namespace Variables.Editor
                 var nameBackUp = Name;
                 var idBBackup = Id;
 
-                string assetPath = UnityEditor.AssetDatabase.GetAssetPath(GetInstanceID());
-                UnityEditor.AssetDatabase.RenameAsset(assetPath, value);
+                string assetPath = AssetDatabase.GetAssetPath(GetInstanceID());
+                AssetDatabase.RenameAsset(assetPath, value);
 
                 _name = nameBackUp;
                 Value = valueBackUp;
                 Id = idBBackup;
+                EditorUtility.SetDirty(this);
+                AssetDatabase.SaveAssetIfDirty(this);
 #endif
             }
         }
@@ -46,6 +49,8 @@ namespace Variables.Editor
                 else
                 {
                     id = value;
+                    EditorUtility.SetDirty(this);
+                    AssetDatabase.SaveAssetIfDirty(this);
                 }
             }
         }
@@ -57,7 +62,12 @@ namespace Variables.Editor
         public T Value
         {
             get { return value; }
-            set { this.value = value; }
+            set 
+            { 
+                this.value = value;
+                EditorUtility.SetDirty(this);
+                AssetDatabase.SaveAssetIfDirty(this);
+            }
         }
     }
 }

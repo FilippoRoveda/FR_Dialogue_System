@@ -49,13 +49,12 @@ namespace DS.Editor.Elements
             _nodeID = _data.NodeID;
             _nodeName = _data.Name;
             _position = _data.Position;
-            //SetPosition(new Rect(data.Position, Vector2.zero));
+            //SetPosition(new Rect(_position, Vector2.zero));
             _graphView = context;
             SetNodeStyle();
 
-            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _texts = new List<LenguageData<string>>(_data.Texts);
             _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
-            Debug.Log("Calling texted node initializer with data");
         }
         public override void Draw()
         {

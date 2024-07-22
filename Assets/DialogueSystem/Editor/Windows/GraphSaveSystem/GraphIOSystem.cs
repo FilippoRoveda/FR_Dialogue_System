@@ -110,8 +110,7 @@ namespace DS.Editor.Windows.Utilities
             graphView.EditorWindow.UpdateFilename(graphData.graphName);
 
             graphLoad.LoadGroups(graphData.groups);
-            //LoadBranchNodes(graphData.BranchNodes);
-
+            graphLoad.LoadBranchNodes(graphData.branchNodes);
             graphLoad.LoadDialogueNodes(graphData.dialogueNodes);
             graphLoad.LoadEventNodes(graphData.eventNodes);
             graphLoad.LoadEndNodes(graphData.endNodes);

@@ -58,6 +58,7 @@ namespace DS.Editor.Elements
             if (_data.Events == null || _data.Events.Count == 0) _events = new();
             else _events = new List<DS_EventSO>(_data.Events);
             Debug.Log("Calling event node initializer with data");
+            objectFields = new();
         }
 
         public override void Draw()

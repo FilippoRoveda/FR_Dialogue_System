@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0aa67b774faca84db8ffe6b19cb24ac, type: 3}
   m_Name: New Float Variable 1
   m_EditorClassIdentifier: 
-  _name: 
-  id: 
+  _name: New Float Variable 1
+  id: 33bc050d-54f9-4c68-915a-18d8fb569f59
   value: 0

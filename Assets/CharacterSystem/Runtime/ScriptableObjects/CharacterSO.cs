@@ -5,8 +5,7 @@ namespace Characters.Runtime.ScriptableObjects
 {
     public class CharacterSO : ScriptableObject
     {
-        [SerializeField]
-        protected string _id = null;
+        [SerializeField] protected string _id = null;
         [SerializeField] protected string _name = null;
         [SerializeField] protected string _completeName = null;
         [SerializeField] protected Sprite _icon = null;

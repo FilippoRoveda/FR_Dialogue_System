@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: DialogueFileName_Graph
+  m_EditorClassIdentifier: 
+  graphName: DialogueFileName
+  groups: []
+  dialogueNodes:
+  - name: 1
+    nodeID: 2a3bfed7-8f2c-4acc-aa00-6e7092274a60
+    groupID: 
+    nodeType: 2
+    position: {x: 146, y: 235}
+    texts:
+    - Data: Start Dialogue Text
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Starting Choice
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: 69931b78-5224-4d54-8348-5bbccca7d425
+      nextNodeID: 17ff182e-f2a9-4502-98d3-c0339a39d4fd
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions:
+        - comparisonValue: 1
+          variable: {fileID: 11400000, guid: 6524b0aa84fc66a48989a65e6123a492, type: 2}
+  - name: 3
+    nodeID: 5a127634-c0dd-4d32-8fc4-323ed2c5c182
+    groupID: 
+    nodeType: 0
+    position: {x: 1045.24, y: 433}
+    texts:
+    - Data: Single Dialogue Text
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Next Single Choice
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: f95fef7a-df3a-4b1a-a9bc-71b099b87ad0
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions:
+        - comparisonValue: 1
+          variable: {fileID: 11400000, guid: 3660639426e5fcf42b27b8138ead5a49, type: 2}
+  - name: 2
+    nodeID: 89343fff-93af-4f91-80de-bea6b057dd3f
+    groupID: 
+    nodeType: 0
+    position: {x: 1045, y: 195}
+    texts:
+    - Data: Single Dialogue Text
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: Next Single Choice
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: c348548b-4f33-40dd-9be0-33ffb9ad8e78
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions:
+        - comparisonValue: 22
+          variable: {fileID: 11400000, guid: 1c08fa40fc886c348876fd509c9a68ce, type: 2}
+          comparisonType: 0
+        boolConditions: []
+  eventNodes: []
+  endNodes: []
+  branchNodes:
+  - name: DialogueName
+    nodeID: 17ff182e-f2a9-4502-98d3-c0339a39d4fd
+    groupID: 
+    nodeType: 5
+    position: {x: 605, y: 235}
+    conditions:
+      intConditions:
+      - comparisonValue: 11
+        variable: {fileID: 11400000, guid: 0046ebc1e5f45394c8d45bfee7c752b7, type: 2}
+        comparisonType: 1
+      floatConditions:
+      - comparisonValue: 212
+        variable: {fileID: 11400000, guid: cfc8946f03dab79428b127eaebfef6c5, type: 2}
+        comparisonType: 0
+      boolConditions: []
+    choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 191034b6-315e-4b27-841c-b556f0990fb4
+      nextNodeID: 89343fff-93af-4f91-80de-bea6b057dd3f
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: b1c18bcf-df57-4fa8-b41d-c5bafc9b24bd
+      nextNodeID: 5a127634-c0dd-4d32-8fc4-323ed2c5c182
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  oldGroupsNames: []
+  oldUngroupedNames: []

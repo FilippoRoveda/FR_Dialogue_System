@@ -13,17 +13,6 @@ MonoBehaviour:
   m_Name: VariablesDatabase
   m_EditorClassIdentifier: 
   integers:
-  - {fileID: 11400000, guid: e70866847e3b62d498011b1cc1e3582e, type: 2}
-  - {fileID: 11400000, guid: a276797b36946fb44a740e364ee41177, type: 2}
-  - {fileID: 11400000, guid: 01153050ddb267b48a534f57905c3da9, type: 2}
-  - {fileID: 11400000, guid: c800cca7da23e8e4a9aeb2d6cb7f49c1, type: 2}
-  decimals:
-  - {fileID: 11400000, guid: a676c80e94a382540b065c818ea2fed0, type: 2}
-  - {fileID: 11400000, guid: cc6aa3bf421a00e419b2d843e692ffc2, type: 2}
-  - {fileID: 11400000, guid: a2867b8718d5cd948abaf6123d6d80a0, type: 2}
-  - {fileID: 11400000, guid: b0e5d3921ba3ea54d92b988184067495, type: 2}
-  booleans:
-  - {fileID: 11400000, guid: a326c7b4c9d849348ba28a623d5f6639, type: 2}
-  - {fileID: 11400000, guid: 1c02cd5f85015c2428ef0e8e8a994201, type: 2}
-  - {fileID: 11400000, guid: cd6def829426f404d8aeb8437517a9a5, type: 2}
-  - {fileID: 11400000, guid: 1107d9ec611d54c47871e55e16c0a9e8, type: 2}
+  - {fileID: 11400000, guid: f8172e1f4be989e479e2be8a9b7d4e46, type: 2}
+  decimals: []
+  booleans: []

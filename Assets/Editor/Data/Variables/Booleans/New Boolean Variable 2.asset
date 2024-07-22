@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50263d9ddfe0fe84b8fb86f28f7ac2bf, type: 3}
   m_Name: New Boolean Variable 2
   m_EditorClassIdentifier: 
-  _name: 
-  id: 
+  _name: New Boolean Variable 2
+  id: c2f8ff9a-7c83-4bc8-a94a-1d8cd194ce58
   value: 0

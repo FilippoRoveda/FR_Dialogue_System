@@ -66,9 +66,7 @@ namespace DS.Editor.Elements
             foreach (ChoiceData choice in _choices)
             {
                 Port choicePort = CreateDeletableChoicePort(choice);
-
                 outputPorts.Add(choicePort);
-                outputContainer.Add(choicePort);
             }
 
             RefreshExpandedState();
@@ -126,7 +124,7 @@ namespace DS.Editor.Elements
         {
             ChoiceData choiceData= (ChoiceData)_choice;
 
-            Port choicePort = base.CreateChoicePort(_choice);
+            Port choicePort = CreateChoicePort(_choice);
 
             Button deleteChoiceButton = ElementsUtilities.CreateButton("X", () => OnDeleteChoicePressed(choicePort, choiceData));
             deleteChoiceButton.AddToClassList("ds-node-button");

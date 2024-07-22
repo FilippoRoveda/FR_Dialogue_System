@@ -1,6 +1,11 @@
+using DS.Editor.Data;
+using DS.Editor.Enumerations;
 using System;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
+using Variables.Editor;
 
 namespace DS.Editor.Elements
 {
@@ -85,6 +90,172 @@ namespace DS.Editor.Elements
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
             return port;
+        }
+        public static ObjectField AddIntCondition(ConditionsContainer container, VisualElement contentContainer, IntCondition condition = null)
+        {
+            IntCondition _condition;
+            if (condition == null)
+            {
+                _condition = container.AddIntCondition();
+            }
+            else
+            {
+                _condition = condition;
+            }
+
+            var varField = new ObjectField()
+            {
+                objectType = typeof(IntegerVariableData),
+                allowSceneObjects = true,
+                value = _condition.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { _condition.Variable = (IntegerVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(_condition.Variable);
+            varField.AddToClassList("SOElement");
+
+            var toolbarMenu = new ToolbarMenu();
+            toolbarMenu.text = _condition.ComparisonType.ToString();
+            foreach (ComparisonType ComparisonType in (ComparisonType[])System.Enum.GetValues(typeof(ComparisonType)))
+            {
+                toolbarMenu.menu.AppendAction(ComparisonType.ToString(), callback => {
+                    toolbarMenu.text = ComparisonType.ToString();
+                    _condition.ComparisonType = ComparisonType;
+                });
+            }
+            toolbarMenu.AddToClassList("ds-enumElement");
+
+            var comparisonValueField = new IntegerField()
+            {
+                value = _condition.ComparisonValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                _condition.ComparisonValue = value.newValue;
+            });
+            comparisonValueField.SetValueWithoutNotify(_condition.ComparisonValue);
+
+            Button deleteConditionButton = ElementsUtilities.CreateButton("X", () => {
+                container.RemoveIntCondition(_condition);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+
+            varField.Add(toolbarMenu);
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
+        }
+        public static ObjectField AddFloatCondition(ConditionsContainer container, VisualElement contentContainer, FloatCondition condition = null)
+        {
+            FloatCondition _condition;
+            if (condition == null)
+            {
+                _condition = container.AddFloatCondition();
+            }
+            else
+            {
+                _condition = condition;
+            }
+
+            var varField = new ObjectField()
+            {
+                objectType = typeof(FloatVariableData),
+                allowSceneObjects = true,
+                value = _condition.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { _condition.Variable = (FloatVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(_condition.Variable);
+            varField.AddToClassList("SOElement");
+
+
+            var toolbarMenu = new ToolbarMenu();
+            toolbarMenu.text = _condition.ComparisonType.ToString();
+            foreach (ComparisonType ComparisonType in (ComparisonType[])System.Enum.GetValues(typeof(ComparisonType)))
+            {
+                toolbarMenu.menu.AppendAction(ComparisonType.ToString(), callback => {
+                    toolbarMenu.text = ComparisonType.ToString();
+                    _condition.ComparisonType = ComparisonType;
+                });
+            }
+
+            var comparisonValueField = new FloatField()
+            {
+                value = _condition.ComparisonValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                _condition.ComparisonValue = value.newValue;
+            });
+            comparisonValueField.SetValueWithoutNotify(_condition.ComparisonValue);
+
+            Button deleteConditionButton = ElementsUtilities.CreateButton("X", () => {
+                container.RemoveFloatCondition(_condition);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            toolbarMenu.AddToClassList("ds-enumElement");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+
+            varField.Add(toolbarMenu);
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
+        }
+        public static ObjectField AddBoolCondition(ConditionsContainer container, VisualElement contentContainer, BoolCondition condition = null)
+        {
+            BoolCondition _condition;
+            if (condition == null)
+            {
+                _condition = container.AddBoolCondition();
+            }
+            else
+            {
+                _condition = condition;
+            }
+            var varField = new ObjectField()
+            {
+                objectType = typeof(BooleanVariableData),
+                allowSceneObjects = true,
+                value = _condition.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { _condition.Variable = (BooleanVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(_condition.Variable);
+            varField.AddToClassList("SOElement");
+
+            var comparisonValueField = new Toggle()
+            {
+                value = _condition.ComparisonValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                Debug.Log($"Previews bool val = {_condition.ComparisonValue}");
+                _condition.ComparisonValue = value.newValue;
+                Debug.Log($"New bool val = {_condition.ComparisonValue}");
+            });
+            comparisonValueField.SetValueWithoutNotify(_condition.ComparisonValue);
+
+            Button deleteConditionButton = ElementsUtilities.CreateButton("X", () => {
+                container.RemoveBoolCondition(_condition);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
         }
     }
 }
