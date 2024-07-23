@@ -12,7 +12,6 @@ namespace DS.Editor.Elements
     using Editor.Data;
     using Editor.Utilities;
     using Editor.Windows;
-    using Variables.Editor;
 
     public abstract class DialogueNode : TextedNode
     {

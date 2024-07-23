@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
-  m_Name: DialogueFileName_Graph
+  m_Name: TestDialogue1_Graph
   m_EditorClassIdentifier: 
-  graphName: DialogueFileName
+  graphName: TestDialogue1
   groups: []
   dialogueNodes:
   - name: 3
@@ -162,9 +162,6 @@ MonoBehaviour:
         - comparisonValue: 0
           variable: {fileID: 0}
           comparisonType: 0
-        - comparisonValue: 0
-          variable: {fileID: 0}
-          comparisonType: 0
         boolConditions: []
   eventNodes: []
   endNodes: []
@@ -179,19 +176,7 @@ MonoBehaviour:
       - comparisonValue: 11
         variable: {fileID: 11400000, guid: 0046ebc1e5f45394c8d45bfee7c752b7, type: 2}
         comparisonType: 1
-      - comparisonValue: 0
-        variable: {fileID: 11400000, guid: 4a73f8bc1e709c44a96969e120a6ff4c, type: 2}
-        comparisonType: 0
-      floatConditions:
-      - comparisonValue: 212
-        variable: {fileID: 11400000, guid: cfc8946f03dab79428b127eaebfef6c5, type: 2}
-        comparisonType: 0
-      - comparisonValue: 0
-        variable: {fileID: 0}
-        comparisonType: 0
-      - comparisonValue: 0
-        variable: {fileID: 0}
-        comparisonType: 0
+      floatConditions: []
       boolConditions: []
     choices:
     - choiceTexts:

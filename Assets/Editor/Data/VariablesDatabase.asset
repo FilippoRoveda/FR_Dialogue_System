@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: VariablesDatabase
   m_EditorClassIdentifier: 
   integers:
-  - {fileID: 11400000, guid: f8172e1f4be989e479e2be8a9b7d4e46, type: 2}
-  decimals: []
-  booleans: []
+  - {fileID: 11400000, guid: 0046ebc1e5f45394c8d45bfee7c752b7, type: 2}
+  - {fileID: 11400000, guid: 6dd5acc4634dfda439b4979a87f0bd86, type: 2}
+  - {fileID: 11400000, guid: 4a73f8bc1e709c44a96969e120a6ff4c, type: 2}
+  decimals:
+  - {fileID: 11400000, guid: cfc8946f03dab79428b127eaebfef6c5, type: 2}
+  - {fileID: 11400000, guid: 1c08fa40fc886c348876fd509c9a68ce, type: 2}
+  - {fileID: 11400000, guid: 12b085ff33182e24aab8fad289555444, type: 2}
+  booleans:
+  - {fileID: 11400000, guid: 6524b0aa84fc66a48989a65e6123a492, type: 2}
+  - {fileID: 11400000, guid: 3660639426e5fcf42b27b8138ead5a49, type: 2}
+  - {fileID: 11400000, guid: 1229e516326237d478624d67f69fd50e, type: 2}

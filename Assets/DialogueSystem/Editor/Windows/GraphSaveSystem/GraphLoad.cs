@@ -90,7 +90,7 @@ namespace DS.Editor.Windows.Utilities
             {
                 BranchNode branchNode = _system.graphView.CreateNode<BranchNode, BranchNodeData>(branchNodeData);
                 branchNode.Initialize(branchNodeData, _system.graphView);
-
+               
                 branchNode.Draw();
                 _system.graphView.AddElement(branchNode);
                 if (string.IsNullOrEmpty(branchNodeData.GroupID) == false)

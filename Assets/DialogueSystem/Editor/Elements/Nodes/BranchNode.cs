@@ -58,6 +58,10 @@ namespace DS.Editor.Elements
             contentContainer.Add(toolbarMenu);
             truePort = CreateOutputPort(choices[0]);
             falsePort = CreateOutputPort(choices[1]);
+
+            foreach (var intCondition in conditions.IntConditions) { ElementsUtilities.AddIntCondition(conditions, contentContainer, intCondition); }
+            foreach (var floatCondition in conditions.FloatConditions) { ElementsUtilities.AddFloatCondition(conditions, contentContainer, floatCondition); }
+            foreach (var boolCondition in conditions.BoolConditions) { ElementsUtilities.AddBoolCondition(conditions, contentContainer, boolCondition); }
         }
 
         protected Port CreateInputPort(string inputPortName = "DialogueConnection", Port.Capacity capacity = Port.Capacity.Multi)

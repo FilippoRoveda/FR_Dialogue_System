@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5611006fcc18549b777306ef39cf93, type: 3}
-  m_Name: New Integer Variable 2
+  m_Script: {fileID: 11500000, guid: 50263d9ddfe0fe84b8fb86f28f7ac2bf, type: 3}
+  m_Name: BOOL_1
   m_EditorClassIdentifier: 
-  _name: New Integer Variable 2
-  id: 96a722bf-c3b8-4bd2-ae48-425f9f4dd816
-  value: 0
+  _name: BOOL_1
+  id: 00a75a29-6d5f-4174-aedc-6cabe36bbf67
+  value: 1

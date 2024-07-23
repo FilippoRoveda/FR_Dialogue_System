@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50263d9ddfe0fe84b8fb86f28f7ac2bf, type: 3}
-  m_Name: New Boolean Variable 0
+  m_Script: {fileID: 11500000, guid: e0aa67b774faca84db8ffe6b19cb24ac, type: 3}
+  m_Name: FLOAT_3
   m_EditorClassIdentifier: 
-  _name: New Boolean Variable 0
-  id: 00a75a29-6d5f-4174-aedc-6cabe36bbf67
-  value: 0
+  _name: FLOAT_3
+  id: 902639dd-fba0-44ef-b5cb-baeb056318f9
+  value: 1.3
