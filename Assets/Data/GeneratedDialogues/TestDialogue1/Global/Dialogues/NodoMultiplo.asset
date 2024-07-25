@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: NodoMultiplo
+  m_EditorClassIdentifier: 
+  _dialogueName: NodoMultiplo
+  _dialogueID: 0c073fc1-19fa-41f8-a652-42b834b0caec
+  _dialogueType: 1
+  _texts:
+  - Data: DialogoMutiplo testo
+    LenguageType: 0
+  - Data: Multiple Dialogue Text
+    LenguageType: 1
+  - Data: Multiple Dialogue Text
+    LenguageType: 2
+  - Data: Multiple Dialogue Text
+    LenguageType: 3
+  _choices:
+  - choiceTexts:
+    - Data: SceltaMultipla_1
+      LenguageType: 0
+    - Data: New Choice 1
+      LenguageType: 1
+    - Data: New Choice 1
+      LenguageType: 2
+    - Data: New Choice 1
+      LenguageType: 3
+    choiceID: 8b1f125f-060a-40d8-98dd-e30019206864
+    nextDialogue: {fileID: 11400000, guid: 1486d6e19bc07db4084f8d4c06954b7a, type: 2}
+    conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - choiceTexts:
+    - Data: SceltaMultipla_2
+      LenguageType: 0
+    - Data: New choice 2
+      LenguageType: 1
+    - Data: New choice 2
+      LenguageType: 2
+    - Data: New choice 2
+      LenguageType: 3
+    choiceID: 59ace9b1-b7f8-442d-bc3f-99010dd34bb7
+    nextDialogue: {fileID: 11400000, guid: 272771ebf4a739042a3c9fb95ecb9e00, type: 2}
+    conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - choiceTexts:
+    - Data: SceltaMultipla_3
+      LenguageType: 0
+    - Data: New choice 3
+      LenguageType: 1
+    - Data: New choice 3
+      LenguageType: 2
+    - Data: New choice 3
+      LenguageType: 3
+    choiceID: 4f2ab620-f056-4a11-9296-cd0d1a64dd46
+    nextDialogue: {fileID: 11400000, guid: b8e7e069d69a9844ebc73134eebe0476, type: 2}
+    conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions:
+      - variableEnum: 5
+        comparisonValue: 1

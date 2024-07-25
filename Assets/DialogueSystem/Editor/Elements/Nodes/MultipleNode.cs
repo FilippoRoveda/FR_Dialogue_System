@@ -56,7 +56,6 @@ namespace DS.Editor.Elements
         public override void Draw()
         {
             base.Draw();
-            Debug.Log(_choices.Count.ToString());
             inputPort = CreateInputPort();
 
             addChoiceButton = ElementsUtilities.CreateButton("Add Choice", () => OnAddChoiceButtonPressed());

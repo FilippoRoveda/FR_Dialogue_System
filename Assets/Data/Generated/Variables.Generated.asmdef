@@ -1,0 +1,16 @@
+{
+    "name": "Variables.Generated",
+    "rootNamespace": "",
+    "references": [
+        "GUID:490affe41d54fa54c8bff38ac37bd01c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

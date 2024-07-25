@@ -8,7 +8,7 @@ namespace DS.Editor
     [System.Serializable]
     public abstract class ConditionData<T>
     {
-        [SerializeField] private T comparisonValue;
+        [SerializeField] protected T comparisonValue;
         public T ComparisonValue { get { return comparisonValue; } 
             set { 
                 comparisonValue = value; 

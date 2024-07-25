@@ -77,6 +77,7 @@ namespace DS.Editor.ScriptableObjects
             {
                 orderedNodes.Remove(node);
             }
+            orderedNodes.AddRange(branchNodes);
             orderedNodes.AddRange(endNodes);
             return orderedNodes;
         }
@@ -86,7 +87,7 @@ namespace DS.Editor.ScriptableObjects
             if(output == null) output = new List<BaseNodeData>();
 
             if(output.Contains(node) == false) output.Add(node);
-            if (node.NodeType != Enumerations.NodeType.End)
+            if (node.NodeType != Enumerations.NodeType.End && node.NodeType != Enumerations.NodeType.Branch)
             {
                 var dialogueNode = (DialogueNodeData)node;
                 //Aggiungere opzione per branch node

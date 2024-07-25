@@ -11,7 +11,7 @@ namespace Converter.Editor
         private IOUtilities IO = new IOUtilities();
         private readonly string graphFolderPath = "Assets/Editor/Data/Graphs";
 
-        private List<GraphSO> _graphs = new List<GraphSO>();
+        private List<GraphSO> allGrphsSO = new List<GraphSO>();
         private GraphSO _selectedGraph;
         private Vector2 _scrollPos;
 
@@ -33,14 +33,14 @@ namespace Converter.Editor
 
             if (GUILayout.Button("Convert All Graphs", GUILayout.MaxWidth(200)))
             {
-                ConvertAllGraphs();
+                OnConvertAllGraphsButtonPressed();
             }
 
             GUILayout.Space(10);
 
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
-            foreach (var graph in _graphs)
+            foreach (var graph in allGrphsSO)
             {
                 EditorGUILayout.BeginHorizontal();
 
@@ -52,7 +52,7 @@ namespace Converter.Editor
                 }
                 if (GUILayout.Button("Convert", GUILayout.Width(60)))
                 {
-                    ConvertGraph(graph);
+                    OnConvertGraphButtonPressed(graph);
                 }
                 GUILayout.FlexibleSpace();
 
@@ -70,31 +70,41 @@ namespace Converter.Editor
                 editor.OnInspectorGUI();
             }
         }
+        private void OnValidate()
+        {
+            LoadAllGraphs();
+        }
         #endregion
 
-        private void ConvertAllGraphs() 
+        #region Callbakcs
+        private void OnConvertAllGraphsButtonPressed() 
         { 
-            foreach (var graph in _graphs) 
+            foreach (var graphSO in allGrphsSO)
             {
-                Converter converter = new();
-                converter.Initialize(graph, graph.graphName);
-                converter.ConvertGraph();
+                ConvertGraph(graphSO);
             }
         }
-        private void ConvertGraph(GraphSO graph) 
+
+        private void OnConvertGraphButtonPressed(GraphSO graphSO) 
         {
-            Converter converter = new();
-            converter.Initialize(graph, graph.graphName);
+            ConvertGraph(graphSO);
+        }
+        #endregion
+
+        private void ConvertGraph(GraphSO graphSO)
+        {
+            Converter converter = new();        
+            converter.Initialize(graphSO, graphSO.graphName);
             converter.ConvertGraph();
         }
         private void LoadAllGraphs()
         {
-            _graphs.Clear();
+            allGrphsSO.Clear();
             List<string> allGraphs = IO.ListAssetsInFolder(graphFolderPath);
             foreach (string graph in allGraphs)
             {
                 var graphSO = IO.LoadAsset<GraphSO>(graphFolderPath, graph);
-                _graphs.Add(graphSO);
+                allGrphsSO.Add(graphSO);
             }
         }
     }

@@ -1,0 +1,276 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: DialogoIniziale_Graph
+  m_EditorClassIdentifier: 
+  graphName: DialogoIniziale
+  groups: []
+  dialogueNodes:
+  - name: DialogoIniziale
+    nodeID: 07c302b1-bacd-4794-a277-49038183c655
+    groupID: 
+    nodeType: 2
+    position: {x: 178, y: 242}
+    texts:
+    - Data: TestoIniziale_ITA
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: SceltaIniziale_ITA
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: 861b4442-259a-41f1-a463-61d84e898ba2
+      nextNodeID: 7c2c1470-fa88-4796-94b8-7e3cbeafdbdd
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - name: NodoSingolo
+    nodeID: 7c2c1470-fa88-4796-94b8-7e3cbeafdbdd
+    groupID: 
+    nodeType: 0
+    position: {x: 506, y: 242}
+    texts:
+    - Data: TestoNodoSingolo
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: NodoSingolo
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: bbe91f32-6fa3-4b94-bc55-4e89c2ead5b3
+      nextNodeID: 0c073fc1-19fa-41f8-a652-42b834b0caec
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - name: NodoMultiplo
+    nodeID: 0c073fc1-19fa-41f8-a652-42b834b0caec
+    groupID: 
+    nodeType: 1
+    position: {x: 937.24005, y: 218}
+    texts:
+    - Data: DialogoMutiplo testo
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: SceltaMultipla_1
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: 8b1f125f-060a-40d8-98dd-e30019206864
+      nextNodeID: 4d4af2d3-bea7-4de7-924e-5509107ea088
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: SceltaMultipla_2
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: 59ace9b1-b7f8-442d-bc3f-99010dd34bb7
+      nextNodeID: 1894270b-d7c8-41b8-b12a-f481617eb7dc
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: SceltaMultipla_3
+        LenguageType: 0
+      - Data: New choice 3
+        LenguageType: 1
+      - Data: New choice 3
+        LenguageType: 2
+      - Data: New choice 3
+        LenguageType: 3
+      choiceID: 4f2ab620-f056-4a11-9296-cd0d1a64dd46
+      nextNodeID: f2ee0f74-fd4e-4bf4-8255-7d0b08a56f6e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions:
+        - comparisonValue: 1
+          variable: {fileID: 11400000, guid: 3660639426e5fcf42b27b8138ead5a49, type: 2}
+  eventNodes:
+  - name: NodoEvento
+    nodeID: 4d4af2d3-bea7-4de7-924e-5509107ea088
+    groupID: 
+    nodeType: 4
+    position: {x: 1459, y: 97}
+    texts:
+    - Data: Testo del dialogo evento
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    choices:
+    - choiceTexts:
+      - Data: EventOutput
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 324aaa3b-42fa-470c-bdaf-692fa9f7eaba
+      nextNodeID: a1d21b12-741b-4cef-94b3-55ccad6a5898
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    events:
+    - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
+  endNodes:
+  - name: Fine3
+    nodeID: f2ee0f74-fd4e-4bf4-8255-7d0b08a56f6e
+    groupID: 
+    nodeType: 3
+    position: {x: 1459.0002, y: 455.1501}
+    texts:
+    - Data: TestoFine3
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - name: Fine2emezzo
+    nodeID: 47d3b52e-40fe-466d-96e6-681747657222
+    groupID: 
+    nodeType: 3
+    position: {x: 1704.4503, y: 443.00006}
+    texts:
+    - Data: Testo fine 2 e mezzo
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - name: Fine2
+    nodeID: 08a009a6-4074-4d82-a0ac-202519875096
+    groupID: 
+    nodeType: 3
+    position: {x: 1888.0002, y: 346.5}
+    texts:
+    - Data: Testo fine 2
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - name: Fine1
+    nodeID: a1d21b12-741b-4cef-94b3-55ccad6a5898
+    groupID: 
+    nodeType: 3
+    position: {x: 1888.0002, y: 121.00001}
+    texts:
+    - Data: Testo fine 1
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  branchNodes:
+  - name: NodoRamo
+    nodeID: 1894270b-d7c8-41b8-b12a-f481617eb7dc
+    groupID: 
+    nodeType: 5
+    position: {x: 1459, y: 310}
+    conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+    choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: da2433d0-0107-442e-937b-7af0cb038061
+      nextNodeID: 08a009a6-4074-4d82-a0ac-202519875096
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: c2c9d356-c843-4086-b311-e705d1f47cec
+      nextNodeID: 47d3b52e-40fe-466d-96e6-681747657222
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  oldGroupsNames: []
+  oldUngroupedNames: []

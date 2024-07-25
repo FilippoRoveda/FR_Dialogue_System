@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: NodoSingolo
+  m_EditorClassIdentifier: 
+  _dialogueName: NodoSingolo
+  _dialogueID: 7c2c1470-fa88-4796-94b8-7e3cbeafdbdd
+  _dialogueType: 0
+  _texts:
+  - Data: TestoNodoSingolo
+    LenguageType: 0
+  - Data: Single Dialogue Text
+    LenguageType: 1
+  - Data: Single Dialogue Text
+    LenguageType: 2
+  - Data: Single Dialogue Text
+    LenguageType: 3
+  _choices:
+  - choiceTexts:
+    - Data: NodoSingolo
+      LenguageType: 0
+    - Data: Next Single Choice
+      LenguageType: 1
+    - Data: Next Single Choice
+      LenguageType: 2
+    - Data: Next Single Choice
+      LenguageType: 3
+    choiceID: bbe91f32-6fa3-4b94-bc55-4e89c2ead5b3
+    nextDialogue: {fileID: 11400000, guid: 3393228b5891b3a4ea4655ae41431f3a, type: 2}
+    conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

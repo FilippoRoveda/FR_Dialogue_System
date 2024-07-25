@@ -1,3 +1,5 @@
+using DS.Runtime.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -5,11 +7,18 @@ namespace DS.Runtime.ScriptableObjects
 {
     public class BranchDialogueSO : BaseDialogueSO
     {
-        //List of conditions
-
-        //True dialogue or choice dialogue data
-        //False dialogue or choice dialogue data
-
-        //Function to set the 2 outcome dialogues
+        //List of conditions as a condition container
+        [SerializeField] private DialogueConditionContainer condtitions;
+        public DialogueConditionContainer Condtitions 
+        { 
+            get { return condtitions; } 
+            set { condtitions = value; }
+        }
+        [SerializeField] protected List<DialogueChoice> choices;
+        public List<DialogueChoice> Choices
+        {
+            get { return choices; }
+            set { choices = value; }
+        }
     }
 }

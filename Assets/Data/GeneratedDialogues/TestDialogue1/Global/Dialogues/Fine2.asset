@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: Fine2
+  m_EditorClassIdentifier: 
+  _dialogueName: Fine2
+  _dialogueID: 08a009a6-4074-4d82-a0ac-202519875096
+  _dialogueType: 3
+  _texts:
+  - Data: Testo fine 2
+    LenguageType: 0
+  - Data: End Dialogue Text
+    LenguageType: 1
+  - Data: End Dialogue Text
+    LenguageType: 2
+  - Data: End Dialogue Text
+    LenguageType: 3
+  _isRepetable: 1

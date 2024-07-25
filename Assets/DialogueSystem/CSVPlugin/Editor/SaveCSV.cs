@@ -57,7 +57,7 @@ namespace CSVPlugin
                     AppendToFile(nodeTexts);
 
 
-                    //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
+                    //Continue TO NEXT NODE IF THIS ONE HAS NOT CHOICES
                     if (nodeData.NodeType == NodeType.End) continue;
                     var dialogueNode = (DialogueNodeData)nodeData;
 

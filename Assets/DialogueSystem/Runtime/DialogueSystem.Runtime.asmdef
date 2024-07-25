@@ -1,3 +1,17 @@
 {
-	"name": "DialogueSystem.Runtime"
+    "name": "DialogueSystem.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f2af8fd1e07d6dd46af838ad42e477e5",
+        "GUID:490affe41d54fa54c8bff38ac37bd01c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

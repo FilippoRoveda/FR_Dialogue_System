@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Variables.Runtime
+namespace Variables.Generated
 {
+    using Variables.Runtime;
 
     public class VariablesGenerated : MonoBehaviour
     {

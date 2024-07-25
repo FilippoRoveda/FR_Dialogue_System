@@ -36,7 +36,7 @@ namespace DS.Runtime.ScriptableObjects
         /// <param name="choices"></param>
         /// <param name="dialogueType"></param>
         /// <param name="isStartingDialogue"></param>
-        public override void Initialize(string dialogueName, string dialogueID, DialogueType dialogueType, List<LenguageData<string>> texts, List<DialogueChoiceData> choices)
+        public override void Initialize(string dialogueName, string dialogueID, DialogueType dialogueType, List<LenguageData<string>> texts, List<DialogueChoice> choices)
         {
             base.Initialize(dialogueName, dialogueID, dialogueType, texts);
             
@@ -44,7 +44,7 @@ namespace DS.Runtime.ScriptableObjects
             {
                 Debug.Log(_choice.ChoiceTexts[0].Data);
             }
-            Choices = new List<DialogueChoiceData>(choices);
+            Choices = new List<DialogueChoice>(choices);
         }
     }
 }

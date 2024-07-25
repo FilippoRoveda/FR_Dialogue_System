@@ -16,6 +16,16 @@ namespace Converter.Editor
         {
             if (AssetDatabase.IsValidFolder($"{path}/{folderName}") == true) return;
             else AssetDatabase.CreateFolder(path, folderName);
+            AssetDatabase.Refresh();
+        }
+        public void DeleteFolder(string path, string folderName)
+        {
+            string folderPath = $"{path}/{folderName}";
+            if (AssetDatabase.IsValidFolder(folderPath))
+            {
+                AssetDatabase.DeleteAsset(folderPath);
+            }
+            AssetDatabase.Refresh();
         }
 
         public T CreateAsset<T>(string path, string assetName) where T : ScriptableObject

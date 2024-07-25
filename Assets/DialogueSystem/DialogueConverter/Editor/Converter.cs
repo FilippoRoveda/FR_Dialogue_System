@@ -23,11 +23,6 @@ namespace Converter.Editor
         private Dictionary<string, DialogueGroupSO> createdGroups;
         private Dictionary<string, BaseDialogueSO> createdDialogues;
 
-        //public Dictionary<string, DialogueSO> createdDialogues;
-        //public Dictionary<string, EventDialogueSO> createdEventDialogues;
-        //public Dictionary<string, EndDialogueSO> createdEndDialogues;
-        //public Dictionary<string, BranchDialogueSO> createdBranchDialogues;
-
 
         private string graphFileName;
 
@@ -42,16 +37,13 @@ namespace Converter.Editor
 
             createdGroups = new Dictionary<string, DialogueGroupSO>();
             createdDialogues = new Dictionary<string, BaseDialogueSO>();
-
-            //createdDialogues = new Dictionary<string, DialogueSO>();
-            //createdEventDialogues = new Dictionary<string, EventDialogueSO>();
-            //createdEndDialogues = new Dictionary<string, EndDialogueSO>();
-            //createdBranchDialogues = new Dictionary<string, BranchDialogueSO>();
         }
 
         public void ConvertGraph()
         {
             CreateStaticFolders();
+            BaseIO.DeleteFolder(containerFolderPath, graphFileName);
+
 
             DialogueContainerSO dialogueContainer = BaseIO.CreateAsset<DialogueContainerSO>(containerFolderPath, graphFileName);
             dialogueContainer.Initialize(graphFileName);
@@ -131,6 +123,9 @@ namespace Converter.Editor
                 case NodeType.Branch:
                     var branchDialogue = (dialogue as BranchDialogueSO);
                     branchDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType);
+                    var branchNodeData = (BranchNodeData) nodeData;
+                    branchDialogue.Choices = DataConversion.NodeToDialogueChoice(branchNodeData.Choices);
+                    branchDialogue.Condtitions = DataConversion.ConditionToDialogueConditionContainer(branchNodeData.Conditions);
                     break;
                 case NodeType.End:
                     var endDialogue = (dialogue as EndDialogueSO);
@@ -144,7 +139,7 @@ namespace Converter.Editor
                     eventDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType,
                                              DataConversion.LenguageDataConvert(((EventNodeData)nodeData).Texts),
                                              DataConversion.NodeToDialogueChoice(((EventNodeData)nodeData).Choices));
-
+                    if (((EventNodeData)nodeData).Events == null) break;
                     eventDialogue.SaveEvents(DataConversion.ConvertEvents(((EventNodeData)nodeData).Events));
 
                     break;
@@ -252,10 +247,28 @@ namespace Converter.Editor
             {
                 BaseDialogueSO dialogue = createdDialogues[node.NodeID];
 
-                if (node.NodeType != NodeType.End) // Aggiungere caso per branch
+                if (node.NodeType != NodeType.End && node.NodeType != NodeType.Branch) // Aggiungere caso per branch
                 {
                     var dialogueNode = (DialogueNodeData)node;
                     var choicedDialogue = dialogue as DialogueSO;
+
+
+                    for (int choiceIndex = 0; choiceIndex < dialogueNode.Choices.Count; choiceIndex++)
+                    {
+                        var choice = dialogueNode.Choices[choiceIndex];
+
+                        if (string.IsNullOrEmpty(choice.NextNodeID)) continue;
+                        else
+                        {
+                            choicedDialogue.Choices[choiceIndex].NextDialogue = createdDialogues[choice.NextNodeID];
+                            BaseIO.SaveAsset(dialogue);
+                        }
+                    }
+                }
+                else if(node.NodeType == NodeType.Branch)
+                {
+                    var dialogueNode = (BranchNodeData)node;
+                    var choicedDialogue = dialogue as BranchDialogueSO;
 
 
                     for (int choiceIndex = 0; choiceIndex < dialogueNode.Choices.Count; choiceIndex++)
