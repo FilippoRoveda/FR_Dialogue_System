@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Characters.Editor.Window
+namespace Characters.Editor
 {
     using Utilities;
-    using Runtime.ScriptableObjects;
+    using Runtime;
 
     /// <summary>
     /// Window for the custom character generation system.

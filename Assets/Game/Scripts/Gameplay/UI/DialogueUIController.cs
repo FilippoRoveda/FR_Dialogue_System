@@ -57,7 +57,7 @@ namespace Game
 
             for(int i = 0; i < 5; i++)
             {
-                var obj = GameObject.Instantiate(choiceUIPrefab, choiceList);
+                var obj = Instantiate(choiceUIPrefab, choiceList);
                 var choice = obj.GetComponent<ChoiceUI>();
                 choicesUI.Add(choice);
 
@@ -132,8 +132,8 @@ namespace Game
         }
         public void SetupPlayerArea()
         {
-            playerName.text = Player.Instance.PlayerData.CompleteName;
-            playerIcon.sprite = Player.Instance.PlayerData.Icon;
+            playerName.text = Player.Instance.Data.CompleteName;
+            playerIcon.sprite = Player.Instance.Data.Icon;
         }
         public void SetupSpeakerArea() 
         {

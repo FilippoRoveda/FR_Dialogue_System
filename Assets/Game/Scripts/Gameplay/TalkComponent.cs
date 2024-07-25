@@ -15,7 +15,7 @@ namespace Game
         [SerializeField] private TalkZone _talkZone;
 
         [SerializeField] List<BaseDialogueSO> availableDialogues;
-        [SerializeField] BaseDialogueSO ongoingDialogue;
+        [SerializeField] private string launchedDialogueID;
 
 
         #region Unity callbacks
@@ -68,7 +68,7 @@ namespace Game
             DisableTalks();
 
             var nextDialogue = availableDialogues[0];
-            ongoingDialogue = nextDialogue;
+            launchedDialogueID = nextDialogue.DialogueID;
 
     #if UNITY_EDITOR
                 Debug.LogError("Starting dialogue: " + nextDialogue.DialogueName);
@@ -77,23 +77,31 @@ namespace Game
             DialogueManager.Instance.StartDialogue(this, (DialogueSO)nextDialogue);
         }
 
-        private void OnDialogueEnded(DialogueSO endedDialogue, bool couldBeRepeated)
+        private void OnDialogueEnded(string endedDialogueID, bool couldBeRepeated)
         {
             Debug.Log("Dialogue Ending");
-            if (ongoingDialogue == endedDialogue)
+
+            if (launchedDialogueID == endedDialogueID)
             {
-                if (couldBeRepeated == false) availableDialogues.Remove(ongoingDialogue);
+                var endingDialogue = availableDialogues.Find(x => x.DialogueID == launchedDialogueID);
+                if(endingDialogue == null)
+                {
+#if UNITY_EDITOR
+                    Debug.LogError($"Dialogue with ID: {launchedDialogueID} has not been founded in this talk component availables dialogues.\nEven if the lanchedDialogueID was matching.");
+#endif
+                }
+                else if (couldBeRepeated == false) availableDialogues.Remove(endingDialogue);
                 else
                 {
-                    availableDialogues.Remove(ongoingDialogue);
-                    availableDialogues.Add(ongoingDialogue);
+                    availableDialogues.Remove(endingDialogue);
+                    availableDialogues.Add(endingDialogue);
                 }
-                //currentSpokeDialogue = default;
+                launchedDialogueID = string.Empty;
             }
             else
             {
 #if UNITY_EDITOR
-                Debug.LogError("Current ongoing dialogue for this talk component does not match the current ending dialogue.");
+                Debug.LogError("Current launched dialogue for this talk component does not match the current ending dialogue.");
 #endif            
             }
             DialogueManager.DialogueEnded.RemoveListener(OnDialogueEnded);

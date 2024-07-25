@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Characters.Runtime
 {
-    using ScriptableObjects;
+   
     [CustomEditor(typeof(CharacterSO))]
     public class CharacterSO_Inspector : UnityEditor.Editor
     {
