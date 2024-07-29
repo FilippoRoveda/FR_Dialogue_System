@@ -4,7 +4,7 @@ namespace Game
 {
     using Characters.Runtime;
 
-    public class Charcter : MonoBehaviour, ICharacterComponent
+    public class CharacterComponent : MonoBehaviour, ICharacterComponent
     {
         [SerializeField] protected Rigidbody2D _rigidbody;
         [SerializeField] protected Collider2D _collider;

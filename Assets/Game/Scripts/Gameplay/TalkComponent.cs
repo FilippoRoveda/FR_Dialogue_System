@@ -9,8 +9,8 @@ namespace Game
     {
         [SerializeField] private List<DialogueContainerSO> dialogueContainers;
 
-        [SerializeField] private Charcter _linkedCharacter;
-        public Charcter LinkedCharacter { get { return _linkedCharacter; } }
+        [SerializeField] private CharacterComponent _linkedCharacter;
+        public CharacterComponent LinkedCharacter { get { return _linkedCharacter; } }
 
         [SerializeField] private TalkZone _talkZone;
 
@@ -40,7 +40,7 @@ namespace Game
         }
         #endregion
 
-        public void Initialize(Charcter character)
+        public void Initialize(CharacterComponent character)
         {
             availableDialogues = new List<BaseDialogueSO>();
             LoadAvailableDialogues();
