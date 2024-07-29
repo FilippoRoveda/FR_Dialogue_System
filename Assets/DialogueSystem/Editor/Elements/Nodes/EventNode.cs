@@ -10,13 +10,18 @@ namespace DS.Editor.Elements
     using Editor.Data;
     using Editor.Windows;
     using Editor.ScriptableObjects;
+    using Variables.Editor;
 
     public class EventNode : DialogueNode
     {
-        public List<DS_EventSO> _events;
+        public List<GameEventSO> gameEvents;
+        public VariableEventsContainer variableEvents;
 
         [SerializeField] private List<ObjectField> objectFields;
+        //[SerializeField] private List<ObjectField> varEventFields;
+
         protected Button addEventButton;
+        protected ToolbarMenu addVariableEventMenu;
 
         public EventNode() { }
 
@@ -38,8 +43,11 @@ namespace DS.Editor.Elements
             ChoiceData choiceData = new ChoiceData("EventOutput");
             _choices.Add(choiceData);
 
-            _events = new List<DS_EventSO>();
+            gameEvents = new List<GameEventSO>();
+            variableEvents = new VariableEventsContainer();
+
             objectFields = new();
+            //varEventFields = new();
         }
 
         public void Initialize(EventNodeData _data, DS_GraphView context)
@@ -51,14 +59,19 @@ namespace DS.Editor.Elements
             _graphView = context;
             SetNodeStyle();
 
-            _texts = new System.Collections.Generic.List<LenguageData<string>>(_data.Texts);
+            _texts = new List<LenguageData<string>>(_data.Texts);
             _graphView.GraphLenguageChanged.AddListener(OnGraphViewLenguageChanged);
 
             _choices = new List<ChoiceData>(_data.Choices);
-            if (_data.Events == null || _data.Events.Count == 0) _events = new();
-            else _events = new List<DS_EventSO>(_data.Events);
-            Debug.Log("Calling event node initializer with data");
+
+            if (_data.Events == null || _data.Events.Count == 0) gameEvents = new();
+            else gameEvents = new List<GameEventSO>(_data.Events);
+
+            variableEvents = new VariableEventsContainer();
+            variableEvents.Reload(_data.EventsContainer);
+
             objectFields = new();
+            //varEventFields = new();
         }
 
         public override void Draw()
@@ -67,16 +80,37 @@ namespace DS.Editor.Elements
 
             CreateInputPort("Event Connection");
             
-            addEventButton = ElementsUtilities.CreateButton("Add Event", () => OnAddEventButtonPressed());
+
+            Box box = new Box();
+            box.style.flexDirection = FlexDirection.Row;
+            box.style.alignSelf = Align.Center;
+
+            addEventButton = ElementsUtilities.CreateButton("Add Game Event", () => OnAddEventButtonPressed());
             addEventButton.AddToClassList("ds-node-button");
-            mainContainer.Insert(1, addEventButton);
             
-            foreach(var _event in _events)
+            box.Add(addEventButton);
+
+            addVariableEventMenu = new ToolbarMenu();
+            addVariableEventMenu.text = "ADD VARIABLE EVENT";
+            addVariableEventMenu.menu.AppendAction("Int Event", callback => { ElementsUtilities.AddIntVarEvent(variableEvents, mainContainer); });
+            addVariableEventMenu.menu.AppendAction("Float Event", callback => { ElementsUtilities.AddFloatVarEvent(variableEvents, mainContainer); });
+            addVariableEventMenu.menu.AppendAction("Bool Event", callback => { ElementsUtilities.AddBoolVarEvent(variableEvents, mainContainer); });
+
+            box.Add(addVariableEventMenu);
+
+            mainContainer.Insert(1, box);
+
+            foreach (var _event in gameEvents)
             {
                 ObjectField field = CreateObjectField(_event);
                 objectFields.Add(field);
                 mainContainer.Add(field);
             }
+
+            foreach (var intEvent in variableEvents.IntEvents) { ElementsUtilities.AddIntVarEvent(variableEvents, contentContainer, intEvent); }
+            foreach (var floatEvent in variableEvents.FloatEvents) { ElementsUtilities.AddFloatVarEvent(variableEvents, contentContainer, floatEvent); }
+            foreach (var boolEvent in variableEvents.BoolEvents) { ElementsUtilities.AddBoolVarEvent(variableEvents, contentContainer, boolEvent); }
+
 
             CreateOutputPortFromChoices();
             RefreshExpandedState();
@@ -96,34 +130,36 @@ namespace DS.Editor.Elements
         private void OnAddEventButtonPressed()
         {
             ObjectField objectField = CreateObjectField();
+            objectFields.Add(objectField);
             mainContainer.Add(objectField);
         }
-        private void OnDeleteEventPressed(ObjectField objectField, DS_EventSO eventSO)
+        private void OnDeleteEventPressed(ObjectField objectField, GameEventSO eventSO)
         {
             if (objectFields.Count == 1) return;
+
             objectFields.Remove(objectField);
-            if (eventSO != null && _events.Contains(eventSO))
+            if (eventSO != null && gameEvents.Contains(eventSO))
             {
-                _events.Remove(eventSO);
+                gameEvents.Remove(eventSO);
             }
             objectFields.Remove(objectField);
             mainContainer.Remove(objectField);
         }
-        private EventCallback<ChangeEvent<Object>> OnFieldEventChanged(DS_EventSO _event, ObjectField objectField)
+        private EventCallback<ChangeEvent<Object>> OnFieldEventChanged(GameEventSO _event, ObjectField objectField)
         {
             return value =>
             {
-                _event = objectField.value as DS_EventSO;
-                if (objectField.value == null && _events.Contains(_event) == false)
+                _event = objectField.value as GameEventSO;
+                if (objectField.value == null && gameEvents.Contains(_event) == false)
                 {
                     objectField.value = _event;
-                    _events.Add(_event);
+                    gameEvents.Add(_event);
                 }
-                else if (objectField.value != null && _events.Contains(_event) == false)
+                else if (objectField.value != null && gameEvents.Contains(_event) == false)
                 {
-                    _events.Remove((DS_EventSO)objectField.value);
+                    gameEvents.Remove((GameEventSO)objectField.value);
                     objectField.value = _event;
-                    _events.Add(_event);
+                    gameEvents.Add(_event);
                 }
                 else
                 {
@@ -134,11 +170,11 @@ namespace DS.Editor.Elements
         #endregion
 
         #region Elements creation
-        private ObjectField CreateObjectField(DS_EventSO _event = null)
+        private ObjectField CreateObjectField(GameEventSO _event = null)
         {
             ObjectField objectField = new ObjectField()
             {
-                objectType = typeof(DS_EventSO),
+                objectType = typeof(GameEventSO),
                 allowSceneObjects = true,
                 value = _event
             };
@@ -147,7 +183,7 @@ namespace DS.Editor.Elements
             objectField.SetValueWithoutNotify(_event);
 
 
-            Button deleteEventButton = ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (DS_EventSO)objectField.value));
+            Button deleteEventButton = ElementsUtilities.CreateButton("X", () => OnDeleteEventPressed(objectField, (GameEventSO)objectField.value));
             deleteEventButton.AddToClassList("ds-node-button");
             objectField.Add(deleteEventButton);
 

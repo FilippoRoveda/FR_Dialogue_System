@@ -6,23 +6,32 @@ namespace DS.Editor.Data
 {
     using DS.Editor.Elements;
     using DS.Editor.ScriptableObjects;
+    using Variables.Editor;
 
     [System.Serializable]
     public class EventNodeData : DialogueNodeData
     {
-        [SerializeField] protected List<DS_EventSO> events;
-        public List<DS_EventSO> Events
+        [SerializeField] protected List<GameEventSO> events;
+        public List<GameEventSO> Events
         {
             get { return events; }
             set { events = value; }
         }
+
+        [SerializeField] protected VariableEventsContainer eventsContainer;
+        public VariableEventsContainer EventsContainer
+        {
+            get => eventsContainer;
+            set { eventsContainer = value; }
+        }
         public EventNodeData() : base()
         {
-            events = new List<DS_EventSO>();
+            events = new List<GameEventSO>();
+            eventsContainer = new VariableEventsContainer();
         }
         public EventNodeData(EventNodeData data) : base(data)
         {
-            events = new List<DS_EventSO>();
+            events = new List<GameEventSO>();
             if (data.Events != null && data.Events.Count > 0)
             {
                 foreach (var _event in data.Events)
@@ -31,19 +40,25 @@ namespace DS.Editor.Data
                 }
             }
             else events = null;
+
+            eventsContainer = new VariableEventsContainer();
+            eventsContainer.Reload(data.EventsContainer);
         }
 
         public EventNodeData(EventNode node) : base(node)
         { 
-            events = new List<DS_EventSO>();
-            if (node._events != null && node._events.Count > 0)
+            events = new List<GameEventSO>();
+            if (node.gameEvents != null && node.gameEvents.Count > 0)
             {
-                foreach (var _event in node._events)
+                foreach (var _event in node.gameEvents)
                 {
                     events.Add(_event);
                 }
             }
             else events = null;
+
+            eventsContainer = new VariableEventsContainer();
+            eventsContainer.Reload(node.variableEvents);
         }          
     }
 }

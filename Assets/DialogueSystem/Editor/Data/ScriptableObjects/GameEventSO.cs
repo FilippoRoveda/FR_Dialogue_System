@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace DS.Editor.ScriptableObjects
 {   
-
-    [CreateAssetMenu(menuName = "DialogueSystem/ New Dialogue Event")]
+    [CreateAssetMenu(menuName = "DialogueSystem/ New Game Event")]
     [System.Serializable]  
-    public class DS_EventSO : ScriptableObject
+    public class GameEventSO : ScriptableObject
     {
         [SerializeField] public string eventName = "TestEvent";
         public virtual void Execute()

@@ -257,5 +257,185 @@ namespace DS.Editor.Elements
 
             return varField;
         }
+
+
+        public static ObjectField AddIntVarEvent(VariableEventsContainer container, VisualElement contentContainer, IntegerEvent _event = null)
+        {
+            IntegerEvent tempEvent;
+            if (_event == null)
+            {
+                tempEvent = container.AddIntEvent();
+            }
+            else
+            {
+                tempEvent = _event;
+            }
+
+            var varField = new ObjectField()
+            {
+                objectType = typeof(IntegerVariableData),
+                allowSceneObjects = true,
+                value = tempEvent.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { tempEvent.Variable = (IntegerVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(tempEvent.Variable);
+            varField.AddToClassList("SOElement");
+
+            var toolbarMenu = new ToolbarMenu();
+            toolbarMenu.text = tempEvent.EventType.ToString();
+            foreach (VariableEventType evenType in (VariableEventType[])System.Enum.GetValues(typeof(VariableEventType)))
+            {
+                toolbarMenu.menu.AppendAction(evenType.ToString(), callback => {
+                    tempEvent.EventType = evenType;
+                    toolbarMenu.text = tempEvent.EventType.ToString();
+                });
+            }
+            toolbarMenu.AddToClassList("ds-enumElement");
+
+            var comparisonValueField = new IntegerField()
+            {
+                value = tempEvent.EventValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                tempEvent.EventValue = value.newValue;
+            });
+            comparisonValueField.SetValueWithoutNotify(tempEvent.EventValue);
+
+            Button deleteConditionButton = CreateButton("X", () => {
+                container.RemoveIntEvent(tempEvent);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+
+            varField.Add(toolbarMenu);
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
+        }
+        public static ObjectField AddFloatVarEvent(VariableEventsContainer container, VisualElement contentContainer, FloatEvent _event = null)
+        {
+            FloatEvent tempEvent;
+            if (_event == null)
+            {
+                tempEvent = container.AddFloatEvent();
+            }
+            else
+            {
+                tempEvent = _event;
+            }
+
+            var varField = new ObjectField()
+            {
+                objectType = typeof(FloatVariableData),
+                allowSceneObjects = true,
+                value = tempEvent.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { tempEvent.Variable = (FloatVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(tempEvent.Variable);
+            varField.AddToClassList("SOElement");
+
+            var toolbarMenu = new ToolbarMenu();
+            toolbarMenu.text = tempEvent.EventType.ToString();
+            foreach (VariableEventType evenType in (VariableEventType[])System.Enum.GetValues(typeof(VariableEventType)))
+            {
+                toolbarMenu.menu.AppendAction(evenType.ToString(), callback => {
+                    tempEvent.EventType = evenType;
+                    toolbarMenu.text = tempEvent.EventType.ToString();
+                });
+            }
+            toolbarMenu.AddToClassList("ds-enumElement");
+
+            var comparisonValueField = new FloatField()
+            {
+                value = tempEvent.EventValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                tempEvent.EventValue = value.newValue;
+            });
+            comparisonValueField.SetValueWithoutNotify(tempEvent.EventValue);
+
+            Button deleteConditionButton = CreateButton("X", () => {
+                container.RemoveFloatEvent(tempEvent);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+
+            varField.Add(toolbarMenu);
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
+        }
+        public static ObjectField AddBoolVarEvent(VariableEventsContainer container, VisualElement contentContainer, BoolEvent _event = null)
+        {
+            BoolEvent tempEvent;
+            if (_event == null)
+            {
+                tempEvent = container.AddBoolEvent();
+            }
+            else
+            {
+                tempEvent = _event;
+            }
+
+            var varField = new ObjectField()
+            {
+                objectType = typeof(BooleanVariableData),
+                allowSceneObjects = true,
+                value = tempEvent.Variable
+            };
+            varField.RegisterValueChangedCallback(value => { tempEvent.Variable = (BooleanVariableData)value.newValue; });
+            varField.SetValueWithoutNotify(tempEvent.Variable);
+            varField.AddToClassList("SOElement");
+
+            var toolbarMenu = new ToolbarMenu();
+            toolbarMenu.text = tempEvent.EventType.ToString();
+            //foreach (VariableEventType evenType in (VariableEventType[])System.Enum.GetValues(typeof(VariableEventType)))
+            //{
+            //    toolbarMenu.menu.AppendAction(evenType.ToString(), callback => {
+            //        tempEvent.EventType = evenType;
+            //        toolbarMenu.text = tempEvent.EventType.ToString();
+            //    });
+            //}
+            toolbarMenu.AddToClassList("ds-enumElement");
+
+            var comparisonValueField = new Toggle()
+            {
+                value = tempEvent.EventValue,
+            };
+            comparisonValueField.RegisterValueChangedCallback(value =>
+            {
+                tempEvent.EventValue = value.newValue;
+            });
+            comparisonValueField.SetValueWithoutNotify(tempEvent.EventValue);
+
+            Button deleteConditionButton = CreateButton("X", () => {
+                container.RemoveBoolEvent(tempEvent);
+                contentContainer.Remove(varField);
+            });
+
+            deleteConditionButton.AddToClassList("ds-condition-button");
+            comparisonValueField.AddToClassList("ds-intElement");
+
+
+            varField.Add(toolbarMenu);
+            varField.Add(comparisonValueField);
+            varField.Add(deleteConditionButton);
+            contentContainer.Add(varField);
+
+            return varField;
+        }
+
     }
 }

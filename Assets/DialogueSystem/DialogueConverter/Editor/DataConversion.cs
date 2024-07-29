@@ -40,7 +40,7 @@ namespace Converter.Editor
             }
             return list;
         }
-        public List<GameEvent> ConvertEvents(List<DS_EventSO> eventSOs)
+        public List<GameEvent> ConvertEvents(List<GameEventSO> eventSOs)
         {
             var events = new List<GameEvent>();
             foreach (var so in eventSOs)

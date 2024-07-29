@@ -23,6 +23,11 @@ namespace Variables.Runtime
             _value = newValue;
             VariableEvents.VariableValueChanged?.Invoke(_name);
         }
+        public void SetName(string newName)
+        {
+            _name = newName;
+            VariableEvents.VariableNameChanged?.Invoke(_id, _name);
+        }
     }
 
 

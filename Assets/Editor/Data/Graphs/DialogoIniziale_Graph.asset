@@ -142,7 +142,7 @@ MonoBehaviour:
     nodeID: 4d4af2d3-bea7-4de7-924e-5509107ea088
     groupID: 
     nodeType: 4
-    position: {x: 1459, y: 97}
+    position: {x: 1465, y: -149}
     texts:
     - Data: Testo del dialogo evento
       LenguageType: 0
@@ -170,6 +170,19 @@ MonoBehaviour:
         boolConditions: []
     events:
     - {fileID: 11400000, guid: f7574cc472b7c5540a0c218dad5de7be, type: 2}
+    eventsContainer:
+      integerEvents:
+      - eventValue: 0
+        eventType: 2
+        variable: {fileID: 11400000, guid: 6dd5acc4634dfda439b4979a87f0bd86, type: 2}
+      floatEvents:
+      - eventValue: 0
+        eventType: 1
+        variable: {fileID: 11400000, guid: cfc8946f03dab79428b127eaebfef6c5, type: 2}
+      boolEvents:
+      - eventValue: 1
+        eventType: 0
+        variable: {fileID: 11400000, guid: 6524b0aa84fc66a48989a65e6123a492, type: 2}
   endNodes:
   - name: Fine3
     nodeID: f2ee0f74-fd4e-4bf4-8255-7d0b08a56f6e
