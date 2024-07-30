@@ -13,7 +13,7 @@ namespace CSVPlugin
 
     public class SaveCSV
     {
-        IOUtilities IO = new();
+        IOUtilities ioUtility = new();
 
         private string graphName = "";
         private readonly string csvExtension = ".csv";
@@ -31,7 +31,7 @@ namespace CSVPlugin
             SetHeaders();
         }
 
-        public void SavegraphToCSV(GraphSO graph)
+        public void SaveGraphToCSV(GraphSO graph)
         {
             graphName = graph.graphName;
             CreateFile(FileName);
@@ -83,15 +83,15 @@ namespace CSVPlugin
         }
         public void SaveAllGraphsToCSV()
         {
-            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
+            List<GraphSO> graphs = ioUtility.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
 
             foreach (var graph in graphs)
             {
-                SavegraphToCSV(graph);
+                SaveGraphToCSV(graph);
             }
         }
 
-        public void CreateFile(string fileName)
+        private void CreateFile(string fileName)
         {
             string headerString = GetHeaderString();
             if (File.Exists(CSVWindow.CSVFilesPath + fileName))
@@ -120,7 +120,7 @@ namespace CSVPlugin
             return headerString;
         }
 
-        public void AppendToFile(List<string> strings)
+        private void AppendToFile(List<string> strings)
         {
             using (StreamWriter sw = File.AppendText(CSVWindow.CSVFilesPath + FileName))
             {
@@ -134,13 +134,13 @@ namespace CSVPlugin
             }
         }
 
-        public void CreateStaticFolders()
+        private void CreateStaticFolders()
         {
-            IO.CreateFolder("Assets/Editor", CSVWindow.generateDataFolderName);
-            IO.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedCSVFolderName);
-            IO.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedGraphsFolderName);
+            ioUtility.CreateFolder("Assets/Editor", CSVWindow.generateDataFolderName);
+            ioUtility.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedCSVFolderName);
+            ioUtility.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedGraphsFolderName);
         }
-        public void SetHeaders()
+        private void SetHeaders()
         {
             csvHeaders = new List<string>();
             csvHeaders.Add(idName);

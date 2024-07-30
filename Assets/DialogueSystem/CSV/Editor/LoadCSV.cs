@@ -6,31 +6,31 @@ using UnityEngine;
 
 namespace CSVPlugin
 {
-    using DS.Editor.Enumerations;
     using DS.Editor.Data;
+    using DS.Editor.Enumerations;
     using DS.Editor.ScriptableObjects;
     using DS.Editor.Utilities;
     public class LoadCSV
     {
 
-        IOUtilities IO;
+        IOUtilities ioUtility;
         CSVReader CSVReader;
 
-        public LoadCSV() { CSVReader = new(); IO = new(); }
+        public LoadCSV() { CSVReader = new(); ioUtility = new(); }
 
-        public bool LoadAllCSVInToGraphs()
+        public bool LoadAllCSVInGraphs()
         {
             bool errorFlag = false;
 
-            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
+            List<GraphSO> graphs = ioUtility.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
             foreach (GraphSO graph in graphs)
             {
-                LoadCSVInToGraph(graph, out errorFlag);
-                IO.SaveAsset(graph);
+                LoadCSVInGraph(graph, out errorFlag);
+                ioUtility.SaveAsset(graph);
             }
             return errorFlag;
         }
-        public void LoadCSVInToGraph(GraphSO graph, out bool errorFlag)
+        public void LoadCSVInGraph(GraphSO graph, out bool errorFlag)
         {
             errorFlag = false;
 
@@ -71,7 +71,7 @@ namespace CSVPlugin
                     else
                     {
                         csvData.Remove(row);
-                        LoadInToNodeText(headers, row, (TextedNodeData)node);
+                        LoadInNodeText(headers, row, (TextedNodeData)node);
                     }
 
 
@@ -101,7 +101,7 @@ namespace CSVPlugin
                             else
                             {
                                 csvData.Remove(row);
-                                LoadInToChoice(headers, row, choice);
+                                LoadInChoice(headers, row, choice);
                             }
                         }
                     }
@@ -111,14 +111,14 @@ namespace CSVPlugin
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
-        public void LoadInToNodeText(List<string> lenguageHeader, List<string> rowData, TextedNodeData node)
+        public void LoadInNodeText(List<string> lenguageHeader, List<string> rowData, TextedNodeData node)
         {
             for (int i = 2; i < lenguageHeader.Count; i++)
             {
                 node.Texts.Find(x => x.LenguageType.ToString() == lenguageHeader[i]).Data = rowData[i];
             }
         }
-        public void LoadInToChoice(List<string> lenguageHeader, List<string> rowData, ChoiceData choice)
+        public void LoadInChoice(List<string> lenguageHeader, List<string> rowData, ChoiceData choice)
         {
             for (int i = 2; i < lenguageHeader.Count; i++)
             {

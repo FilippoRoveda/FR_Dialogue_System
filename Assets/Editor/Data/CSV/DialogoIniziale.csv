@@ -1,0 +1,16 @@
+Guid ID,Dialogue/Choice Name,Italian,English,Latin,Spanish
+
+07c302b1-bacd-4794-a277-49038183c655,DialogoIniziale,"TestoIniziale_ITA","Start Dialogue Text","Start Dialogue Text","Start Dialogue Text"
+861b4442-259a-41f1-a463-61d84e898ba2,_____DialogoIniziale Choice [1],"SceltaIniziale_ITA","Starting Choice","Starting Choice","Starting Choice"
+7c2c1470-fa88-4796-94b8-7e3cbeafdbdd,NodoSingolo,"TestoNodoSingolo","Single Dialogue Text","Single Dialogue Text","Single Dialogue Text"
+bbe91f32-6fa3-4b94-bc55-4e89c2ead5b3,_____NodoSingolo Choice [1],"NodoSingolo","Next Single Choice","Next Single Choice","Next Single Choice"
+0c073fc1-19fa-41f8-a652-42b834b0caec,NodoMultiplo,"DialogoMutiplo testo","Multiple Dialogue Text","Multiple Dialogue Text","Multiple Dialogue Text"
+8b1f125f-060a-40d8-98dd-e30019206864,_____NodoMultiplo Choice [1],"SceltaMultipla_1","New Choice 1","New Choice 1","New Choice 1"
+59ace9b1-b7f8-442d-bc3f-99010dd34bb7,_____NodoMultiplo Choice [2],"SceltaMultipla_2","New choice 2","New choice 2","New choice 2"
+4f2ab620-f056-4a11-9296-cd0d1a64dd46,_____NodoMultiplo Choice [3],"SceltaMultipla_3","New choice 3","New choice 3","New choice 3"
+4d4af2d3-bea7-4de7-924e-5509107ea088,NodoEvento,"Testo del dialogo evento","Event Dialogue Text","Event Dialogue Text","Event Dialogue Text"
+324aaa3b-42fa-470c-bdaf-692fa9f7eaba,_____NodoEvento Choice [1],"EventOutput","EventOutput","EventOutput","EventOutput"
+f2ee0f74-fd4e-4bf4-8255-7d0b08a56f6e,Fine3,"TestoFine3","End Dialogue Text","End Dialogue Text","End Dialogue Text"
+47d3b52e-40fe-466d-96e6-681747657222,Fine2emezzo,"Testo fine 2 e mezzo","End Dialogue Text","End Dialogue Text","End Dialogue Text"
+08a009a6-4074-4d82-a0ac-202519875096,Fine2,"Testo fine 2","End Dialogue Text","End Dialogue Text","End Dialogue Text"
+a1d21b12-741b-4cef-94b3-55ccad6a5898,Fine1,"Testo fine 1","End Dialogue Text","End Dialogue Text","End Dialogue Text"

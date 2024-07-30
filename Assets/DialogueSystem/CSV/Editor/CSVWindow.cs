@@ -118,7 +118,7 @@ namespace CSVPlugin
 
             if (_selectedGraph != null && allCSV.Find(x => x.name == _selectedGraph.graphName) != null)
             {
-                csvPreviewPos = EditorGUILayout.BeginScrollView(csvPreviewPos, GUILayout.MaxHeight(300));
+                csvPreviewPos = EditorGUILayout.BeginScrollView(csvPreviewPos);
                 EditorGUILayout.LabelField("Selected CSV", EditorStyles.boldLabel);
                 Editor editor2 = Editor.CreateEditor(allCSV.Find(x => x.name == _selectedGraph.graphName));
                 editor2.OnInspectorGUI();
@@ -142,7 +142,7 @@ namespace CSVPlugin
         {
             LoadCSV loadCSV = new LoadCSV();
             bool errorFlag = false;
-            loadCSV.LoadCSVInToGraph(graph, out errorFlag);
+            loadCSV.LoadCSVInGraph(graph, out errorFlag);
 
             if (errorFlag)
             {
@@ -159,7 +159,7 @@ namespace CSVPlugin
         public static void LoadAllCSV()
         {
             LoadCSV loadCSV = new LoadCSV();
-            bool errorFlag = loadCSV.LoadAllCSVInToGraphs();
+            bool errorFlag = loadCSV.LoadAllCSVInGraphs();
 
             if (errorFlag)
             {
@@ -177,7 +177,7 @@ namespace CSVPlugin
         {
             SaveCSV saveCSV = new SaveCSV();
             saveCSV.Initalize();
-            saveCSV.SavegraphToCSV(graph);
+            saveCSV.SaveGraphToCSV(graph);
 
             EditorApplication.Beep();
             Debug.Log("<color=green> Graph had been saved to CSV files! </color>");
