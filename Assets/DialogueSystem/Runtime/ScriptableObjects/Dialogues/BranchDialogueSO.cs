@@ -1,10 +1,11 @@
-using DS.Runtime.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace DS.Runtime.ScriptableObjects
 {
+    using Runtime.Data;
+    using Runtime.Conditions;
     public class BranchDialogueSO : BaseDialogueSO
     {
         //List of conditions as a condition container

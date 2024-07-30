@@ -4,6 +4,8 @@ using UnityEngine;
 namespace DS.Editor.Data
 {
     using Editor.Elements;
+    using Editor.Conditions;
+
     [System.Serializable]
     public class BranchNodeData : BaseNodeData
     {

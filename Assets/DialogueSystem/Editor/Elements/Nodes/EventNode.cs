@@ -9,8 +9,8 @@ namespace DS.Editor.Elements
     using Editor.Enumerations;
     using Editor.Data;
     using Editor.Windows;
-    using Editor.ScriptableObjects;
-    using Variables.Editor;
+    using Editor.Events;
+
 
     public class EventNode : DialogueNode
     {
@@ -64,11 +64,11 @@ namespace DS.Editor.Elements
 
             _choices = new List<ChoiceData>(_data.Choices);
 
-            if (_data.Events == null || _data.Events.Count == 0) gameEvents = new();
-            else gameEvents = new List<GameEventSO>(_data.Events);
+            if (_data.GameEvents == null || _data.GameEvents.Count == 0) gameEvents = new();
+            else gameEvents = new List<GameEventSO>(_data.GameEvents);
 
             variableEvents = new VariableEventsContainer();
-            variableEvents.Reload(_data.EventsContainer);
+            variableEvents.Reload(_data.VariableEventsContainer);
 
             objectFields = new();
             //varEventFields = new();

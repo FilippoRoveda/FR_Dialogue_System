@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace DS.Runtime.Data
 {
     using Runtime.ScriptableObjects;
+    using Runtime.Conditions;
 
     /// <summary>
     /// Data structure for a dialogue choice.

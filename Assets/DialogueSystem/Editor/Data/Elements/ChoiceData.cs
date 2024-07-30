@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DS.Editor.Data
 {
-
+    using Editor.Conditions;
     /// <summary>
     /// Class that hold choice informations to be saved inside DS_Node_SaveData.
     /// </summary>

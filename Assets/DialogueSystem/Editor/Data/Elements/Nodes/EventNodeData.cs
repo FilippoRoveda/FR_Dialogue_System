@@ -4,61 +4,60 @@ using UnityEngine;
 
 namespace DS.Editor.Data
 {
-    using DS.Editor.Elements;
-    using DS.Editor.ScriptableObjects;
-    using Variables.Editor;
+    using Editor.Elements;
+    using Editor.Events;
 
     [System.Serializable]
     public class EventNodeData : DialogueNodeData
     {
-        [SerializeField] protected List<GameEventSO> events;
-        public List<GameEventSO> Events
+        [SerializeField] protected List<GameEventSO> gameEvents;
+        public List<GameEventSO> GameEvents
         {
-            get { return events; }
-            set { events = value; }
+            get { return gameEvents; }
+            set { gameEvents = value; }
         }
 
-        [SerializeField] protected VariableEventsContainer eventsContainer;
-        public VariableEventsContainer EventsContainer
+        [SerializeField] protected VariableEventsContainer variableEventsContainer;
+        public VariableEventsContainer VariableEventsContainer
         {
-            get => eventsContainer;
-            set { eventsContainer = value; }
+            get => variableEventsContainer;
+            set { variableEventsContainer = value; }
         }
         public EventNodeData() : base()
         {
-            events = new List<GameEventSO>();
-            eventsContainer = new VariableEventsContainer();
+            gameEvents = new List<GameEventSO>();
+            variableEventsContainer = new VariableEventsContainer();
         }
         public EventNodeData(EventNodeData data) : base(data)
         {
-            events = new List<GameEventSO>();
-            if (data.Events != null && data.Events.Count > 0)
+            gameEvents = new List<GameEventSO>();
+            if (data.GameEvents != null && data.GameEvents.Count > 0)
             {
-                foreach (var _event in data.Events)
+                foreach (var _event in data.GameEvents)
                 {
-                    events.Add(_event);
+                    gameEvents.Add(_event);
                 }
             }
-            else events = null;
+            else gameEvents = null;
 
-            eventsContainer = new VariableEventsContainer();
-            eventsContainer.Reload(data.EventsContainer);
+            variableEventsContainer = new VariableEventsContainer();
+            variableEventsContainer.Reload(data.VariableEventsContainer);
         }
 
         public EventNodeData(EventNode node) : base(node)
         { 
-            events = new List<GameEventSO>();
+            gameEvents = new List<GameEventSO>();
             if (node.gameEvents != null && node.gameEvents.Count > 0)
             {
                 foreach (var _event in node.gameEvents)
                 {
-                    events.Add(_event);
+                    gameEvents.Add(_event);
                 }
             }
-            else events = null;
+            else gameEvents = null;
 
-            eventsContainer = new VariableEventsContainer();
-            eventsContainer.Reload(node.variableEvents);
+            variableEventsContainer = new VariableEventsContainer();
+            variableEventsContainer.Reload(node.variableEvents);
         }          
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DS.Runtime.ScriptableObjects
 {
+    using DS.Runtime.Events;
     using Runtime.Data;
     using Runtime.Enumerations;
 
@@ -16,7 +17,14 @@ namespace DS.Runtime.ScriptableObjects
             private set { _events = value; }
         }
 
-        public void SaveEvents(List<GameEvent> events)
+        [SerializeField] private DialogueVariableEventsContainer variableEventsContainer;
+        public DialogueVariableEventsContainer VariableEventsContainer
+        {
+            get => variableEventsContainer;
+            set { variableEventsContainer = value; }
+        }
+
+        public void SetGameEvents(List<GameEvent> events)
         {
             if (events != null)
             {
@@ -28,6 +36,12 @@ namespace DS.Runtime.ScriptableObjects
             }
             else { Events = null; }
         }
+        public void SetVariableEvents(DialogueVariableEventsContainer eventsContainer)
+        {
+            variableEventsContainer = new();
+            variableEventsContainer.Reload(eventsContainer);
+        }
+
         /// <summary>
         /// Initialize the scriptble object informations.
         /// </summary>

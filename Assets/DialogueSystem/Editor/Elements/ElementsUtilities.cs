@@ -1,14 +1,17 @@
-using DS.Editor.Data;
-using DS.Editor.Enumerations;
 using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Variables.Editor;
+
 
 namespace DS.Editor.Elements
 {
+    using Editor.Conditions;
+    using Editor.Events;
+
+    using Variables.Editor;
+
     /// <summary>
     /// Utilities class that contain utilities to facilitate Graph ELements.
     /// </summary>
