@@ -74,7 +74,7 @@ namespace Game
                 Debug.LogError("Starting dialogue: " + nextDialogue.DialogueName);
     #endif
             DialogueManager.DialogueEnded.AddListener(OnDialogueEnded);
-            DialogueManager.Instance.StartDialogue(this, (DialogueSO)nextDialogue);
+            DialogueManager.Instance.TryStartDialogue(this, (DialogueSO)nextDialogue);
         }
 
         private void OnDialogueEnded(string endedDialogueID, bool couldBeRepeated)

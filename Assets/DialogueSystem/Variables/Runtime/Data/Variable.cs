@@ -37,12 +37,32 @@ namespace Variables.Runtime
         public IntVariable(string name, string id, int value) : base(name, id, value)
         {
         }
+        public void AddValue(int addValue)
+        {
+            _value += addValue;
+            VariableEvents.VariableValueChanged?.Invoke(_name);
+        }
+        public void SubtractValue(int subtractingValue)
+        {
+            _value -= subtractingValue;
+            VariableEvents.VariableValueChanged?.Invoke(_name);
+        }
     }
     [System.Serializable]
     public class FloatVariable : Variable<float>
     {
         public FloatVariable(string name, string id, float value) : base(name, id, value)
         {
+        }
+        public void AddValue(float addValue)
+        {
+            _value += addValue;
+            VariableEvents.VariableValueChanged?.Invoke(_name);
+        }
+        public void SubtractValue(float subtractingValue)
+        {
+            _value -= subtractingValue;
+            VariableEvents.VariableValueChanged?.Invoke(_name);
         }
     }
     [System.Serializable]

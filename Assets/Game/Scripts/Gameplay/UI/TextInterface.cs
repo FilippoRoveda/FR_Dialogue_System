@@ -7,7 +7,7 @@ namespace Game
     using DS.Runtime.Enumerations;
     using DS.Runtime.Data;
 
-    public class DialogueTextUI : MonoBehaviour
+    public class TextInterface : MonoBehaviour, IInterface
     {
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private List<LenguageData<string>> holdedTexts;
@@ -28,23 +28,33 @@ namespace Game
         }
         #endregion
 
-        public void SetupTextUI(List<LenguageData<string>> texts)
+        public void SetupInterface(List<LenguageData<string>> texts)
         {
             dialogueText.text = texts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
             holdedTexts = texts;
         }
-        public void ResetUI()
+        public void ResetInterface()
         {
             dialogueText.text = "";
             holdedTexts = null;
         }
         #region Callbacks
-        private void OnLenguageChanged(LenguageType newLenguage)
+        public void OnLenguageChanged(LenguageType newLenguage)
         {
             if (holdedTexts != null)
             {
                 dialogueText.text = holdedTexts.Find(x => x.LenguageType == newLenguage).Data;
             }
+        }
+
+        public void Show()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Hide()
+        {
+            throw new System.NotImplementedException();
         }
         #endregion
     }

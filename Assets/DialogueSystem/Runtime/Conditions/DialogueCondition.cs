@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace DS.Runtime.Conditions
 {
-
     using VariableEnum = Variables.Generated.VariablesGenerated.VariablesKey;
 
     [System.Serializable]

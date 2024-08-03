@@ -4,14 +4,14 @@ namespace Game
 {
     using Characters.Runtime;
 
-    public class Player : Singleton<Player>, ICharacterComponent
+    public class PlayerComponent : Singleton<PlayerComponent>, ICharacterComponent
     {      
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private CharacterSO _playerData;
 
         [SerializeField] private MovementComponent _movementComponent;
-        [SerializeField] private bool _movementEnabled = true;
+        [SerializeField] private bool canMove = true;
 
 
         public Rigidbody2D Rigidbody => _rigidbody;
@@ -49,7 +49,7 @@ namespace Game
         }
         private void Update()
         {
-            if (_movementEnabled) 
+            if (canMove) 
             {
                 _movementComponent.UpdateMovement();
             }

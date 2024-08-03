@@ -10,12 +10,13 @@ namespace Game
     using DS.Runtime.ScriptableObjects;
 
 
-    public class ChoiceUI : MonoBehaviour
+    public class ChoiceInterface : MonoBehaviour, IInterface
     {
-        [SerializeField] private TMP_Text choiceText;
-        [SerializeField] private DialogueChoice holdedChoiceData;
+        [SerializeField] private DialogueChoice holdedChoice;
 
+        [SerializeField] private TMP_Text choiceText;
         [SerializeField] private Button button;
+
 #if UNITY_EDITOR
         [IsVisible(false)]
 #endif 
@@ -37,16 +38,16 @@ namespace Game
         }
         #endregion
 
-        public void SetupChoiceUI(DialogueChoice choiceData)
+        public void SetupInterface(DialogueChoice choiceData)
         {
             choiceText.text = choiceData.ChoiceTexts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
-            holdedChoiceData = choiceData;
+            holdedChoice = choiceData;
             EnableButton();
         }
-        public void ResetUI()
+        public void ResetInterface()
         {
             choiceText.text = "";
-            holdedChoiceData = null;
+            holdedChoice = null;
             EnableButton();
         }
 
@@ -54,26 +55,35 @@ namespace Game
         private void OnChoiceButtonPressed()
         {
             DisableButton();
-            Debug.Log("Choice button pressed going to " + holdedChoiceData.NextDialogue.DialogueName);
+            Debug.Log("Choice button pressed going to " + holdedChoice.NextDialogue.DialogueName);
             //ChoiceSelected?.Invoke(holdedChoiceData.NextDialogue);
 
         }
-        private void OnLenguageChanged(LenguageType newLenguage)
+        public void OnLenguageChanged(LenguageType newLenguage)
         {
-            if (holdedChoiceData != null)
+            if (holdedChoice != null)
             {
-                choiceText.text = holdedChoiceData.ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data;
+                choiceText.text = holdedChoice.ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data;
             }
         }
-
+        #endregion
         private void EnableButton()
         {
             button.interactable = true;
         }
-        private void DisableButton() 
+        private void DisableButton()
         {
             button.interactable = false;
         }
-        #endregion
+
+        public void Show()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Hide()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Game
         public static UnityEvent<string, bool> DialogueEnded = new UnityEvent<string, bool>();
 
 
-        public void StartDialogue(TalkComponent dialogueSpeaker, DialogueSO startingDialogue)
+        public void TryStartDialogue(TalkComponent dialogueSpeaker, DialogueSO startingDialogue)
         {
             if(isDialogueRunning == true)
             {
@@ -40,7 +40,7 @@ namespace Game
             isDialogueRunning = true;
         }
 
-        public void EndDialogue(DialogueSO endedDialogue, bool isRepeatable)
+        public void TryEndDialogue(DialogueSO endedDialogue, bool isRepeatable)
         {
             if(isDialogueRunning == true && currentDialogue == endedDialogue)
             {
