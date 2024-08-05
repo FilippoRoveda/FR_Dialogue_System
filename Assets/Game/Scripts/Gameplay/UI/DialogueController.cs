@@ -9,6 +9,7 @@ namespace Game
     using DS.Runtime.Enumerations;
     using DS.Runtime.Events;
     using DS.Runtime.ScriptableObjects;
+    using System.Collections;
 
     public class DialogueController : MonoBehaviour
     {
@@ -37,6 +38,9 @@ namespace Game
 
         private ConditionsHandler conditionsHandler;
         private VariableEventsHandler variableEventsHandler;
+
+        private Coroutine textTypingCoroutine = null;
+        private Coroutine interfaceUpdateRoutine = null;
 
         #region Unity callbacks
         private void Awake()
@@ -91,7 +95,8 @@ namespace Game
             startedDialogue = startingDialogue;
 
             SetupPlayerArea();
-            GoNextDialogue(startingDialogue);
+            //COROUTINE
+            UpdateInterfaceRoutine(startingDialogue);
         }
         public void OnEndDialogueButtonPressed()
         {
@@ -106,23 +111,38 @@ namespace Game
         public void OnChoiceSelected(DialogueSO nextDialogue)
         {
             Debug.Log($"Next dialogue pressed: {nextDialogue.DialogueName}");
-            GoNextDialogue(nextDialogue);
+            UpdateInterfaceRoutine(nextDialogue);
         }
 
         #endregion
-
-
-        public void GoNextDialogue(BaseDialogueSO dialogue) 
+        private void UpdateInterfaceRoutine(BaseDialogueSO dialogue)
         {
+            if (interfaceUpdateRoutine != null)
+            {
+                StopCoroutine(interfaceUpdateRoutine);
+            }
+            interfaceUpdateRoutine = StartCoroutine(GoNextDialogue(dialogue));
+        }
+
+        public IEnumerator GoNextDialogue(BaseDialogueSO dialogue) 
+        {
+            ClearFields();
+
             currentDialogue = dialogue;
 
             switch(dialogue.DialogueType)
             {
                 case DialogueType.Branch:
                     BranchDialogueSO branchDialogue = (BranchDialogueSO)currentDialogue;
-                    if (conditionsHandler.HandleConditions(branchDialogue.Condtitions) == true) GoNextDialogue(branchDialogue.Choices[0].NextDialogue);
-                    else GoNextDialogue(branchDialogue.Choices[1].NextDialogue);
-                    return;
+                    if (conditionsHandler.HandleConditions(branchDialogue.Condtitions) == true)
+                    {
+                        UpdateInterfaceRoutine(branchDialogue.Choices[0].NextDialogue);
+                    }
+                    else
+                    {
+                        UpdateInterfaceRoutine(branchDialogue.Choices[1].NextDialogue);
+                    }
+                    yield break;
 
                 case DialogueType.Event:
                     EventDialogueSO eventDialogue = (EventDialogueSO)currentDialogue;
@@ -131,17 +151,27 @@ namespace Game
                         Debug.Log("To implement event call");
                     }
                     variableEventsHandler.HandleEvents(eventDialogue.VariableEventsContainer);
-                    break;
+                    yield break;
 
                 case  DialogueType.End:
                     endButton.gameObject.SetActive(true);
-                    return;
+                    yield break;
 
             }
 
-            ClearFields();
+
             SetupSpeakerArea();
             SetupDialogueText();
+
+            if(textTypingCoroutine != null)
+            {
+                StopCoroutine(textTypingCoroutine);
+                dialogueText.StopTyping();
+            }
+
+            textTypingCoroutine = StartCoroutine(dialogueText.GetDiaplayTextRoutine());
+            yield return textTypingCoroutine;
+
             SetupChoices((DialogueSO)currentDialogue);
         }
         public void ClearFields()

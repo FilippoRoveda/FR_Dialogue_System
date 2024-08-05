@@ -6,11 +6,14 @@ namespace Game
 {
     using DS.Runtime.Enumerations;
     using DS.Runtime.Data;
+    using System.Collections;
 
     public class TextInterface : MonoBehaviour, IInterface
     {
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private List<LenguageData<string>> holdedTexts;
+
+        private bool isTyping = false;
 
         #region Unity callbacks
         private void Awake()
@@ -30,8 +33,38 @@ namespace Game
 
         public void SetupInterface(List<LenguageData<string>> texts)
         {
-            dialogueText.text = texts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
             holdedTexts = texts;
+        }
+
+        public IEnumerator GetDiaplayTextRoutine()
+        {
+            if (isTyping == false)
+            {
+                return DisplayTextCoroutine();
+            }
+            else return null;
+        }
+        public void StopTyping() { isTyping = false; }
+        private IEnumerator DisplayTextCoroutine()
+        {
+            isTyping = true;
+            dialogueText.text = "";
+
+            var textToDisplay = holdedTexts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
+            
+            foreach (char letter in textToDisplay)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    dialogueText.text = textToDisplay;
+                    break;
+                }
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(DialogueManager.Instance.TextsTypingSpeed);
+            }
+
+            isTyping = false;
+            yield return null;
         }
         public void ResetInterface()
         {
