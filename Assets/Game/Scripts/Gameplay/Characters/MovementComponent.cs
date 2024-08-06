@@ -1,25 +1,71 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Game
 {
     public class MovementComponent : MonoBehaviour
     {
-        [SerializeField] protected float _speed = 5f;
-        [SerializeField] protected Rigidbody2D _rigidbody;
+        [SerializeField] protected float movementSpeed = 1.5f;
+        [SerializeField] private LayerMask collisionLayer;
+ 
+        private Animator animator;
 
-        public virtual void Initialize()
+        private Vector3 targetPos;
+        private bool isMoving = false;
+
+        private void OnEnable()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            if (_rigidbody == null)
-            {
-                gameObject.AddComponent<Rigidbody2D>();
-            }
+            animator = GetComponentInChildren<Animator>();
         }
-
         public virtual void UpdateMovement()
         {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            _rigidbody.velocity = new Vector2(horizontalInput * _speed, _rigidbody.velocity.y);
+            if (isMoving == false)
+            {
+                float horizontalInput = Input.GetAxisRaw("Horizontal");
+                float verticalInput = Input.GetAxisRaw("Vertical");
+
+                if (horizontalInput != 0.0f) verticalInput = 0.0f;
+
+                if (horizontalInput != 0.0f | verticalInput != 0.0f)
+                {
+                    animator.SetFloat("MoveX", horizontalInput);
+                    animator.SetFloat("MoveY", verticalInput);
+
+                    targetPos = transform.position;
+                    targetPos.x += horizontalInput;
+                    targetPos.y += verticalInput;
+
+                    if(IsWalkable(targetPos) == true)
+                    {
+                        StartCoroutine(MovementRoutine());
+                    }
+                }
+            }
+            animator.SetBool("IsMoving", isMoving);
+        }
+        private IEnumerator MovementRoutine()
+        {
+            if (isMoving == false)
+            {
+                isMoving = true;
+                while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                transform.position = targetPos;
+                isMoving = false;
+            }
+            else yield return null;
+        }
+        private bool IsWalkable(Vector3 targetPos)
+        {
+            if(Physics2D.OverlapCircle(targetPos, 0.5f, collisionLayer) != null)
+            {
+                Debug.Log($"Colliding with {Physics2D.OverlapCircle(targetPos, 0.5f, collisionLayer).gameObject.name}");
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d74e7319c9b1f447abe1eb489cc501e, type: 3}
+  m_Name: Caesar
+  m_EditorClassIdentifier: 
+  _id: 75058564-b4d6-4cd1-8d52-6e392bb21c01
+  _name: Caesar
+  _completeName: Gaius Iulius Caesar
+  _icon: {fileID: 623540652, guid: a0c0b3c3097ce15449e86d0467ed3489, type: 3}
