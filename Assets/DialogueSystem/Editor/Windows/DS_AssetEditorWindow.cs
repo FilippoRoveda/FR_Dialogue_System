@@ -8,17 +8,19 @@ namespace DS.Editor.Windows
     using Editor.ScriptableObjects;
     using Editor.Utilities;
 
+    /// <summary>
+    /// DialogueEditor window for specific assets opening.
+    /// </summary>
     public class DS_AssetEditorWindow : DS_EditorWindow
     {
-        public GraphSO assetGraph = null;
-
+        private GraphSO linkedAssetsGraph = null;
 
         public static void OpenWindow(GraphSO asset)
         {
             var windows = Resources.FindObjectsOfTypeAll<DS_AssetEditorWindow>();
             foreach (var window in windows)
             {
-                if (window.assetGraph == asset)
+                if (window.linkedAssetsGraph == asset)
                 {
                     window.Focus();
                     return;
@@ -31,35 +33,15 @@ namespace DS.Editor.Windows
             windowInstance.Show();
         }
 
-       
-        private void SetTitleContent()
-        {
-            titleContent = new GUIContent($"DS_{assetGraph.graphName}_Window");
-        }
-        private void SetAsset(GraphSO assetGraph)
-        {
-            this.assetGraph = assetGraph;
-        }
 
         protected override void CreateGUI()
         {
             AddGraphView();
             AddToolbar();
             AddToolbarMenu();
-            AddStyles();
             LoadTargetGraphAsset();
         }
 
-        private void LoadTargetGraphAsset()
-        {
-            string filePath = $"{defaultSavedGraphPath}/{assetGraph.graphName}_Graph.asset";
-            if (string.IsNullOrEmpty(filePath) == false)
-            {
-                OnClearButtonPressed();
-                saveSystem.Initialize(linkedGraphView, Path.GetFileNameWithoutExtension(filePath));
-                saveSystem.LoadGraph();
-            }
-        }
 
         /// <summary>
         /// 
@@ -67,7 +49,7 @@ namespace DS.Editor.Windows
         protected override void AddToolbar()
         {
             toolbar = new Toolbar();
-            filenameTextField = ElementsUtilities.CreateTextField(assetGraph.graphName, "File Name:");
+            filenameTextField = ElementsUtilities.CreateTextField(linkedAssetsGraph.graphName, "File Name:");
             saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
             clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             openVariableEditor = ElementsUtilities.CreateButton("Variable Editor", () => OnVariableEditorButtonPressed());
@@ -84,6 +66,27 @@ namespace DS.Editor.Windows
             toolbar.AddStyleSheet("DS_ToolbarStyles.uss");
 
             rootVisualElement.Add(toolbar);
+        }
+
+
+        private void LoadTargetGraphAsset()
+        {
+            string filePath = $"{defaultSavedGraphPath}/{linkedAssetsGraph.graphName}_Graph.asset";
+            if (string.IsNullOrEmpty(filePath) == false)
+            {
+                OnClearButtonPressed();
+                graphSystem.Initialize(linkedGraph, Path.GetFileNameWithoutExtension(filePath));
+                graphSystem.LoadGraph();
+            }
+        }
+
+        private void SetTitleContent()
+        {
+            titleContent = new GUIContent($"DS_{linkedAssetsGraph.graphName}_Window");
+        }
+        private void SetAsset(GraphSO assetGraph)
+        {
+            linkedAssetsGraph = assetGraph;
         }
     }
 }

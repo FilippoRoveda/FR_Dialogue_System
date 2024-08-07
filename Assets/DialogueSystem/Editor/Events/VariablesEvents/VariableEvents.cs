@@ -4,7 +4,7 @@ using UnityEngine;
 namespace DS.Editor.Events
 {
     [System.Serializable]
-    public class VariableEventsContainer
+    public class VariableEvents
     {
         [SerializeField] private List<IntegerEvent> integerEvents;
         [SerializeField] private List<FloatEvent> floatEvents;
@@ -13,7 +13,7 @@ namespace DS.Editor.Events
         public List<IntegerEvent> IntEvents { get { return integerEvents; } }
         public List<FloatEvent> FloatEvents { get { return floatEvents; } }
         public List<BoolEvent> BoolEvents { get { return boolEvents; } }
-        public VariableEventsContainer()
+        public VariableEvents()
         {
             Initialize();
         }
@@ -24,11 +24,11 @@ namespace DS.Editor.Events
             floatEvents = new List<FloatEvent>();
             boolEvents = new List<BoolEvent>();
         }
-        public void Reload(VariableEventsContainer conditionsContainer)
+        public void Reload(VariableEvents variableEvents)
         {
-            integerEvents = new List<IntegerEvent>(conditionsContainer.IntEvents);
-            floatEvents = new List<FloatEvent>(conditionsContainer.FloatEvents);
-            boolEvents = new List<BoolEvent>(conditionsContainer.BoolEvents);
+            integerEvents = new List<IntegerEvent>(variableEvents.IntEvents);
+            floatEvents = new List<FloatEvent>(variableEvents.FloatEvents);
+            boolEvents = new List<BoolEvent>(variableEvents.BoolEvents);
         }
 
         public IntegerEvent AddIntEvent(IntegerEvent _event = null)

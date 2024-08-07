@@ -15,7 +15,7 @@ namespace DS.Editor.Elements
     public class EventNode : DialogueNode
     {
         public List<GameEventSO> gameEvents;
-        public VariableEventsContainer variableEvents;
+        public VariableEvents variableEvents;
 
         [SerializeField] private List<ObjectField> objectFields;
         //[SerializeField] private List<ObjectField> varEventFields;
@@ -44,7 +44,7 @@ namespace DS.Editor.Elements
             _choices.Add(choiceData);
 
             gameEvents = new List<GameEventSO>();
-            variableEvents = new VariableEventsContainer();
+            variableEvents = new VariableEvents();
 
             objectFields = new();
             //varEventFields = new();
@@ -67,7 +67,7 @@ namespace DS.Editor.Elements
             if (_data.GameEvents == null || _data.GameEvents.Count == 0) gameEvents = new();
             else gameEvents = new List<GameEventSO>(_data.GameEvents);
 
-            variableEvents = new VariableEventsContainer();
+            variableEvents = new VariableEvents();
             variableEvents.Reload(_data.VariableEventsContainer);
 
             objectFields = new();

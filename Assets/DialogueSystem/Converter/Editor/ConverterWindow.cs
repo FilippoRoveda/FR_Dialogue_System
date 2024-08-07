@@ -6,6 +6,9 @@ namespace Converter.Editor
 {
     using DS.Editor.ScriptableObjects;
 
+    /// <summary>
+    /// Converter editor class that convert Graph scriptables objects in to Dialogues scriptable objects to be played at runtime.
+    /// </summary>
     public class ConverterWindow : EditorWindow
     {
         private IOUtilities IO = new IOUtilities();

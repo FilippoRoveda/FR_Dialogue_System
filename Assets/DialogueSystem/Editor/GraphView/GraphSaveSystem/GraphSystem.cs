@@ -10,42 +10,43 @@ namespace DS.Editor.Windows.Utilities
     using Editor.Utilities;
     using Editor.Elements;
 
-    public class GraphIOSystem
+    public class GraphSystem
     {
         /// <summary>
-        /// 
+        /// Base editor assets path for all saved diallgues graphs.
         /// </summary>
-        public IOUtilities BaseIO;
+        public static readonly string commonEditorPath = "Assets/Editor/Data/Graphs";
+
+        public IOUtilities IO;
         public GraphSave graphSave;
         public GraphLoad graphLoad;
 
         /// <summary>
         /// Reference to the current displayed graph in the Dialogue System Graph View Editor Window.
         /// </summary>
-        public DS_GraphView graphView;
-        /// <summary>
-        /// Base editor assets path for all saved diallgues graphs.
-        /// </summary>
-        public static readonly string commonEditorPath = "Assets/Editor/Data/Graphs";
-
+        public DS_GraphView linkedGraphView;
 
         public string graphFileName;
         public string containerFolderPath;
 
-        public List<DS_Group> groups;
 
+        #region Saving lists
+        public List<DS_Group> groups;
 
         public List<DialogueNode> dialogueNodes;
         public List<EventNode> eventNodes;
         public List<EndNode> endNodes;
         public List<BranchNode> branchNodes;
+        #endregion
 
+        #region Loading lists
         public Dictionary<string, DS_Group> loadedGroups;
 
         public Dictionary<string, DialogueNode> loadedDialogueNodes;
         public Dictionary<string, EventNode> loadedEventNodes;
         public Dictionary<string, EndNode> loadedEndNodes;
         public Dictionary<string, BranchNode> loadedBranchNodes;
+        #endregion
 
         /// <summary>
         /// Initialize the static IOUtilities class with informations for the current DS_Graph view created, displayed or loaded in the editor window.
@@ -54,14 +55,13 @@ namespace DS.Editor.Windows.Utilities
         /// <param name="graphName"></param>
         public void Initialize(DS_GraphView graphView, string graphName)
         {
-            BaseIO = new IOUtilities();
+            IO = new IOUtilities();
             graphSave = new GraphSave(this);
             graphLoad = new GraphLoad(this);
 
-            this.graphView = graphView;
+            linkedGraphView = graphView;
             graphFileName = graphName;
             
-
             groups = new List<DS_Group>();
 
             eventNodes = new List<EventNode>();
@@ -85,18 +85,18 @@ namespace DS.Editor.Windows.Utilities
             CreateStaticFolders();
             GetElementsFromGraphView();
 
-            GraphSO graphData = BaseIO.CreateAsset<GraphSO>(commonEditorPath, $"/{graphFileName}_Graph");
+            GraphSO graphData = IO.CreateAsset<GraphSO>(commonEditorPath, $"/{graphFileName}_Graph");
             graphData.Initialize(graphFileName);
 
             graphSave.SaveGroups(graphData);
             graphSave.SaveNodes(graphData);
 
-            BaseIO.SaveAsset(graphData);
+            IO.SaveAsset(graphData);
         }
 
         public void LoadGraph()
         {
-            GraphSO graphData = BaseIO.LoadAsset<GraphSO>(commonEditorPath, graphFileName);
+            GraphSO graphData = IO.LoadAsset<GraphSO>(commonEditorPath, graphFileName);
             if(graphData == null)
             {
                 EditorUtility.DisplayDialog(
@@ -107,7 +107,7 @@ namespace DS.Editor.Windows.Utilities
                     );
                 return;
             }
-            graphView.EditorWindow.UpdateFilename(graphData.graphName);
+            linkedGraphView.EditorWindow.UpdateFilename(graphData.graphName);
 
             graphLoad.LoadGroups(graphData.groups);
             graphLoad.LoadBranchNodes(graphData.branchNodes);
@@ -125,7 +125,7 @@ namespace DS.Editor.Windows.Utilities
         /// </summary>
         private void CreateStaticFolders()
         {
-            BaseIO.CreateFolder("Assets/Editor/Data", "Graphs");
+            IO.CreateFolder("Assets/Editor/Data", "Graphs");
         }
         #endregion
 
@@ -133,9 +133,13 @@ namespace DS.Editor.Windows.Utilities
 
         public void GetElementsFromGraphView()
         {
-            graphView.graphElements.ForEach(FetchGraphElements());
+            linkedGraphView.graphElements.ForEach(FetchGraphElements());
         }
         
+        /// <summary>
+        /// Fetch every GraphView element and add it to his specific list.
+        /// </summary>
+        /// <returns></returns>
         public Action<GraphElement> FetchGraphElements()
         {
             return graphElement =>
@@ -169,20 +173,6 @@ namespace DS.Editor.Windows.Utilities
                     groups.Add((DS_Group)graphElement);
                 }
             };
-        }
-     
-
-        public DS_Group GetLoadedGroup(string groupID)
-        {
-            if(loadedGroups.ContainsKey(groupID))
-            {
-                return loadedGroups[groupID];
-            }
-            else
-            {
-                Logger.Error($"No group with ID:{groupID} is currently loaded in the graph.", Color.red);
-                return null;
-            }
         }
         #endregion
     }

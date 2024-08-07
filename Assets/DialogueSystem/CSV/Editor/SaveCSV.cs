@@ -5,30 +5,32 @@ using UnityEditor;
 
 namespace CSVPlugin
 {
-    using DS.Editor.Enumerations;
     using DS.Editor.Data;
+    using DS.Editor.Enumerations;
     using DS.Editor.ScriptableObjects;
     using DS.Editor.Utilities;
 
 
     public class SaveCSV
     {
-        IOUtilities ioUtility = new();
+        IOUtilities IO = new();
+
+        private readonly string csvExtension = ".csv";
+        private readonly string csvSeparator = ",";
+        private readonly string idName = "Guid ID";
+        private readonly string dialogueName = "Dialogue/Choice Name";
 
         private string graphName = "";
-        private readonly string csvExtension = ".csv";
         string FileName { get { return graphName + csvExtension; } }
 
-        private string csvSeparator = ",";
         private List<string> csvHeaders;
-        private string idName = "Guid ID";
-        private string dialogueName = "Dialogue/Choice Name";
+
 
         public SaveCSV() { CreateStaticFolders(); }
 
         public void Initalize()
         {
-            SetHeaders();
+            GenerateHeadersList();
         }
 
         public void SaveGraphToCSV(GraphSO graph)
@@ -44,7 +46,7 @@ namespace CSVPlugin
                 var textNode = (TextedNodeData)nodeData;
                 textNode.UpdateTextsLenguage();
 
-                List<string> nodeTexts = new List<string>();
+                List<string> nodeTexts = new();
                 nodeTexts.Add(nodeData.NodeID);
                 nodeTexts.Add(nodeData.Name);
                 foreach (LenguageType lenguage in (LenguageType[])Enum.GetValues(typeof(LenguageType)))
@@ -83,7 +85,7 @@ namespace CSVPlugin
         }
         public void SaveAllGraphsToCSV()
         {
-            List<GraphSO> graphs = ioUtility.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
+            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
 
             foreach (var graph in graphs)
             {
@@ -136,11 +138,11 @@ namespace CSVPlugin
 
         private void CreateStaticFolders()
         {
-            ioUtility.CreateFolder("Assets/Editor", CSVWindow.generateDataFolderName);
-            ioUtility.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedCSVFolderName);
-            ioUtility.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedGraphsFolderName);
+            IO.CreateFolder("Assets/Editor", CSVWindow.generateDataFolderName);
+            IO.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedCSVFolderName);
+            IO.CreateFolder($"Assets/Editor/{CSVWindow.generateDataFolderName}", CSVWindow.generatedGraphsFolderName);
         }
-        private void SetHeaders()
+        private void GenerateHeadersList()
         {
             csvHeaders = new List<string>();
             csvHeaders.Add(idName);

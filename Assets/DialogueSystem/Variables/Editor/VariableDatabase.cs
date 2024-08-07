@@ -6,6 +6,9 @@ using System.Collections.Generic;
 namespace Variables.Editor
 {
     using Variables.Runtime;
+    /// <summary>
+    /// Database that stores every type of VariableDatas scriptable objects.
+    /// </summary>
     public class VariablesDatabase : ScriptableObject
     {
         IOUtilities IO = new IOUtilities();
@@ -110,7 +113,7 @@ namespace Variables.Editor
             Debug.LogError("Variable type is not supported for removal");
         }
 
-
+        #region Getters
         public T GetVariable<T>(string id) where T : ScriptableObject
         {
             foreach (var variable in integers)
@@ -131,10 +134,12 @@ namespace Variables.Editor
             return null;
         }
 
-
         public List<IntegerVariableData> GetIntegers() => integers;
         public List<FloatVariableData> GetDecimals() => decimals;
         public List<BooleanVariableData> GetBooleans() => booleans;
+        #endregion
+
+        #region Setters
 
         public void SetVariableName<T>(string id, string name) where T : VariableData<T>
         {
@@ -177,5 +182,6 @@ namespace Variables.Editor
 
             VariableEvents.VariableValueChanged.Invoke(id);
         }
+        #endregion
     }
 }

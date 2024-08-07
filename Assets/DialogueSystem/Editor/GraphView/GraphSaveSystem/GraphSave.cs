@@ -6,8 +6,8 @@ namespace DS.Editor.Windows.Utilities
 
     public class GraphSave
     {
-        private GraphIOSystem _system;
-        public GraphSave(GraphIOSystem _system) { this._system = _system; }
+        private GraphSystem _system;
+        public GraphSave(GraphSystem _system) { this._system = _system; }
 
 
         public void SaveGroups(GraphSO graphData)

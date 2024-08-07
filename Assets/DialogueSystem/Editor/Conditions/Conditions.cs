@@ -1,77 +1,71 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Variables.Editor;
 
 namespace DS.Editor.Conditions
 {
-
     [System.Serializable]
-    public abstract class ConditionData<T>
+    public class Conditions
     {
-        [SerializeField] protected T comparisonValue;
-        public T ComparisonValue { get { return comparisonValue; } 
-            set { 
-                comparisonValue = value; 
-                Debug.Log("Variable value changed to" + comparisonValue.ToString());
+        [SerializeField] private List<IntCondition> intConditions;
+        [SerializeField] private List<FloatCondition> floatConditions;
+        [SerializeField] private List<BoolCondition> boolConditions;
+
+        public List<IntCondition> IntConditions {  get { return intConditions; } } 
+        public List<FloatCondition> FloatConditions { get { return floatConditions; } }
+        public List<BoolCondition> BoolConditions { get { return boolConditions; } }
+        public Conditions()
+        {
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            intConditions = new List<IntCondition>();
+            floatConditions = new List<FloatCondition>();
+            boolConditions = new List<BoolCondition>();
+        }
+        public void Reload(Conditions conditions)
+        {
+            intConditions = new List<IntCondition>(conditions.IntConditions);
+            floatConditions = new List<FloatCondition>(conditions.FloatConditions);
+            boolConditions = new List<BoolCondition>(conditions.BoolConditions);
+        }
+
+        public IntCondition AddIntCondition(IntCondition condition = null) 
+        {           
+            if (condition == null) 
+            {
+                var newCondition = new IntCondition();
+                intConditions.Add(newCondition);
+                return newCondition;
             }
+            intConditions.Add(condition); 
+            return condition;
         }
-    }
-
-    [System.Serializable]
-    public class BoolCondition : ConditionData<bool>
-    {
-        [SerializeField] protected BooleanVariableData variable;
-        public BooleanVariableData Variable 
-        { 
-            get { return variable; } 
-            set { variable = value; Debug.Log("Changing target bool variable for condition."); }
-        }
-        public BoolCondition(BooleanVariableData boolVariable = null)
+        public FloatCondition AddFloatCondition(FloatCondition condition = null) 
         {
-            variable = boolVariable;
+            if (condition == null)
+            {
+                var newCondition = new FloatCondition();
+                floatConditions.Add(newCondition);
+                return newCondition;
+            }
+            floatConditions.Add(condition);
+            return condition;
         }
-    }
-
-    [System.Serializable]
-    public class IntCondition : ConditionData<int>
-    {
-        [SerializeField] protected IntegerVariableData variable;
-        public IntegerVariableData Variable 
-        { get { return variable; }
-            set { variable = value; Debug.Log("Changing target int variable for condition."); }
-        }
-
-
-        [SerializeField] private ComparisonType comparisonType = ComparisonType.EQUAL;
-        public ComparisonType ComparisonType { get { return comparisonType; } 
-            set 
-            { 
-                comparisonType = value;
-                Debug.Log("cAHNGING COMPARISON TYPE");
-            } 
-        }
-
-        public IntCondition(IntegerVariableData intVariable = null)
+        public BoolCondition AddBoolCondition(BoolCondition condition = null) 
         {
-            variable = intVariable;
+            if (condition == null)
+            {
+                var newCondition = new BoolCondition();
+                boolConditions.Add(newCondition);
+                return newCondition;
+            }
+            boolConditions.Add(condition);
+            return condition;
         }
-    }
-
-    [System.Serializable]
-    public class FloatCondition : ConditionData<float>
-    {
-        [SerializeField] protected FloatVariableData variable;
-        public FloatVariableData Variable 
-        { 
-            get { return variable; }
-            set { variable = value; Debug.Log("Changing target float variable for condition."); }
-        }
-
-        [SerializeField] private ComparisonType comparisonType = ComparisonType.EQUAL;
-        public ComparisonType ComparisonType { get { return comparisonType; } set { comparisonType = value; Debug.Log("cAHNGING COMPARISON TYPE"); } }
-
-        public FloatCondition(FloatVariableData floatVariable = null)
-        {
-            variable = floatVariable;
-        }
+        public void RemoveIntCondition(IntCondition condition = null) { intConditions.Remove(condition); }
+        public void RemoveFloatCondition(FloatCondition condition = null) { floatConditions.Remove(condition); }
+        public void RemoveBoolCondition(BoolCondition condition = null) { boolConditions.Remove(condition); }
     }
 }

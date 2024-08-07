@@ -5,7 +5,7 @@ namespace DS.Runtime.Conditions
     using Variables.Generated;
     public class ConditionsHandler
     {
-        public bool HandleConditions(DialogueConditionContainer container)
+        public bool HandleConditions(DialogueConditions container)
         {
             foreach (var condition in container.IntConditions)
             {

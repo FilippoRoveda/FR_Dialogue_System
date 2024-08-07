@@ -9,8 +9,8 @@ namespace DS.Editor.Data
     [System.Serializable]
     public class BranchNodeData : BaseNodeData
     {
-        [SerializeField] protected ConditionsContainer conditions;
-        public ConditionsContainer Conditions
+        [SerializeField] protected Conditions conditions;
+        public Conditions Conditions
         {
             get { return conditions; }
             set { conditions = value; }
@@ -24,13 +24,13 @@ namespace DS.Editor.Data
         public BranchNodeData() : base(){ }
         public BranchNodeData(BranchNodeData data) :base(data)
         {
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Reload(data.Conditions);
             choices = new List<ChoiceData>(data.Choices);
         }
         public BranchNodeData(BranchNode node) : base(node)
         {
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Reload(node.conditions);
             choices = new List<ChoiceData>(node.choices);
         }

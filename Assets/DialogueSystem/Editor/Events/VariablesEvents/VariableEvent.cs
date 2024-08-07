@@ -10,16 +10,26 @@ namespace DS.Editor.Events
         MINUS
     }
 
+    /// <summary>
+    /// Abstract class that implement basic VariableEvent features.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [System.Serializable]
-    public class VariableEvent<T>
+    public abstract class VariableEvent<T>
     {
         [SerializeField] protected T eventValue;
+        /// <summary>
+        /// The value with which this event work on the target Variable. 
+        /// </summary>
         public T EventValue
         {
             get { return eventValue; }
             set { eventValue = value; }
         }
         [SerializeField] private VariableEventType eventType = VariableEventType.SET;
+        /// <summary>
+        /// The type of this event, change the way of handling the target variable.
+        /// </summary>
         public virtual VariableEventType EventType
         {
             get { return eventType; }
@@ -34,6 +44,9 @@ namespace DS.Editor.Events
     public class BoolEvent : VariableEvent<bool>
     {
         [SerializeField] private BooleanVariableData variable;
+        /// <summary>
+        /// The target Variable for this event.
+        /// </summary>
         public BooleanVariableData Variable { get => variable; set => variable = value; }
         public override VariableEventType EventType { get => base.EventType; set => base.EventType = VariableEventType.SET; }
 
@@ -47,6 +60,9 @@ namespace DS.Editor.Events
     public class IntegerEvent : VariableEvent<int>
     {
         [SerializeField] private IntegerVariableData variable;
+        /// <summary>
+        /// The target Variable for this event.
+        /// </summary>
         public IntegerVariableData Variable { get => variable; set => variable = value; }
 
         public IntegerEvent(IntegerVariableData variable = null)
@@ -59,6 +75,9 @@ namespace DS.Editor.Events
     public class FloatEvent : VariableEvent<float>
     {
         [SerializeField] private FloatVariableData variable;
+        /// <summary>
+        /// The target Variable for this event.
+        /// </summary>
         public FloatVariableData Variable { get => variable; set => variable = value; }
 
         public FloatEvent(FloatVariableData variable = null)

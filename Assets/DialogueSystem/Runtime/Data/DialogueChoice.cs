@@ -46,8 +46,8 @@ namespace DS.Runtime.Data
 #endif
         }
 
-        [SerializeField] private DialogueConditionContainer conditions;
-        public DialogueConditionContainer Conditions 
+        [SerializeField] private DialogueConditions conditions;
+        public DialogueConditions Conditions 
         { 
             get { return conditions; }
 #if UNITY_EDITOR

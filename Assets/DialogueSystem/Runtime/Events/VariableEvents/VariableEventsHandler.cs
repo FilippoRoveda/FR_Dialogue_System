@@ -8,7 +8,7 @@ namespace DS.Runtime.Events
     using Variables.Generated;
     public class VariableEventsHandler
     {
-        public bool HandleEvents(DialogueVariableEventsContainer container)
+        public bool HandleEvents(DialogueVariableEvents container)
         {
             foreach (var varEvent in container.IntEvents)
             {

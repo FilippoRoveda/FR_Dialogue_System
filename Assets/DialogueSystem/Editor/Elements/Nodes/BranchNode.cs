@@ -12,7 +12,7 @@ namespace DS.Editor.Elements
 
     public class BranchNode : BaseNode
     {
-        public ConditionsContainer conditions;
+        public Conditions conditions;
         public List<ChoiceData> choices;
 
         protected Port inputPort;
@@ -23,7 +23,7 @@ namespace DS.Editor.Elements
         {
             base.Initialize(nodeName, context, spawnPosition);
             _nodeType = Enumerations.NodeType.Branch;
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             choices = new List<ChoiceData>();
             var trueChoice = new ChoiceData("TRUE");
             var falseChoice = new ChoiceData("FALSE");
@@ -40,7 +40,7 @@ namespace DS.Editor.Elements
             _graphView = context;
             SetNodeStyle();
             _nodeType = Enumerations.NodeType.Branch;
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Reload(_data.Conditions);
             choices = new List<ChoiceData>(_data.Choices);
         }

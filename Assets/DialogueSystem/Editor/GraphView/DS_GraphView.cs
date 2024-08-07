@@ -63,6 +63,7 @@ namespace DS.Editor.Windows
 
         public UnityEvent<LenguageType> GraphLenguageChanged = new();
 
+
         public DS_GraphView(DS_EditorWindow editorWindow)
         {
             //Fields initializings
@@ -87,7 +88,7 @@ namespace DS.Editor.Windows
             Add_MinimapStyles();
             Add_Manipulators();
 
-            this.editorWindow.EditorWindowLenguageChanged.AddListener(OnEditorLenguageChanged);
+            this.editorWindow.EditorLenguageChanged.AddListener(OnEditorLenguageChanged);
             RegisterCallback<KeyDownEvent>(OnKeyDown);
             RegisterCallback<KeyUpEvent>(OnKeyUp);
 
@@ -395,7 +396,6 @@ namespace DS.Editor.Windows
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
-            //this.AddManipulator(new FreehandSelector());
 
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Starting Node", NodeType.Start));
             this.AddManipulator(CreateNode_CtxMenu_Option("Create Node(Single Choice)", NodeType.Single));
@@ -454,15 +454,15 @@ namespace DS.Editor.Windows
         {
             var _data = (U)data;
             var node = (T)Activator.CreateInstance(typeof(T));
-            Debug.Log($"Instantiating a {node.GetType()}");
-            Debug.Log($"Data are of type a {_data.GetType()}");
-            Debug.Log(_data.NodeID);
-            Debug.Log(_data.Name);
-            Debug.Log(_data.NodeType);
+            //Debug.Log($"Instantiating a {node.GetType()}");
+            //Debug.Log($"Data are of type a {_data.GetType()}");
+            //Debug.Log(_data.NodeID);
+            //Debug.Log(_data.Name);
+            //Debug.Log(_data.NodeType);
             node.Initialize(data, this);
-            Debug.Log(node._nodeID);
-            Debug.Log(node._nodeName);
-            Debug.Log(node._nodeType);
+            //Debug.Log(node._nodeID);
+            //Debug.Log(node._nodeName);
+            //Debug.Log(node._nodeType);
             if (shouldDraw == true) node.Draw();
 
             Add_Node_ToUngrouped(node);
@@ -536,11 +536,8 @@ namespace DS.Editor.Windows
         /// </summary>
         private void Add_Styles()
         {
-
-            this.AddStyleSheet( "DS_GridBackground.uss",
-                                "DS_NodeStyles.uss");
+            this.AddStyleSheet( "DS_GridBackground.uss", "DS_NodeStyles.uss");
         }
-
 
         private void Add_MinimapStyles()
         {
@@ -608,260 +605,6 @@ namespace DS.Editor.Windows
                 evt.PreventDefault();
             }
         }
-        #endregion
-
-        #region Dictionaries handling
-        /// <summary>
-        /// Add the passed node to the ungrouped node dictionary.
-        /// </summary>
-        /// <param name="node">The node that need to be added to the dictionary.</param>
-        public void Add_Node_ToUngrouped(BaseNode node)
-        {
-            Logger.Error("Ungrouped addition");
-            string nodeName = node._nodeName.ToLower();
-
-            if (ungroupedNodes.ContainsKey(nodeName) == false)
-            {
-                NodeErrorData nodeErrorData = new();
-                nodeErrorData.Nodes.Add(node);
-
-                ungroupedNodes.Add(nodeName, nodeErrorData);
-                Logger.Message($"NEW KEY: [{nodeName}] COUNT: [{nodeErrorData.Nodes.Count}]");
-            }
-            else
-            {
-                ungroupedNodes[nodeName].Nodes.Add(node);
-                Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.Color;
-
-                Logger.Message($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
-
-                node.SetErrorStyle(groupErrorColor);
-                if (ungroupedNodes[nodeName].Nodes.Count == 2)
-                {
-                    ++NameErrorsAmount; 
-                    ((BaseNode)ungroupedNodes[nodeName].Nodes[0]).SetErrorStyle(groupErrorColor);
-                }
-            }
-
-            Logger.Error("Ungrouped recap");
-            foreach (var key in ungroupedNodes.Keys)
-            {
-                Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
-            }
-        }
-        /// <summary>
-        /// Remove an ungrouped node from its ungrouped node list.
-        /// </summary>
-        /// <param name="node">Node to remove from ungrouped nodes.</param>
-        public void Remove_Node_FromUngrouped(BaseNode node)
-        {
-            Logger.Error("Ungrouped removing");
-
-            string nodeName = node._nodeName.ToLower();
-            List<BaseNode> nodeList = ungroupedNodes[nodeName].Nodes;
-
-            Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
-            nodeList.Remove(node);
-            node.ResetStyle();
-
-            Logger.Message($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
-            if (nodeList.Count == 1)
-            {
-                --NameErrorsAmount;
-                nodeList[0].ResetStyle(); 
-                return;
-            }
-            if (nodeList.Count == 0)
-            {
-                Logger.Warning($"UNGROUPED REMOVED KEY: {nodeName}");
-                ungroupedNodes.Remove(nodeName); return;
-            }
-
-            Logger.Error("Ungrouped recap");
-            foreach (var key in ungroupedNodes.Keys)
-            {
-                Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="group"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void Add_Node_ToGroup(BaseNode node, DS_Group group)
-        {
-            Logger.Error("Grouped nodes");
-            string nodeName = node._nodeName.ToLower();
-            node.SetGroup(group);
-
-            if (groupedNodes.ContainsKey(group) == false)
-            {
-                Logger.Warning($"ADDING KEY [[{group.name}][{group.title}]");
-                var innerDictionary = new Dictionary<string, NodeErrorData>();
-
-                groupedNodes.Add(group, innerDictionary);   
-            }
-
-            if (groupedNodes[group].ContainsKey(nodeName) == false)
-            {
-                Logger.Warning($"ADD INNER-DICT TO KEY [[{group.name}][{group.title}]");
-
-                NodeErrorData nodeErrorData = new NodeErrorData();
-                nodeErrorData.Nodes.Add(node);
-                groupedNodes[group].Add(nodeName, nodeErrorData);
-                Logger.Message($"Node added as new: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
-                return;
-            }
-            else
-            {
-                Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
-                List<BaseNode> groupedNodeList = groupedNodes[group][nodeName].Nodes;
-                groupedNodes[group][nodeName].Nodes.Add(node);
-                Color errorColor = groupedNodes[group][nodeName].ErrorData.Color;
-                node.SetErrorStyle(errorColor);
-
-                Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
-                if (groupedNodeList.Count == 2)
-                {
-                    ++NameErrorsAmount;
-                    groupedNodeList[0].SetErrorStyle(errorColor);
-                }  
-            }
-            Logger.Error("Grouped nodes recap");
-            foreach (var key in groupedNodes.Keys)
-            {
-                Logger.Warning($"KEY:[{key}]");
-                foreach (var key2 in groupedNodes[key].Keys)
-                {
-                    Logger.Warning($"Inner key:[{key2}] + COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
-                }
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="group"></param>
-        public bool Remove_Node_FromGroup(BaseNode node, DS_Group group)
-        {
-            Logger.Error("Groupednodes");
-            string nodeName = node._nodeName.ToLower();
-            node.RemoveFromGroup();
-
-            if (groupedNodes.ContainsKey(group) == false) 
-            {
-                return false;
-            }
-            List<BaseNode> groupedNodesList = groupedNodes[group][nodeName].Nodes;
-            groupedNodesList.Remove(node);
-
-            Logger.Warning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
-            node.ResetStyle();
-
-            if (groupedNodesList.Count == 1)
-            {
-                --NameErrorsAmount;
-                groupedNodesList[0].ResetStyle();              
-            }
-            if (groupedNodesList.Count == 0) 
-            {
-                groupedNodes[group].Remove(nodeName);
-                Logger.Warning($"REMOVING INNER KEY [{nodeName}]");
-            } 
-            if (groupedNodes[group].Count == 0) 
-            {
-                groupedNodes.Remove(group);
-                Logger.Warning($"REMOVING GROUP KEY [{group.name}/{group.title}]");
-            }
-
-            Logger.Error("Grouped nodes recap");
-            foreach (var key in groupedNodes.Keys)
-            {
-                Logger.Warning($"GROUP KEY:[{key}]");
-                foreach (var key2 in groupedNodes[key].Keys)
-                {
-                    Logger.Warning($"INNER NODENAME KEY:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
-                }
-            }
-            return true;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="group"></param>
-        public void Add_Group_ToDictionary(DS_Group group)
-        {
-            Logger.Error("Groups addition");
-            string groupTitle = group.title.ToLower();
-
-            if(groups.ContainsKey(groupTitle) == false)
-            {
-                GroupErrorData groupErrorData = new GroupErrorData();
-                groupErrorData.Groups.Add(group);
-                groups.Add(groupTitle, groupErrorData);
-
-                Logger.Message($"NEW KEY: {groupTitle}  / COUNT: {groups[groupTitle].Groups.Count}");
-
-            }
-            else 
-            {
-                List<DS_Group> groupList = groups[groupTitle].Groups;
-                groupList.Add(group);
-                Color errorColor = groups[groupTitle].ErrorColor.Color;
-                group.SetErrorStyle(errorColor);
-
-                Logger.Message($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
-
-                if (groupList.Count == 2)
-                {
-                    ++NameErrorsAmount;
-                    groupList[0].SetErrorStyle(errorColor);
-                }
-            }
-            Logger.Error("Groups recap");
-            foreach (var key in groups.Keys)
-            {
-                Logger.Warning($"KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="group"></param>
-        public void Remove_Group_FromDictionary(DS_Group group)
-        {
-            Logger.Error("Group removing");
-            string groupTitle = group.oldTitle.ToLower();
-
-            List<DS_Group> groupList = groups[groupTitle].Groups;
-            Logger.Message($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
-
-            groupList.Remove(group);
-            group.ResetStyle();
-
-            Logger.Message($"AFTER: {groups[groupTitle].Groups.Count}");
-
-            if (groupList.Count == 1)
-            {
-                --NameErrorsAmount;
-                groupList[0].ResetStyle();
-            }
-
-            else if(groupList.Count == 0)
-            {
-                groups.Remove(groupTitle);
-                Logger.Warning($" DELETED KEY: {groupTitle}");
-            }
-
-            Logger.Error("Groups recap");
-            foreach (var key in groups.Keys)
-            {
-                Logger.Warning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
-            }
-        }
-        #endregion
-
 
         private void AvoidNodeOverlap(BaseNode nodeA)
         {
@@ -877,7 +620,6 @@ namespace DS.Editor.Windows
                 {
                     if (nodeA.IsOverlapping(nodeB))
                     {
-                        Debug.LogError("Node is overlapping");
                         ResolveOverlap(nodeA, nodeB);
                     }
                 }
@@ -893,122 +635,375 @@ namespace DS.Editor.Windows
 
             if (rectA.xMax < rectB.xMax && rectA.yMax < rectB.yMax)
             {
-                if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMax - rectB.yMin))
+                if (Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMax - rectB.yMin))
                 {
                     //push sx
                     overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                     rectA.x -= overlapX;
-                    Debug.LogWarning($"Overlapping movement {overlapX}");
-                    Debug.LogError("push sx");
+                    //Debug.LogWarning($"Overlapping movement {overlapX}");
+                    //Debug.LogError("push sx");
                 }
                 else
                 {
                     //push down(up in inverse axis of the graphview)
                     overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                     rectA.y -= overlapY;
-                    Debug.LogWarning($"Overlapping movement {overlapY}");
-                    Debug.LogError("push up");
+                    //Debug.LogWarning($"Overlapping movement {overlapY}");
+                    //Debug.LogError("push up");
                 }
             }
-            else if(rectA.xMax < rectB.xMax && rectA.yMax > rectB.yMax)
+            else if (rectA.xMax < rectB.xMax && rectA.yMax > rectB.yMax)
             {
-                if(Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMin - rectB.yMax))
+                if (Mathf.Abs(rectA.xMax - rectB.xMin) < Mathf.Abs(rectA.yMin - rectB.yMax))
                 {
                     //push sx
                     overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                     rectA.x -= overlapX;
-                    Debug.LogWarning($"Overlapping movement {overlapX}");
-                    Debug.LogError("push sx");
+                    //Debug.LogWarning($"Overlapping movement {overlapX}");
+                    //Debug.LogError("push sx");
                 }
                 else
                 {
                     //push up
                     overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
                     rectA.y += overlapY;
-                    Debug.LogWarning($"Overlapping movement {overlapY}");
-                    Debug.LogError("push down");
+                    //Debug.LogWarning($"Overlapping movement {overlapY}");
+                    //Debug.LogError("push down");
                 }
             }
-            else if(rectA.xMax > rectB.xMax && rectA.yMax > rectB.yMax)
+            else if (rectA.xMax > rectB.xMax && rectA.yMax > rectB.yMax)
             {
-                if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMin - rectB.yMax))
+                if (Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMin - rectB.yMax))
                 {
                     //push dx
                     overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                     rectA.x += overlapX;
-                    Debug.LogWarning($"Overlapping movement {overlapX}");
-                    Debug.LogError("push dx");
+                    //Debug.LogWarning($"Overlapping movement {overlapX}");
+                    //Debug.LogError("push dx");
                 }
                 else
                 {
                     //push down
                     overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
                     rectA.y += overlapY;
-                    Debug.LogWarning($"Overlapping movement {overlapY}");
-                    Debug.LogError("push down");
+                    //Debug.LogWarning($"Overlapping movement {overlapY}");
+                    //Debug.LogError("push down");
                 }
             }
-            else if(rectA.xMax > rectB.xMax && rectA.yMax < rectB.yMax)
+            else if (rectA.xMax > rectB.xMax && rectA.yMax < rectB.yMax)
             {
-                if(Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMax - rectB.yMin))
+                if (Mathf.Abs(rectA.xMin - rectB.xMax) < Mathf.Abs(rectA.yMax - rectB.yMin))
                 {
                     //push dx
                     overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                     rectA.x += overlapX;
-                    Debug.LogWarning($"Overlapping movement {overlapX}");
-                    Debug.LogError("push dx");
+                    //Debug.LogWarning($"Overlapping movement {overlapX}");
+                    //Debug.LogError("push dx");
                 }
                 else
                 {
                     //push up
                     overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                     rectA.y -= overlapY;
-                    Debug.LogWarning($"Overlapping movement {overlapY}");
-                    Debug.LogError("push up");
+                    //Debug.LogWarning($"Overlapping movement {overlapY}");
+                    //Debug.LogError("push up");
                 }
             }
-            else if(rectA.xMax == rectB.xMax && rectA.yMax > rectB.yMax)
+            else if (rectA.xMax == rectB.xMax && rectA.yMax > rectB.yMax)
             {
                 //push up
                 overlapY = Mathf.Abs(rectA.yMin - rectB.yMax);
                 rectA.y += overlapY;
-                Debug.LogWarning($"Overlapping movement {overlapY}");
-                Debug.LogError("push down");
+                //Debug.LogWarning($"Overlapping movement {overlapY}");
+                //Debug.LogError("push down");
             }
-            else if(rectA.xMax == rectB.xMax && rectA.yMax < rectB.yMax)
+            else if (rectA.xMax == rectB.xMax && rectA.yMax < rectB.yMax)
             {
                 //push down
                 overlapY = Mathf.Abs(rectA.yMax - rectB.yMin);
                 rectA.y -= overlapY;
-                Debug.LogWarning($"Overlapping movement {overlapY}");
-                Debug.LogError("push up");
+                //Debug.LogWarning($"Overlapping movement {overlapY}");
+                //Debug.LogError("push up");
             }
-            else if(rectA.xMax < rectB.xMax && rectA.yMax == rectB.yMax)
+            else if (rectA.xMax < rectB.xMax && rectA.yMax == rectB.yMax)
             {
                 //push sx
                 overlapX = Mathf.Abs(rectA.xMax - rectB.xMin);
                 rectA.x -= overlapX;
-                Debug.LogWarning($"Overlapping movement {overlapX}");
-                Debug.LogError("push sx");
+                //Debug.LogWarning($"Overlapping movement {overlapX}");
+                //Debug.LogError("push sx");
             }
-            else if(rectA.xMax > rectB.xMax && rectA.yMax == rectB.yMax)
+            else if (rectA.xMax > rectB.xMax && rectA.yMax == rectB.yMax)
             {
                 //push dx
                 overlapX = Mathf.Abs(rectA.xMin - rectB.xMax);
                 rectA.x += overlapX;
-                Debug.LogWarning($"Overlapping movement {overlapX}");
-                Debug.LogError("push dx");
+                //Debug.LogWarning($"Overlapping movement {overlapX}");
+                //Debug.LogError("push dx");
             }
-            else if(rectA.xMax == rectB.xMax && rectA.yMax == rectB.yMax)
+            else if (rectA.xMax == rectB.xMax && rectA.yMax == rectB.yMax)
             {
                 //push sx
                 overlapX = rectA.width;
                 rectA.x -= overlapX;
-                Debug.LogWarning($"Overlapping movement {overlapX}");
-                Debug.LogError("push sx");
+                //Debug.LogWarning($"Overlapping movement {overlapX}");
+                //Debug.LogError("push sx");
             }
             nodeA.SetPosition(rectA);
             return;
         }
+        #endregion
+
+        #region Dictionaries handling
+        /// <summary>
+        /// Add the passed node to the ungrouped node dictionary.
+        /// </summary>
+        /// <param name="node">The node that need to be added to the dictionary.</param>
+        public void Add_Node_ToUngrouped(BaseNode node)
+        {
+            //Logger.Error("Ungrouped addition");
+            string nodeName = node._nodeName.ToLower();
+
+            if (ungroupedNodes.ContainsKey(nodeName) == false)
+            {
+                NodeErrorData nodeErrorData = new();
+                nodeErrorData.Nodes.Add(node);
+
+                ungroupedNodes.Add(nodeName, nodeErrorData);
+                //Logger.Message($"NEW KEY: [{nodeName}] COUNT: [{nodeErrorData.Nodes.Count}]");
+            }
+            else
+            {
+                ungroupedNodes[nodeName].Nodes.Add(node);
+                Color groupErrorColor = ungroupedNodes[nodeName].ErrorData.Color;
+
+                //Logger.Message($"UNGROUPED NODE ADDED TO KEY: [{nodeName}] COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+
+                node.SetErrorStyle(groupErrorColor);
+                if (ungroupedNodes[nodeName].Nodes.Count == 2)
+                {
+                    ++NameErrorsAmount; 
+                    ((BaseNode)ungroupedNodes[nodeName].Nodes[0]).SetErrorStyle(groupErrorColor);
+                }
+            }
+
+            //Logger.Error("Ungrouped recap");
+            foreach (var key in ungroupedNodes.Keys)
+            {
+                //Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
+            }
+        }
+        /// <summary>
+        /// Remove an ungrouped node from its ungrouped node list.
+        /// </summary>
+        /// <param name="node">Node to remove from ungrouped nodes.</param>
+        public void Remove_Node_FromUngrouped(BaseNode node)
+        {
+            //Logger.Error("Ungrouped removing");
+
+            string nodeName = node._nodeName.ToLower();
+            List<BaseNode> nodeList = ungroupedNodes[nodeName].Nodes;
+
+            //Logger.Message($"IN KEY: [{nodeName}] / COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            nodeList.Remove(node);
+            node.ResetStyle();
+
+            //Logger.Message($"NEW COUNT: [{ungroupedNodes[nodeName].Nodes.Count}]");
+            if (nodeList.Count == 1)
+            {
+                --NameErrorsAmount;
+                nodeList[0].ResetStyle(); 
+                return;
+            }
+            if (nodeList.Count == 0)
+            {
+                //Logger.Warning($"UNGROUPED REMOVED KEY: {nodeName}");
+                ungroupedNodes.Remove(nodeName); return;
+            }
+
+            //Logger.Error("Ungrouped recap");
+            foreach (var key in ungroupedNodes.Keys)
+            {
+                //Logger.Warning($"KEY:[{key}] COUNT:[{ungroupedNodes[key].Nodes.Count}]");
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="group"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Add_Node_ToGroup(BaseNode node, DS_Group group)
+        {
+            //Logger.Error("Grouped nodes");
+            string nodeName = node._nodeName.ToLower();
+            node.SetGroup(group);
+
+            if (groupedNodes.ContainsKey(group) == false)
+            {
+                //Logger.Warning($"ADDING KEY [[{group.name}][{group.title}]");
+                var innerDictionary = new Dictionary<string, NodeErrorData>();
+
+                groupedNodes.Add(group, innerDictionary);   
+            }
+
+            if (groupedNodes[group].ContainsKey(nodeName) == false)
+            {
+                //Logger.Warning($"ADD INNER-DICT TO KEY [[{group.name}][{group.title}]");
+
+                NodeErrorData nodeErrorData = new NodeErrorData();
+                nodeErrorData.Nodes.Add(node);
+                groupedNodes[group].Add(nodeName, nodeErrorData);
+                //Logger.Message($"Node added as new: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                return;
+            }
+            else
+            {
+                //Logger.Warning($"ADD NODE TO GROUPED KEY [[{group.name}][{group.title}] WITH INNER-DICT key: [{nodeName}] COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                List<BaseNode> groupedNodeList = groupedNodes[group][nodeName].Nodes;
+                groupedNodes[group][nodeName].Nodes.Add(node);
+                Color errorColor = groupedNodes[group][nodeName].ErrorData.Color;
+                node.SetErrorStyle(errorColor);
+
+                //Logger.Message($"NEW COUNT: [{groupedNodes[group][nodeName].Nodes.Count}]");
+                if (groupedNodeList.Count == 2)
+                {
+                    ++NameErrorsAmount;
+                    groupedNodeList[0].SetErrorStyle(errorColor);
+                }  
+            }
+            //Logger.Error("Grouped nodes recap");
+            //foreach (var key in groupedNodes.Keys)
+            //{
+            //Logger.Warning($"KEY:[{key}]");
+            //foreach (var key2 in groupedNodes[key].Keys)
+            //{
+            //Logger.Warning($"Inner key:[{key2}] + COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+            //}
+            //}
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="group"></param>
+        public bool Remove_Node_FromGroup(BaseNode node, DS_Group group)
+        {
+            //Logger.Error("Groupednodes");
+            string nodeName = node._nodeName.ToLower();
+            node.RemoveFromGroup();
+
+            if (groupedNodes.ContainsKey(group) == false) 
+            {
+                return false;
+            }
+            List<BaseNode> groupedNodesList = groupedNodes[group][nodeName].Nodes;
+            groupedNodesList.Remove(node);
+
+            //Logger.Warning($"REMOVING NODE [{nodeName}] IN GROUPED KEY [{group.name}/{group.title}]");
+            node.ResetStyle();
+
+            if (groupedNodesList.Count == 1)
+            {
+                --NameErrorsAmount;
+                groupedNodesList[0].ResetStyle();              
+            }
+            if (groupedNodesList.Count == 0) 
+            {
+                groupedNodes[group].Remove(nodeName);
+                // Logger.Warning($"REMOVING INNER KEY [{nodeName}]");
+            }
+            if (groupedNodes[group].Count == 0) 
+            {
+                groupedNodes.Remove(group);
+                //Logger.Warning($"REMOVING GROUP KEY [{group.name}/{group.title}]");
+            }
+
+            //Logger.Error("Grouped nodes recap");
+            //foreach (var key in groupedNodes.Keys)
+            //{
+            //    Logger.Warning($"GROUP KEY:[{key}]");
+            //    foreach (var key2 in groupedNodes[key].Keys)
+            //    {
+            //        Logger.Warning($"INNER NODENAME KEY:[{key2}]  +  COUNT:[{groupedNodes[key][key2].Nodes.Count}]");
+            //    }
+            //}
+            return true;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="group"></param>
+        public void Add_Group_ToDictionary(DS_Group group)
+        {
+            //Logger.Error("Groups addition");
+            string groupTitle = group.title.ToLower();
+
+            if(groups.ContainsKey(groupTitle) == false)
+            {
+                GroupErrorData groupErrorData = new GroupErrorData();
+                groupErrorData.Groups.Add(group);
+                groups.Add(groupTitle, groupErrorData);
+
+                //Logger.Message($"NEW KEY: {groupTitle}  / COUNT: {groups[groupTitle].Groups.Count}");
+
+            }
+            else 
+            {
+                List<DS_Group> groupList = groups[groupTitle].Groups;
+                groupList.Add(group);
+                Color errorColor = groups[groupTitle].ErrorColor.Color;
+                group.SetErrorStyle(errorColor);
+
+                //Logger.Message($"KEY:  {groupTitle}  /  COUNT: {groups[groupTitle].Groups.Count}");
+
+                if (groupList.Count == 2)
+                {
+                    ++NameErrorsAmount;
+                    groupList[0].SetErrorStyle(errorColor);
+                }
+            }
+            //Logger.Error("Groups recap");
+            //foreach (var key in groups.Keys)
+            //{
+            //    //Logger.Warning($"KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
+            //}
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="group"></param>
+        public void Remove_Group_FromDictionary(DS_Group group)
+        {
+            //Logger.Error("Group removing");
+            string groupTitle = group.oldTitle.ToLower();
+
+            List<DS_Group> groupList = groups[groupTitle].Groups;
+            //Logger.Message($"KEY: {groupTitle} / COUNT BEFORE: {groups[groupTitle].Groups.Count}");
+
+            groupList.Remove(group);
+            group.ResetStyle();
+
+            //Logger.Message($"AFTER: {groups[groupTitle].Groups.Count}");
+
+            if (groupList.Count == 1)
+            {
+                --NameErrorsAmount;
+                groupList[0].ResetStyle();
+            }
+
+            else if(groupList.Count == 0)
+            {
+                groups.Remove(groupTitle);
+                //Logger.Warning($" DELETED KEY: {groupTitle}");
+            }
+
+            //Logger.Error("Groups recap");
+            //foreach (var key in groups.Keys)
+            //{
+            //    Logger.Warning($" KEY:[{key}] + COUNT:[{groups[key].Groups.Count}]");
+            //}
+        }
+        #endregion
     }
 }

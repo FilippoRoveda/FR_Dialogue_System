@@ -9,8 +9,8 @@ namespace DS.Runtime.ScriptableObjects
     public class BranchDialogueSO : BaseDialogueSO
     {
         //List of conditions as a condition container
-        [SerializeField] private DialogueConditionContainer condtitions;
-        public DialogueConditionContainer Condtitions 
+        [SerializeField] private DialogueConditions condtitions;
+        public DialogueConditions Condtitions 
         { 
             get { return condtitions; } 
             set { condtitions = value; }

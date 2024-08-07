@@ -17,8 +17,8 @@ namespace DS.Runtime.ScriptableObjects
             private set { _events = value; }
         }
 
-        [SerializeField] private DialogueVariableEventsContainer variableEventsContainer;
-        public DialogueVariableEventsContainer VariableEventsContainer
+        [SerializeField] private DialogueVariableEvents variableEventsContainer;
+        public DialogueVariableEvents VariableEventsContainer
         {
             get => variableEventsContainer;
             set { variableEventsContainer = value; }
@@ -36,7 +36,7 @@ namespace DS.Runtime.ScriptableObjects
             }
             else { Events = null; }
         }
-        public void SetVariableEvents(DialogueVariableEventsContainer eventsContainer)
+        public void SetVariableEvents(DialogueVariableEvents eventsContainer)
         {
             variableEventsContainer = new();
             variableEventsContainer.Reload(eventsContainer);

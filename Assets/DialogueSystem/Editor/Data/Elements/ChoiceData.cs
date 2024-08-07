@@ -33,21 +33,21 @@ namespace DS.Editor.Data
             set {  nextNodeID = value; }
         }
 
-        [SerializeField] private ConditionsContainer conditions;
-        public ConditionsContainer Conditions { get { return conditions; } }
+        [SerializeField] private Conditions conditions;
+        public Conditions Conditions { get { return conditions; } }
 
         public ChoiceData() 
         {
             choiceID = Guid.NewGuid().ToString();
             ChoiceTexts = LenguageUtilities.InitLenguageDataSet<string>();
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Initialize();
         }
         public ChoiceData(string defaultChoiceText)
         {
             choiceID = Guid.NewGuid().ToString();
             ChoiceTexts = LenguageUtilities.InitLenguageDataSet(defaultChoiceText);
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Initialize();
         }
         public ChoiceData(ChoiceData choice)
@@ -55,7 +55,7 @@ namespace DS.Editor.Data
             choiceID = choice.ChoiceID;
             choiceTexts = new List<LenguageData<string>>(choice.ChoiceTexts);
             nextNodeID = choice.NextNodeID;
-            conditions = new ConditionsContainer();
+            conditions = new Conditions();
             conditions.Reload(choice.Conditions);
         }
         public void UpdateTextsLenguages()

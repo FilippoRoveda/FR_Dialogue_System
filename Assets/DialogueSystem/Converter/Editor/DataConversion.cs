@@ -13,97 +13,133 @@ namespace Converter.Editor
 
 
     using VariableEnum = Variables.Generated.VariablesGenerated.VariablesKey;
+    using EditorLenguageData = DS.Editor.Data.LenguageData<string>;
+    using RuntimeLenguageData = DS.Runtime.Data.LenguageData<string>;
 
+    /// <summary>
+    /// Utility class that handle data conversion between Editor only datas and runtime datas.
+    /// </summary>
     public class DataConversion
     {
-        public List<DialogueChoice> NodeToDialogueChoice(List<ChoiceData> nodeChoices)
+        /// <summary>
+        /// Convert node choices to runtime dialogue choices.
+        /// </summary>
+        /// <param name="nodeChoices"></param>
+        /// <returns></returns>iu
+        public List<DialogueChoice> ConvertNodeChoices(List<ChoiceData> nodeChoices)
         {
             List<DialogueChoice> dialogueChoices = new();
 
             foreach (ChoiceData choiceData in nodeChoices)
             {
-                DialogueChoice dialogueChoice = new() { ChoiceTexts = new(LenguageDataConvert(choiceData.ChoiceTexts)) };
-                dialogueChoice.ChoiceID = choiceData.ChoiceID;
-
-                var conditionContainer = ConditionToDialogueConditionContainer(choiceData.Conditions);
-                dialogueChoice.Conditions = conditionContainer;
-
+                DialogueChoice dialogueChoice = new() 
+                { 
+                    ChoiceTexts = new(ConvertLenguageData(choiceData.ChoiceTexts)),
+                    ChoiceID = choiceData.ChoiceID,
+                    Conditions = ConvertConditions(choiceData.Conditions)
+                };
                 dialogueChoices.Add(dialogueChoice);
             }
             return dialogueChoices;
         }
-        public List<DS.Runtime.Data.LenguageData<string>> LenguageDataConvert(List<DS.Editor.Data.LenguageData<string>> lenguageDatas)
+
+        /// <summary>
+        /// Convert Editor Lenguage string datas to Runtime lenguage datas to implement multilenguage.
+        /// </summary>
+        /// <param name="lenguageDatas"></param>
+        /// <returns></returns>
+        public List<RuntimeLenguageData> ConvertLenguageData(List<EditorLenguageData> lenguageDatas)
         {
-            List<DS.Runtime.Data.LenguageData<string>> list = new();
+            List<RuntimeLenguageData> runtimeLenguageDatas = new();
             foreach (var data in lenguageDatas)
             {
-                var newData = new DS.Runtime.Data.LenguageData<string>();
+                var newData = new RuntimeLenguageData();
                 newData.Data = data.Data;
                 newData.LenguageType = (LenguageType)data.LenguageType;
-                list.Add(newData);
+                runtimeLenguageDatas.Add(newData);
             }
-            return list;
+            return runtimeLenguageDatas;
         }
-        public List<GameEvent> ConvertEvents(List<GameEventSO> eventSOs)
+        /// <summary>
+        /// Convert GameEvent editor scriptable object to GameEvent class usefull at runtime.
+        /// </summary>
+        /// <param name="eventSOs"></param>
+        /// <returns></returns>
+        public List<GameEvent> ConvertGameEvents(List<GameEventSO> eventSOs)
         {
             var events = new List<GameEvent>();
             foreach (var so in eventSOs)
             {
                 var _event = new GameEvent();
-                _event.eventName = so.eventName;
+                _event.eventName = so.eventExecutionString;
                 events.Add(_event);
             }
             return events;
         }
 
-
-        public DialogueVariableEventsContainer VarEventsToDialogueVarEvents(VariableEventsContainer container)
+        /// <summary>
+        /// Convert Editor variables events container in to runtime Dialogue variable event container.
+        /// </summary>
+        /// <param name="editorEvents"></param>
+        /// <returns></returns>
+        public DialogueVariableEvents ConvertVariableEvents(VariableEvents editorEvents)
         {
-            DialogueVariableEventsContainer eventsContainer = new();
-            foreach (var _event in container.IntEvents)
+            DialogueVariableEvents dialogueEvents = new();
+            foreach (var _event in editorEvents.IntEvents)
             {
                 var varEnum = GetEnumFromVariableName(_event.Variable.Name);
                 var intEvent = new DialogueVariableEvent<int>(varEnum, (DS.Runtime.Events.VariableEventType)_event.EventType, _event.EventValue);
-                eventsContainer.AddIntEvent(intEvent);
+                dialogueEvents.AddIntEvent(intEvent);
             }
-            foreach (var _event in container.FloatEvents)
+            foreach (var _event in editorEvents.FloatEvents)
             {
                 var varEnum = GetEnumFromVariableName(_event.Variable.Name);
                 var floatEvent = new DialogueVariableEvent<float>(varEnum, (DS.Runtime.Events.VariableEventType)_event.EventType, _event.EventValue);
-                eventsContainer.AddFloatEvent(floatEvent);
+                dialogueEvents.AddFloatEvent(floatEvent);
             }
-            foreach (var _event in container.BoolEvents)
+            foreach (var _event in editorEvents.BoolEvents)
             {
                 var varEnum = GetEnumFromVariableName(_event.Variable.Name);
                 var boolEvent = new DialogueVariableEvent<bool>(varEnum, (DS.Runtime.Events.VariableEventType)_event.EventType, _event.EventValue);
-                eventsContainer.AddBoolEvent(boolEvent);
+                dialogueEvents.AddBoolEvent(boolEvent);
             }
-            return eventsContainer;
+            return dialogueEvents;
         }
 
-        public DialogueConditionContainer ConditionToDialogueConditionContainer(ConditionsContainer container)
+        /// <summary>
+        /// Convert editor side Conditions in to runtime DialogueConditions
+        /// </summary>
+        /// <param name="editorConditions"></param>
+        /// <returns></returns>
+        public DialogueConditions ConvertConditions(Conditions editorConditions)
         {
-            DialogueConditionContainer conditionContainer = new();
-            foreach (var condition in container.IntConditions)
+            DialogueConditions dialogueConditions = new();
+            foreach (var condition in editorConditions.IntConditions)
             {
                 var varEnum = GetEnumFromVariableName(condition.Variable.Name);
                 var intCondition = new IntDialogueCondition(varEnum, condition.ComparisonValue, (DS.Runtime.Conditions.ComparisonType)condition.ComparisonType);
-                conditionContainer.AddIntCondition(intCondition);
+                dialogueConditions.AddIntCondition(intCondition);
             }
-            foreach (var condition in container.FloatConditions)
+            foreach (var condition in editorConditions.FloatConditions)
             {
                 var varEnum = GetEnumFromVariableName(condition.Variable.Name);
                 var floatCondition = new FloatDialogueCondition(varEnum, condition.ComparisonValue, (DS.Runtime.Conditions.ComparisonType)condition.ComparisonType);
-                conditionContainer.AddFloatCondition(floatCondition);
+                dialogueConditions.AddFloatCondition(floatCondition);
             }
-            foreach (var condition in container.BoolConditions)
+            foreach (var condition in editorConditions.BoolConditions)
             {
                 var varEnum = GetEnumFromVariableName(condition.Variable.Name);
                 var boolCondition = new BoolDialogueCondition(varEnum, condition.ComparisonValue);
-                conditionContainer.AddBoolCondition(boolCondition);
+                dialogueConditions.AddBoolCondition(boolCondition);
             }
-            return conditionContainer;
+            return dialogueConditions;
         }
+
+        /// <summary>
+        /// Get the specific VaribaleEnum, if existing, from a variable name.
+        /// </summary>
+        /// <param name="variableName"></param>
+        /// <returns></returns>
         private VariableEnum GetEnumFromVariableName(string variableName)
         {
             string enumKey = variableName.ToUpper();
@@ -115,7 +151,7 @@ namespace Converter.Editor
                     return lenguage;
                 }
             }
-            return default(VariableEnum);
+            return default;
         }
     }
 }

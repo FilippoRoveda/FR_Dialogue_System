@@ -17,8 +17,8 @@ namespace DS.Editor.Data
             set { gameEvents = value; }
         }
 
-        [SerializeField] protected VariableEventsContainer variableEventsContainer;
-        public VariableEventsContainer VariableEventsContainer
+        [SerializeField] protected VariableEvents variableEventsContainer;
+        public VariableEvents VariableEventsContainer
         {
             get => variableEventsContainer;
             set { variableEventsContainer = value; }
@@ -26,7 +26,7 @@ namespace DS.Editor.Data
         public EventNodeData() : base()
         {
             gameEvents = new List<GameEventSO>();
-            variableEventsContainer = new VariableEventsContainer();
+            variableEventsContainer = new VariableEvents();
         }
         public EventNodeData(EventNodeData data) : base(data)
         {
@@ -40,7 +40,7 @@ namespace DS.Editor.Data
             }
             else gameEvents = null;
 
-            variableEventsContainer = new VariableEventsContainer();
+            variableEventsContainer = new VariableEvents();
             variableEventsContainer.Reload(data.VariableEventsContainer);
         }
 
@@ -56,7 +56,7 @@ namespace DS.Editor.Data
             }
             else gameEvents = null;
 
-            variableEventsContainer = new VariableEventsContainer();
+            variableEventsContainer = new VariableEvents();
             variableEventsContainer.Reload(node.variableEvents);
         }          
     }

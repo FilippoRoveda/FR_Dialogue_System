@@ -7,7 +7,7 @@ namespace Characters.Runtime
 {
    
     [CustomEditor(typeof(CharacterSO))]
-    public class CharacterSO_Inspector : UnityEditor.Editor
+    public class CharacterSO_Inspector : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -21,9 +21,9 @@ namespace Characters.Runtime
 
             string newName = EditorGUILayout.TextField("Name: ", characterSO.Name);
             string newCompleteName = EditorGUILayout.TextField("Complete Name: ", characterSO.CompleteName);
-            Sprite newIcon = (Sprite)EditorGUILayout.ObjectField("Icon: ", characterSO.Icon, typeof(Sprite), allowSceneObjects: false, 
-                                                            GUILayout.ExpandWidth(true), GUILayout.MaxWidth(300),
-                                                            GUILayout.ExpandHeight(true), GUILayout.MaxHeight(300));
+            Sprite newIcon = (Sprite)EditorGUILayout.ObjectField("Icon: ", characterSO.Icon, typeof(Sprite), allowSceneObjects: false,
+                                                                GUILayout.MinWidth(200), GUILayout.MinHeight(200)); 
+
 
             if (EditorGUI.EndChangeCheck())
             {

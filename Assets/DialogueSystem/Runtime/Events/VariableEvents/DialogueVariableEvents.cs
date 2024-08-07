@@ -4,7 +4,7 @@ using UnityEngine;
 namespace DS.Runtime.Events
 {
     [System.Serializable]
-    public class DialogueVariableEventsContainer
+    public class DialogueVariableEvents
     {
         [SerializeField] private List<DialogueVariableEvent<int>> integerEvents;
         [SerializeField] private List<DialogueVariableEvent<float>> floatEvents;
@@ -13,7 +13,7 @@ namespace DS.Runtime.Events
         public List<DialogueVariableEvent<int>> IntEvents { get { return integerEvents; } }
         public List<DialogueVariableEvent<float>> FloatEvents { get { return floatEvents; } }
         public List<DialogueVariableEvent<bool>> BoolEvents { get { return boolEvents; } }
-        public DialogueVariableEventsContainer()
+        public DialogueVariableEvents()
         {
             Initialize();
         }
@@ -24,11 +24,11 @@ namespace DS.Runtime.Events
             floatEvents = new List<DialogueVariableEvent<float>>();
             boolEvents = new List<DialogueVariableEvent<bool>>();
         }
-        public void Reload(DialogueVariableEventsContainer conditionsContainer)
+        public void Reload(DialogueVariableEvents dialogueVariableEvents)
         {
-            integerEvents = new List<DialogueVariableEvent<int>>(conditionsContainer.IntEvents);
-            floatEvents = new List<DialogueVariableEvent<float>>(conditionsContainer.FloatEvents);
-            boolEvents = new List<DialogueVariableEvent<bool>>(conditionsContainer.BoolEvents);
+            integerEvents = new List<DialogueVariableEvent<int>>(dialogueVariableEvents.IntEvents);
+            floatEvents = new List<DialogueVariableEvent<float>>(dialogueVariableEvents.FloatEvents);
+            boolEvents = new List<DialogueVariableEvent<bool>>(dialogueVariableEvents.BoolEvents);
         }
 
         public DialogueVariableEvent<int> AddIntEvent(DialogueVariableEvent<int> _event = null)

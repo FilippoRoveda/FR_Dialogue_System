@@ -35,12 +35,7 @@ namespace Variables.Editor
             }
             CreateFileIfNotExists(GetGeneratedFilePath(), "");
 
-
-            // TODO: Initialize Editor Window here
-
         }
-        public static void Shutdown() { }
-
 
         static void CreateDirectoryIfNotExists(string path)
         {
@@ -59,11 +54,12 @@ namespace Variables.Editor
                 Debug.Log($"Created file: {filePath}");
             }
         }
-
+        #region Path getters
         public static string GetDatabasePath() => "Assets/Editor/Data/VariablesDatabase.asset";
         public static string GetGeneratedFilePath() => "Assets/Data/Generated/Variables.Generated.cs";
         public static string GetIntegerVariablesPath() => "Assets/Editor/Data/Variables/Integers";
         public static string GetFloatVariablesPath() => "Assets/Editor/Data/Variables/Decimals";
         public static string GetBoolVariablesPath() => "Assets/Editor/Data/Variables/Booleans";
+        #endregion
     }
 }

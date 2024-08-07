@@ -20,30 +20,32 @@ namespace DS.Editor.Windows
     /// </summary>
     public class DS_EditorWindow : EditorWindow
     {
-        protected GraphIOSystem saveSystem;
+        protected readonly string defaultSavedGraphPath = "Assets/Editor/Data/Graphs";
+        protected readonly string defaultFileName = "DialogueFileName";
 
         private readonly LenguageType defaultLenguage = LenguageType.Italian;
         public LenguageType currentLenguage;
 
-        protected readonly string defaultSavedGraphPath = "Assets/Editor/Data/Graphs";
-        protected readonly string defaultFileName = "DialogueFileName";
-
+        #region Window Elements
         protected Toolbar toolbar;
         protected TextField filenameTextField;
         protected Button saveGraphButton;
         protected Button clearButton;
         protected Button toggleMinimapButton;
         protected Button openVariableEditor;
-        VariableEditorWindow variableEditorWindow;
-        bool isVariableEditorOpen = false;
-        protected ToolbarMenu toolbarMenu;
+        protected VariableEditorWindow variableEditorWindow;
 
+        protected ToolbarMenu toolbarMenu;
         private Button loadButton;
         private Button resetButton;
+        #endregion
 
-        protected DS_GraphView linkedGraphView;
+        protected DS_GraphView linkedGraph;
+        protected GraphSystem graphSystem;
 
-        public UnityEvent<LenguageType> EditorWindowLenguageChanged = new();
+        bool isVariableEditorOpen = false;
+
+        public UnityEvent<LenguageType> EditorLenguageChanged = new();
 
         [MenuItem("DialogueSystem/Editor Window")]
         public static void Open()
@@ -59,43 +61,28 @@ namespace DS.Editor.Windows
             AddGraphView();
             AddToolbar();
             AddToolbarMenu();
-            AddStyles();
         }
 
+        #region Elements addition
         protected void AddToolbarMenu()
         {
             toolbarMenu = new ToolbarMenu();
             foreach(LenguageType lenguage in (LenguageType[])System.Enum.GetValues(typeof(LenguageType)))
             {
-                toolbarMenu.menu.AppendAction(lenguage.ToString(), callback => SelectLenguage(lenguage, toolbarMenu));
+                toolbarMenu.menu.AppendAction(lenguage.ToString(), callback => OnSelectLenguage(lenguage, toolbarMenu));
             }
-            SelectLenguage(defaultLenguage, toolbarMenu);
+            OnSelectLenguage(defaultLenguage, toolbarMenu);
             toolbar.Add(toolbarMenu);
         }
 
-        protected Action<DropdownMenuAction> SelectLenguage(LenguageType lenguage, ToolbarMenu toolbarMenu)
-        {
-            toolbarMenu.text = "Lenguage: " + lenguage.ToString();
-            currentLenguage = lenguage;
-            Debug.Log("Changing lenguage");
-            EditorWindowLenguageChanged?.Invoke(currentLenguage);
-            return null;
-        }
+
 
         protected void AddGraphView()
         {
-            saveSystem = new GraphIOSystem();
-            linkedGraphView = new DS_GraphView(this);
-            linkedGraphView.StretchToParentSize();
-            rootVisualElement.Add(linkedGraphView);
-        }
-
-        /// <summary>
-        /// Load style sheet from resources and add that to the visual element.
-        /// </summary>
-        protected void AddStyles()
-        {
-            //rootVisualElement.AddStyleSheet("DS_Variables.uss");
+            graphSystem = new GraphSystem();
+            linkedGraph = new DS_GraphView(this);
+            linkedGraph.StretchToParentSize();
+            rootVisualElement.Add(linkedGraph);
         }
 
         /// <summary>
@@ -125,26 +112,16 @@ namespace DS.Editor.Windows
 
             rootVisualElement.Add(toolbar);
         }
-
-        protected void OnVariableEditorButtonPressed()
-        {
-            if(isVariableEditorOpen == true)
-            {
-                isVariableEditorOpen = false;
-                variableEditorWindow.Close();
-                variableEditorWindow = null;
-            }
-            else
-            {
-                variableEditorWindow = VariableEditorWindow.OpenWindowInGraphView<DS_EditorWindow>();
-                isVariableEditorOpen = true;
-            }
-        }
-
-
-
+        #endregion
 
         #region Callbacks
+        protected Action<DropdownMenuAction> OnSelectLenguage(LenguageType lenguage, ToolbarMenu toolbarMenu)
+        {
+            toolbarMenu.text = "Lenguage: " + lenguage.ToString();
+            currentLenguage = lenguage;
+            EditorLenguageChanged?.Invoke(currentLenguage);
+            return null;
+        }
         protected void OnSaveButtonPressed()
         {
             if(string.IsNullOrEmpty(filenameTextField.value))
@@ -153,8 +130,8 @@ namespace DS.Editor.Windows
                 return;
             }
 
-            saveSystem.Initialize(linkedGraphView, filenameTextField.value);
-            saveSystem.SaveGraph();
+            graphSystem.Initialize(linkedGraph, filenameTextField.value);
+            graphSystem.SaveGraph();
         }
 
         private void OnLoadButtonPressed()
@@ -163,14 +140,14 @@ namespace DS.Editor.Windows
             if(string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
-                saveSystem.Initialize(linkedGraphView, Path.GetFileNameWithoutExtension(filePath));
-                saveSystem.LoadGraph();
+                graphSystem.Initialize(linkedGraph, Path.GetFileNameWithoutExtension(filePath));
+                graphSystem.LoadGraph();
             }
         }
 
         protected void OnClearButtonPressed()
         {
-            linkedGraphView?.ClearGraph();
+            linkedGraph?.ClearGraph();
         }
 
         private void OnResetGraphButtonPressed()
@@ -181,9 +158,24 @@ namespace DS.Editor.Windows
 
         protected void OnToggleMinimapButtonPressed()
         {
-            linkedGraphView.ToggleMinimap();
+            linkedGraph.ToggleMinimap();
 
             toggleMinimapButton.ToggleInClassList("ds-toolbar_button_selected");
+        }
+
+        protected void OnVariableEditorButtonPressed()
+        {
+            if (isVariableEditorOpen == true)
+            {
+                isVariableEditorOpen = false;
+                variableEditorWindow.Close();
+                variableEditorWindow = null;
+            }
+            else
+            {
+                variableEditorWindow = VariableEditorWindow.OpenWindowInGraphView<DS_EditorWindow>();
+                isVariableEditorOpen = true;
+            }
         }
         #endregion
 

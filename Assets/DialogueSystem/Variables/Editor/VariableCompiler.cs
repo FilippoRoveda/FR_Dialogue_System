@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Variables.Editor
 {
+    /// <summary>
+    /// Compiler class that use VariableDatabase infomations to generate the GeneratedVariables class that store varibles dictionaries for runtime purpose.
+    /// </summary>
     public class VariableCompiler
     {
         private const string templatePath = "Assets/DialogueSystem/Variables/Config/Variables.Generated_Template.txt";

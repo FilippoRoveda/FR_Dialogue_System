@@ -94,7 +94,7 @@ namespace DS.Editor.Elements
             Port port = node.InstantiatePort(orientation, direction, capacity, typeof(bool));
             return port;
         }
-        public static ObjectField AddIntCondition(ConditionsContainer container, VisualElement contentContainer, IntCondition condition = null)
+        public static ObjectField AddIntCondition(Conditions container, VisualElement contentContainer, IntCondition condition = null)
         {
             IntCondition _condition;
             if (condition == null)
@@ -153,7 +153,7 @@ namespace DS.Editor.Elements
 
             return varField;
         }
-        public static ObjectField AddFloatCondition(ConditionsContainer container, VisualElement contentContainer, FloatCondition condition = null)
+        public static ObjectField AddFloatCondition(Conditions container, VisualElement contentContainer, FloatCondition condition = null)
         {
             FloatCondition _condition;
             if (condition == null)
@@ -213,7 +213,7 @@ namespace DS.Editor.Elements
 
             return varField;
         }
-        public static ObjectField AddBoolCondition(ConditionsContainer container, VisualElement contentContainer, BoolCondition condition = null)
+        public static ObjectField AddBoolCondition(Conditions container, VisualElement contentContainer, BoolCondition condition = null)
         {
             BoolCondition _condition;
             if (condition == null)
@@ -262,7 +262,7 @@ namespace DS.Editor.Elements
         }
 
 
-        public static ObjectField AddIntVarEvent(VariableEventsContainer container, VisualElement contentContainer, IntegerEvent _event = null)
+        public static ObjectField AddIntVarEvent(VariableEvents container, VisualElement contentContainer, IntegerEvent _event = null)
         {
             IntegerEvent tempEvent;
             if (_event == null)
@@ -321,7 +321,7 @@ namespace DS.Editor.Elements
 
             return varField;
         }
-        public static ObjectField AddFloatVarEvent(VariableEventsContainer container, VisualElement contentContainer, FloatEvent _event = null)
+        public static ObjectField AddFloatVarEvent(VariableEvents container, VisualElement contentContainer, FloatEvent _event = null)
         {
             FloatEvent tempEvent;
             if (_event == null)
@@ -380,7 +380,7 @@ namespace DS.Editor.Elements
 
             return varField;
         }
-        public static ObjectField AddBoolVarEvent(VariableEventsContainer container, VisualElement contentContainer, BoolEvent _event = null)
+        public static ObjectField AddBoolVarEvent(VariableEvents container, VisualElement contentContainer, BoolEvent _event = null)
         {
             BoolEvent tempEvent;
             if (_event == null)

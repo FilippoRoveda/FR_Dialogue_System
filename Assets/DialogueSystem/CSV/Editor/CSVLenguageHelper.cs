@@ -12,8 +12,7 @@ namespace CSVPlugin
         IOUtilities IOUtils = new IOUtilities();
         public void UpdateLenguages()
         {
-            //Update only the editor graph so object, then open it and savi it overriding the generated 
-            //runtime objects
+            //Update only the editor graph so object
             List<GraphSO> graphs = IOUtils.LoadAssetsFromPath<GraphSO>("Assets/Editor/Data/Graphs");
             foreach (var graph in graphs)
             {
@@ -28,8 +27,7 @@ namespace CSVPlugin
 
 
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOT CHOICES
-                    if (node.NodeType == NodeType.End) continue;
-                    if (node.NodeType == NodeType.Branch) continue; // do other things
+                    if (node.NodeType == NodeType.End || node.NodeType == NodeType.Branch) continue;
 
                     var dialogueNode = (DialogueNodeData)node;
 

@@ -12,21 +12,20 @@ namespace CSVPlugin
     using DS.Editor.Utilities;
     public class LoadCSV
     {
+        private IOUtilities IO;
+        private CSVReader CSVReader;
 
-        IOUtilities ioUtility;
-        CSVReader CSVReader;
-
-        public LoadCSV() { CSVReader = new(); ioUtility = new(); }
+        public LoadCSV() { CSVReader = new(); IO = new(); }
 
         public bool LoadAllCSVInGraphs()
         {
             bool errorFlag = false;
 
-            List<GraphSO> graphs = ioUtility.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
+            List<GraphSO> graphs = IO.LoadAssetsFromPath<GraphSO>(CSVWindow.graphFilesPath);
             foreach (GraphSO graph in graphs)
             {
                 LoadCSVInGraph(graph, out errorFlag);
-                ioUtility.SaveAsset(graph);
+                IO.SaveAsset(graph);
             }
             return errorFlag;
         }
@@ -89,14 +88,13 @@ namespace CSVPlugin
 
                             if (row == null || row.Count == 0)
                             {
-#if UNITY_EDITOR
+
                                 EditorApplication.Beep();
                                 EditorApplication.Beep();
-                                Debug.Log($"<color=red> Impossible to load row for the choice: {choice.ChoiceTexts[0]} with ID: {choice.ChoiceID}. </color>");
-                                Debug.Log($"<color=red> For the node: {node.Name}. </color>");
-#endif
+                                Debug.LogError($"<color=red> Impossible to load row for the choice: {choice.ChoiceTexts[0]} with ID: {choice.ChoiceID}. </color>");
+                                Debug.LogError($"<color=red> For the node: {node.Name}. </color>");
+
                                 errorFlag = true;
-                                //continue;
                             }
                             else
                             {

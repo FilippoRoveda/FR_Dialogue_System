@@ -12,18 +12,18 @@ namespace DS.Editor.Windows.Utilities
 
     public class GraphLoad
     {
-        private readonly GraphIOSystem _system;
-        public GraphLoad(GraphIOSystem _system) { this._system = _system; }
+        private readonly GraphSystem graphSystem;
+        public GraphLoad(GraphSystem graphSystem) { this.graphSystem = graphSystem; }
 
 
         public void LoadGroups(List<GroupData> groups)
         {
             foreach (GroupData groupData in groups)
             {
-                DS_Group group = _system.graphView.CreateGroup(groupData.Name, groupData.Position);
+                DS_Group group = graphSystem.linkedGraphView.CreateGroup(groupData.Name, groupData.Position);
                 group.ID = groupData.ID;
 
-                _system.loadedGroups.Add(group.ID, group);
+                graphSystem.loadedGroups.Add(group.ID, group);
             }
         }
 
@@ -33,74 +33,73 @@ namespace DS.Editor.Windows.Utilities
             {
                 if (nodeData.NodeType == Enumerations.NodeType.Single) 
                 {
-                    var dialogueNode = _system.graphView.CreateNode<SingleNode, DialogueNodeData>(nodeData);
-                    dialogueNode.Initialize(nodeData, _system.graphView);
+                    var dialogueNode = graphSystem.linkedGraphView.CreateNode<SingleNode, DialogueNodeData>(nodeData);
+                    dialogueNode.Initialize(nodeData, graphSystem.linkedGraphView);
 
                     dialogueNode._texts = new(LenguageUtilities.UpdateLenguageDataSet(nodeData.Texts));
                     dialogueNode.Draw();
-                    _system.graphView.AddElement(dialogueNode);
+                    graphSystem.linkedGraphView.AddElement(dialogueNode);
                     if (string.IsNullOrEmpty(nodeData.GroupID) == false)
                     {
-                        DS_Group group = _system.loadedGroups[nodeData.GroupID];
-                        dialogueNode.Group = group;
-                        group.AddElement(dialogueNode);
+                        AddToGroup(nodeData, dialogueNode);
 
                     }
-                    _system.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
+                    graphSystem.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
                 }
                 else if (nodeData.NodeType == Enumerations.NodeType.Multiple) 
                 {
-                    var dialogueNode = _system.graphView.CreateNode<MultipleNode, DialogueNodeData>(nodeData);
-                    dialogueNode.Initialize(nodeData, _system.graphView);
+                    var dialogueNode = graphSystem.linkedGraphView.CreateNode<MultipleNode, DialogueNodeData>(nodeData);
+                    dialogueNode.Initialize(nodeData, graphSystem.linkedGraphView);
                     dialogueNode._texts = new(LenguageUtilities.UpdateLenguageDataSet(nodeData.Texts));
                     dialogueNode.Draw();
-                    _system.graphView.AddElement(dialogueNode);
+                    graphSystem.linkedGraphView.AddElement(dialogueNode);
                     if (string.IsNullOrEmpty(nodeData.GroupID) == false)
                     {
-                        DS_Group group = _system.loadedGroups[nodeData.GroupID];
-                        dialogueNode.Group = group;
-                        group.AddElement(dialogueNode);
+                        AddToGroup(nodeData, dialogueNode);
 
                     }
-                    _system.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
+                    graphSystem.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
                 }
                 else if(nodeData.NodeType == Enumerations.NodeType.Start)
                 {
-                    Logger.Message($"Loading a nodedata of type {nodeData.NodeType}");
-                    var dialogueNode = _system.graphView.CreateNode<StartNode, DialogueNodeData>(nodeData);
-                    dialogueNode.Initialize(nodeData, _system.graphView);
+                    var dialogueNode = graphSystem.linkedGraphView.CreateNode<StartNode, DialogueNodeData>(nodeData);
+                    dialogueNode.Initialize(nodeData, graphSystem.linkedGraphView);
 
                     dialogueNode._texts = new(LenguageUtilities.UpdateLenguageDataSet(nodeData.Texts));
                     dialogueNode.Draw();
-                    _system.graphView.AddElement(dialogueNode);
+                    graphSystem.linkedGraphView.AddElement(dialogueNode);
                     if (string.IsNullOrEmpty(nodeData.GroupID) == false)
                     {
-                        DS_Group group = _system.loadedGroups[nodeData.GroupID];
-                        dialogueNode.Group = group;
-                        group.AddElement(dialogueNode);
+                        AddToGroup(nodeData, dialogueNode);
 
                     }
-                    _system.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
+                    graphSystem.loadedDialogueNodes.Add(dialogueNode._nodeID, dialogueNode);
                 }           
             }
         }
+
+        private void AddToGroup(BaseNodeData nodeData, BaseNode dialogueNode)
+        {
+            DS_Group group = graphSystem.loadedGroups[nodeData.GroupID];
+            dialogueNode.Group = group;
+            group.AddElement(dialogueNode);
+        }
+
         public void LoadBranchNodes(List<BranchNodeData> branchNodes)
         {
             foreach (BranchNodeData branchNodeData in branchNodes)
             {
-                BranchNode branchNode = _system.graphView.CreateNode<BranchNode, BranchNodeData>(branchNodeData);
-                branchNode.Initialize(branchNodeData, _system.graphView);
+                BranchNode branchNode = graphSystem.linkedGraphView.CreateNode<BranchNode, BranchNodeData>(branchNodeData);
+                branchNode.Initialize(branchNodeData, graphSystem.linkedGraphView);
                
                 branchNode.Draw();
-                _system.graphView.AddElement(branchNode);
+                graphSystem.linkedGraphView.AddElement(branchNode);
                 if (string.IsNullOrEmpty(branchNodeData.GroupID) == false)
                 {
-                    DS_Group group = _system.loadedGroups[branchNodeData.GroupID];
-                    branchNode.Group = group;
-                    group.AddElement(branchNode);
+                    AddToGroup(branchNodeData, branchNode);
 
                 }
-                _system.loadedBranchNodes.Add(branchNode._nodeID, branchNode);
+                graphSystem.loadedBranchNodes.Add(branchNode._nodeID, branchNode);
             }
         }
 
@@ -108,44 +107,43 @@ namespace DS.Editor.Windows.Utilities
         {
             foreach (EventNodeData evntNodeData in eventNodes)
             {
-                EventNode eventNode = _system.graphView.CreateNode<EventNode, EventNodeData>(evntNodeData);
-                eventNode.Initialize(evntNodeData, _system.graphView);
+                EventNode eventNode = graphSystem.linkedGraphView.CreateNode<EventNode, EventNodeData>(evntNodeData);
+                eventNode.Initialize(evntNodeData, graphSystem.linkedGraphView);
 
                 eventNode.Draw();
-                _system.graphView.AddElement(eventNode);
+                graphSystem.linkedGraphView.AddElement(eventNode);
                 if (string.IsNullOrEmpty(evntNodeData.GroupID) == false)
                 {
-                    DS_Group group = _system.loadedGroups[evntNodeData.GroupID];
-                    eventNode.Group = group;
-                    group.AddElement(eventNode);
+                    AddToGroup(evntNodeData, eventNode);
 
                 }
-                _system.loadedEventNodes.Add(eventNode._nodeID, eventNode);
+                graphSystem.loadedEventNodes.Add(eventNode._nodeID, eventNode);
             }
         }
         public void LoadEndNodes(List<EndNodeData> endNodes)
         {
             foreach (EndNodeData endNodeData in endNodes)
             {
-                EndNode endNode = _system.graphView.CreateNode<EndNode, EndNodeData>(endNodeData);
-                endNode.Initialize(endNodeData, _system.graphView);
+                EndNode endNode = graphSystem.linkedGraphView.CreateNode<EndNode, EndNodeData>(endNodeData);
+                endNode.Initialize(endNodeData, graphSystem.linkedGraphView);
 
-                _system.graphView.AddElement(endNode);
+                graphSystem.linkedGraphView.AddElement(endNode);
                 endNode.Draw();
                 if (string.IsNullOrEmpty(endNodeData.GroupID) == false)
                 {
-                    DS_Group group = _system.loadedGroups[endNodeData.GroupID];
-                    endNode.Group = group;
-                    group.AddElement(endNode);
+                    AddToGroup(endNodeData, endNode);
 
                 }
-                _system.loadedEndNodes.Add(endNode._nodeID, endNode);
+                graphSystem.loadedEndNodes.Add(endNode._nodeID, endNode);
             }
         }
 
+        /// <summary>
+        /// From each linked node ID in nodeChoices recreate linkung edges and add them to the graphView.
+        /// </summary>
         public void LoadNodesConnections()
         {
-            foreach (KeyValuePair<string, DialogueNode> loadedNode in _system.loadedDialogueNodes)
+            foreach (KeyValuePair<string, DialogueNode> loadedNode in graphSystem.loadedDialogueNodes)
             {
                 foreach (Box box in loadedNode.Value.outputContainer.Children().Cast<Box>())
                 {
@@ -156,12 +154,12 @@ namespace DS.Editor.Windows.Utilities
                     {
                         Port linkedPort = FindLinkedPort(choiceData.NextNodeID);
                         Edge edge = choicePort.ConnectTo(linkedPort);
-                        _system.graphView.AddElement(edge);
+                        graphSystem.linkedGraphView.AddElement(edge);
                         loadedNode.Value.RefreshPorts();
                     }
                 }
             }
-            foreach (KeyValuePair<string, EventNode> loadedNode in _system.loadedEventNodes)
+            foreach (KeyValuePair<string, EventNode> loadedNode in graphSystem.loadedEventNodes)
             {
                 foreach (Box box in loadedNode.Value.outputContainer.Children().Cast<Box>())
                 {
@@ -172,12 +170,12 @@ namespace DS.Editor.Windows.Utilities
                     {
                         Port linkedPort = FindLinkedPort(choiceData.NextNodeID);
                         Edge edge = choicePort.ConnectTo(linkedPort);
-                        _system.graphView.AddElement(edge);
+                        graphSystem.linkedGraphView.AddElement(edge);
                         loadedNode.Value.RefreshPorts();
                     }
                 }
             }
-            foreach (KeyValuePair<string, BranchNode> loadedNode in _system.loadedBranchNodes)
+            foreach (KeyValuePair<string, BranchNode> loadedNode in graphSystem.loadedBranchNodes)
             {
                 foreach (Box box in loadedNode.Value.outputContainer.Children().Cast<Box>())
                 {
@@ -188,34 +186,39 @@ namespace DS.Editor.Windows.Utilities
                     {
                         Port linkedPort = FindLinkedPort(choiceData.NextNodeID);
                         Edge edge = choicePort.ConnectTo(linkedPort);
-                        _system.graphView.AddElement(edge);
+                        graphSystem.linkedGraphView.AddElement(edge);
                         loadedNode.Value.RefreshPorts();
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Get the InputPort from the loaded node with the specified ID.
+        /// </summary>
+        /// <param name="linkedNodeID"></param>
+        /// <returns></returns>
        private Port FindLinkedPort(string linkedNodeID)
         {
             Port linkedNodeInputPort = null;
-            if(_system.loadedDialogueNodes.ContainsKey(linkedNodeID) == true)
+            if(graphSystem.loadedDialogueNodes.ContainsKey(linkedNodeID) == true)
             {
-                DialogueNode linkedNode = _system.loadedDialogueNodes[linkedNodeID];
+                DialogueNode linkedNode = graphSystem.loadedDialogueNodes[linkedNodeID];
                 linkedNodeInputPort = (Port)linkedNode.inputContainer.Children().First();
             }
-            else if (_system.loadedEventNodes.ContainsKey(linkedNodeID) == true)
+            else if (graphSystem.loadedEventNodes.ContainsKey(linkedNodeID) == true)
             {
-                EventNode linkedNode = _system.loadedEventNodes[linkedNodeID];
+                EventNode linkedNode = graphSystem.loadedEventNodes[linkedNodeID];
                 linkedNodeInputPort = (Port)linkedNode.inputContainer.Children().First();
             }
-            else if(_system.loadedEndNodes.ContainsKey(linkedNodeID) == true)
+            else if(graphSystem.loadedEndNodes.ContainsKey(linkedNodeID) == true)
             {
-                EndNode linkedNode = _system.loadedEndNodes[linkedNodeID];
+                EndNode linkedNode = graphSystem.loadedEndNodes[linkedNodeID];
                 linkedNodeInputPort = (Port)linkedNode.inputContainer.Children().First();
             }
-            else if (_system.loadedBranchNodes.ContainsKey(linkedNodeID) == true)
+            else if (graphSystem.loadedBranchNodes.ContainsKey(linkedNodeID) == true)
             {
-                BranchNode linkedNode = _system.loadedBranchNodes[linkedNodeID];
+                BranchNode linkedNode = graphSystem.loadedBranchNodes[linkedNodeID];
                 linkedNodeInputPort = (Port)linkedNode.inputContainer.Children().First();
             }
             else

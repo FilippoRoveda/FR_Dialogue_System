@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
 namespace Converter.Editor
@@ -101,65 +100,69 @@ namespace Converter.Editor
 
         private void SaveNodeToSO<T>(BaseNodeData nodeData, DialogueContainerSO dialogueContainer) where T : BaseDialogueSO
         {
-            T dialogue;
+            T baseDialogue;
 
             if (nodeData.GroupID == null || nodeData.GroupID == string.Empty || nodeData.GroupID == "")
             {
-                dialogue = BaseIO.CreateAsset<T>($"{containerFolderPath}/Global/Dialogues", nodeData.Name);
-                dialogueContainer.UngroupedDialogues.Add(dialogue);
+                baseDialogue = BaseIO.CreateAsset<T>($"{containerFolderPath}/Global/Dialogues", nodeData.Name);
+                dialogueContainer.UngroupedDialogues.Add(baseDialogue);
             }
             else
             {
-                dialogue = BaseIO.CreateAsset<T>($"{containerFolderPath}/Groups/{createdGroups[nodeData.GroupID].GroupName}/Dialogues", nodeData.Name);
+                baseDialogue = BaseIO.CreateAsset<T>($"{containerFolderPath}/Groups/{createdGroups[nodeData.GroupID].GroupName}/Dialogues", nodeData.Name);
 
-                if (dialogueContainer.DialogueGroups.ContainsKey(createdGroups[nodeData.GroupID])) dialogueContainer.DialogueGroups[createdGroups[nodeData.GroupID]].Add(dialogue);
+                if (dialogueContainer.DialogueGroups.ContainsKey(createdGroups[nodeData.GroupID])) dialogueContainer.DialogueGroups[createdGroups[nodeData.GroupID]].Add(baseDialogue);
                 else
                 {
                     dialogueContainer.DialogueGroups.Add(createdGroups[nodeData.GroupID], new());
-                    dialogueContainer.DialogueGroups[createdGroups[nodeData.GroupID]].Add(dialogue);
+                    dialogueContainer.DialogueGroups[createdGroups[nodeData.GroupID]].Add(baseDialogue);
                 }
             }
 
             switch (nodeData.NodeType)
             {
                 case NodeType.Branch:
-                    var branchDialogue = (dialogue as BranchDialogueSO);
+                    var branchDialogue = (baseDialogue as BranchDialogueSO);
                     branchDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType);
                     var branchNodeData = (BranchNodeData) nodeData;
-                    branchDialogue.Choices = DataConversion.NodeToDialogueChoice(branchNodeData.Choices);
-                    branchDialogue.Condtitions = DataConversion.ConditionToDialogueConditionContainer(branchNodeData.Conditions);
+
+                    branchDialogue.Choices = DataConversion.ConvertNodeChoices(branchNodeData.Choices);
+                    branchDialogue.Condtitions = DataConversion.ConvertConditions(branchNodeData.Conditions);
                     break;
 
 
                 case NodeType.End:
-                    var endDialogue = (dialogue as EndDialogueSO);
-                    endDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType, DataConversion.LenguageDataConvert(((EndNodeData)nodeData).Texts));
+                    var endDialogue = (baseDialogue as EndDialogueSO);
+                    endDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType, DataConversion.ConvertLenguageData(((EndNodeData)nodeData).Texts));
                     endDialogue.IsRepetable = (((EndNodeData)nodeData).IsDialogueRepetable);
                     break;
 
 
                 case NodeType.Event:
-                    var eventDialogue = (dialogue as EventDialogueSO);
+                    var eventDialogue = (baseDialogue as EventDialogueSO);
                     var eventNode = (EventNodeData)nodeData;
+
                     eventDialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType,
-                                             DataConversion.LenguageDataConvert(((EventNodeData)nodeData).Texts),
-                                             DataConversion.NodeToDialogueChoice(((EventNodeData)nodeData).Choices));
+                                             DataConversion.ConvertLenguageData(((EventNodeData)nodeData).Texts),
+                                             DataConversion.ConvertNodeChoices(((EventNodeData)nodeData).Choices));
 
                     if (((EventNodeData)nodeData).GameEvents == null) break;
-                    eventDialogue.SetGameEvents(DataConversion.ConvertEvents(((EventNodeData)nodeData).GameEvents));
-                    eventDialogue.SetVariableEvents(DataConversion.VarEventsToDialogueVarEvents(eventNode.VariableEventsContainer));
+                    eventDialogue.SetGameEvents(DataConversion.ConvertGameEvents(((EventNodeData)nodeData).GameEvents));
+                    eventDialogue.SetVariableEvents(DataConversion.ConvertVariableEvents(eventNode.VariableEventsContainer));
 
                     break;
 
                 default:
-                    var fullDialoue = (dialogue as DialogueSO);
-                    var convertedTexts = DataConversion.LenguageDataConvert(((DialogueNodeData)nodeData).Texts);
-                    fullDialoue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType, convertedTexts, DataConversion.NodeToDialogueChoice(((DialogueNodeData)nodeData).Choices));
+                    var dialogue = (baseDialogue as DialogueSO);
+                    var dialogueNodeData = (DialogueNodeData)nodeData;
+
+                    var convertedTexts = DataConversion.ConvertLenguageData(dialogueNodeData.Texts);
+                    dialogue.Initialize(nodeData.Name, nodeData.NodeID, (DialogueType)nodeData.NodeType, convertedTexts, DataConversion.ConvertNodeChoices(dialogueNodeData.Choices));
                     break;
             }
 
-            createdDialogues.Add(nodeData.NodeID, dialogue);
-            BaseIO.SaveAsset(dialogue);
+            createdDialogues.Add(nodeData.NodeID, baseDialogue);
+            BaseIO.SaveAsset(baseDialogue);
         }
 
 
@@ -253,12 +256,12 @@ namespace Converter.Editor
         {
             foreach (var node in _graphSO.GetAllNodes())
             {
-                BaseDialogueSO dialogue = createdDialogues[node.NodeID];
+                BaseDialogueSO baseDialogue = createdDialogues[node.NodeID];
 
-                if (node.NodeType != NodeType.End && node.NodeType != NodeType.Branch) // Aggiungere caso per branch
+                if (node.NodeType != NodeType.End && node.NodeType != NodeType.Branch) //Case for Start, Single and Multiple nodes
                 {
                     var dialogueNode = (DialogueNodeData)node;
-                    var choicedDialogue = dialogue as DialogueSO;
+                    var dialogue = baseDialogue as DialogueSO;
 
 
                     for (int choiceIndex = 0; choiceIndex < dialogueNode.Choices.Count; choiceIndex++)
@@ -268,15 +271,15 @@ namespace Converter.Editor
                         if (string.IsNullOrEmpty(choice.NextNodeID)) continue;
                         else
                         {
-                            choicedDialogue.Choices[choiceIndex].NextDialogue = createdDialogues[choice.NextNodeID];
-                            BaseIO.SaveAsset(dialogue);
+                            dialogue.Choices[choiceIndex].NextDialogue = createdDialogues[choice.NextNodeID];
+                            BaseIO.SaveAsset(baseDialogue);
                         }
                     }
                 }
-                else if(node.NodeType == NodeType.Branch)
+                else if(node.NodeType == NodeType.Branch) //Case for Branch nodes
                 {
                     var dialogueNode = (BranchNodeData)node;
-                    var choicedDialogue = dialogue as BranchDialogueSO;
+                    var choicedDialogue = baseDialogue as BranchDialogueSO;
 
 
                     for (int choiceIndex = 0; choiceIndex < dialogueNode.Choices.Count; choiceIndex++)
@@ -287,7 +290,7 @@ namespace Converter.Editor
                         else
                         {
                             choicedDialogue.Choices[choiceIndex].NextDialogue = createdDialogues[choice.NextNodeID];
-                            BaseIO.SaveAsset(dialogue);
+                            BaseIO.SaveAsset(baseDialogue);
                         }
                     }
                 }

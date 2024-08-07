@@ -5,7 +5,7 @@ using UnityEngine;
  namespace DS.Runtime.Conditions
 {
     [System.Serializable]
-    public class DialogueConditionContainer
+    public class DialogueConditions
     {
         [SerializeField] private List<IntDialogueCondition> intConditions;
         [SerializeField] private List<FloatDialogueCondition> floatConditions;
@@ -14,7 +14,7 @@ using UnityEngine;
         public List<IntDialogueCondition> IntConditions { get { return intConditions; } }
         public List<FloatDialogueCondition> FloatConditions { get { return floatConditions; } }
         public List<BoolDialogueCondition> BoolConditions { get { return boolConditions; } }
-        public DialogueConditionContainer()
+        public DialogueConditions()
         {
             Initialize();
         }
@@ -25,11 +25,11 @@ using UnityEngine;
             floatConditions = new List<FloatDialogueCondition>();
             boolConditions = new List<BoolDialogueCondition>();
         }
-        public void Reload(DialogueConditionContainer conditionsContainer)
+        public void Reload(DialogueConditions dialogueConditions)
         {
-            intConditions = new List<IntDialogueCondition>(conditionsContainer.IntConditions);
-            floatConditions = new List<FloatDialogueCondition>(conditionsContainer.FloatConditions);
-            boolConditions = new List<BoolDialogueCondition>(conditionsContainer.BoolConditions);
+            intConditions = new List<IntDialogueCondition>(dialogueConditions.IntConditions);
+            floatConditions = new List<FloatDialogueCondition>(dialogueConditions.FloatConditions);
+            boolConditions = new List<BoolDialogueCondition>(dialogueConditions.BoolConditions);
         }
 
         public IntDialogueCondition AddIntCondition(IntDialogueCondition condition = null)
