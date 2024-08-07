@@ -3,7 +3,9 @@ using UnityEngine;
 namespace DS.Runtime.ScriptableObjects
 {
     using Runtime.Enumerations;
-
+    /// <summary>
+    /// Base dialogue scriptable object class with basic data and functions.
+    /// </summary>
     public abstract class BaseDialogueSO : ScriptableObject
     {
         [SerializeField] protected string _dialogueName;

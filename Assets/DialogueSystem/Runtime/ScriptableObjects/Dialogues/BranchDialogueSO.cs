@@ -9,17 +9,17 @@ namespace DS.Runtime.ScriptableObjects
     public class BranchDialogueSO : BaseDialogueSO
     {
         //List of conditions as a condition container
-        [SerializeField] private DialogueConditions condtitions;
+        [SerializeField] private DialogueConditions _condtitions;
         public DialogueConditions Condtitions 
         { 
-            get { return condtitions; } 
-            set { condtitions = value; }
+            get { return _condtitions; } 
+            set { _condtitions = value; }
         }
-        [SerializeField] protected List<DialogueChoice> choices;
+        [SerializeField] protected List<DialogueChoice> _choices;
         public List<DialogueChoice> Choices
         {
-            get { return choices; }
-            set { choices = value; }
+            get { return _choices; }
+            set { _choices = value; }
         }
     }
 }

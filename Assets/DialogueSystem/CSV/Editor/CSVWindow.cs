@@ -74,7 +74,7 @@ namespace CSVPlugin
                 EditorGUILayout.BeginHorizontal(GUILayout.MaxWidth(320));
 
                 EditorGUILayout.ObjectField("", graph, typeof(GraphSO), allowSceneObjects: false);
-                if (GUILayout.Button(graph.graphName, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
+                if (GUILayout.Button(graph._graphName, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
                 {
                     _selectedGraph = graph;
                 }
@@ -93,7 +93,7 @@ namespace CSVPlugin
                 GUI.color = Color.white;
                 EditorGUILayout.EndHorizontal();
 
-                csvFile = allCSV.Find(x => x.name == graph.graphName);
+                csvFile = allCSV.Find(x => x.name == graph._graphName);
 
                 if (csvFile != null)
                 {
@@ -104,7 +104,7 @@ namespace CSVPlugin
                     GUI.color = Color.red;
                     if (GUILayout.Button("Delete", GUILayout.Width(60)))
                     {
-                        csvToDelete.Add(graph.graphName);
+                        csvToDelete.Add(graph._graphName);
                     }
                     GUI.color = Color.white;
                     EditorGUILayout.EndHorizontal();
@@ -116,11 +116,11 @@ namespace CSVPlugin
 
             GUILayout.Space(10);
 
-            if (_selectedGraph != null && allCSV.Find(x => x.name == _selectedGraph.graphName) != null)
+            if (_selectedGraph != null && allCSV.Find(x => x.name == _selectedGraph._graphName) != null)
             {
                 csvPreviewPos = EditorGUILayout.BeginScrollView(csvPreviewPos);
                 EditorGUILayout.LabelField("Selected CSV", EditorStyles.boldLabel);
-                Editor editor2 = Editor.CreateEditor(allCSV.Find(x => x.name == _selectedGraph.graphName));
+                Editor editor2 = Editor.CreateEditor(allCSV.Find(x => x.name == _selectedGraph._graphName));
                 editor2.OnInspectorGUI();
                 EditorGUILayout.EndScrollView();
             }

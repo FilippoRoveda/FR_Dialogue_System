@@ -107,13 +107,13 @@ namespace DS.Editor.Windows.Utilities
                     );
                 return;
             }
-            linkedGraphView.EditorWindow.UpdateFilename(graphData.graphName);
+            linkedGraphView.EditorWindow.UpdateFilename(graphData._graphName);
 
-            graphLoad.LoadGroups(graphData.groups);
-            graphLoad.LoadBranchNodes(graphData.branchNodes);
-            graphLoad.LoadDialogueNodes(graphData.dialogueNodes);
-            graphLoad.LoadEventNodes(graphData.eventNodes);
-            graphLoad.LoadEndNodes(graphData.endNodes);
+            graphLoad.LoadGroups(graphData._groups);
+            graphLoad.LoadBranchNodes(graphData._branchNodes);
+            graphLoad.LoadDialogueNodes(graphData._dialogueNodes);
+            graphLoad.LoadEventNodes(graphData._eventNodes);
+            graphLoad.LoadEndNodes(graphData._endNodes);
 
             graphLoad.LoadNodesConnections();
         }

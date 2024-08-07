@@ -9,7 +9,9 @@ namespace DS.Editor.Elements
     using Editor.Windows;
     using Editor.Utilities;
 
-
+    /// <summary>
+    /// Abstract TextNode class for nodes that holds a dialogue text field.
+    /// </summary>
     public abstract class TextedNode : BaseNode
     {
         public List<LenguageData<string>> _texts;
@@ -26,9 +28,10 @@ namespace DS.Editor.Elements
                 }
             }
 
-        protected TextField dialogueTextTextField;
-        protected VisualElement customDataContainer;
-        protected Foldout dialogueTextFoldout;
+        protected TextField dialogueTextField;
+        protected Foldout textFoldout;
+        protected VisualElement customContainer;
+
 
         public override void Initialize(string nodeName, DS_GraphView context, Vector2 spawnPosition)
         {
@@ -45,7 +48,6 @@ namespace DS.Editor.Elements
 
         public void Initialize(TextedNodeData _data, DS_GraphView context)
         {
-
             _nodeID = _data.NodeID;
             _nodeName = _data.Name;
             _position = _data.Position;
@@ -60,28 +62,28 @@ namespace DS.Editor.Elements
         {
             base.Draw();
 
-            customDataContainer = new VisualElement();
-            customDataContainer.AddToClassList("ds-node-custom-data-container");
+            customContainer = new VisualElement();
+            customContainer.AddToClassList("ds-node-custom-data-container");
 
             //Dialogue text foldout and text field
-            dialogueTextFoldout = ElementsUtilities.CreateFoldout("DialogueText");
+            textFoldout = ElementsUtilities.CreateFoldout("DialogueText");
 
-            dialogueTextTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
+            dialogueTextField = ElementsUtilities.CreateTextArea(CurrentText, null, callback =>
             {
                 _texts.GetLenguageData(_graphView.GetEditorCurrentLenguage()).Data = callback.newValue;
             });
 
-            dialogueTextTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
+            dialogueTextField.AddToClassLists("ds-node-textfield", "ds-node-quote-textfield");
 
-            dialogueTextFoldout.Add(dialogueTextTextField);
-            customDataContainer.Add(dialogueTextFoldout);
-            extensionContainer.Add(customDataContainer);
+            textFoldout.Add(dialogueTextField);
+            customContainer.Add(textFoldout);
+            extensionContainer.Add(customContainer);
         }
 
         #region Overrides
         protected virtual void OnGraphViewLenguageChanged(LenguageType newLenguage)
         {
-            dialogueTextTextField.SetValueWithoutNotify(CurrentText);
+            dialogueTextField.SetValueWithoutNotify(CurrentText);
         }
         #endregion
     }

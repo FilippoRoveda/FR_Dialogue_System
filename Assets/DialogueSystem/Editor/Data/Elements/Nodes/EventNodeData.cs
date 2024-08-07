@@ -7,6 +7,9 @@ namespace DS.Editor.Data
     using Editor.Elements;
     using Editor.Events;
 
+    /// <summary>
+    /// NodeData class that hold every information for an EventNode.
+    /// </summary>
     [System.Serializable]
     public class EventNodeData : DialogueNodeData
     {
@@ -17,16 +20,16 @@ namespace DS.Editor.Data
             set { gameEvents = value; }
         }
 
-        [SerializeField] protected VariableEvents variableEventsContainer;
-        public VariableEvents VariableEventsContainer
+        [SerializeField] protected VariableEvents variableEvents;
+        public VariableEvents VariableEvents
         {
-            get => variableEventsContainer;
-            set { variableEventsContainer = value; }
+            get => variableEvents;
+            set { variableEvents = value; }
         }
         public EventNodeData() : base()
         {
             gameEvents = new List<GameEventSO>();
-            variableEventsContainer = new VariableEvents();
+            variableEvents = new VariableEvents();
         }
         public EventNodeData(EventNodeData data) : base(data)
         {
@@ -40,8 +43,8 @@ namespace DS.Editor.Data
             }
             else gameEvents = null;
 
-            variableEventsContainer = new VariableEvents();
-            variableEventsContainer.Reload(data.VariableEventsContainer);
+            variableEvents = new VariableEvents();
+            variableEvents.Reload(data.VariableEvents);
         }
 
         public EventNodeData(EventNode node) : base(node)
@@ -56,8 +59,8 @@ namespace DS.Editor.Data
             }
             else gameEvents = null;
 
-            variableEventsContainer = new VariableEvents();
-            variableEventsContainer.Reload(node.variableEvents);
+            variableEvents = new VariableEvents();
+            variableEvents.Reload(node.variableEvents);
         }          
     }
 }

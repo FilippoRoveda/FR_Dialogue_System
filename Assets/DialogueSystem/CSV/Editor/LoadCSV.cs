@@ -33,7 +33,7 @@ namespace CSVPlugin
         {
             errorFlag = false;
 
-            var graphCSVPath = CSVWindow.CSVFilesPath + graph.graphName + ".csv";
+            var graphCSVPath = CSVWindow.CSVFilesPath + graph._graphName + ".csv";
             var csvData = CSVReader.ParseCSV(File.ReadAllText(graphCSVPath));
 
             if (csvData == null || csvData.Count == 0)

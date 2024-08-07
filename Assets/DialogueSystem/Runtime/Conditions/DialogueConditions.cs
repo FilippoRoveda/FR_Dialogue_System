@@ -4,6 +4,9 @@ using UnityEngine;
 
  namespace DS.Runtime.Conditions
 {
+    /// <summary>
+    /// Dialogue conditions holder class that represent the conversion of editor side conditions.
+    /// </summary>
     [System.Serializable]
     public class DialogueConditions
     {

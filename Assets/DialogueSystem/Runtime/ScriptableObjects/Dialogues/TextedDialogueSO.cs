@@ -6,6 +6,9 @@ namespace DS.Runtime.ScriptableObjects
     using Runtime.Enumerations;
     using Runtime.Data;
 
+    /// <summary>
+    /// Abstract dialogue scriptable object holding information for a dialogue that contains a multi lenguage text field.
+    /// </summary>
     public abstract class TextedDialogueSO : BaseDialogueSO
     {
         [SerializeField] protected List<LenguageData<string>> _texts;

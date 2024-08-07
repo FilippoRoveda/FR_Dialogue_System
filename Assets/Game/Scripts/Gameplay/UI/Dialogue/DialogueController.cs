@@ -37,7 +37,7 @@ namespace Game
         [SerializeField] private BaseDialogueSO currentDialogue;
 
         private ConditionsHandler conditionsHandler;
-        private VariableEventsHandler variableEventsHandler;
+        private VariableEventsExecuter variableEventsHandler;
 
         private Coroutine textTypingCoroutine = null;
         private Coroutine interfaceUpdateRoutine = null;
@@ -72,7 +72,7 @@ namespace Game
             dialogueInterface.SetActive(false);
 
             conditionsHandler = new ConditionsHandler();
-            variableEventsHandler = new VariableEventsHandler();
+            variableEventsHandler = new VariableEventsExecuter();
         }
 
         private void InstantiateChoiceButton()
@@ -150,7 +150,7 @@ namespace Game
                     {
                         Debug.Log("To implement event call");
                     }
-                    variableEventsHandler.HandleEvents(eventDialogue.VariableEventsContainer);
+                    variableEventsHandler.ExecuteEvents(eventDialogue.VariableEvents);
                     yield break;
 
                 case  DialogueType.End:

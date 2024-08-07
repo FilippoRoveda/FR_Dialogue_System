@@ -148,7 +148,7 @@ namespace Converter.Editor
 
                     if (((EventNodeData)nodeData).GameEvents == null) break;
                     eventDialogue.SetGameEvents(DataConversion.ConvertGameEvents(((EventNodeData)nodeData).GameEvents));
-                    eventDialogue.SetVariableEvents(DataConversion.ConvertVariableEvents(eventNode.VariableEventsContainer));
+                    eventDialogue.SetVariableEvents(DataConversion.ConvertVariableEvents(eventNode.VariableEvents));
 
                     break;
 
@@ -170,7 +170,7 @@ namespace Converter.Editor
         {
             List<string> groupNames = new List<string>();
 
-            foreach (var groupData in _graphSO.groups)
+            foreach (var groupData in _graphSO._groups)
             {
                 SaveGroupToSO(groupData, dialogueContainer);
                 groupNames.Add(groupData.Name);
@@ -204,21 +204,21 @@ namespace Converter.Editor
         }
         private void UpdateOldGroups(List<string> currentGroupNames, GraphSO graphData)
         {
-            if (graphData.oldGroupsNames != null && graphData.oldGroupsNames.Count != 0)
+            if (graphData._oldGroupsNames != null && graphData._oldGroupsNames.Count != 0)
             {
-                List<string> groupsToRemove = graphData.oldGroupsNames.Except(currentGroupNames).ToList();
+                List<string> groupsToRemove = graphData._oldGroupsNames.Except(currentGroupNames).ToList();
                 foreach (string groupToRemove in groupsToRemove)
                 {
                     BaseIO.RemoveFolder($"{containerFolderPath}/Groups/{groupToRemove}");
                 }
             }
-            graphData.oldGroupsNames = new List<string>(currentGroupNames);
+            graphData._oldGroupsNames = new List<string>(currentGroupNames);
         }
         private void UpdateOldGroupedNodes(Dictionary<string, List<string>> currentGroupedNodeNames, GraphSO graphData)
         {
-            if (graphData.oldGroupedNodesNames != null && graphData.oldGroupedNodesNames.Count != 0)
+            if (graphData._oldGroupedNodesNames != null && graphData._oldGroupedNodesNames.Count != 0)
             {
-                foreach (KeyValuePair<string, List<string>> oldGroupedNodes in graphData.oldGroupedNodesNames)
+                foreach (KeyValuePair<string, List<string>> oldGroupedNodes in graphData._oldGroupedNodesNames)
                 {
                     List<string> nodesToRemove = new List<string>();
 
@@ -236,20 +236,20 @@ namespace Converter.Editor
                         BaseIO.RemoveFolder($"{containerFolderPath}/Groups/{oldGroupedNodes.Key}");
                     }
                 }
-                graphData.oldGroupedNodesNames = new Dictionary<string, List<string>>(currentGroupedNodeNames);
+                graphData._oldGroupedNodesNames = new Dictionary<string, List<string>>(currentGroupedNodeNames);
             }
         }
         private void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, GraphSO graphData)
         {
-            if (graphData.oldUngroupedNames != null && graphData.oldUngroupedNames.Count != 0)
+            if (graphData._oldUngroupedNames != null && graphData._oldUngroupedNames.Count != 0)
             {
-                List<string> nodesToRemove = graphData.oldUngroupedNames.Except(currentUngroupedNodeNames).ToList();
+                List<string> nodesToRemove = graphData._oldUngroupedNames.Except(currentUngroupedNodeNames).ToList();
                 foreach (string nodeToRemove in nodesToRemove)
                 {
                     BaseIO.RemoveAsset($"{containerFolderPath}/Global/Dialogues", nodeToRemove);
                 }
             }
-            graphData.oldUngroupedNames = new List<string>(currentUngroupedNodeNames);
+            graphData._oldUngroupedNames = new List<string>(currentUngroupedNodeNames);
         }
 
         private void UpdateDialogueChoicesConnection()

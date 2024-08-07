@@ -7,57 +7,54 @@ namespace DS.Editor.ScriptableObjects
 
     public class GraphSO : ScriptableObject
     {
-        [SerializeField] public string graphName;
+        [SerializeField] public string _graphName;
 
+        [SerializeField] public List<GroupData> _groups;
 
-        [SerializeField] public List<GroupData> groups;
+        [SerializeField] public List<DialogueNodeData> _dialogueNodes; //Start, Single, Multiple
+        [SerializeField] public List<EventNodeData> _eventNodes;
+        [SerializeField] public List<EndNodeData> _endNodes;
+        [SerializeField] public List<BranchNodeData> _branchNodes;
+        private List<BaseNodeData> allNodes;
 
-
-        [SerializeField] public List<DialogueNodeData> dialogueNodes; //Start, Single, Multiple
-        [SerializeField] public List<EventNodeData> eventNodes;
-        [SerializeField] public List<EndNodeData> endNodes;
-        [SerializeField] public List<BranchNodeData> branchNodes;
-
-
-        [SerializeField] public List<string> oldGroupsNames;
-        [SerializeField] public List<string> oldUngroupedNames;
-        [SerializeField] public Dictionary<string, List<string>> oldGroupedNodesNames;
+        [SerializeField] public List<string> _oldGroupsNames;
+        [SerializeField] public List<string> _oldUngroupedNames;
+        [SerializeField] public Dictionary<string, List<string>> _oldGroupedNodesNames;
 
         
-
         public void Initialize(string fileName)
         {
-            graphName = fileName;
-            groups = new List<GroupData>();
-            dialogueNodes = new List<DialogueNodeData>();
-            eventNodes = new List<EventNodeData>();
-            endNodes = new List<EndNodeData>();
-            branchNodes = new List<BranchNodeData>();
+            _graphName = fileName;
+            _groups = new List<GroupData>();
+            _dialogueNodes = new List<DialogueNodeData>();
+            _eventNodes = new List<EventNodeData>();
+            _endNodes = new List<EndNodeData>();
+            _branchNodes = new List<BranchNodeData>();
         }
 
         public List<BaseNodeData> GetAllNodes()
         {
             List<BaseNodeData> allNodes = new List<BaseNodeData>();
-            foreach (DialogueNodeData node in dialogueNodes)
+            foreach (DialogueNodeData node in _dialogueNodes)
             {
                 allNodes.Add(node);
             }
-            foreach (DialogueNodeData evntNode in eventNodes)
+            foreach (DialogueNodeData evntNode in _eventNodes)
             {
                 allNodes.Add(evntNode);
             }
-            foreach (BaseNodeData endNode in endNodes)
+            foreach (BaseNodeData endNode in _endNodes)
             {
                 allNodes.Add(endNode);
             }
-            foreach (BranchNodeData branchNode in branchNodes)
+            foreach (BranchNodeData branchNode in _branchNodes)
             {
                 allNodes.Add(branchNode);
             }
             return allNodes;           
         }
 
-        List<BaseNodeData> allNodes;
+
         public List<BaseNodeData> GetAllOrderedNodes()
         {
             List<BaseNodeData> orderedNodes = new List<BaseNodeData>();
@@ -73,15 +70,20 @@ namespace DS.Editor.ScriptableObjects
             {
                 GetAllLinkedNodes(node, ref orderedNodes);
             }
-            foreach(var node in endNodes)
+            foreach(var node in _endNodes)
             {
                 orderedNodes.Remove(node);
             }
-            orderedNodes.AddRange(branchNodes);
-            orderedNodes.AddRange(endNodes);
+            orderedNodes.AddRange(_branchNodes);
+            orderedNodes.AddRange(_endNodes);
             return orderedNodes;
         }
        
+        /// <summary>
+        /// This function aim to get every node linked to a certain one by descending every link in order to have a list more accurate possible as the dialogue flow coulb be.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="output"></param>
     private void GetAllLinkedNodes(BaseNodeData node, ref List<BaseNodeData> output)
         {
             if(output == null) output = new List<BaseNodeData>();

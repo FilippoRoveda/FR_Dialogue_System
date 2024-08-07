@@ -35,7 +35,7 @@ namespace CSVPlugin
 
         public void SaveGraphToCSV(GraphSO graph)
         {
-            graphName = graph.graphName;
+            graphName = graph._graphName;
             CreateFile(FileName);
 
             foreach (var nodeData in graph.GetAllOrderedNodes())

@@ -1,107 +1,74 @@
 using UnityEngine;
 
 namespace DS.Editor.Data
-{  
-    using Editor.Enumerations;
+{
     using Editor.Elements;
+    using Editor.Enumerations;
 
     /// <summary>
-    /// Class that hold node informations to be contained in a graph scriptable object.
+    /// Class that hold node informations to be contained in every node.
     /// </summary>
     [System.Serializable]
     public class BaseNodeData
     {
-        [SerializeField] protected string name;
+        [SerializeField] protected string _name;
         public string Name
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
+            get => _name;
+            set => _name = value;
         }
 
-        [SerializeField] protected string nodeID;
+        [SerializeField] protected string _nodeID;
         public string NodeID
         {
-            get
-            {
-                return nodeID;
-            }
-            set
-            {
-                nodeID = value;
-            }
+            get => _nodeID;
+            set => _nodeID = value;
         }
 
               
-        [SerializeField] protected string groupID = null;
+        [SerializeField] protected string _groupID = null;
         /// <summary>
         /// Group ID for the group that hold this node.
         /// </summary>
         public string GroupID
         {
-            get
-            {
-                return groupID;
-            }
-            set
-            {
-                groupID = value;
-            }
+            get => _groupID;
+            set => _groupID = value;
         }
-        [SerializeField] protected NodeType nodeType;
+        [SerializeField] protected NodeType _nodeType;
         public NodeType NodeType
         {
-            get
-            {
-                return nodeType;
-            }
-            set
-            {
-                nodeType = value;
-            }
+            get => NodeType;
+            set => NodeType = value;
         }
 
-        [SerializeField] protected Vector2 position;
+        [SerializeField] protected Vector2 _position;
         public Vector2 Position
         {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                position = value;
-            }
+            get => _position;
+            set => _position = value;
         }
 
-        public BaseNodeData()
-        {
-            
-        }
+        public BaseNodeData() { }
         public BaseNodeData(BaseNodeData data)
         {
-            nodeID = data.NodeID;
-            name = data.Name;
+            _nodeID = data.NodeID;
+            _name = data.Name;
 
-            if (data.groupID != null) groupID = data.groupID;
+            if (data._groupID != null) _groupID = data._groupID;
 
-            nodeType = data.NodeType;
-            position = data.Position;
+            _nodeType = data.NodeType;
+            _position = data.Position;
         }
         public BaseNodeData(BaseNode node)
         {
-            nodeID = node._nodeID;
-            name = node._nodeName;
+            _nodeID = node._nodeID;
+            _name = node._nodeName;
 
-            if (node._groupID != null) groupID = node._groupID;
+            if (node._groupID != null) _groupID = node._groupID;
 
-            nodeType = node._nodeType;
-            position = node._position;
+            _nodeType = node._nodeType;
+            _position = node._position;
         }
     }
 }

@@ -18,7 +18,6 @@ namespace DS.Editor.Elements
         public VariableEvents variableEvents;
 
         [SerializeField] private List<ObjectField> objectFields;
-        //[SerializeField] private List<ObjectField> varEventFields;
 
         protected Button addEventButton;
         protected ToolbarMenu addVariableEventMenu;
@@ -47,7 +46,6 @@ namespace DS.Editor.Elements
             variableEvents = new VariableEvents();
 
             objectFields = new();
-            //varEventFields = new();
         }
 
         public void Initialize(EventNodeData _data, DS_GraphView context)
@@ -68,10 +66,9 @@ namespace DS.Editor.Elements
             else gameEvents = new List<GameEventSO>(_data.GameEvents);
 
             variableEvents = new VariableEvents();
-            variableEvents.Reload(_data.VariableEventsContainer);
+            variableEvents.Reload(_data.VariableEvents);
 
             objectFields = new();
-            //varEventFields = new();
         }
 
         public override void Draw()

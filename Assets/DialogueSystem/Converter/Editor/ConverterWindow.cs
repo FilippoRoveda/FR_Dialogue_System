@@ -49,7 +49,7 @@ namespace Converter.Editor
 
 
                 EditorGUILayout.ObjectField("", graph, typeof(GraphSO), allowSceneObjects: false);
-                if (GUILayout.Button(graph.graphName, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
+                if (GUILayout.Button(graph._graphName, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(200)))
                 {
                     _selectedGraph = graph;
                 }
@@ -97,7 +97,7 @@ namespace Converter.Editor
         private void ConvertGraph(GraphSO graphSO)
         {
             Converter converter = new();        
-            converter.Initialize(graphSO, graphSO.graphName);
+            converter.Initialize(graphSO, graphSO._graphName);
             converter.ConvertGraph();
         }
         private void LoadAllGraphs()

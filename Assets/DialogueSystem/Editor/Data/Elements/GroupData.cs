@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace DS.Editor.Data
 {
     /// <summary>
@@ -29,8 +28,6 @@ namespace DS.Editor.Data
             get { return position; } 
             set {  position = value; } 
         }
-
-        // lista di nodi che ha all'interno? per poi instanziarli nuovamente come suoi
 
         public GroupData() { }
         public GroupData(string groupID, string groupTitle, Vector2 groupPosition)

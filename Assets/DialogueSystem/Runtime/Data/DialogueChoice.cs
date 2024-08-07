@@ -12,46 +12,46 @@ namespace DS.Runtime.Data
     [System.Serializable]
     public class DialogueChoice
     {
-        [SerializeField] private List<LenguageData<string>> choiceTexts;
+        [SerializeField] private List<LenguageData<string>> _choiceTexts;
         /// <summary>
         /// Label text for the choice.
         /// </summary>
         public List<LenguageData<string>> ChoiceTexts
         { 
-            get {  return choiceTexts; }
+            get {  return _choiceTexts; }
 #if UNITY_EDITOR
-            set {  choiceTexts = value; }
+            set {  _choiceTexts = value; }
 #endif
         }
 
-        [SerializeField] private string choiceID;
+        [SerializeField] private string _choiceID;
         public string ChoiceID
         {
-            get { return choiceID; }
+            get { return _choiceID; }
 #if UNITY_EDITOR
-            set { choiceID = value; }
+            set { _choiceID = value; }
 #endif
         }
 
 
-        [SerializeField] private BaseDialogueSO nextDialogue;
+        [SerializeField] private BaseDialogueSO _nextDialogue;
         /// <summary>
         /// Reference the next dialogue scriptable object data.
         /// </summary>
         public BaseDialogueSO NextDialogue 
         { 
-            get { return nextDialogue; }
+            get { return _nextDialogue; }
 #if UNITY_EDITOR
-            set {  nextDialogue = value; }
+            set {  _nextDialogue = value; }
 #endif
         }
 
-        [SerializeField] private DialogueConditions conditions;
+        [SerializeField] private DialogueConditions _conditions;
         public DialogueConditions Conditions 
         { 
-            get { return conditions; }
+            get { return _conditions; }
 #if UNITY_EDITOR
-            set { conditions = value; }
+            set { _conditions = value; }
 #endif
         }
     }

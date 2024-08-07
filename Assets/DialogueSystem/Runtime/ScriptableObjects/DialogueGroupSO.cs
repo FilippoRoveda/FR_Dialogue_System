@@ -8,11 +8,11 @@ namespace DS.Runtime.ScriptableObjects
     public class DialogueGroupSO : ScriptableObject
     {
         [SerializeField]
-        private string groupName;
+        private string _groupName;
         public string GroupName 
         {  
-            get { return groupName; }
-            set { groupName = value; }
+            get { return _groupName; }
+            set { _groupName = value; }
         }
 
         public void Initialize(string groupName)

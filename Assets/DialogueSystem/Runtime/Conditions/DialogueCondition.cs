@@ -4,13 +4,23 @@ namespace DS.Runtime.Conditions
 {
     using VariableEnum = Variables.Generated.VariablesGenerated.VariablesKey;
 
+    /// <summary>
+    /// Generic abstract condition class holding common fields and methods to represent a dialogue condition.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [System.Serializable]
     public abstract class DialogueCondition<T>
     {
-        [SerializeField] protected VariableEnum variableEnum;
-        public VariableEnum VariableEnum {  get { return variableEnum; } }
+        [SerializeField] protected VariableEnum _variableEnum;
+        /// <summary>
+        /// VaribleEnum representing the target dialogue variable.
+        /// </summary>
+        public VariableEnum VariableEnum {  get { return _variableEnum; } }
 
         [SerializeField] protected T comparisonValue;
+        /// <summary>
+        /// The value on which this conditio will be decided.
+        /// </summary>
         public T ComparisonValue
         {
             get { return comparisonValue; }
@@ -24,7 +34,7 @@ namespace DS.Runtime.Conditions
         public DialogueCondition() { }
         public DialogueCondition(VariableEnum variableEnum, T comaprisonValue)
         {
-            this.variableEnum = variableEnum;
+            this._variableEnum = variableEnum;
             this.comparisonValue = comaprisonValue;
         }
     }
@@ -41,12 +51,15 @@ namespace DS.Runtime.Conditions
     [System.Serializable]
     public class IntDialogueCondition : DialogueCondition<int>
     {
-        [SerializeField] private ComparisonType comparisonType;
-        public ComparisonType ComparisonType { get { return comparisonType; } }
+        [SerializeField] private ComparisonType _comparisonType;
+        /// <summary>
+        /// ComparisonType enumeration that will decide how the condition will be decided.
+        /// </summary>
+        public ComparisonType ComparisonType { get { return _comparisonType; } }
         public IntDialogueCondition() { }
         public IntDialogueCondition(VariableEnum variableEnum, int comparisonValue, ComparisonType comparisonType) : base(variableEnum, comparisonValue)
         {
-            this.comparisonType = comparisonType;
+            this._comparisonType = comparisonType;
         }
 
     }
@@ -55,12 +68,15 @@ namespace DS.Runtime.Conditions
     [System.Serializable]
     public class FloatDialogueCondition : DialogueCondition<float>
     {
-        [SerializeField] private ComparisonType comparisonType;
-        public ComparisonType ComparisonType { get { return comparisonType; } }
+        [SerializeField] private ComparisonType _comparisonType;
+        /// <summary>
+        /// ComparisonType enumeration that will decide how the condition will be decided.
+        /// </summary>
+        public ComparisonType ComparisonType { get { return _comparisonType; } }
         public FloatDialogueCondition() { }
         public FloatDialogueCondition(VariableEnum variableEnum, float comparisonValue, ComparisonType comparisonType) : base(variableEnum, comparisonValue)
         {
-            this.comparisonType = comparisonType;
+            this._comparisonType = comparisonType;
         }
     }
 }

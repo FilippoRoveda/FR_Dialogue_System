@@ -11,14 +11,8 @@ namespace DS.Editor.Data
         [SerializeField] protected List<LenguageData<string>> texts;
         public List<LenguageData<string>> Texts
         {
-            get
-            {
-                return texts;
-            }
-            set
-            {
-                texts = value;
-            }
+            get => texts;
+            set => texts = value;
         }
 
         public TextedNodeData()

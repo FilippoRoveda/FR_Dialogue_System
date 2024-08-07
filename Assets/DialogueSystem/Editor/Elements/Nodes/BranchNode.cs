@@ -91,7 +91,6 @@ namespace DS.Editor.Elements
             return choicePort;
         }
 
-        //Implementare disconnect all ports
         public override void DisconnectAllPorts()
         {
             DisconnectPorts(inputContainer);

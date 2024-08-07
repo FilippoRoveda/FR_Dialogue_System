@@ -5,39 +5,42 @@ namespace DS.Runtime.ScriptableObjects
 {
     using Runtime.Utilities;
 
+    /// <summary>
+    /// ScriptableObject that represent a dialogue graph conversion.
+    /// </summary>
     [System.Serializable]
     public class DialogueContainerSO : ScriptableObject
     {
-        [SerializeField] private string graphName;
+        [SerializeField] private string _graphName;
         public string GraphName
         {
-            get { return graphName; }
+            get { return _graphName; }
 #if UNITY_EDITOR
-            set { graphName = value; }
+            set { _graphName = value; }
 #endif
         }
-        [SerializeField] private SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>> dialogueGroups;
+        [SerializeField] private SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>> _dialogueGroups;
 
         /// <summary>
         /// Dictionary containing as key a group scriptable object and as a value a list of owned dialogue scriptable objects.
         /// </summary>
         public SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>> DialogueGroups
         {
-            get { return dialogueGroups; }
+            get { return _dialogueGroups; }
 #if UNITY_EDITOR
-            set { dialogueGroups = value; }
+            set { _dialogueGroups = value; }
 #endif
         }
 
-        [SerializeField] private List<BaseDialogueSO> ungroupedDialogues;
+        [SerializeField] private List<BaseDialogueSO> _ungroupedDialogues;
         /// <summary>
         /// List of ungrouped dialogues scriptable objects.
         /// </summary>
         public List<BaseDialogueSO> UngroupedDialogues
         {
-            get { return ungroupedDialogues; }
+            get { return _ungroupedDialogues; }
 #if UNITY_EDITOR
-            set { ungroupedDialogues = value; }
+            set { _ungroupedDialogues = value; }
 #endif
         }
 
@@ -45,8 +48,8 @@ namespace DS.Runtime.ScriptableObjects
         public void Initialize(string filename)
         {
             GraphName = filename;
-            DialogueGroups = new SerializableDictionary<DialogueGroupSO, List<BaseDialogueSO>>();
-            UngroupedDialogues = new List<BaseDialogueSO>();
+            DialogueGroups = new();
+            UngroupedDialogues = new();
         }
 #endif
 

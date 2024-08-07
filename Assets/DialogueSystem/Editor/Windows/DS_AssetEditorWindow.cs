@@ -49,7 +49,7 @@ namespace DS.Editor.Windows
         protected override void AddToolbar()
         {
             toolbar = new Toolbar();
-            filenameTextField = ElementsUtilities.CreateTextField(linkedAssetsGraph.graphName, "File Name:");
+            filenameTextField = ElementsUtilities.CreateTextField(linkedAssetsGraph._graphName, "File Name:");
             saveGraphButton = ElementsUtilities.CreateButton("Save", () => OnSaveButtonPressed());
             clearButton = ElementsUtilities.CreateButton("Clear", () => OnClearButtonPressed());
             openVariableEditor = ElementsUtilities.CreateButton("Variable Editor", () => OnVariableEditorButtonPressed());
@@ -71,7 +71,7 @@ namespace DS.Editor.Windows
 
         private void LoadTargetGraphAsset()
         {
-            string filePath = $"{defaultSavedGraphPath}/{linkedAssetsGraph.graphName}_Graph.asset";
+            string filePath = $"{defaultSavedGraphPath}/{linkedAssetsGraph._graphName}_Graph.asset";
             if (string.IsNullOrEmpty(filePath) == false)
             {
                 OnClearButtonPressed();
@@ -82,7 +82,7 @@ namespace DS.Editor.Windows
 
         private void SetTitleContent()
         {
-            titleContent = new GUIContent($"DS_{linkedAssetsGraph.graphName}_Window");
+            titleContent = new GUIContent($"DS_{linkedAssetsGraph._graphName}_Window");
         }
         private void SetAsset(GraphSO assetGraph)
         {

@@ -71,7 +71,7 @@ namespace Converter.Editor
             foreach (var so in eventSOs)
             {
                 var _event = new GameEvent();
-                _event.eventName = so.eventExecutionString;
+                _event._eventString = so.eventExecutionString;
                 events.Add(_event);
             }
             return events;

@@ -20,7 +20,7 @@ namespace DS.Editor.Windows.Utilities
         private void SaveGroupInGraphData(DS_Group group, GraphSO graphData)
         {
             GroupData groupData = new GroupData(group.ID, group.title, group.GetPosition().position);
-            graphData.groups.Add(groupData);
+            graphData._groups.Add(groupData);
         }
 
       
@@ -29,22 +29,22 @@ namespace DS.Editor.Windows.Utilities
             foreach(var node in _system.dialogueNodes) 
             {
                 DialogueNodeData nodeData = new DialogueNodeData(node);
-                graphData.dialogueNodes.Add(nodeData);
+                graphData._dialogueNodes.Add(nodeData);
             }
             foreach (var node in _system.eventNodes) 
             {
                 EventNodeData eventNodeData = new EventNodeData(node);
-                graphData.eventNodes.Add(eventNodeData);
+                graphData._eventNodes.Add(eventNodeData);
             }
             foreach (var node in _system.endNodes) 
             {
                 EndNodeData endNodeData = new EndNodeData(node);
-                graphData.endNodes.Add(endNodeData);
+                graphData._endNodes.Add(endNodeData);
             }
             foreach (var node in _system.branchNodes) 
             {
                 BranchNodeData branchNodeData = new BranchNodeData(node);
-                graphData.branchNodes.Add(branchNodeData);
+                graphData._branchNodes.Add(branchNodeData);
             }
 
         }              

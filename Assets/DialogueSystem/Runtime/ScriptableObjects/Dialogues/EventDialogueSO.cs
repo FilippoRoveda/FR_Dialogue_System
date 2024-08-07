@@ -8,6 +8,9 @@ namespace DS.Runtime.ScriptableObjects
     using Runtime.Data;
     using Runtime.Enumerations;
 
+    /// <summary>
+    /// Dialogue scriptable object for event dialogues.
+    /// </summary>
     public class EventDialogueSO : DialogueSO
     {
         [SerializeField] private List<GameEvent> _events;
@@ -17,11 +20,11 @@ namespace DS.Runtime.ScriptableObjects
             private set { _events = value; }
         }
 
-        [SerializeField] private DialogueVariableEvents variableEventsContainer;
-        public DialogueVariableEvents VariableEventsContainer
+        [SerializeField] private DialogueVariableEvents _variableEvents;
+        public DialogueVariableEvents VariableEvents
         {
-            get => variableEventsContainer;
-            set { variableEventsContainer = value; }
+            get => _variableEvents;
+            set { _variableEvents = value; }
         }
 
         public void SetGameEvents(List<GameEvent> events)
@@ -38,8 +41,8 @@ namespace DS.Runtime.ScriptableObjects
         }
         public void SetVariableEvents(DialogueVariableEvents eventsContainer)
         {
-            variableEventsContainer = new();
-            variableEventsContainer.Reload(eventsContainer);
+            _variableEvents = new();
+            _variableEvents.Reload(eventsContainer);
         }
 
         /// <summary>
@@ -52,12 +55,7 @@ namespace DS.Runtime.ScriptableObjects
         /// <param name="isStartingDialogue"></param>
         public override void Initialize(string dialogueName, string dialogueID, DialogueType dialogueType, List<LenguageData<string>> texts, List<DialogueChoice> choices)
         {
-            base.Initialize(dialogueName, dialogueID, dialogueType, texts);
-            
-            foreach (var _choice in choices)
-            {
-                Debug.Log(_choice.ChoiceTexts[0].Data);
-            }
+            base.Initialize(dialogueName, dialogueID, dialogueType, texts);      
             Choices = new List<DialogueChoice>(choices);
         }
     }

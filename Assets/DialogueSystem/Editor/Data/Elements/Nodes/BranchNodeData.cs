@@ -6,33 +6,36 @@ namespace DS.Editor.Data
     using Editor.Elements;
     using Editor.Conditions;
 
+    /// <summary>
+    /// NodeData class that hold every information for a BranchNode.
+    /// </summary>
     [System.Serializable]
     public class BranchNodeData : BaseNodeData
     {
-        [SerializeField] protected Conditions conditions;
+        [SerializeField] protected Conditions _conditions;
         public Conditions Conditions
         {
-            get { return conditions; }
-            set { conditions = value; }
+            get { return _conditions; }
+            set { _conditions = value; }
         }
-        [SerializeField] protected List<ChoiceData> choices;
+        [SerializeField] protected List<ChoiceData> _choices;
         public List<ChoiceData> Choices 
         {
-            get { return choices; }
-            set { choices = value; }
+            get { return _choices; }
+            set { _choices = value; }
         }
         public BranchNodeData() : base(){ }
         public BranchNodeData(BranchNodeData data) :base(data)
         {
-            conditions = new Conditions();
-            conditions.Reload(data.Conditions);
-            choices = new List<ChoiceData>(data.Choices);
+            _conditions = new Conditions();
+            _conditions.Reload(data.Conditions);
+            _choices = new List<ChoiceData>(data.Choices);
         }
         public BranchNodeData(BranchNode node) : base(node)
         {
-            conditions = new Conditions();
-            conditions.Reload(node.conditions);
-            choices = new List<ChoiceData>(node.choices);
+            _conditions = new Conditions();
+            _conditions.Reload(node.conditions);
+            _choices = new List<ChoiceData>(node.choices);
         }
     }
 }

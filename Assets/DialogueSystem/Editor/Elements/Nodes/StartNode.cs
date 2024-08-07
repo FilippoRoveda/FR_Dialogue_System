@@ -8,6 +8,9 @@ namespace DS.Editor.Elements
     using Editor.Windows;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Start node class which represent the begin of a dialogue.
+    /// </summary>
     public class StartNode : DialogueNode
     {
         public StartNode() { }

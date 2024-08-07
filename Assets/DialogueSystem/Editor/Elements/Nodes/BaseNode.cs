@@ -51,7 +51,6 @@ namespace DS.Editor.Elements
             SetPosition(new Rect(_position, Vector2.zero));
             _graphView = context;
             SetNodeStyle();
-            Debug.Log("Calling base node initializer with data");
         }
 
 
