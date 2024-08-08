@@ -265,13 +265,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7441265038109210559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08cfa22f59c10654ba2f91fc4ac99c1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dec65929d2289c4ba4fd914c93f3a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdedChoice:
+    _choiceTexts: []
+    _choiceID: 
+    _nextDialogue: {fileID: 0}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
   choiceText: {fileID: 2091943867627221388}
-  holdedChoiceData:
-    choiceTexts: []
-    nextDialogue: {fileID: 0}
   button: {fileID: 8289444120035752613}
   ChoiceSelected:
     m_PersistentCalls:

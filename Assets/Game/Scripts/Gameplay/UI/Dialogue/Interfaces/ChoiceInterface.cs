@@ -56,8 +56,7 @@ namespace Game
         {
             DisableButton();
             Debug.Log("Choice button pressed going to " + holdedChoice.NextDialogue.DialogueName);
-            //ChoiceSelected?.Invoke(holdedChoiceData.NextDialogue);
-
+            //ChoiceSelected?.Invoke(holdedChoice.NextDialogue as DialogueSO);
         }
         public void OnLenguageChanged(LenguageType newLenguage)
         {

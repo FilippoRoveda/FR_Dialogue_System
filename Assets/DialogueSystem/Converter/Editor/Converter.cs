@@ -9,6 +9,7 @@ namespace Converter.Editor
 
     using DS.Runtime.Enumerations;
     using DS.Runtime.ScriptableObjects;
+    using UnityEngine;
 
     public class Converter
     {

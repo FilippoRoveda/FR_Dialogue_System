@@ -50,7 +50,7 @@ namespace CSVPlugin
                 var headers = csvData[0];
                 csvData.Remove(headers);
 
-                foreach (var node in graph.GetAllOrderedNodes())
+                foreach (var node in graph.GetAllNodes())
                 {
                     //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
                     if (node.NodeType == NodeType.Branch) continue;

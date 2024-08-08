@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: GreetingEnd02
+  m_EditorClassIdentifier: 
+  _dialogueName: GreetingEnd02
+  _dialogueID: 0071811d-c8e1-4e87-b7e4-35dff6cc0b90
+  _dialogueType: 3
+  _texts:
+  - Data: "Fandonie, ti chiami Ottaviano! Ora ti\nriconosco, non \xE8 la prima volta
+      che parliamo.\nOra vattene, qui il tempo gioca brutti scherzi.\nNon vedro il
+      sole di domani, e se lo vedr\xF2 non ricorder\xF2 di averlo\nvisto ieri."
+    LenguageType: 0
+  - Data: End Dialogue Text
+    LenguageType: 1
+  - Data: 'Ineptias, nomen tuum Ottaviano est! Nunc te
+
+      Agnosco, non primum
+      locutus est.
+
+      Nunc abi, tempus hic ludit.
+
+      Solem cras non videbo,
+      et si non recordor
+
+      heri vidi.'
+    LenguageType: 2
+  - Data: 'End Dialogue Text
+
+'
+    LenguageType: 3
+  _isRepetable: 0

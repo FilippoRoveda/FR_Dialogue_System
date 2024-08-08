@@ -19,7 +19,7 @@ namespace Game
         [SerializeField] private GameObject buttonPrefab;
         [SerializeField] private TMP_Text currentLenguageText;
 
-
+        [SerializeField] private Button closeLenguageScreenButton;
         [SerializeField] private Button optionButton;
         [SerializeField] private Button mainMenuButton;
         [SerializeField] private Button lenguageScreenButton;
@@ -30,6 +30,7 @@ namespace Game
         {
             base.OnEnable();
             InscribeEvents();
+            SetupChangeLenguageScreen();
         }
         private void OnDisable()
         {
@@ -59,7 +60,7 @@ namespace Game
             }
             else
             {
-                isScreenOpened = true;
+                isLenguageScreenOpened = true;
                 lenguageScreen.SetActive(true);
             }
         }
@@ -73,7 +74,7 @@ namespace Game
             {
                 var obj = Instantiate(buttonPrefab, changeLenguageButtonList);
                 var button = obj.GetComponent<Button>();
-                obj.GetComponent<TMP_Text>().text = lenguage.ToString();
+                obj.GetComponentInChildren<TMP_Text>().text = lenguage.ToString();
                 button.onClick.AddListener(() => {
                     LenguageManager.Instance.ChangeLenguage(lenguage);
                     currentLenguageText.text = LenguageManager.Instance.CurrentLenguage.ToString();
@@ -85,6 +86,7 @@ namespace Game
             optionButton.onClick.AddListener(OnOptionButtonPressed);
             mainMenuButton.onClick.AddListener(OnMainMenuButtonPressed);
             lenguageScreenButton.onClick.AddListener(OnChangeLenguageButtonPressed);
+            closeLenguageScreenButton.onClick.AddListener(OnChangeLenguageButtonPressed);
             quitButton.onClick.AddListener(OnQuitButtonPressed);
         }
         private void UnscribeEvents() 
@@ -92,6 +94,7 @@ namespace Game
             optionButton.onClick.RemoveListener(OnOptionButtonPressed);
             mainMenuButton.onClick.RemoveListener(OnMainMenuButtonPressed);
             lenguageScreenButton.onClick.RemoveListener(OnChangeLenguageButtonPressed);
+            closeLenguageScreenButton.onClick.RemoveListener(OnChangeLenguageButtonPressed);
             quitButton.onClick.RemoveListener(OnQuitButtonPressed);
         }
     }

@@ -38,7 +38,7 @@ namespace Game
 
         public void Initialize(VariableKey varKey, string varID)
         {
-            _varNameText.text = varKey.ToString().ToUpper();
+            _varNameText.text = varKey.ToString().ToUpper().Replace("_"," ");
             _linkedVarID = varID;
             UpdateInterfaceValue();
         }

@@ -38,7 +38,7 @@ namespace DS.Editor.Data
         [SerializeField] protected NodeType _nodeType;
         public NodeType NodeType
         {
-            get => NodeType;
+            get => _nodeType;
             set => NodeType = value;
         }
 

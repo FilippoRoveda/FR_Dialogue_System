@@ -92,17 +92,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.45
+  m_fontSize: 16
   m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 10
   m_fontSizeMax: 16
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -2.82
   m_wordSpacing: 0
   m_lineSpacing: 75
   m_lineSpacingMax: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.598475, y: 7.0883684, z: 0, w: 6.694605}
+  m_margin: {x: 5.4433393, y: 7.0883684, z: -10.38781, w: 6.694605}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -463,7 +463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8d413f2ad7be746866f744988704b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _linkedVarID: 
   _linkedVarKey: 0
   _varNameText: {fileID: 8969240713235744954}
   _varValueText: {fileID: 6508760326104025697}

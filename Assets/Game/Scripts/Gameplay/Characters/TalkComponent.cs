@@ -63,7 +63,7 @@ namespace Game
             if(availableDialogues.Count == 0)
             {
 #if UNITY_EDITOR
-                //Debug.LogError($"No availables dialogues for {_linkedCharacter.Data.Name}, it will be not possible to talk to him");
+                Debug.LogWarning($"No availables dialogues for {_linkedCharacter.Data.Name}, it will be not possible to talk to him");
 #endif
                 _talkZone.DisableZone();
             }
@@ -78,7 +78,7 @@ namespace Game
             launchedDialogueID = nextDialogue.DialogueID;
 
     #if UNITY_EDITOR
-                Debug.LogError("Starting dialogue: " + nextDialogue.DialogueName);
+                Debug.LogWarning("Starting dialogue: " + nextDialogue.DialogueName);
     #endif
             DialogueManager.DialogueEnded.AddListener(OnDialogueEnded);
             DialogueManager.Instance.TryStartDialogue(this, (DialogueSO)nextDialogue);

@@ -61,7 +61,8 @@ namespace DS.Editor.Elements
 
             foreach (var element in outputContainer.Children())
             {
-                var port = (Port)element;
+                var box = (Box)element;
+                var port = box.Children().ToList().Find(x => x is Port) as Port;
                 var field = port.contentContainer.Children().ToList().Find(x => x.GetType() == typeof(TextField)) as TextField;
                 field.SetValueWithoutNotify(((ChoiceData)port.userData).ChoiceTexts.Find(x => x.LenguageType == newLenguage).Data);
             }

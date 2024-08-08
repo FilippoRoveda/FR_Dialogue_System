@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: GreetingMultiple03
+  m_EditorClassIdentifier: 
+  _dialogueName: GreetingMultiple03
+  _dialogueID: a8c0a804-0123-4b1b-8115-efe841febaa7
+  _dialogueType: 1
+  _texts:
+  - Data: Ma ora parlami di te, come ti chiami?
+    LenguageType: 0
+  - Data: Multiple Dialogue Text
+    LenguageType: 1
+  - Data: Sed nunc de te mihi dicas, quod tibi nomen est?
+    LenguageType: 2
+  - Data: Multiple Dialogue Text
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Gaius Octavius, non ti ricordi di me?
+      LenguageType: 0
+    - Data: New Choice 1
+      LenguageType: 1
+    - Data: C. Octavi, non meministi mei?
+      LenguageType: 2
+    - Data: New Choice 1
+      LenguageType: 3
+    _choiceID: 6035ab5f-91f3-4de2-9252-31954deb9547
+    _nextDialogue: {fileID: 11400000, guid: ead28446d51b45644801870cca5ade85, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Non ricordo di avere un nome.
+      LenguageType: 0
+    - Data: New choice 2
+      LenguageType: 1
+    - Data: Nomen habens non memini.
+      LenguageType: 2
+    - Data: New choice 2
+      LenguageType: 3
+    _choiceID: 48946e9c-a805-4a7c-aa90-abbb2f8fb5d2
+    _nextDialogue: {fileID: 11400000, guid: cf8d320b63e0c614da82c45a03daf9bf, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Penso che prima mi chiamassero Luigina.
+      LenguageType: 0
+    - Data: New choice 3
+      LenguageType: 1
+    - Data: Puto me ante Luigina vocasse.
+      LenguageType: 2
+    - Data: New choice 3
+      LenguageType: 3
+    _choiceID: 826f8ec0-6bb2-4f5c-9879-4e27c360e382
+    _nextDialogue: {fileID: 11400000, guid: 3c8078dc7e667494b8b4dbcfc804c121, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

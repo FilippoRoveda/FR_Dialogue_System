@@ -38,7 +38,7 @@ namespace CSVPlugin
             graphName = graph._graphName;
             CreateFile(FileName);
 
-            foreach (var nodeData in graph.GetAllOrderedNodes())
+            foreach (var nodeData in graph.GetAllNodes())
             {
                 //SKIP TO NEXT NODE IF THIS ONE HAS NOR TEXTS OR CHOICES
                 if (nodeData.NodeType == NodeType.Branch) continue;

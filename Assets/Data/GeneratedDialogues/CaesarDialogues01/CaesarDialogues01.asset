@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5169bb0909fb4c04b895b35cc779425a, type: 3}
+  m_Name: CaesarDialogues01
+  m_EditorClassIdentifier: 
+  _graphName: CaesarDialogues01
+  _dialogueGroups:
+    list: []
+  _ungroupedDialogues:
+  - {fileID: 11400000, guid: dc35553a0a37a724cb3bd9f217b93ae0, type: 2}
+  - {fileID: 11400000, guid: f68adc6da1ba94140bbf4058ef14ae67, type: 2}
+  - {fileID: 11400000, guid: d3f8cacd004287647ad4f510d27985a1, type: 2}
+  - {fileID: 11400000, guid: ead28446d51b45644801870cca5ade85, type: 2}
+  - {fileID: 11400000, guid: 3c8078dc7e667494b8b4dbcfc804c121, type: 2}
+  - {fileID: 11400000, guid: 49f33b0c37ab13f409db218626bd2c98, type: 2}
+  - {fileID: 11400000, guid: cf8d320b63e0c614da82c45a03daf9bf, type: 2}
