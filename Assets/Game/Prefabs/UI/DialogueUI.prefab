@@ -109,10 +109,10 @@ RectTransform:
   - {fileID: 522016832932698042}
   m_Father: {fileID: 3684852328781978542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225, y: -37.5}
+  m_SizeDelta: {x: 300, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2158153752950977273
 CanvasRenderer:
@@ -229,9 +229,9 @@ RectTransform:
   - {fileID: 7770487330553298848}
   m_Father: {fileID: 3233843122910082099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -540}
   m_SizeDelta: {x: 300, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7981585067397493884
@@ -253,12 +253,12 @@ GameObject:
   - component: {fileID: 4583362073058569124}
   - component: {fileID: 7825700514881397150}
   m_Layer: 5
-  m_Name: DialogueArea
+  m_Name: DialogueUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4583362073058569124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -291,18 +291,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986e35d54b7f3ba4091b3c9ce8725403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 3433183364047909049}
+  dialogueInterface: {fileID: 0}
   playerName: {fileID: 7357275599887901093}
   playerIcon: {fileID: 4244713906454270582}
   speakerName: {fileID: 1787119579756169449}
   speakerIcon: {fileID: 6634586961434557662}
-  dialogueText: {fileID: 1155520901731871455}
-  choicesUI: []
-  choiceList: {fileID: 3684852328781978542}
-  choiceUIPrefab: {fileID: 7441265038109210559, guid: 99d62ec677afc9442afe1ff225a26404, type: 3}
-  endDialogueButton: {fileID: 4760294249774404260}
-  startSpeaker: {fileID: 0}
-  startingDialogue: {fileID: 0}
+  dialogueText: {fileID: 0}
+  choiceInterfaces: []
+  choicesTransform: {fileID: 0}
+  choicePrefab: {fileID: 0}
+  endButton: {fileID: 0}
+  dialogueSpeaker: {fileID: 0}
+  startedDialogue: {fileID: 0}
   currentDialogue: {fileID: 0}
 --- !u!1 &2387747006978980349
 GameObject:
@@ -466,7 +466,6 @@ GameObject:
   - component: {fileID: 4188814480159045561}
   - component: {fileID: 5337250418290829754}
   - component: {fileID: 5235392650377738669}
-  - component: {fileID: 1155520901731871455}
   m_Layer: 5
   m_Name: TextArea
   m_TagString: Untagged
@@ -489,9 +488,9 @@ RectTransform:
   - {fileID: 964981653520531050}
   m_Father: {fileID: 8588037692604291069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -340}
   m_SizeDelta: {x: 650, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5337250418290829754
@@ -532,20 +531,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1155520901731871455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892382775422797730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67a17556770b6441a483a9cf2f95a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 4599490737154302302}
-  holdedTexts: []
 --- !u!1 &3433183364047909049
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,12 +542,12 @@ GameObject:
   - component: {fileID: 3233843122910082099}
   - component: {fileID: 5708249397995665714}
   m_Layer: 5
-  m_Name: Container
+  m_Name: DialogueInterface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3233843122910082099
 RectTransform:
   m_ObjectHideFlags: 0
@@ -778,9 +763,9 @@ RectTransform:
   - {fileID: 3585914083449584461}
   m_Father: {fileID: 3233843122910082099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1152.6666, y: -540}
   m_SizeDelta: {x: 300, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6986880700595797201
@@ -825,9 +810,9 @@ RectTransform:
   - {fileID: 8504671066255348674}
   m_Father: {fileID: 8588037692604291069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -820}
   m_SizeDelta: {x: 450, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7973622726062089039
@@ -1133,9 +1118,9 @@ RectTransform:
   - {fileID: 8588037692604291069}
   m_Father: {fileID: 3233843122910082099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 651.3334, y: -540}
   m_SizeDelta: {x: 700, y: 1079.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7449286081254395973

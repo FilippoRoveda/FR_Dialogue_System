@@ -63,7 +63,7 @@ namespace Game
             if(availableDialogues.Count == 0)
             {
 #if UNITY_EDITOR
-                Debug.LogError($"No availables dialogues for {_linkedCharacter.Data.Name}, it will be not possible to talk to him");
+                //Debug.LogError($"No availables dialogues for {_linkedCharacter.Data.Name}, it will be not possible to talk to him");
 #endif
                 _talkZone.DisableZone();
             }

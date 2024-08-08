@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,23 +40,31 @@ namespace Game
         }
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space) == true && isAnimating == false)
+            if (Input.GetKeyDown(KeyCode.Space) == true && isAnimating == false)
             {
                 StartCoroutine(SlideAnimationRoutine());
             }
+            if (Input.GetKeyDown(KeyCode.Escape) && OptionsScreenController.Instance.isScreenOpened == false && isScreenOpened == true)
+            {
+                OnCloseScreenPressed();
+            }
+        }
+        private void OnDestroy()
+        {
+            ClearVariableList();
         }
         #endregion
         #region Callbacks
         private void OnOpenScreenPressed()
         {
-            if (isAnimating == false)
+            if (isAnimating == false && isScreenOpened == false)
             {
                 StartCoroutine(SlideAnimationRoutine());
             }
         }
-        private void OnCloseScreenPressed() 
+        public void OnCloseScreenPressed() 
         {
-            if (isAnimating == false)
+            if (isAnimating == false && isScreenOpened == true)
             {
                 StartCoroutine(SlideAnimationRoutine());
             }
@@ -104,7 +111,10 @@ namespace Game
 
         private void ClearVariableList()
         {
-           //foreach(var _interface in variableListTransform.ch)
+           for(int i = 2; i < variableListTransform.childCount; i++)
+            {
+                Destroy(variableListTransform.GetChild(i).gameObject);
+            }
         }
     }
 }
