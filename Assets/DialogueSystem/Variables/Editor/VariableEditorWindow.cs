@@ -172,21 +172,27 @@ namespace Variables.Editor
             {
                 case VariableType.INT:
                     _varDatabase.AddIntegerVariable();
+                    EditorUtility.SetDirty(_varDatabase);
+                    AssetDatabase.SaveAssetIfDirty(_varDatabase);
                 break;
                 case VariableType.FLOAT:
                     _varDatabase.AddFloatVariable();
+                    EditorUtility.SetDirty(_varDatabase);
+                    AssetDatabase.SaveAssetIfDirty(_varDatabase);
                     break;
                 case VariableType.BOOL:
                     _varDatabase.AddBooleanVariable();
+                    EditorUtility.SetDirty(_varDatabase);
+                    AssetDatabase.SaveAssetIfDirty(_varDatabase);
                     break;
             }
         }
 
         public void DeleteVariables()
         {
-            foreach(var var in integersToDelete) _varDatabase.RemoveVariable<IntegerVariableData>(var.Id);
-            foreach (var var in boolsToDelete) _varDatabase.RemoveVariable<BooleanVariableData>(var.Id);
-            foreach (var var in floatsToDelete) _varDatabase.RemoveVariable<FloatVariableData>(var.Id);
+            foreach(var var in integersToDelete) _varDatabase.RemoveVariable<IntegerVariableData>(var.ID);
+            foreach (var var in boolsToDelete) _varDatabase.RemoveVariable<BooleanVariableData>(var.ID);
+            foreach (var var in floatsToDelete) _varDatabase.RemoveVariable<FloatVariableData>(var.ID);
         }
     }
 }

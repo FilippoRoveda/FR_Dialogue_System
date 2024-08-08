@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0aa67b774faca84db8ffe6b19cb24ac, type: 3}
+  m_Name: MarcusAurelius_Relationship
+  m_EditorClassIdentifier: 
+  _assetPath: Assets/Editor/Data/Variables/Decimals/New Float Variable 2.asset
+  _name: MarcusAurelius_Relationship
+  _id: 0be5826a-89fa-431c-9b93-b32ff1ac7064
+  value: 0

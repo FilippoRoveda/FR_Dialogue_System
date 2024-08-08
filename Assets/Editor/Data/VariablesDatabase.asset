@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: VariablesDatabase
   m_EditorClassIdentifier: 
   integers:
-  - {fileID: 11400000, guid: 0046ebc1e5f45394c8d45bfee7c752b7, type: 2}
-  - {fileID: 11400000, guid: 6dd5acc4634dfda439b4979a87f0bd86, type: 2}
+  - {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
   decimals:
-  - {fileID: 11400000, guid: cfc8946f03dab79428b127eaebfef6c5, type: 2}
-  - {fileID: 11400000, guid: 1c08fa40fc886c348876fd509c9a68ce, type: 2}
+  - {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+  - {fileID: 11400000, guid: 92a93289b5f18254e937ca5e433a120d, type: 2}
+  - {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
   booleans:
-  - {fileID: 11400000, guid: 6524b0aa84fc66a48989a65e6123a492, type: 2}
-  - {fileID: 11400000, guid: 3660639426e5fcf42b27b8138ead5a49, type: 2}
+  - {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+  - {fileID: 11400000, guid: 2ff89fc9fb0de6648b7906ebe994dfd7, type: 2}
+  - {fileID: 11400000, guid: 2e506dfec0286c945bd44c7a49c41ecc, type: 2}

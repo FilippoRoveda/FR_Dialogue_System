@@ -39,7 +39,7 @@ namespace Game
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (button.enabled == false) return;
+            if (button.interactable == false) return;
 
             if (hoveredSfx != null)
             {
@@ -49,7 +49,7 @@ namespace Game
 
         public  void OnPointerClick(PointerEventData eventData)
         {
-            if (button.enabled == false) return;
+            if (button.interactable == false) return;
 
             if (pressedSfx != null)
             {

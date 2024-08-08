@@ -38,13 +38,13 @@ namespace Variables.Editor
                 string enumLine = var.Name.ToUpper();
                 enumLine= enumLine.Replace(" ", "_");
 
-                string mapKey = "{" + "VariablesKey." + enumLine + " , " + '"' + var.Id + '"' + "},\n\t\t\t";
+                string mapKey = "{" + "VariablesKey." + enumLine + " , " + '"' + var.ID + '"' + "},\n\t\t\t";
                 mapDictionaryContent += mapKey;
 
                 enumLine += "," + "\n\t\t\t";
                 enumContent += enumLine;
 
-                string intKey = "{" + '"' + var.Id + '"' + " , " + $"new IntVariable(" + '"' + var.Name + '"' + ", " + '"' + var.Id + '"' + ", " + var.Value + ")},\n\t\t\t";
+                string intKey = "{" + '"' + var.ID + '"' + " , " + $"new IntVariable(" + '"' + var.Name + '"' + ", " + '"' + var.ID + '"' + ", " + var.Value + ")},\n\t\t\t";
                 intDictionaryContent += intKey;
             }
             foreach (var var in database.GetDecimals())
@@ -52,13 +52,13 @@ namespace Variables.Editor
                 string _enum = var.Name.ToUpper();
                 _enum = _enum.Replace(" ", "_");
 
-                string mapKey = "{" + "VariablesKey." + _enum + " , " +'"' + var.Id + '"' + "},\n\t\t\t";
+                string mapKey = "{" + "VariablesKey." + _enum + " , " +'"' + var.ID + '"' + "},\n\t\t\t";
                 mapDictionaryContent += mapKey;
 
                 _enum += "," + "\n\t\t\t";
                 enumContent += _enum;
 
-                string floatKey = "{" + '"' + var.Id + '"' + " , " + $"new FloatVariable(" + '"' + var.Name + '"' + ", " + '"' + var.Id + '"' + ", " + var.Value.ToString().Replace(",",".") +'f' + ")},\n\t\t\t";
+                string floatKey = "{" + '"' + var.ID + '"' + " , " + $"new FloatVariable(" + '"' + var.Name + '"' + ", " + '"' + var.ID + '"' + ", " + var.Value.ToString().Replace(",",".") +'f' + ")},\n\t\t\t";
                 floatDictonaryContent += floatKey;
             }
             foreach (var var in database.GetBooleans())
@@ -66,13 +66,13 @@ namespace Variables.Editor
                 string _enum = var.Name.ToUpper();
                 _enum = _enum.Replace(" ", "_");
 
-                string mapKey = "{" + "VariablesKey." + _enum + " , " + '"' + var.Id + '"' + "},\n\t\t\t";
+                string mapKey = "{" + "VariablesKey." + _enum + " , " + '"' + var.ID + '"' + "},\n\t\t\t";
                 mapDictionaryContent += mapKey;
 
                 _enum += "," + "\n\t\t\t";
                 enumContent += _enum;
 
-                string boolKey = "{" + '"' + var.Id + '"' + " , " + $"new BoolVariable(" + '"' + var.Name + '"' + ", " + '"' + var.Id + '"' + ", " + var.Value.ToString().ToLower() + ")},\n\t\t\t";
+                string boolKey = "{" + '"' + var.ID + '"' + " , " + $"new BoolVariable(" + '"' + var.Name + '"' + ", " + '"' + var.ID + '"' + ", " + var.Value.ToString().ToLower() + ")},\n\t\t\t";
                 boolDictionaryContent += boolKey;
             }
 

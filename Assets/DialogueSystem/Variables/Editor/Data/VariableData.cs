@@ -5,6 +5,7 @@ namespace Variables.Editor
 {
     public class VariableData<T> : ScriptableObject
     {
+        private string _assetPath;
 
         /// <summary>
         /// The displayed name for the variable
@@ -16,20 +17,19 @@ namespace Variables.Editor
             set
             {
 #if UNITY_EDITOR
-                var previewsName = _name;
                 if (string.IsNullOrEmpty(value)) return;
                 _name = value;
 
                 var valueBackUp = Value;
                 var nameBackUp = Name;
-                var idBBackup = Id;
+                var idBBackup = ID;
 
-                string assetPath = AssetDatabase.GetAssetPath(GetInstanceID());
-                AssetDatabase.RenameAsset(assetPath, value);
+                _assetPath = AssetDatabase.GetAssetPath(GetInstanceID());
+                AssetDatabase.RenameAsset(_assetPath, value);
 
                 _name = nameBackUp;
                 Value = valueBackUp;
-                Id = idBBackup;
+                ID = idBBackup;
                 EditorUtility.SetDirty(this);
                 AssetDatabase.SaveAssetIfDirty(this);
 #endif
@@ -39,16 +39,16 @@ namespace Variables.Editor
         /// <summary>
         /// The unique identifier of the variable
         /// </summary>
-        [SerializeField] protected string id;
-        public string Id
+        [SerializeField] protected string _id;
+        public string ID
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                if (id == null) { id = value; }
+                if (_id == null) { _id = value; }
                 else
                 {
-                    id = value;
+                    _id = value;
                     EditorUtility.SetDirty(this);
                     AssetDatabase.SaveAssetIfDirty(this);
                 }

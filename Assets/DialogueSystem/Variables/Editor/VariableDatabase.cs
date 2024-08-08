@@ -30,12 +30,12 @@ namespace Variables.Editor
                 return null;
             }
 
-            variable.Id = Guid.NewGuid().ToString();
+            variable.ID = Guid.NewGuid().ToString();
             variable.Name = $"New Integer Variable {integers.Count}";
             variable.Value = 0;
 
             integers.Add(variable);
-            VariableEvents.VariableAddedToDatabase.Invoke(variable.Id);
+            VariableEvents.VariableAddedToDatabase.Invoke(variable.ID);
             return variable;
         }
 
@@ -50,12 +50,12 @@ namespace Variables.Editor
                 return null;
             }
 
-            variable.Id = Guid.NewGuid().ToString();
+            variable.ID = Guid.NewGuid().ToString();
             variable.Name = $"New Boolean Variable {booleans.Count}";
             variable.Value = false;
 
             booleans.Add(variable);
-            VariableEvents.VariableAddedToDatabase.Invoke(variable.Id);
+            VariableEvents.VariableAddedToDatabase.Invoke(variable.ID);
             return variable;
         }
 
@@ -70,12 +70,12 @@ namespace Variables.Editor
                 return null;
             }
 
-            variable.Id = Guid.NewGuid().ToString();
+            variable.ID = Guid.NewGuid().ToString();
             variable.Name = $"New Float Variable {decimals.Count}";
             variable.Value = 0.0f;
 
             decimals.Add(variable);
-            VariableEvents.VariableAddedToDatabase.Invoke(variable.Id);
+            VariableEvents.VariableAddedToDatabase.Invoke(variable.ID);
             return variable;
         }
 
@@ -118,17 +118,17 @@ namespace Variables.Editor
         {
             foreach (var variable in integers)
             {
-                if (variable.Id == id && variable is T) return variable as T;
+                if (variable.ID == id && variable is T) return variable as T;
             }
 
             foreach (var variable in decimals)
             {
-                if (variable.Id == id && variable is T) return variable as T;
+                if (variable.ID == id && variable is T) return variable as T;
             }
 
             foreach (var variable in booleans)
             {
-                if (variable.Id == id && variable is T) return variable as T;
+                if (variable.ID == id && variable is T) return variable as T;
             }
 
             return null;
