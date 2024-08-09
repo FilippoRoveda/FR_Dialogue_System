@@ -80,8 +80,11 @@ namespace DS.Runtime.Events
                     variableGeneric.SetValue(varEvent.EventValue);
                     return true;
                 case VariableEventType.ADD:
-                    if(typeof(T) == typeof(int)) (variableGeneric as IntVariable).AddValue(int.Parse(varEvent.EventValue.ToString()));
-                    else if(typeof(T) == typeof(float)) (variableGeneric as FloatVariable).AddValue(float.Parse(varEvent.EventValue.ToString()));
+                    if (typeof(T) == typeof(int)) (variableGeneric as IntVariable).AddValue(int.Parse(varEvent.EventValue.ToString()));
+                    else if (typeof(T) == typeof(float))
+                    {
+                        (variableGeneric as FloatVariable).AddValue(float.Parse(varEvent.EventValue.ToString()));
+                    }
 
                     return true;
                 case VariableEventType.MINUS:

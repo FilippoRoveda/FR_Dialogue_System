@@ -21,7 +21,7 @@ namespace Variables.Runtime
         public void SetValue(T newValue)
         {
             _value = newValue;
-            VariableEvents.VariableValueChanged?.Invoke(_name);
+            VariableEvents.VariableValueChanged?.Invoke(_id);
         }
         public void SetName(string newName)
         {
@@ -40,12 +40,12 @@ namespace Variables.Runtime
         public void AddValue(int addValue)
         {
             _value += addValue;
-            VariableEvents.VariableValueChanged?.Invoke(_name);
+            VariableEvents.VariableValueChanged?.Invoke(_id);
         }
         public void SubtractValue(int subtractingValue)
         {
             _value -= subtractingValue;
-            VariableEvents.VariableValueChanged?.Invoke(_name);
+            VariableEvents.VariableValueChanged?.Invoke(_id);
         }
     }
     [System.Serializable]
@@ -57,12 +57,12 @@ namespace Variables.Runtime
         public void AddValue(float addValue)
         {
             _value += addValue;
-            VariableEvents.VariableValueChanged?.Invoke(_name);
+            VariableEvents.VariableValueChanged?.Invoke(_id);
         }
         public void SubtractValue(float subtractingValue)
         {
             _value -= subtractingValue;
-            VariableEvents.VariableValueChanged?.Invoke(_name);
+            VariableEvents.VariableValueChanged?.Invoke(_id);
         }
     }
     [System.Serializable]

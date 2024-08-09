@@ -28,6 +28,13 @@ namespace Game
                 speechBubble.SetActive(true);
             }
         }
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.tag == "Player" && zoneEnabled && speechBubble.activeInHierarchy == false)
+            {
+                speechBubble.SetActive(true);
+            }
+        }
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.tag == "Player")

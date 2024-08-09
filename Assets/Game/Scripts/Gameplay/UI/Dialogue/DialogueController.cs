@@ -108,7 +108,7 @@ namespace Game
             dialogueInterface.SetActive(false);
         }
 
-        public void OnChoiceSelected(DialogueSO nextDialogue)
+        public void OnChoiceSelected(BaseDialogueSO nextDialogue)
         {
             Debug.Log($"Next dialogue pressed: {nextDialogue.DialogueName}");
             UpdateInterfaceRoutine(nextDialogue);
@@ -126,6 +126,7 @@ namespace Game
 
         public IEnumerator GoNextDialogue(BaseDialogueSO dialogue) 
         {
+            Debug.Log($"Loading in the coroutine the node{dialogue.DialogueName} of type {dialogue.DialogueType}");
             ClearFields();
 
             currentDialogue = dialogue;
@@ -151,12 +152,7 @@ namespace Game
                         Debug.Log("To implement event call");
                     }
                     variableEventsHandler.ExecuteEvents(eventDialogue.VariableEvents);
-                    yield break;
-
-                case  DialogueType.End:
-                    endButton.gameObject.SetActive(true);
-                    yield break;
-
+                    break;
             }
 
 
@@ -172,7 +168,8 @@ namespace Game
             textTypingCoroutine = StartCoroutine(dialogueText.GetDiaplayTextRoutine());
             yield return textTypingCoroutine;
 
-            SetupChoices((DialogueSO)currentDialogue);
+            if(currentDialogue.DialogueType != DialogueType.End) SetupChoices((DialogueSO)currentDialogue);
+            else if(currentDialogue.DialogueType == DialogueType.End) endButton.gameObject.SetActive(true);
         }
         public void ClearFields()
         {

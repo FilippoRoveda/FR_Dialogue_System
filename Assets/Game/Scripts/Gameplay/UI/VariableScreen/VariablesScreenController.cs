@@ -40,7 +40,7 @@ namespace Game
         }
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) == true && isAnimating == false)
+            if (Input.GetKeyDown(KeyCode.Tab) == true && isAnimating == false)
             {
                 StartCoroutine(SlideAnimationRoutine());
             }

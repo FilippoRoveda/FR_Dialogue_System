@@ -91,13 +91,20 @@ namespace Game
             if (launchedDialogueID == endedDialogueID)
             {
                 var endingDialogue = availableDialogues.Find(x => x.DialogueID == launchedDialogueID);
-                if(endingDialogue == null)
+                if (endingDialogue == null)
                 {
 #if UNITY_EDITOR
                     Debug.LogError($"Dialogue with ID: {launchedDialogueID} has not been founded in this talk component availables dialogues.\nEven if the lanchedDialogueID was matching.");
 #endif
                 }
-                else if (couldBeRepeated == false) availableDialogues.Remove(endingDialogue);
+                else if (couldBeRepeated == false)
+                {
+                    availableDialogues.Remove(endingDialogue);
+                    if (availableDialogues.Count == 0)
+                    {
+                        DisableTalks();
+                    }
+                }
                 else
                 {
                     availableDialogues.Remove(endingDialogue);

@@ -20,7 +20,7 @@ namespace Game
 #if UNITY_EDITOR
         [IsVisible(false)]
 #endif 
-        public UnityEvent<DialogueSO> ChoiceSelected = new UnityEvent<DialogueSO>();
+        public UnityEvent<BaseDialogueSO> ChoiceSelected = new UnityEvent<BaseDialogueSO>();
 
         #region Unity callbacks
         private void OnEnable()
@@ -56,7 +56,7 @@ namespace Game
         {
             DisableButton();
             Debug.Log("Choice button pressed going to " + holdedChoice.NextDialogue.DialogueName);
-            //ChoiceSelected?.Invoke(holdedChoice.NextDialogue as DialogueSO);
+            ChoiceSelected?.Invoke(holdedChoice.NextDialogue as BaseDialogueSO);
         }
         public void OnLenguageChanged(LenguageType newLenguage)
         {

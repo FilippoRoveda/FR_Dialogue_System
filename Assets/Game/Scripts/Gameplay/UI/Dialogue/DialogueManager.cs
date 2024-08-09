@@ -7,7 +7,7 @@ namespace Game
 
     public class DialogueManager : Singleton<DialogueManager>
     {
-        [SerializeField] private float textsTypingSpeed = 0.04f;
+        [SerializeField] private float textsTypingSpeed = 0.08f;
         public float TextsTypingSpeed { get { return textsTypingSpeed; } }
 #if UNITY_EDITOR
         [IsInteractable(false)]

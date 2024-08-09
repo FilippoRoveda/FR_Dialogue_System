@@ -14,6 +14,7 @@ namespace Game
         [SerializeField] private List<LenguageData<string>> holdedTexts;
 
         private bool isTyping = false;
+        private bool dialogueSkipped = false;
 
         #region Unity callbacks
         private void Awake()
@@ -28,6 +29,13 @@ namespace Game
         private void OnDisable()
         {
             LenguageManager.LenguageChanged.RemoveListener(OnLenguageChanged);
+        }
+        private void Update()
+        {
+            if (isTyping == true && Input.GetKeyDown(KeyCode.Space))
+            {
+                dialogueSkipped = true;
+            }
         }
         #endregion
 
@@ -54,8 +62,10 @@ namespace Game
             
             foreach (char letter in textToDisplay)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (dialogueSkipped == true)
                 {
+                    isTyping = false;
+                    dialogueSkipped = false;
                     dialogueText.text = textToDisplay;
                     break;
                 }
