@@ -20,7 +20,18 @@ MonoBehaviour:
       che parliamo.\nOra vattene, qui il tempo gioca brutti scherzi.\nNon vedro il
       sole di domani, e se lo vedr\xF2 non ricorder\xF2 di averlo\nvisto ieri."
     LenguageType: 0
-  - Data: End Dialogue Text
+  - Data: 'Nonsense, your name is Ottaviano! Now you
+
+      I recognize, it''s not
+      the first time we''ve spoken.
+
+      Now go away, time plays tricks here.
+
+      I
+      won''t see tomorrow''s sun, and if I do I won''t remember having it
+
+      saw
+      it yesterday.'
     LenguageType: 1
   - Data: 'Ineptias, nomen tuum Ottaviano est! Nunc te
 
@@ -34,8 +45,9 @@ MonoBehaviour:
 
       heri vidi.'
     LenguageType: 2
-  - Data: 'End Dialogue Text
-
-'
+  - Data: "\xA1Tonter\xEDas, te llamas Ottaviano! Ahora tu\nLo reconozco, no es la
+      primera vez que hablamos.\nAhora vete, que aqu\xED el tiempo juega una mala
+      pasada.\nNo ver\xE9 el sol de ma\xF1ana, y si lo hago no recordar\xE9 haberlo\nLo
+      vi ayer.\n"
     LenguageType: 3
   _isRepetable: 0

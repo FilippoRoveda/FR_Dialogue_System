@@ -21,13 +21,17 @@ MonoBehaviour:
       Torna
       a parlare con me se dovessi capitare da queste parti, non ho buona memoria.'
     LenguageType: 0
-  - Data: End Dialogue Text
+  - Data: 'Nice name I must say, this conversation did not satisfy me.
+
+      Come
+      back and talk to me if you happen to be around here, I don''t have a good memory.'
     LenguageType: 1
   - Data: 'Nomen lepido dicendum est, colloquium hoc mihi non satisfecit.
 
       Redi
       et loquere ad me si forte hic sis, non bonam memoriam habeo.'
     LenguageType: 2
-  - Data: End Dialogue Text
+  - Data: "Bonito nombre, debo decir que esta conversaci\xF3n no me satisfizo.\nVuelve
+      y habla conmigo si est\xE1s por aqu\xED, no tengo buena memoria."
     LenguageType: 3
   _isRepetable: 1

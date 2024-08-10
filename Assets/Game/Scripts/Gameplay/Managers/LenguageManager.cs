@@ -4,6 +4,9 @@ using UnityEngine.Events;
 namespace Game
 {
     using DS.Runtime.Enumerations;
+    /// <summary>
+    /// Pesisten lenguage manager that handle and execute lenguage related operations and send specific events.
+    /// </summary>
     public class LenguageManager : Singleton<LenguageManager>
     {
         [SerializeField] private LenguageType currentLenguage = LenguageType.Italian;

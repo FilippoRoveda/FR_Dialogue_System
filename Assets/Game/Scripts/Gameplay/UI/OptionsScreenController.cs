@@ -14,6 +14,8 @@ namespace Game
         private bool isLenguageScreenOpened = false;
         [SerializeField] private GameObject menuScreen;
         [SerializeField] private GameObject lenguageScreen;
+        [SerializeField] private GameObject commandScreen;
+        [SerializeField] private GameObject endDemoScreen;
 
         [SerializeField] private Transform changeLenguageButtonList;
         [SerializeField] private GameObject buttonPrefab;
@@ -40,6 +42,8 @@ namespace Game
         {
             if (Input.GetKeyDown(KeyCode.Escape)) 
             {
+                if (commandScreen.gameObject.activeInHierarchy == true) OnCommandScreenButtonPressed();
+                if (lenguageScreen.gameObject.activeInHierarchy == true) OnChangeLenguageButtonPressed();
                 OnOptionButtonPressed();
             }
         }
@@ -50,6 +54,10 @@ namespace Game
         {
             isScreenOpened = !isScreenOpened;
             menuScreen.SetActive(isScreenOpened);
+        }
+        public void OnCommandScreenButtonPressed()
+        {
+            commandScreen.SetActive(!commandScreen.gameObject.activeInHierarchy);
         }
         public void OnChangeLenguageButtonPressed() 
         {
@@ -64,7 +72,7 @@ namespace Game
                 lenguageScreen.SetActive(true);
             }
         }
-        private void OnMainMenuButtonPressed() { SceneManager.LoadScene("01_MainMenu"); }
+        public void OnMainMenuButtonPressed() { SceneManager.LoadScene("01_MainMenu"); }
         private void OnQuitButtonPressed() { Application.Quit(); }
         #endregion
         private void SetupChangeLenguageScreen()
@@ -96,6 +104,11 @@ namespace Game
             lenguageScreenButton.onClick.RemoveListener(OnChangeLenguageButtonPressed);
             closeLenguageScreenButton.onClick.RemoveListener(OnChangeLenguageButtonPressed);
             quitButton.onClick.RemoveListener(OnQuitButtonPressed);
+        }
+
+        public void CompleteDemo()
+        {
+            endDemoScreen.SetActive(true);
         }
     }
 }

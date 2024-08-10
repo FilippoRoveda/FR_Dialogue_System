@@ -21,23 +21,27 @@ MonoBehaviour:
       non
       capita spesso di avere visite sai.'
     LenguageType: 0
-  - Data: Single Dialogue Text
+  - Data: 'Do you want to hear the words of an old man then,
+
+      it''s not often
+      you have visitors you know.'
     LenguageType: 1
   - Data: 'Visne igitur senex verba audire?
 
       Non saepe visitatores scis.'
     LenguageType: 2
-  - Data: Single Dialogue Text
+  - Data: "\xBFQuieres escuchar las palabras de un anciano entonces?\nNo es frecuente
+      que tengas visitas, \xBFsabes?"
     LenguageType: 3
   _choices:
   - _choiceTexts:
     - Data: Continua
       LenguageType: 0
-    - Data: Next Single Choice
+    - Data: Continues
       LenguageType: 1
     - Data: Continues
       LenguageType: 2
-    - Data: Next Single Choice
+    - Data: "contin\xFAa"
       LenguageType: 3
     _choiceID: ad4af905-f5f7-41d8-aae0-42fa8720dc23
     _nextDialogue: {fileID: 11400000, guid: d3f8cacd004287647ad4f510d27985a1, type: 2}

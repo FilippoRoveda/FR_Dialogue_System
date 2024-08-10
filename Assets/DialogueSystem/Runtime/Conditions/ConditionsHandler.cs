@@ -3,6 +3,9 @@ using UnityEngine;
 namespace DS.Runtime.Conditions
 {
     using Variables.Generated;
+    /// <summary>
+    /// Handle and solve conditions for choices and branch dialogue nodes during dialogues.
+    /// </summary>
     public class ConditionsHandler
     {
         public bool HandleConditions(DialogueConditions container)

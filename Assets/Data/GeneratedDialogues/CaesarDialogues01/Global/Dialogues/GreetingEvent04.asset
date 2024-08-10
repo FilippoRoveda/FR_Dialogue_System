@@ -18,21 +18,21 @@ MonoBehaviour:
   _texts:
   - Data: "Mi sembra di aver gi\xE0 sentito questo nome."
     LenguageType: 0
-  - Data: Event Dialogue Text
+  - Data: I feel like I've heard this name before.
     LenguageType: 1
   - Data: Sentio ut ante hoc nomen audivi.
     LenguageType: 2
-  - Data: Event Dialogue Text
+  - Data: Siento que he escuchado este nombre antes.
     LenguageType: 3
   _choices:
   - _choiceTexts:
     - Data: Tutto bene?
       LenguageType: 0
-    - Data: EventOutput
+    - Data: Everything OK?
       LenguageType: 1
     - Data: Bene omnia?
       LenguageType: 2
-    - Data: EventOutput
+    - Data: "\xBFTodo bien?"
       LenguageType: 3
     _choiceID: f01d1100-98f5-400d-8a7c-af2d795044cc
     _nextDialogue: {fileID: 11400000, guid: d3f8cacd004287647ad4f510d27985a1, type: 2}

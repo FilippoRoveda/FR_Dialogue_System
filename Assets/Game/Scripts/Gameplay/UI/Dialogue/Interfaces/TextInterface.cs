@@ -8,10 +8,14 @@ namespace Game
     using DS.Runtime.Data;
     using System.Collections;
 
+    [RequireComponent(typeof(AudioSource))]
     public class TextInterface : MonoBehaviour, IInterface
     {
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private List<LenguageData<string>> holdedTexts;
+
+
+        private AudioSource _audioSource;
 
         private bool isTyping = false;
         private bool dialogueSkipped = false;
@@ -24,6 +28,7 @@ namespace Game
         }
         private void OnEnable()
         {
+            _audioSource = GetComponent<AudioSource>();
             LenguageManager.LenguageChanged.AddListener(OnLenguageChanged);
         }
         private void OnDisable()
@@ -56,25 +61,48 @@ namespace Game
         private IEnumerator DisplayTextCoroutine()
         {
             isTyping = true;
-            dialogueText.text = "";
-
             var textToDisplay = holdedTexts.Find(x => x.LenguageType == LenguageManager.Instance.CurrentLenguage).Data;
-            
+            dialogueText.text = textToDisplay;
+            dialogueText.maxVisibleCharacters = 0;
+
             foreach (char letter in textToDisplay)
             {
                 if (dialogueSkipped == true)
                 {
                     isTyping = false;
                     dialogueSkipped = false;
-                    dialogueText.text = textToDisplay;
+                    dialogueText.maxVisibleCharacters = textToDisplay.Length;
                     break;
                 }
-                dialogueText.text += letter;
+
+                PlayTypingSound(dialogueText.maxVisibleCharacters, dialogueText.text[dialogueText.maxVisibleCharacters]);
+                dialogueText.maxVisibleCharacters++;
+
                 yield return new WaitForSeconds(DialogueManager.Instance.TextsTypingSpeed);
             }
 
             isTyping = false;
             yield return null;
+        }
+
+        private void PlayTypingSound(int currentDisplayedCharacterCount, char currentDisplayedCharacter)
+        {
+            if(currentDisplayedCharacterCount % DialogueManager.Instance.TypingSFXFrequency == 0)
+            {
+                _audioSource.Stop();
+                int hashCode = currentDisplayedCharacter.GetHashCode();
+                int randomClipIndex = hashCode % DialogueManager.Instance.TypingSFXClips.Length;
+                //int randomClipIndex = Random.Range(0, DialogueManager.Instance.TypingSFXClips.Length);
+
+                int minPitch = (int)DialogueManager.Instance.MinPitch * 100;
+                int maxPitch = (int)DialogueManager.Instance.MaxPitch * 100;
+                int pitchRange = maxPitch - minPitch;
+                if (pitchRange != 0) _audioSource.pitch = ((hashCode % pitchRange) + minPitch) / 100.0f;
+                else _audioSource.pitch = DialogueManager.Instance.MaxPitch;
+
+                _audioSource.pitch = Random.Range(DialogueManager.Instance.MinPitch, DialogueManager.Instance.MaxPitch);
+                _audioSource.PlayOneShot(DialogueManager.Instance.TypingSFXClips[randomClipIndex]);
+            }
         }
         public void ResetInterface()
         {

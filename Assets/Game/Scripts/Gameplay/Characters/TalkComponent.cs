@@ -81,7 +81,7 @@ namespace Game
                 Debug.LogWarning("Starting dialogue: " + nextDialogue.DialogueName);
     #endif
             DialogueManager.DialogueEnded.AddListener(OnDialogueEnded);
-            DialogueManager.Instance.TryStartDialogue(this, (DialogueSO)nextDialogue);
+            DialogueManager.Instance.StartDialogueRequest(this, (DialogueSO)nextDialogue);
         }
 
         private void OnDialogueEnded(string endedDialogueID, bool couldBeRepeated)

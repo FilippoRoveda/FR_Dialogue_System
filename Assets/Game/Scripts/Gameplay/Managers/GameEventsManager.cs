@@ -1,18 +1,42 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class GameEventsManager : MonoBehaviour
+public static class GameEventsManager
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public static IEnumerator ExectuteEvent(string eventContent)
     {
-        
+        return EventExecutionAction(eventContent);
+    }
+    private static IEnumerator EventExecutionAction(string eventContent)
+    {
+        if (eventContent == "EndPhase_01")
+        {
+            EndPhase_01();
+        }
+        else if (eventContent == "EndPhase_02") 
+        {
+            EndPhase_02();
+        }
+        else if (eventContent == "EndDemo") 
+        {
+            EndDemo();
+        }
+        yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    private static void EndDemo()
     {
-        
+        throw new NotImplementedException();
+    }
+
+    private static void EndPhase_02()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void EndPhase_01()
+    {
+        throw new NotImplementedException();
     }
 }

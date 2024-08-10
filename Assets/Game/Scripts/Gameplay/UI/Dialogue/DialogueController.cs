@@ -14,26 +14,34 @@ namespace Game
     public class DialogueController : MonoBehaviour
     {
         [SerializeField] private GameObject dialogueInterface;
-
+        [Space]
+        [Header("Player Area:")]
         [SerializeField] private TMP_Text playerName;
         [SerializeField] private Image playerIcon;
-
+        [Space]
+        [Header("Speaker Area:")]
         [SerializeField] private TMP_Text speakerName;
         [SerializeField] private Image speakerIcon;
-
-
+        [Space]
+        [Header("Central Area:")]
         [SerializeField] private TextInterface dialogueText;
         [SerializeField] private List<ChoiceInterface> choiceInterfaces;
-
-        [SerializeField] private Transform choicesTransform;
+        [SerializeField] private Transform choicesListTransform;
         [SerializeField] private GameObject choicePrefab;
-
         [SerializeField] private Button endButton;
-
-
+        [Space]
+        [Header("Current Running Dialogue Datas:")]
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
         [SerializeField] private TalkComponent dialogueSpeaker;
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
         [SerializeField] private BaseDialogueSO startedDialogue;
-
+#if UNITY_EDITOR
+        [IsInteractable(false)]
+#endif
         [SerializeField] private BaseDialogueSO currentDialogue;
 
         private ConditionsHandler conditionsHandler;
@@ -77,7 +85,7 @@ namespace Game
 
         private void InstantiateChoiceButton()
         {
-            var obj = Instantiate(choicePrefab, choicesTransform);
+            var obj = Instantiate(choicePrefab, choicesListTransform);
             var choice = obj.GetComponent<ChoiceInterface>();
             choiceInterfaces.Add(choice);
 
@@ -102,7 +110,7 @@ namespace Game
         {
             bool isRepetable = false;
             if (currentDialogue.DialogueType == DialogueType.End) isRepetable = ((EndDialogueSO)currentDialogue).IsRepetable;
-            DialogueManager.Instance.TryEndDialogue((DialogueSO)startedDialogue, isRepetable);
+            DialogueManager.Instance.EndDialogueRequest((DialogueSO)startedDialogue, isRepetable);
 
             ClearFields();
             dialogueInterface.SetActive(false);
