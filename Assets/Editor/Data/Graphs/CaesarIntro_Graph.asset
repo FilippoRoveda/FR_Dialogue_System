@@ -1,0 +1,1021 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: CaesarIntro_Graph
+  m_EditorClassIdentifier: 
+  _graphName: CaesarIntro
+  _groups: []
+  _dialogueNodes:
+  - _name: Single01
+    _nodeID: c01be964-9803-45d7-a72f-99b7730f349d
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 906, y: 184}
+    texts:
+    - Data: Sono felice tu abbia scelto me come tuo primo interlocutore in queste
+        oscure stanze.
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Grazie Cesare.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: b51c52d5-b40b-4dbc-96eb-ce3ecde51e6a
+      nextNodeID: dcd35c8c-0165-4a88-9119-b466f8a84d57
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single02
+    _nodeID: c309ae6c-8699-4310-887f-ca9344df2c82
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 918, y: 510}
+    texts:
+    - Data: "Vedo che ti sei gi\xE0 intrattenuto con alcuni dei miei colleghi, questo
+        mi lusinga.\nVedr\xF2 di ricordare questo tuo atteggiamento."
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Continua.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: e27295d4-99ba-4bc8-96cf-a403b3b796dc
+      nextNodeID: 164082cc-cd9d-4d60-a7a2-694581bd4834
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Start01
+    _nodeID: b22c973b-b1ba-438b-9d89-efc494c2aa1b
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 42.250004, y: 184.00003}
+    texts:
+    - Data: Benvenuto, cosa di porta in queste remote stanze?
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non so come sono finito qui.
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: f087dee7-fa0f-4ec2-a16f-bd6748264a0d
+      nextNodeID: 7b005571-21d3-4a0e-948a-8df55816bbf6
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Start02
+    _nodeID: 2f3ff5b0-39f4-4fdb-810e-b2cbec8535e7
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 42, y: 987.30005}
+    texts:
+    - Data: 'Ancora tu, piacere, non mi sono presentato, il mio nome lo puoi leggere
+
+        scritto
+        qui sopra. Dimmi cosa ti trattiene qui con noi.'
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Che intendi?
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: 93ec6150-bb9e-4ead-8717-a2b1c272aaa6
+      nextNodeID: b862e790-a5a6-4bfb-885b-4a9850cdf8ce
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multiple01
+    _nodeID: b862e790-a5a6-4bfb-885b-4a9850cdf8ce
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 778.00006, y: 972.0325}
+    texts:
+    - Data: Dove pensi di essere?
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non ne ho idea, non so nemmeno come mi chiamo.
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: 67a5d88d-ff5d-4551-ab7b-a1428b0449dc
+      nextNodeID: c9f91f2a-168c-48b8-9db0-42bcafe608cf
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: "Perch\xE8 non me lo dici tu dove ci troviamo?"
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: eafddc9f-7802-4cb4-ba4a-7f780d0e50e7
+      nextNodeID: 0e978756-5447-4ccb-b025-d764f2edadf8
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Poco importa, sono felice di essere qui.
+        LenguageType: 0
+      - Data: New choice 3
+        LenguageType: 1
+      - Data: New choice 3
+        LenguageType: 2
+      - Data: New choice 3
+        LenguageType: 3
+      choiceID: 8dea73c9-7af7-454f-8071-c81058307046
+      nextNodeID: 7d2a0eb0-1c31-4009-bc2d-a7492e5acd9e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single03
+    _nodeID: c9f91f2a-168c-48b8-9db0-42bcafe608cf
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 1493, y: 875}
+    texts:
+    - Data: "Qui c'\xE8 un solo modo per ottenere risposte. Uno di noi le conosce,
+        se ti mostrerai degno\ned in sintonia con noi, sottoponendoti al nostro giudizio
+        riceverai quel che cerchi."
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ho capito.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: b9ea5778-1124-49a5-89f3-50186b9567c5
+      nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multipl02
+    _nodeID: d8ef09c6-6947-4693-8be0-cb61737757ef
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 348.8401, y: 1820.6001}
+    texts:
+    - Data: "Vuoi che controlli se tu sia degno per la mia verit\xE0?"
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Si.
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: 0767eccc-dafa-4401-bff3-bdec8edbace0
+      nextNodeID: 0cf06336-e3b6-4f00-baa8-1f74be10855e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: No.
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: 38bd57b5-1b44-425a-bc3d-08669eaa291b
+      nextNodeID: b224dc66-a5b6-4ce7-8822-6f72c04ff4f7
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: FinalSingle
+    _nodeID: 9168679c-47e4-4c70-b110-3c3d1411ef2a
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 1386, y: 1669}
+    texts:
+    - Data: "Caro il mio Ottaviano, qui siamo bloccati a mio avviso oltre la soglia
+        della vita.\nOmbre smemorate in attesa di sparire, breve \xE8 la durata della
+        demo, e quando anche questa\nfinestra verr\xE0 chiusa ci scorderemo di aver
+        parlato. Goditi quel che hai, ora, nessuno di noi sa se sar\xE0\nqui al prossimo
+        rilascio. Stai attento."
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Grazie Cesare.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: 29878b97-fbca-474b-9e1e-9181fb770bfb
+      nextNodeID: 46b8030b-4bec-4a29-8f82-e02336be2c13
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multiple02
+    _nodeID: b224dc66-a5b6-4ce7-8822-6f72c04ff4f7
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 737, y: 2306}
+    texts:
+    - Data: Mi spiace, non sei ancora degno.
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non penso tu sia in grado di giudicarmi
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: 5b711597-2273-4862-8e4d-027a01cce281
+      nextNodeID: 9a221875-0f41-4538-b97c-a0a1be742dab
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: "Il tempo \xE8 dalla mia parte."
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: d9d270d9-b309-4bce-83a3-312ab1b467c7
+      nextNodeID: a435af68-ec4e-41bf-9c7c-807126e8912f
+      conditions:
+        intConditions:
+        - comparisonValue: 4
+          variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+          comparisonType: 2
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Sei meno calvo di quanto pensassi.
+        LenguageType: 0
+      - Data: New choice 3
+        LenguageType: 1
+      - Data: New choice 3
+        LenguageType: 2
+      - Data: New choice 3
+        LenguageType: 3
+      choiceID: 064260cf-1c33-4bcf-8b1a-49e2ba58912f
+      nextNodeID: d2485521-d68e-4e54-9678-8e3e02944630
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Start03
+    _nodeID: 4532b0a4-d7ad-4e4f-8159-ec4285ba85dd
+    _groupID: 
+    _nodeType: 2
+    _position: {x: -354.47992, y: 1821}
+    texts:
+    - Data: Eccoci dunque.
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Continua.
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: ef662387-67d6-42bc-ba49-f208b039d9a2
+      nextNodeID: ab6a7d86-47f0-4cba-bdcc-c23c4972a313
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: BadFinalSingle
+    _nodeID: f7639b5f-1729-4ecb-af20-68ff66722d6a
+    _groupID: 
+    _nodeType: 0
+    _position: {x: -127.4422, y: 2151.9995}
+    texts:
+    - Data: 'Hai oltraggiato ognuno di noi, non otterrai informazione, ma siccome
+        hai pagato
+
+        finirai la demo comunque.'
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Sono proprio scarso a giocare.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: dd75553f-d270-404b-9799-2747f67464a4
+      nextNodeID: 6da8aa55-0a3c-45e9-8b33-3dd2af30050d
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _eventNodes:
+  - _name: Event01
+    _nodeID: dcd35c8c-0165-4a88-9119-b466f8a84d57
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1573, y: 156}
+    texts:
+    - Data: "La tua gravitas aumenter\xE0 di e anche il tuo rapporto con me."
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: EventOutput
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 38ef646f-2313-4f55-8e62-b6bcb315dff9
+      nextNodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+      boolEvents: []
+  - _name: Event02
+    _nodeID: 164082cc-cd9d-4d60-a7a2-694581bd4834
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1573, y: 500.99997}
+    texts:
+    - Data: La tua relazione con me sta calando, vedi di fare attenzione.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: EventOutput
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 80ce4fe4-22ae-4b11-a610-aeac89a7d29c
+      nextNodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents:
+      - eventValue: 1
+        eventType: 2
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+      boolEvents: []
+  - _name: Event03
+    _nodeID: 0e978756-5447-4ccb-b025-d764f2edadf8
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1550, y: 1061.5}
+    texts:
+    - Data: "Perch\xE8 non sei ancora degno. Continua a migliorare e lo saprai."
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ho capito.
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 06e7a710-5f7f-4145-86fe-43badf71d6c9
+      nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents: []
+  - _name: Event04
+    _nodeID: 7d2a0eb0-1c31-4009-bc2d-a7492e5acd9e
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1550, y: 1278}
+    texts:
+    - Data: "Questa \xE8 adulazione, apprezzata devo dire, ma in giusta dose."
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: "Lo terr\xF2 a mente."
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 728490f0-d135-48a2-ba4e-35b853e92535
+      nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+      boolEvents: []
+  - _name: Event05
+    _nodeID: 9a221875-0f41-4538-b97c-a0a1be742dab
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1393, y: 2126}
+    texts:
+    - Data: "Non oserai pi\xF9 ottenere alcuna informazione da me."
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Poco importa.
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 7f93c366-0c46-4558-908a-c4f137ac2d73
+      nextNodeID: c2f9530c-086e-4cf3-86ef-5febb6cb42f2
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents:
+      - eventValue: 1
+        eventType: 0
+        variable: {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+  - _name: FinalEvent
+    _nodeID: 46b8030b-4bec-4a29-8f82-e02336be2c13
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 2023, y: 1657}
+    texts:
+    - Data: Fine della demo.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Fine.
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: d5180f94-5d93-42d0-a459-5f6a47a9f914
+      nextNodeID: 44f5fce7-07ba-469b-a9c7-8a59af5897d3
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents:
+    - {fileID: 11400000, guid: 785a7b56cbf83414a803e8047cc1977a, type: 2}
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents: []
+  - _name: Event06
+    _nodeID: a435af68-ec4e-41bf-9c7c-807126e8912f
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1393, y: 2356}
+    texts:
+    - Data: Esatto, qui il tempo non scorre frequentemente, occorre che qualcuno
+        faccia qualcosa.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: "Lo far\xF2 Cesare"
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 66868a7f-61c4-47ee-ac8d-c010a6495ee7
+      nextNodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents: []
+      boolEvents: []
+  - _name: Event07
+    _nodeID: d2485521-d68e-4e54-9678-8e3e02944630
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1416, y: 2612}
+    texts:
+    - Data: Vero?! Lo ho sempre sostenuto pure io.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Giove protegga tutti i calvi.
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 3a4a8ef1-318e-4ca2-9871-767f864997f9
+      nextNodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+      boolEvents: []
+  - _name: EndEvent
+    _nodeID: 6da8aa55-0a3c-45e9-8b33-3dd2af30050d
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 44, y: 2367}
+    texts:
+    - Data: Fine della demo.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: EventOutput
+        LenguageType: 0
+      - Data: EventOutput
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 41166299-7c19-4acb-b2be-d2df1a9ff900
+      nextNodeID: 44f5fce7-07ba-469b-a9c7-8a59af5897d3
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents:
+    - {fileID: 11400000, guid: 785a7b56cbf83414a803e8047cc1977a, type: 2}
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents: []
+  _endNodes:
+  - _name: End01
+    _nodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2106.0117, y: 404.99997}
+    texts:
+    - Data: 'Queste stanze nascondono un segreto. Uno di noi tre, giunto qui ormai
+        da molti
+
+        eoni, conosce cosa si cela in questo luogo oscuro e senza
+        tempo.'
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 0
+  - _name: End02
+    _nodeID: f8c92790-11db-4993-badc-aad7ff24baa9
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2250, y: 1019}
+    texts:
+    - Data: Torna a dare una occhiata in giro. A dopo.
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 0
+  - _name: End03
+    _nodeID: 40d46ee8-2bbe-4ae8-8346-01d28a400195
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 1393, y: 1912}
+    texts:
+    - Data: "Non sei degno, e tu sai il perch\xE8."
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - _name: End04
+    _nodeID: c2f9530c-086e-4cf3-86ef-5febb6cb42f2
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 1882, y: 2149}
+    texts:
+    - Data: Non sarai mai degno dopo questa.
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - _name: End05
+    _nodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2222, y: 2546}
+    texts:
+    - Data: "Tieni d'occhio le tue statistiche, il tre \xE8 un numero perfetto a
+        cui tutti dovrebbro tendere."
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - _name: BadEnd
+    _nodeID: 44f5fce7-07ba-469b-a9c7-8a59af5897d3
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2525.3477, y: 1669.0002}
+    texts:
+    - Data: Fine.
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 0
+  _branchNodes:
+  - _name: Branch01
+    _nodeID: 7b005571-21d3-4a0e-948a-8df55816bbf6
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 438, y: 184}
+    _conditions:
+      intConditions:
+      - comparisonValue: 0
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+        comparisonType: 0
+      floatConditions: []
+      boolConditions: []
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: f5d25e9f-6341-445d-8091-ecd823ddbd32
+      nextNodeID: c01be964-9803-45d7-a72f-99b7730f349d
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: f8f7f848-44cc-4a2a-88db-1b9029f0ccf9
+      nextNodeID: c309ae6c-8699-4310-887f-ca9344df2c82
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Branch02
+    _nodeID: 0cf06336-e3b6-4f00-baa8-1f74be10855e
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 800.84015, y: 1707.6002}
+    _conditions:
+      intConditions:
+      - comparisonValue: 3
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+        comparisonType: 3
+      floatConditions:
+      - comparisonValue: 3
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+        comparisonType: 3
+      boolConditions:
+      - comparisonValue: 0
+        variable: {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: ab2079b5-afea-4feb-9afc-5d6b392e10a2
+      nextNodeID: 9168679c-47e4-4c70-b110-3c3d1411ef2a
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: 3b7379e2-bd3b-494c-9547-79111199e11a
+      nextNodeID: 40d46ee8-2bbe-4ae8-8346-01d28a400195
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: EndBranch
+    _nodeID: ab6a7d86-47f0-4cba-bdcc-c23c4972a313
+    _groupID: 
+    _nodeType: 5
+    _position: {x: -83, y: 1812}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions:
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: 2ff89fc9fb0de6648b7906ebe994dfd7, type: 2}
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: 2e506dfec0286c945bd44c7a49c41ecc, type: 2}
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 1548c872-1c5c-4306-9f64-0a2933477451
+      nextNodeID: f7639b5f-1729-4ecb-af20-68ff66722d6a
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: 0b074a1a-b985-4f80-9d6f-da97f30b7c0c
+      nextNodeID: d8ef09c6-6947-4693-8be0-cb61737757ef
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _oldGroupsNames: []
+  _oldUngroupedNames: []
