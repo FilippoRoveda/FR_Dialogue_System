@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event02
+  m_EditorClassIdentifier: 
+  _dialogueName: Event02
+  _dialogueID: 164082cc-cd9d-4d60-a7a2-694581bd4834
+  _dialogueType: 4
+  _texts:
+  - Data: La tua relazione con me sta calando, vedi di fare attenzione.
+    LenguageType: 0
+  - Data: Your relationship with me is waning, be careful.
+    LenguageType: 1
+  - Data: Necessitudo tua apud me deficit, diligenter.
+    LenguageType: 2
+  - Data: "Tu relaci\xF3n conmigo est\xE1 menguando, ten cuidado."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: "Lo far\xF2."
+      LenguageType: 0
+    - Data: I will do it.
+      LenguageType: 1
+    - Data: faciam.
+      LenguageType: 2
+    - Data: "Lo har\xE9."
+      LenguageType: 3
+    _choiceID: 80ce4fe4-22ae-4b11-a610-aeac89a7d29c
+    _nextDialogue: {fileID: 11400000, guid: c8963186ce0dd5d43a3573814a95b45d, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents:
+    - _variableEnum: 1
+      _eventType: 2
+      _eventValue: 1
+    _boolEvents: []

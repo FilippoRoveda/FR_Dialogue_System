@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event05
+  m_EditorClassIdentifier: 
+  _dialogueName: Event05
+  _dialogueID: 9a221875-0f41-4538-b97c-a0a1be742dab
+  _dialogueType: 4
+  _texts:
+  - Data: "Non oserai pi\xF9 ottenere alcuna informazione da me."
+    LenguageType: 0
+  - Data: You won't dare get any information from me anymore.
+    LenguageType: 1
+  - Data: Non audebis ex me amplius aliquid accipere.
+    LenguageType: 2
+  - Data: "Ya no te atrever\xE1s a obtener ninguna informaci\xF3n de m\xED."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Poco importa.
+      LenguageType: 0
+    - Data: It doesn't matter.
+      LenguageType: 1
+    - Data: Nihil refert.
+      LenguageType: 2
+    - Data: No importa.
+      LenguageType: 3
+    _choiceID: 7f93c366-0c46-4558-908a-c4f137ac2d73
+    _nextDialogue: {fileID: 11400000, guid: 8424d80cf18222144805e1fd51aed139, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents: []
+    _boolEvents:
+    - _variableEnum: 4
+      _eventType: 0
+      _eventValue: 1

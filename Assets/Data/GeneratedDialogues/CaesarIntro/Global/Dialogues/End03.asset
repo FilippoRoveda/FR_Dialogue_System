@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End03
+  m_EditorClassIdentifier: 
+  _dialogueName: End03
+  _dialogueID: 40d46ee8-2bbe-4ae8-8346-01d28a400195
+  _dialogueType: 3
+  _texts:
+  - Data: "Non sei degno, e tu sai il perch\xE8."
+    LenguageType: 0
+  - Data: You are not worthy, and you know why.
+    LenguageType: 1
+  - Data: Non es dignus, et scis quare.
+    LenguageType: 2
+  - Data: "No eres digno y sabes por qu\xE9."
+    LenguageType: 3
+  _isRepetable: 1

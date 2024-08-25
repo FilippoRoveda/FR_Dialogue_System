@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: BadFinalSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: BadFinalSingle
+  _dialogueID: f7639b5f-1729-4ecb-af20-68ff66722d6a
+  _dialogueType: 0
+  _texts:
+  - Data: 'Hai oltraggiato ognuno di noi, non otterrai informazione, ma siccome hai
+      pagato
+
+      finirai la demo comunque.'
+    LenguageType: 0
+  - Data: 'You have outraged each of us, you will not get information, but since
+      you have paid
+
+      you''ll finish the demo anyway.'
+    LenguageType: 1
+  - Data: 'Violati estis unumquemque nostrum, non notitias, sed quia reddidistis
+
+      demo
+      usquam te consummare.'
+    LenguageType: 2
+  - Data: "Nos has indignado a cada uno de nosotros, no obtendr\xE1s informaci\xF3n,
+      pero como has pagado\r\nTerminar\xE1s la demostraci\xF3n de todos modos."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Sono proprio scarso a giocare.
+      LenguageType: 0
+    - Data: I'm really bad at playing.
+      LenguageType: 1
+    - Data: Sum vere malus in ludo.
+      LenguageType: 2
+    - Data: Soy muy malo jugando.
+      LenguageType: 3
+    _choiceID: dd75553f-d270-404b-9799-2747f67464a4
+    _nextDialogue: {fileID: 11400000, guid: 0d7830387a220024090c42804d33d7b7, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

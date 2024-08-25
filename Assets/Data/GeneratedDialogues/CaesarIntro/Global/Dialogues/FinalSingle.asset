@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: FinalSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: FinalSingle
+  _dialogueID: 9168679c-47e4-4c70-b110-3c3d1411ef2a
+  _dialogueType: 0
+  _texts:
+  - Data: "Caro il mio Ottaviano, qui siamo bloccati a mio avviso oltre la soglia
+      della vita.\r\nOmbre smemorate in attesa di sparire, breve \xE8 la durata della
+      demo, e quando anche questa\r\nfinestra verr\xE0 chiusa ci scorderemo di aver
+      parlato. Goditi quel che hai, ora, nessuno di noi sa se sar\xE0\r\nqui al prossimo
+      rilascio. Stai attento."
+    LenguageType: 0
+  - Data: 'My dear Octavian, here we are stuck, in my opinion, beyond the threshold
+      of life.
+
+      Forgetful shadows waiting to disappear, the duration of the
+      demo is short, and when this too
+
+      window will be closed we will forget
+      we spoke. Enjoy what you have now, none of us know what it will be
+
+      here
+      at the next release. Be careful.'
+    LenguageType: 1
+  - Data: 'Mi Octaviane, hic haeremus, ut opinor, extra vitae limen.
+
+      Umbrae
+      immemores quaerunt interitum, diuturnitas demoum brevis est, et cum hoc quoque
+
+      fenestrae
+      clausae erunt, obliviscemur locuti sumus. fruere quod nunc habes, nemo nostrum
+      quid sit futurum
+
+      hinc proximo emissio. Cave.'
+    LenguageType: 2
+  - Data: "Mi querido Octavio, aqu\xED estamos atrapados, en mi opini\xF3n, m\xE1s
+      all\xE1 del umbral de la vida.\r\nSombras olvidadizas esperando desaparecer,
+      la duraci\xF3n de la demo es corta, y cuando esta tambi\xE9n\r\nLa ventana
+      se cerrar\xE1 y olvidaremos que hablamos. Disfruta lo que tienes ahora, ninguno
+      de nosotros sabe lo que ser\xE1.\r\naqu\xED en el pr\xF3ximo lanzamiento. Ten
+      cuidado."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Grazie Cesare.
+      LenguageType: 0
+    - Data: Thanks Cesare.
+      LenguageType: 1
+    - Data: Deo gratias Cesari.
+      LenguageType: 2
+    - Data: "Gracias C\xE9sar."
+      LenguageType: 3
+    _choiceID: 29878b97-fbca-474b-9e1e-9181fb770bfb
+    _nextDialogue: {fileID: 11400000, guid: d03b9c2b6f8d1bc43bbf91d6d8559037, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

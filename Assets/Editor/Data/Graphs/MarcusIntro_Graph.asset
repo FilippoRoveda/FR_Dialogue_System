@@ -1,0 +1,1113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: MarcusIntro_Graph
+  m_EditorClassIdentifier: 
+  _graphName: MarcusIntro
+  _groups: []
+  _dialogueNodes:
+  - _name: Start01
+    _nodeID: 06e1e962-9315-49f2-a1cf-0c32f0473545
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 261, y: 547}
+    texts:
+    - Data: "Ti saluto, anche tu qui quindi. Quante volte hai gi\xE0 ricominciato?"
+      LenguageType: 0
+    - Data: Hello, you're here too. How many times have you already started over?
+      LenguageType: 1
+    - Data: Salve, tu hic quoque es. Quotiens iam coepi per?
+      LenguageType: 2
+    - Data: Hola, hic quoque es. Cocientes iam coepi per?
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Che intendi?
+        LenguageType: 0
+      - Data: What do you mean?
+        LenguageType: 1
+      - Data: Quid istuc est?
+        LenguageType: 2
+      - Data: "\xBFQu\xE9 es esto?"
+        LenguageType: 3
+      choiceID: eb9541f5-a6bf-42b5-8c05-f806e202ab40
+      nextNodeID: ab016fc5-1854-46d0-a3f0-503c58bf199e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Start02
+    _nodeID: 3b45ded7-98d0-4908-b7c9-6088c47adaa9
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 278, y: 1132}
+    texts:
+    - Data: 'Oh eccoti, ti stavo cercando, ti sei perso le mie splendide animazioni
+        di camminata ieri.
+
+        Erano proprio fantastiche.'
+      LenguageType: 0
+    - Data: 'Oh there you are, I was looking for you, you missed my gorgeous walking
+        animations yesterday.
+
+        They were just fantastic.'
+      LenguageType: 1
+    - Data: 'Oh illic es, quaerebam te, desiderabas ambulans animationes meas splendidis
+        heri.
+
+        Mox phantastici erant.'
+      LenguageType: 2
+    - Data: 'Oh illic es, quaerebam te, desibas ambulans animaciones meas splendidis
+        heri.
+
+        Mox phantastici eranant.'
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non capisco nulla di quel che dici.
+        LenguageType: 0
+      - Data: I don't understand anything you say.
+        LenguageType: 1
+      - Data: Non intellego quod dicis.
+        LenguageType: 2
+      - Data: No entiendo lo que dices.
+        LenguageType: 3
+      choiceID: b84b7b93-8f77-4439-a658-9e9e1efff514
+      nextNodeID: 8496f2a6-75c4-4c86-b1fa-c1156126797e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multiple01
+    _nodeID: 8496f2a6-75c4-4c86-b1fa-c1156126797e
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 853, y: 1112}
+    texts:
+    - Data: "Dai dimmi qualcosa, vediamo cosa accadr\xE0."
+      LenguageType: 0
+    - Data: Come on, tell me something, let's see what will happen.
+      LenguageType: 1
+    - Data: Age, dic aliquid, videamus quid futurum sit.
+      LenguageType: 2
+    - Data: Edad, dic aliquid, videamus quid futurum sit.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ti preferivo nel Gladiatore.
+        LenguageType: 0
+      - Data: I preferred you in Gladiator.
+        LenguageType: 1
+      - Data: Ego te in Gladiatore praetuli.
+        LenguageType: 2
+      - Data: Ego te en Gladiator praetuli.
+        LenguageType: 3
+      choiceID: 5db1b944-4b07-4298-97d1-6f41dc9ba517
+      nextNodeID: 6c78a0c7-6f53-45fc-9772-025a347d6558
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: "Tuo figlio sar\xE0 molto antipatico."
+        LenguageType: 0
+      - Data: Your son will be very unpleasant.
+        LenguageType: 1
+      - Data: Filius tuus valde ingratus erit.
+        LenguageType: 2
+      - Data: Filius tuus valde ingratus erit.
+        LenguageType: 3
+      choiceID: 03dbd383-f4db-4d6f-9dd8-f7744782458e
+      nextNodeID: a19c5968-97b2-41df-a064-3c777bd3f5b9
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Trovo che ci sia freschino qui.
+        LenguageType: 0
+      - Data: I find it cool here.
+        LenguageType: 1
+      - Data: Hic invenio frigus.
+        LenguageType: 2
+      - Data: Hic invenio frigus.
+        LenguageType: 3
+      choiceID: 27933e32-9811-4b0c-a8fa-43936bb65d90
+      nextNodeID: 0db6a88d-8d42-4ca6-81b8-d4079588b8e1
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single01
+    _nodeID: 0db6a88d-8d42-4ca6-81b8-d4079588b8e1
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 1421, y: 1547.4503}
+    texts:
+    - Data: "Avresti dovuto scegliere degli sprite pi\xF9 adatti."
+      LenguageType: 0
+    - Data: You should have chosen more suitable sprites.
+      LenguageType: 1
+    - Data: Mentes aptius elegisses.
+      LenguageType: 2
+    - Data: Mentes aptius elegisses.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Hai ragione.
+        LenguageType: 0
+      - Data: You are right.
+        LenguageType: 1
+      - Data: Recte dicis.
+        LenguageType: 2
+      - Data: "L\xEDnea recta."
+        LenguageType: 3
+      choiceID: 4ddb781b-60b8-4255-860c-7173e59fcd7d
+      nextNodeID: 6e3495ab-a96f-4478-9209-4dc97056a412
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single02
+    _nodeID: 6e3495ab-a96f-4478-9209-4dc97056a412
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 1922, y: 1235}
+    texts:
+    - Data: "Senti, prova a giocare un poco con le schermate e vedi se c'\xE8 qualche\r\nbug.
+        Ma ricorda, se tornerai al men\xF9 principale ci scorderemo tutti quello\r\nche
+        ci siamo detti."
+      LenguageType: 0
+    - Data: 'Look, try playing with the screens a little and see if there are any
+
+        bugs.
+        But remember, if you go back to the main menu we will all forget about that
+
+        what
+        we said to each other.'
+      LenguageType: 1
+    - Data: 'Vide, experire ludere cum pluteis paululum et vide an quae sint
+
+        cimices.
+        Sed memento, si ad tabulam principalem reverteris, omnes de illo obliviscemur
+
+        quae
+        inter se diximus.'
+      LenguageType: 2
+    - Data: "Vio, experire ludere cum pluteis paululum et vide an quae sint\r\nchinches.
+        Como recordatorio, si se invierte la tabla principal, todo quedar\xE1 olvidado.\r\nquae
+        inter se diximus."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Chiaro.
+        LenguageType: 0
+      - Data: Clear.
+        LenguageType: 1
+      - Data: Patet.
+        LenguageType: 2
+      - Data: Patet.
+        LenguageType: 3
+      choiceID: 6aae63fa-acd4-4774-8abe-00341b21c57d
+      nextNodeID: cf40156f-6c8e-404f-90e3-3fa4d982da64
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Start03
+    _nodeID: c6d2fbd8-c022-4258-b47a-ea89cc73530b
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 278, y: 1901}
+    texts:
+    - Data: Sai che mi sono appena accorto di saper parlare in molte lingue?
+      LenguageType: 0
+    - Data: Do you know that I just realized that I can speak in many languages?
+      LenguageType: 1
+    - Data: Scisne me solum sensisse me multis linguis loqui posse?
+      LenguageType: 2
+    - Data: "Scisne me only sensisse me multis linguis loqui \xBFposeo?"
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ho notato si.
+        LenguageType: 0
+      - Data: I noticed yes.
+        LenguageType: 1
+      - Data: Etiam animadverti.
+        LenguageType: 2
+      - Data: Etiam animadverti.
+        LenguageType: 3
+      choiceID: 616110e8-bb8e-45ff-bfb7-3781fd075da5
+      nextNodeID: 1ec48334-63c9-4e80-841f-b04ed6f36d98
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: BadEndSingle
+    _nodeID: 3f1b8ae9-ed34-48d0-abf5-73377fe9f78e
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 746, y: 2175}
+    texts:
+    - Data: "Mi spiace molto mio caro, sei riuscito nella difficile implresa di infastidirci
+        tutti,\r\ncome contentino la demo comunque finir\xE0 per te."
+      LenguageType: 0
+    - Data: 'I''m very sorry my dear, you managed the difficult task of annoying
+        us all,
+
+        as a sop the demo will end up for you anyway.'
+      LenguageType: 1
+    - Data: 'Doleo mi admodum, difficultatem gessisti nobis omnibus molestis;
+
+        ut
+        a summo demo pro te usquam finietur.'
+      LenguageType: 2
+    - Data: 'Doleo mi admodum, dificultadatem gessisti nobis omnibus molestis;
+
+        ut
+        a summo demo pro te usquam finietur.'
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ma io sono giapponese.
+        LenguageType: 0
+      - Data: But I'm Japanese.
+        LenguageType: 1
+      - Data: Sed Iaponica sum.
+        LenguageType: 2
+      - Data: Sed Iaponica suma.
+        LenguageType: 3
+      choiceID: 8c319a07-611f-4a30-83aa-ec76f15031fb
+      nextNodeID: 737c310a-9235-4cd5-b8e4-b5fb5a055970
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multiple02
+    _nodeID: 5b265223-5937-4b02-a1da-76db0e108753
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 1226, y: 1901}
+    texts:
+    - Data: 'Dimmi vuoi che provi a vedere se il codice ti lascia sbloccare il mio
+        dialogo
+
+        finale?'
+      LenguageType: 0
+    - Data: 'Tell me do you want me to try to see if the code lets you unlock my
+        dialogue
+
+        final?'
+      LenguageType: 1
+    - Data: 'Dic mihi vis experior ut videam si codicem permittit tibi reserare meum
+        dialogum
+
+        finalis?'
+      LenguageType: 2
+    - Data: 'Dec mihi vis experior ut videam si codicem permittit tibi reserare meum
+        dialogum
+
+        finales?'
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Si.
+        LenguageType: 0
+      - Data: Yes.
+        LenguageType: 1
+      - Data: Ita.
+        LenguageType: 2
+      - Data: Ing.
+        LenguageType: 3
+      choiceID: 8d45d5fb-55ad-4eba-9861-6a06543a27e1
+      nextNodeID: b8acf038-4f46-4824-91dd-27585b9ec8d4
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: No.
+        LenguageType: 0
+      - Data: No.
+        LenguageType: 1
+      - Data: Nec.
+        LenguageType: 2
+      - Data: "Comit\xE9 ejecutivo nacional."
+        LenguageType: 3
+      choiceID: 26fc3452-8b4f-46c8-88f0-6a6124f0458f
+      nextNodeID: 2d23df5e-19c2-431a-950d-c00c9a8e00db
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: FinalSingle
+    _nodeID: 7a8a10d6-7bfa-4e37-9220-93d8e3445163
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 2261, y: 1887}
+    texts:
+    - Data: "Splendido caro mio, ti posso solo dire che ci sono molti altri di noi
+        al di fuori del\r\nlimite della telecamera. Molte belle donne, ma purtroppo
+        questa \xE8 la demo e non\r\npuoi goder di tutto ci\xF2. Prova a passare
+        pi\xF9 tardi, magari alla prossima release si potr\xE0.\r\nAh e comunque
+        complimenti."
+      LenguageType: 0
+    - Data: 'Wonderful my dear, I can only tell you that there are many more of us
+        outside the
+
+        camera limit. Many beautiful women, but unfortunately
+        this is the demo and not
+
+        you can enjoy all this. Try to stop by
+        later, maybe the next release will be possible.
+
+        Oh and congratulations
+        anyway.'
+      LenguageType: 1
+    - Data: 'Mirum mi, tantum tibi dicere possum quod extra thema plura ex nobis
+        sunt
+
+        stricto locus Multae feminae pulchrae, sed proh dolor haec
+        est demo et not
+
+        his omnibus frui potes. Conare postea desinere,
+        fortasse altera missio poterit esse.
+
+        o et gratulor usquam.'
+      LenguageType: 2
+    - Data: "Mirum mi, Once tibi dicere possum quod extra thema plura ex nobis sunt\r\nestricto
+        locus Multae feminae pulchrae, sed proh dolor haec est demo et not\r\nSe
+        puede disfrutar de su \xF3mnibus. Conare postea desinere, fortisse alter
+        missio los alimenta.\r\no et gratulor usquam."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Grazie.
+        LenguageType: 0
+      - Data: Thank you.
+        LenguageType: 1
+      - Data: Gratias agimus tibi.
+        LenguageType: 2
+      - Data: Gratias agimus tibi.
+        LenguageType: 3
+      choiceID: b48e6db3-a6a8-41f1-9eed-c5bcae96ac0c
+      nextNodeID: 737c310a-9235-4cd5-b8e4-b5fb5a055970
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Multiple03
+    _nodeID: 2d23df5e-19c2-431a-950d-c00c9a8e00db
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 1668, y: 2337}
+    texts:
+    - Data: Mi sembra giusto, vediamo un poco quali scelte hai a disposizione.
+      LenguageType: 0
+    - Data: It seems fair to me, let's see what choices you have available.
+      LenguageType: 1
+    - Data: Pulchrum mihi videtur, videamus quid in promptu habes electiones.
+      LenguageType: 2
+    - Data: Pulchrum mihi videtur, videamus quid in Promptu Habes Elections.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Spiegami il gioco.
+        LenguageType: 0
+      - Data: Explain the game to me.
+        LenguageType: 1
+      - Data: Ludum mihi expedi.
+        LenguageType: 2
+      - Data: Ludum mihi expedi.
+        LenguageType: 3
+      choiceID: 1b963e79-6efd-454e-8a70-63ed6de7fe91
+      nextNodeID: 91a875ac-2259-4e3a-a09b-cf6527d4e048
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Cosa ti aspetti dal futuro?
+        LenguageType: 0
+      - Data: What do you expect from the future?
+        LenguageType: 1
+      - Data: Quid de futuro exspectas?
+        LenguageType: 2
+      - Data: "\xBFCu\xE1les son las expectativas futuras?"
+        LenguageType: 3
+      choiceID: fe794f0d-3bca-4a97-988b-9d0884ae3215
+      nextNodeID: 0a6f6e0e-dbb6-4f62-8aa5-dcaf54211a33
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Hai mai pensato di fare l'usciere?
+        LenguageType: 0
+      - Data: Have you ever thought about being an usher?
+        LenguageType: 1
+      - Data: Have vos umquam de ente praeconem cogitasti?
+        LenguageType: 2
+      - Data: "\xBFAlguna vez has pensado en algo?"
+        LenguageType: 3
+      choiceID: 56f645fd-a82b-4309-ab65-f1b94f1ba3f1
+      nextNodeID: 92226233-d553-49dc-b155-f9efebe6d245
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: I tuoi colleghi sono noiosi.
+        LenguageType: 0
+      - Data: Your colleagues are boring.
+        LenguageType: 1
+      - Data: Collegi tui taedet.
+        LenguageType: 2
+      - Data: Colegios tui taedet.
+        LenguageType: 3
+      choiceID: 95b1ed9d-f329-49ed-8417-417ecdc41ed4
+      nextNodeID: 2cff94d0-9746-422a-8783-96bbcc981159
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single03
+    _nodeID: 91a875ac-2259-4e3a-a09b-cf6527d4e048
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 2251, y: 2337}
+    texts:
+    - Data: 'Semplice. Non offendere nessuno, aumenta la tua gravitas e compiaci
+        uno di noi. Poi quando
+
+        ti senti pronto vai a farti giudicare da
+        qualcuno di noi.'
+      LenguageType: 0
+    - Data: 'Simple. Don''t offend anyone, increase your gravitas and please one
+        of us. Then when
+
+        you feel ready go and be judged by one of us.'
+      LenguageType: 1
+    - Data: 'Simplex. Ne aliquem offendas, auge tuam gravitas et placeat nostrum.
+        tum cum
+
+        ire sentis et iudicari per unum nostrum.'
+      LenguageType: 2
+    - Data: 'Simplex. No nos ofendas, aumenta tu seriedad y complacenos. cum
+
+        ire
+        sentis et iudicari per unum nostrum.'
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Grazie.
+        LenguageType: 0
+      - Data: Thank you.
+        LenguageType: 1
+      - Data: Gratias agimus tibi.
+        LenguageType: 2
+      - Data: Gratias agimus tibi.
+        LenguageType: 3
+      choiceID: cef63965-efd8-4ee6-8711-221b5fd8a336
+      nextNodeID: ad0c46ae-e159-4654-b279-0460097897ba
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _eventNodes:
+  - _name: Event01
+    _nodeID: 10fc6b8f-c808-4384-a5c1-3e6717b4c4af
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1179, y: 365}
+    texts:
+    - Data: 'Lascia stare, vedo che sei corso subito da me, grazie mille. Guarda
+        che begli sprite che ho.
+
+        Ti aumento leggermente la gravitas ed il
+        rapporto con me, inizi bene.'
+      LenguageType: 0
+    - Data: 'Forget it, I see you ran to me straight away, thank you very much. Look
+        at the beautiful sprites I have.
+
+        I slightly increase your gravitas
+        and relationship with me, you start off well.'
+      LenguageType: 1
+    - Data: 'Oblivisci, video te continuo ad me cucurrit, tibi valde gratias. Aspice
+        pulchras mentes quas habeo.
+
+        Ego tuam gravitatem ac necessitudinem
+        mecum paulo augeo, bene incipio.'
+      LenguageType: 2
+    - Data: "Oblivise, v\xEDdeo me sigues cucurrit, obtienes valor gratis. Aspice
+        pulchras mentes quas habeo.\r\nEgo tuam gravitatem ac necessitudinem mecum
+        paulo augeo, bene incipio."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non sto capendo.
+        LenguageType: 0
+      - Data: I'm not understanding.
+        LenguageType: 1
+      - Data: Non sum intellectus.
+        LenguageType: 2
+      - Data: Non sum intellectus.
+        LenguageType: 3
+      choiceID: 99a57de8-3f94-4f9b-b364-2ac59f4f065c
+      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+      boolEvents: []
+  - _name: Event02
+    _nodeID: 5afa46ce-7c27-4995-9408-4cd8164ba4d1
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1179, y: 673}
+    texts:
+    - Data: "Non fa nulla se sei venuto da me solo ora, l'importante \xE8 che non
+        sia ancora crushato niente.\r\nTieni un poco di influenza per aiutarti."
+      LenguageType: 0
+    - Data: 'It doesn''t matter if you''ve only come to me now, the important thing
+        is that nothing''s broken yet.
+
+        Have a little influence to help you.'
+      LenguageType: 1
+    - Data: 'Non refert si modo ad me venias, refert tamen nihil fractum esse.
+
+        Modicum
+        iuvare te vim.'
+      LenguageType: 2
+    - Data: "No denuncien de esta manera ad me venias, den\xFAncien tamen nihil fractum
+        esse.\r\nModicum iuvare te vim."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Cosa?
+        LenguageType: 0
+      - Data: What?
+        LenguageType: 1
+      - Data: Quid?
+        LenguageType: 2
+      - Data: "\xBFLibra?"
+        LenguageType: 3
+      choiceID: d274e000-a9d9-432d-abae-a7ab57443a4a
+      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents: []
+      boolEvents: []
+  - _name: Event03
+    _nodeID: 6c78a0c7-6f53-45fc-9772-025a347d6558
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1421, y: 1006}
+    texts:
+    - Data: "Mi pagarono molto di pi\xF9 per partecipare."
+      LenguageType: 0
+    - Data: They paid me a lot more to participate.
+      LenguageType: 1
+    - Data: Multum mihi dederunt ut participent.
+      LenguageType: 2
+    - Data: Multum mihi dederunt ut participante.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Chiaro.
+        LenguageType: 0
+      - Data: Clear.
+        LenguageType: 1
+      - Data: Patet.
+        LenguageType: 2
+      - Data: Patet.
+        LenguageType: 3
+      choiceID: d29d7bf2-186c-46f2-9f95-66ba1090adca
+      nextNodeID: 6e3495ab-a96f-4478-9209-4dc97056a412
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents:
+      - eventValue: 1
+        eventType: 2
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+      boolEvents: []
+  - _name: Event04
+    _nodeID: a19c5968-97b2-41df-a064-3c777bd3f5b9
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1421, y: 1257}
+    texts:
+    - Data: Su questo posso darti ragione, in pochi me lo dicono, sei coraggioso.
+      LenguageType: 0
+    - Data: I can agree with you about this, few people tell me, you are brave.
+      LenguageType: 1
+    - Data: De hoc tibi assentiri possum, pauci mihi narrant te fortes esse.
+      LenguageType: 2
+    - Data: De hoc tibi assentiri possum, pauci mihi narrant te fortes esse.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Ti ringrazio.
+        LenguageType: 0
+      - Data: I thank you.
+        LenguageType: 1
+      - Data: Gratias tibi ago.
+        LenguageType: 2
+      - Data: Hace gracias tibi.
+        LenguageType: 3
+      choiceID: 013228cb-d7dc-4648-aeb6-5f7da8496481
+      nextNodeID: 6e3495ab-a96f-4478-9209-4dc97056a412
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+      boolEvents: []
+  - _name: EndEvent
+    _nodeID: 737c310a-9235-4cd5-b8e4-b5fb5a055970
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 2827, y: 1875}
+    texts:
+    - Data: Fine della demo.
+      LenguageType: 0
+    - Data: End of the demo.
+      LenguageType: 1
+    - Data: Finis demo.
+      LenguageType: 2
+    - Data: "Demostraci\xF3n final."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Bene.
+        LenguageType: 0
+      - Data: Well.
+        LenguageType: 1
+      - Data: Bene.
+        LenguageType: 2
+      - Data: Bien.
+        LenguageType: 3
+      choiceID: 95bc3705-98c1-4197-8cc1-a38f9791fd3a
+      nextNodeID: fb8c2030-dfc3-4b4c-b074-9ac557def3fa
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents:
+    - {fileID: 11400000, guid: 785a7b56cbf83414a803e8047cc1977a, type: 2}
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents: []
+  - _name: Event05
+    _nodeID: 0a6f6e0e-dbb6-4f62-8aa5-dcaf54211a33
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 2261.0005, y: 2532.1501}
+    texts:
+    - Data: "Tieni 23 punti relazione con me, cos\xEC non potrai sbagliarti. Comunque
+        mi piacerebbe molto\r\npoter cambiare sottofondo musicale, dopo quasi 1800
+        anni con quella che senti anche tu mi sto\r\niniziando a stancare."
+      LenguageType: 0
+    - Data: 'Keep 23 relationship points with me, so you can''t go wrong. However,
+        I would like it very much
+
+        being able to change the musical background,
+        after almost 1800 years, I''m happy with the one you hear too
+
+        starting
+        to get tired.'
+      LenguageType: 1
+    - Data: 'Necessitudinem 23 mecum observa, ne errabis. Volo tamen valde
+
+        musicam
+        scaenam mutare posse, post annos fere MDCCC gaudeo uno quoque quod audis
+
+        incipiens
+        gravere.'
+      LenguageType: 2
+    - Data: 'Necessitudinem 23 mecum observa, ne errabis. Vuelo tamen valde
+
+        musicam
+        scaenam mutare posse, post annos fere MDCCC gaudeo uno quoque quod audis
+
+        incipiens
+        gravere.'
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Sei un pazzo furioso.
+        LenguageType: 0
+      - Data: You're a raving madman.
+        LenguageType: 1
+      - Data: Demens es.
+        LenguageType: 2
+      - Data: Demens, p.e.
+        LenguageType: 3
+      choiceID: cc0caa71-8457-45c0-bdc6-2f854d139f1d
+      nextNodeID: ad0c46ae-e159-4654-b279-0460097897ba
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 23
+        eventType: 1
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+      boolEvents: []
+  - _name: Event06
+    _nodeID: 92226233-d553-49dc-b155-f9efebe6d245
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 2261, y: 2881.88}
+    texts:
+    - Data: "Da piccolo sempre, poi crescendo ho capito che non faceva per me. Non
+        parliamone pi\xF9."
+      LenguageType: 0
+    - Data: Always as a child, then as I grew up I realized that it wasn't for me.
+        Let's not talk about it anymore.
+      LenguageType: 1
+    - Data: Semper ut puer, tum adolescerem, intellexi me non esse. Non amplius loqui.
+      LenguageType: 2
+    - Data: Siempre ut puer, tum adolscerem, intellexi me non esse. No amplius loqui.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Edi il passante di professione?
+        LenguageType: 0
+      - Data: Are you the professional passer-by?
+        LenguageType: 1
+      - Data: Esne professio praetereuntem?
+        LenguageType: 2
+      - Data: "\xBFEsne professio praetereuntem?"
+        LenguageType: 3
+      choiceID: fd327167-d5d5-498b-8179-291f37e8dd4f
+      nextNodeID: ad0c46ae-e159-4654-b279-0460097897ba
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents:
+      - eventValue: 1
+        eventType: 2
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+      boolEvents: []
+  - _name: Event07
+    _nodeID: 2cff94d0-9746-422a-8783-96bbcc981159
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 2264, y: 3133}
+    texts:
+    - Data: Mi sa che ti hanno sentito.
+      LenguageType: 0
+    - Data: I think they heard you.
+      LenguageType: 1
+    - Data: Audivisse te arbitror.
+      LenguageType: 2
+    - Data: "Audivisse al \xE1rbitro."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Continua.
+        LenguageType: 0
+      - Data: Continues.
+        LenguageType: 1
+      - Data: Perge.
+        LenguageType: 2
+      - Data: Perge.
+        LenguageType: 3
+      choiceID: 2d4081e4-43f9-449e-bf7f-2d6d4b6a5e11
+      nextNodeID: ad0c46ae-e159-4654-b279-0460097897ba
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents:
+      - eventValue: 1
+        eventType: 2
+        variable: {fileID: 11400000, guid: b827669ef10b88c4e8d050451d685b6b, type: 2}
+      - eventValue: 1
+        eventType: 2
+        variable: {fileID: 11400000, guid: 92a93289b5f18254e937ca5e433a120d, type: 2}
+      boolEvents: []
+  _endNodes:
+  - _name: End01
+    _nodeID: 18842604-fd49-4908-ab84-3ea133267e91
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 1862, y: 590.5}
+    texts:
+    - Data: 'Se ti annoia leggere velocizza pure i dialoghi. Se non sai leggere invece
+        spegni pure,
+
+        fidati non ci sono bug qua.'
+      LenguageType: 0
+    - Data: 'If you''re bored reading, speed up the dialogues too. If you don''t
+        know how to read, just turn it off,
+
+        Trust me there are no bugs here.'
+      LenguageType: 1
+    - Data: 'Si legendos es, etiam dialogos accelera. Si nescis legere, averte,
+
+        Non
+        sunt hic cimices, mihi crede.'
+      LenguageType: 2
+    - Data: "S\xED legendos es, los di\xE1logos etiam se aceleran. Si necesitas leer,
+        \xBFlo has hecho?\r\nMihi cree que no son bichos."
+      LenguageType: 3
+    isDialogueRepetable: 0
+  - _name: End02
+    _nodeID: cf40156f-6c8e-404f-90e3-3fa4d982da64
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2404, y: 1245}
+    texts:
+    - Data: Va ora, scopri chi di noi ha le cose meno interessanti da dire.
+      LenguageType: 0
+    - Data: Go now, find out which of us has the least interesting things to say.
+      LenguageType: 1
+    - Data: Ite nunc, uter nostrum minimum interest dicere.
+      LenguageType: 2
+    - Data: "Ite nunc, uter nuestro m\xEDnimo inter\xE9s en decirlo."
+      LenguageType: 3
+    isDialogueRepetable: 0
+  - _name: End03
+    _nodeID: edf0214d-c360-4213-84eb-5c0f6be9485b
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2261, y: 2122}
+    texts:
+    - Data: Allora non puoi sbloccarlo ancora, se mi hai offeso non potrai mai.
+      LenguageType: 0
+    - Data: Then you can't unlock it again, if you have offended me you will never
+        be able to.
+      LenguageType: 1
+    - Data: Tunc iterum reserare non potes, si me offenderis, nunquam poteris.
+      LenguageType: 2
+    - Data: Tunc iterum reserare non potes, si me ofendeis, nunquam possibilis.
+      LenguageType: 3
+    isDialogueRepetable: 1
+  - _name: FinalEnd
+    _nodeID: fb8c2030-dfc3-4b4c-b074-9ac557def3fa
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 3233, y: 1901}
+    texts:
+    - Data: Fine.
+      LenguageType: 0
+    - Data: End.
+      LenguageType: 1
+    - Data: Finem.
+      LenguageType: 2
+    - Data: Bien.
+      LenguageType: 3
+    isDialogueRepetable: 0
+  - _name: End04
+    _nodeID: ad0c46ae-e159-4654-b279-0460097897ba
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 2994.8503, y: 2717}
+    texts:
+    - Data: Torna quando vuoi dai. Non ho molto da fare.
+      LenguageType: 0
+    - Data: Come back whenever you want, come on. I don't have much to do.
+      LenguageType: 1
+    - Data: Redi dum voles, age. Non multum agimus.
+      LenguageType: 2
+    - Data: Redi dum topillos, edad. Agimus no multum.
+      LenguageType: 3
+    isDialogueRepetable: 1
+  _branchNodes:
+  - _name: Branch01
+    _nodeID: ab016fc5-1854-46d0-a3f0-503c58bf199e
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 698, y: 547}
+    _conditions:
+      intConditions:
+      - comparisonValue: 0
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+        comparisonType: 0
+      floatConditions: []
+      boolConditions: []
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 16f5cea3-7f79-49f0-8b1a-580f8fa111b0
+      nextNodeID: 10fc6b8f-c808-4384-a5c1-3e6717b4c4af
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: 28a35868-fa21-45bd-995e-6370b727762c
+      nextNodeID: 5afa46ce-7c27-4995-9408-4cd8164ba4d1
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: EndBranch
+    _nodeID: 1ec48334-63c9-4e80-841f-b04ed6f36d98
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 746, y: 1901}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions:
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: 2ff89fc9fb0de6648b7906ebe994dfd7, type: 2}
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: 2e506dfec0286c945bd44c7a49c41ecc, type: 2}
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 352ab213-b439-4912-8b2c-14b970de15d8
+      nextNodeID: 3f1b8ae9-ed34-48d0-abf5-73377fe9f78e
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: 846c6995-2947-40ff-8d87-3fd74fbec6ac
+      nextNodeID: 5b265223-5937-4b02-a1da-76db0e108753
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Branch02
+    _nodeID: b8acf038-4f46-4824-91dd-27585b9ec8d4
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 1780, y: 1926}
+    _conditions:
+      intConditions:
+      - comparisonValue: 3
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+        comparisonType: 3
+      floatConditions:
+      - comparisonValue: 3
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
+        comparisonType: 3
+      boolConditions:
+      - comparisonValue: 0
+        variable: {fileID: 11400000, guid: 2e506dfec0286c945bd44c7a49c41ecc, type: 2}
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 6a5669fa-51d1-4306-bf96-ea3d12e93339
+      nextNodeID: 7a8a10d6-7bfa-4e37-9220-93d8e3445163
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: dae8dd5f-062e-486e-900c-66f960579ebe
+      nextNodeID: edf0214d-c360-4213-84eb-5c0f6be9485b
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _oldGroupsNames: []
+  _oldUngroupedNames: []

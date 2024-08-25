@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start03
+  m_EditorClassIdentifier: 
+  _dialogueName: Start03
+  _dialogueID: 4532b0a4-d7ad-4e4f-8159-ec4285ba85dd
+  _dialogueType: 2
+  _texts:
+  - Data: Eccoci dunque.
+    LenguageType: 0
+  - Data: So here we are.
+    LenguageType: 1
+  - Data: Hic itaque sumus.
+    LenguageType: 2
+  - Data: "As\xED que aqu\xED estamos."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Continua.
+      LenguageType: 0
+    - Data: Continues.
+      LenguageType: 1
+    - Data: Prosequitur.
+      LenguageType: 2
+    - Data: "Contin\xFAa."
+      LenguageType: 3
+    _choiceID: ef662387-67d6-42bc-ba49-f208b039d9a2
+    _nextDialogue: {fileID: 11400000, guid: b1ba93ea53ed37741870b8d99445897b, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

@@ -1,0 +1,85 @@
+Guid ID,Dialogue/Choice Name,Italian,English,Latin,Spanish
+
+b22c973b-b1ba-438b-9d89-efc494c2aa1b,Start01,"Benvenuto, cosa di porta in queste remote stanze?","Welcome, what do you bring to these remote rooms?","Suscipe, quid affers ad haec remota conclavia?","Bienvenido, ¿qué traes a estas salas remotas?"
+f087dee7-fa0f-4ec2-a16f-bd6748264a0d,_____Start01 Choice [1],Non so come sono finito qui.,I don't know how I ended up here.,Nescio quomodo hic finierim.,No sé cómo terminé aquí.
+2f3ff5b0-39f4-4fdb-810e-b2cbec8535e7,Start02,"Ancora tu, piacere, non mi sono presentato, il mio nome lo puoi leggere
+scritto qui sopra. Dimmi cosa ti trattiene qui con noi.","You again, please, I didn't introduce myself, you can read my name
+written above. Tell me what's keeping you here with us.","Tu iterum, quaeso, me non introduxi, nomen meum legere potes
+supra scriptum. Dic mihi quid hic te agat nobiscum.","Tú otra vez, por favor, no me presenté, puedes leer mi nombre.
+escrito arriba. Dime qué te mantiene aquí con nosotros."
+93ec6150-bb9e-4ead-8717-a2b1c272aaa6,_____Start02 Choice [1],Che intendi?,What do you mean?,Quid istuc est?,¿Qué quieres decir?
+c01be964-9803-45d7-a72f-99b7730f349d,Single01,Sono felice tu abbia scelto me come tuo primo interlocutore in queste oscure stanze.,I'm glad you chose me as your first interlocutor in these dark rooms.,Gaudeo te me in his obscuris cubiculis primum interlocutorem elegisse.,Me alegra que me hayas elegido como tu primer interlocutor en estos cuartos oscuros.
+b51c52d5-b40b-4dbc-96eb-ce3ecde51e6a,_____Single01 Choice [1],Grazie Cesare.,Thanks Cesare.,Deo gratias Cesari.,Gracias César.
+c309ae6c-8699-4310-887f-ca9344df2c82,Single02,"Vedo che ti sei già intrattenuto con alcuni dei miei colleghi, questo mi lusinga.
+Vedrò di ricordare questo tuo atteggiamento.","I see that you have already met with some of my colleagues, this flatters me.
+I'll try to remember this attitude of yours.","Video te iam cum quibusdam collegis convenire, hoc mihi blanditur.
+Experiar huius habitus tui meminisse.","Veo que ya te has reunido con algunos de mis compañeros, esto me halaga.
+Intentaré recordar esta actitud tuya."
+e27295d4-99ba-4bc8-96cf-a403b3b796dc,_____Single02 Choice [1],Continua.,Continues.,Prosequitur.,Continúa.
+b862e790-a5a6-4bfb-885b-4a9850cdf8ce,Multiple01,Dove pensi di essere?,Where do you think you are?,Ubi te esse putas?,¿Dónde crees que estás?
+67a5d88d-ff5d-4551-ab7b-a1428b0449dc,_____Multiple01 Choice [1],"Non ne ho idea, non so nemmeno come mi chiamo.","I have no idea, I don't even know my name.","Nescio, nomen ne novi quidem.","No tengo idea, ni siquiera sé mi nombre."
+eafddc9f-7802-4cb4-ba4a-7f780d0e50e7,_____Multiple01 Choice [2],Perchè non me lo dici tu dove ci troviamo?,Why don't you tell me where we are?,Cur non indicas ubi sumus?,¿Por qué no me dices dónde estamos?
+8dea73c9-7af7-454f-8071-c81058307046,_____Multiple01 Choice [3],"Poco importa, sono felice di essere qui.","It doesn't matter, I'm happy to be here.","Nihil refert, me beatum hic esse.","No importa, estoy feliz de estar aquí."
+c9f91f2a-168c-48b8-9db0-42bcafe608cf,Single03,"Qui c'è un solo modo per ottenere risposte. Uno di noi le conosce, se ti mostrerai degno
+ed in sintonia con noi, sottoponendoti al nostro giudizio riceverai quel che cerchi.","There is only one way to get answers here. One of us knows them, if you prove yourself worthy
+and in harmony with us, by submitting to our judgment you will receive what you are looking for.","Uno tantum modo ut hic respondeas. Unus nostrum eos cognoscit, si te dignum teipsum probas
+et nobis consentaneum, judicio nostro subdendo recipies quod petis.","Aquí sólo hay una manera de obtener respuestas. Uno de nosotros los conoce, si demuestras que eres digno
+y en armonía con nosotros, sometiéndote a nuestro criterio recibirás lo que buscas."
+b9ea5778-1124-49a5-89f3-50186b9567c5,_____Single03 Choice [1],Ho capito.,I understand.,Intelligo.,Entiendo.
+d8ef09c6-6947-4693-8be0-cb61737757ef,Multiple02,Vuoi che controlli se tu sia degno per la mia verità?,Do you want me to check if you are worthy for my truth?,Vis me reprehendere si dignus es veritate mea?,¿Quieres que compruebe si eres digno de mi verdad?
+0767eccc-dafa-4401-bff3-bdec8edbace0,_____Multiple02 Choice [1],Si.,Yes.,Ita.,Sí.
+38bd57b5-1b44-425a-bc3d-08669eaa291b,_____Multiple02 Choice [2],No.,No.,Nec.,No.
+9168679c-47e4-4c70-b110-3c3d1411ef2a,FinalSingle,"Caro il mio Ottaviano, qui siamo bloccati a mio avviso oltre la soglia della vita.
+Ombre smemorate in attesa di sparire, breve è la durata della demo, e quando anche questa
+finestra verrà chiusa ci scorderemo di aver parlato. Goditi quel che hai, ora, nessuno di noi sa se sarà
+qui al prossimo rilascio. Stai attento.","My dear Octavian, here we are stuck, in my opinion, beyond the threshold of life.
+Forgetful shadows waiting to disappear, the duration of the demo is short, and when this too
+window will be closed we will forget we spoke. Enjoy what you have now, none of us know what it will be
+here at the next release. Be careful.","Mi Octaviane, hic haeremus, ut opinor, extra vitae limen.
+Umbrae immemores quaerunt interitum, diuturnitas demoum brevis est, et cum hoc quoque
+fenestrae clausae erunt, obliviscemur locuti sumus. fruere quod nunc habes, nemo nostrum quid sit futurum
+hinc proximo emissio. Cave.","Mi querido Octavio, aquí estamos atrapados, en mi opinión, más allá del umbral de la vida.
+Sombras olvidadizas esperando desaparecer, la duración de la demo es corta, y cuando esta también
+La ventana se cerrará y olvidaremos que hablamos. Disfruta lo que tienes ahora, ninguno de nosotros sabe lo que será.
+aquí en el próximo lanzamiento. Ten cuidado."
+29878b97-fbca-474b-9e1e-9181fb770bfb,_____FinalSingle Choice [1],Grazie Cesare.,Thanks Cesare.,Deo gratias Cesari.,Gracias César.
+b224dc66-a5b6-4ce7-8822-6f72c04ff4f7,Multiple03,"Mi spiace, non sei ancora degno.","Sorry, you're not worthy yet.","Ignosce, sis tamen dignus.","Lo siento, todavía no eres digno."
+5b711597-2273-4862-8e4d-027a01cce281,_____Multiple03 Choice [1],Non penso tu sia in grado di giudicarmi,I don't think you're capable of judging me,Non puto te posse me diiudicare,No creo que seas capaz de juzgarme
+d9d270d9-b309-4bce-83a3-312ab1b467c7,_____Multiple03 Choice [2],Il tempo è dalla mia parte.,Time is on my side.,Tempus est ista.,El tiempo está de mi lado.
+064260cf-1c33-4bcf-8b1a-49e2ba58912f,_____Multiple03 Choice [3],Sei meno calvo di quanto pensassi.,You're less bald than I thought.,Minus calvus es quam cogitavi.,Eres menos calvo de lo que pensaba.
+4532b0a4-d7ad-4e4f-8159-ec4285ba85dd,Start03,Eccoci dunque.,So here we are.,Hic itaque sumus.,Así que aquí estamos.
+ef662387-67d6-42bc-ba49-f208b039d9a2,_____Start03 Choice [1],Continua.,Continues.,Prosequitur.,Continúa.
+f7639b5f-1729-4ecb-af20-68ff66722d6a,BadFinalSingle,"Hai oltraggiato ognuno di noi, non otterrai informazione, ma siccome hai pagato
+finirai la demo comunque.","You have outraged each of us, you will not get information, but since you have paid
+you'll finish the demo anyway.","Violati estis unumquemque nostrum, non notitias, sed quia reddidistis
+demo usquam te consummare.","Nos has indignado a cada uno de nosotros, no obtendrás información, pero como has pagado
+Terminarás la demostración de todos modos."
+dd75553f-d270-404b-9799-2747f67464a4,_____BadFinalSingle Choice [1],Sono proprio scarso a giocare.,I'm really bad at playing.,Sum vere malus in ludo.,Soy muy malo jugando.
+dcd35c8c-0165-4a88-9119-b466f8a84d57,Event01,La tua gravitas aumenterà di e anche il tuo rapporto con me.,Your gravitas will increase and so will your relationship with me.,Gravitas tua augebit ac necessitudinem tuam mecum faciet.,Tu seriedad aumentará y también tu relación conmigo.
+38ef646f-2313-4f55-8e62-b6bcb315dff9,_____Event01 Choice [1],Interessante.,Interesting.,GRATIS.,Interesante.
+164082cc-cd9d-4d60-a7a2-694581bd4834,Event02,"La tua relazione con me sta calando, vedi di fare attenzione.","Your relationship with me is waning, be careful.","Necessitudo tua apud me deficit, diligenter.","Tu relación conmigo está menguando, ten cuidado."
+80ce4fe4-22ae-4b11-a610-aeac89a7d29c,_____Event02 Choice [1],Lo farò.,I will do it.,faciam.,Lo haré.
+0e978756-5447-4ccb-b025-d764f2edadf8,Event03,Perchè non sei ancora degno. Continua a migliorare e lo saprai.,Because you are not worthy yet. Keep improving and you'll know.,Quia dignissimos sed. Melius habe et scies.,Porque todavía no eres digno. Sigue mejorando y lo sabrás.
+06e7a710-5f7f-4145-86fe-43badf71d6c9,_____Event03 Choice [1],Ho capito.,I understand.,Intelligo.,Entiendo.
+7d2a0eb0-1c31-4009-bc2d-a7492e5acd9e,Event04,"Questa è adulazione, apprezzata devo dire, ma in giusta dose.","This is flattery, appreciated I must say, but in the right amount.","Haec est assentatio, recte dicendi, sed in tantum.","Esto es un halago, apreciado, debo decir, pero en la cantidad justa."
+728490f0-d135-48a2-ba4e-35b853e92535,_____Event04 Choice [1],Lo terrò a mente.,I'll keep that in mind.,Id in animo habebo.,Lo tendré en cuenta.
+9a221875-0f41-4538-b97c-a0a1be742dab,Event05,Non oserai più ottenere alcuna informazione da me.,You won't dare get any information from me anymore.,Non audebis ex me amplius aliquid accipere.,Ya no te atreverás a obtener ninguna información de mí.
+7f93c366-0c46-4558-908a-c4f137ac2d73,_____Event05 Choice [1],Poco importa.,It doesn't matter.,Nihil refert.,No importa.
+46b8030b-4bec-4a29-8f82-e02336be2c13,FinalEvent,Fine della demo.,End of the demo.,Finis demo.,Fin de la demostración.
+d5180f94-5d93-42d0-a459-5f6a47a9f914,_____FinalEvent Choice [1],Fine.,End.,Finem.,Fin.
+a435af68-ec4e-41bf-9c7c-807126e8912f,Event06,"Esatto, qui il tempo non scorre frequentemente, occorre che qualcuno faccia qualcosa.","That's right, time doesn't pass frequently here, someone needs to do something.","Iustum est, tempus hic saepe non transit, aliquis ad aliquid faciendum indiget.","Así es, aquí el tiempo no pasa frecuentemente, alguien necesita hacer algo."
+66868a7f-61c4-47ee-ac8d-c010a6495ee7,_____Event06 Choice [1],Lo farò Cesare,I'll do it Caesar,faciam Caesari,lo haré césar
+d2485521-d68e-4e54-9678-8e3e02944630,Event07,Vero?! Lo ho sempre sostenuto pure io.,Real?! I've always supported him too.,Verus?! Ego illum etiam semper habui.,¡¿Real?! Yo también lo he apoyado siempre.
+3a4a8ef1-318e-4ca2-9871-767f864997f9,_____Event07 Choice [1],Giove protegga tutti i calvi.,Jupiter protect all bald people.,Juppiter calvos omnes defendet populos.,Júpiter protege a todas las personas calvas.
+6da8aa55-0a3c-45e9-8b33-3dd2af30050d,EndEvent,Fine della demo.,End of the demo.,Finis demo.,Fin de la demostración.
+41166299-7c19-4acb-b2be-d2df1a9ff900,_____EndEvent Choice [1],Fine.,End.,Finem.,Fin.
+c41e59b0-7aa3-43f0-ab8c-6ad988a22144,End01,"Queste stanze nascondono un segreto. Uno di noi tre, giunto qui ormai da molti
+eoni, conosce cosa si cela in questo luogo oscuro e senza tempo.","These rooms hide a secret. One of us three, who has come here for many years now
+eons, knows what lies in this dark and timeless place.","Haec conclavia occulta occultant. Unus e nobis tres, qui iam multos annos huc advenit
+eons, scit quid in hoc caliginoso et intempestivo loco jacet.","Estas habitaciones esconden un secreto. Uno de nosotros tres, que viene aquí desde hace muchos años.
+eones, sabe lo que hay en este lugar oscuro y atemporal."
+f8c92790-11db-4993-badc-aad7ff24baa9,End02,Torna a dare una occhiata in giro. A dopo.,Come back and take a look around. Later.,Redi et circumspice. Posterius.,Vuelve y echa un vistazo a tu alrededor. Más tarde.
+40d46ee8-2bbe-4ae8-8346-01d28a400195,End03,"Non sei degno, e tu sai il perchè.","You are not worthy, and you know why.","Non es dignus, et scis quare.",No eres digno y sabes por qué.
+c2f9530c-086e-4cf3-86ef-5febb6cb42f2,End04,Non sarai mai degno dopo questa.,You will never be worthy after this.,Dignus eris post hoc.,Nunca serás digno después de esto.
+44f5fce7-07ba-469b-a9c7-8a59af5897d3,BadEnd,Fine.,End.,Finem.,Fin.
+fd040b31-9a70-4aae-b0d6-3d8163c01ca4,End05,"Tieni d'occhio le tue statistiche, il tre è un numero perfetto a cui tutti dovrebbro tendere.","Keep an eye on your stats, three is a perfect number that everyone should strive for.","Oculi tui status, tres numerus perfectus est ut quisque studeat.","Esté atento a sus estadísticas, tres es un número perfecto por el que todos deberían esforzarse."

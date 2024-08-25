@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5611006fcc18549b777306ef39cf93, type: 3}
   m_Name: Gravitas
   m_EditorClassIdentifier: 
-  _assetPath: Assets/Editor/Data/Variables/Integers/New Integer Variable 0.asset
   _name: Gravitas
   _id: e28c3e33-034f-4cf9-9d85-8b04e083d988
-  value: 5
+  value: 0

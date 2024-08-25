@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start01
+  m_EditorClassIdentifier: 
+  _dialogueName: Start01
+  _dialogueID: b22c973b-b1ba-438b-9d89-efc494c2aa1b
+  _dialogueType: 2
+  _texts:
+  - Data: Benvenuto, cosa di porta in queste remote stanze?
+    LenguageType: 0
+  - Data: Welcome, what do you bring to these remote rooms?
+    LenguageType: 1
+  - Data: Suscipe, quid affers ad haec remota conclavia?
+    LenguageType: 2
+  - Data: "Bienvenido, \xBFqu\xE9 traes a estas salas remotas?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Non so come sono finito qui.
+      LenguageType: 0
+    - Data: I don't know how I ended up here.
+      LenguageType: 1
+    - Data: Nescio quomodo hic finierim.
+      LenguageType: 2
+    - Data: "No s\xE9 c\xF3mo termin\xE9 aqu\xED."
+      LenguageType: 3
+    _choiceID: f087dee7-fa0f-4ec2-a16f-bd6748264a0d
+    _nextDialogue: {fileID: 11400000, guid: 2f3c658b9110bb748b3c65811e7d12cf, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

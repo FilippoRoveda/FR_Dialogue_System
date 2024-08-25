@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: FinalEvent
+  m_EditorClassIdentifier: 
+  _dialogueName: FinalEvent
+  _dialogueID: 46b8030b-4bec-4a29-8f82-e02336be2c13
+  _dialogueType: 4
+  _texts:
+  - Data: Fine della demo.
+    LenguageType: 0
+  - Data: End of the demo.
+    LenguageType: 1
+  - Data: Finis demo.
+    LenguageType: 2
+  - Data: "Fin de la demostraci\xF3n."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Fine.
+      LenguageType: 0
+    - Data: End.
+      LenguageType: 1
+    - Data: Finem.
+      LenguageType: 2
+    - Data: Fin.
+      LenguageType: 3
+    _choiceID: d5180f94-5d93-42d0-a459-5f6a47a9f914
+    _nextDialogue: {fileID: 11400000, guid: 86ebd4cd02cab6f478cffc9c96d89453, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events:
+  - _eventString: EndDemo
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents: []
+    _boolEvents: []

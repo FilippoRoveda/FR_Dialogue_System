@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single01
+  m_EditorClassIdentifier: 
+  _dialogueName: Single01
+  _dialogueID: c01be964-9803-45d7-a72f-99b7730f349d
+  _dialogueType: 0
+  _texts:
+  - Data: Sono felice tu abbia scelto me come tuo primo interlocutore in queste oscure
+      stanze.
+    LenguageType: 0
+  - Data: I'm glad you chose me as your first interlocutor in these dark rooms.
+    LenguageType: 1
+  - Data: Gaudeo te me in his obscuris cubiculis primum interlocutorem elegisse.
+    LenguageType: 2
+  - Data: Me alegra que me hayas elegido como tu primer interlocutor en estos cuartos
+      oscuros.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Grazie Cesare.
+      LenguageType: 0
+    - Data: Thanks Cesare.
+      LenguageType: 1
+    - Data: Deo gratias Cesari.
+      LenguageType: 2
+    - Data: "Gracias C\xE9sar."
+      LenguageType: 3
+    _choiceID: b51c52d5-b40b-4dbc-96eb-ce3ecde51e6a
+    _nextDialogue: {fileID: 11400000, guid: baa35c08764167d49b7e47575b3bfecc, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

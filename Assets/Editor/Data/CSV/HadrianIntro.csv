@@ -1,0 +1,109 @@
+Guid ID,Dialogue/Choice Name,Italian,English,Latin,Spanish
+
+f5c4edc3-309b-4c5d-b5ed-9dff7476b5e3,Single01,"Non si hanno molte cose da fare qui, ma parlare con me per primo è stata una
+delle opzioni migliori che potevi scegliere. Ti darò un consiglio, bada bene a non offendere nessuno qui.","There aren't many things to do here, but talking to me first was one
+of the best options you could choose. I'll give you some advice, be careful not to offend anyone here.","Multa hic non sunt, sed mihi primum loqueris
+optimus bene tu eligere. Aliquid tibi dabo, cave ne quempiam offendas.","No hay muchas cosas que hacer aquí, pero hablar conmigo primero fue una de ellas.
+de las mejores opciones que podrías elegir. Te daré un consejo, ten cuidado de no ofender a nadie aquí."
+012270c6-e375-45df-9110-44b42803ea6c,_____Single01 Choice [1],Ti ringrazio.,I thank you.,Gratias tibi ago.,Te lo agradezco.
+c2b75b52-9fa4-4db6-95f5-5ad48a9e95ba,Single03,Questo non è un problema. La voce di alcuni di noi ti sarà fastidiosa tra qualche tempo.,This is not a problem. The voice of some of us will be annoying to you in some time.,"Hoc non est dubium. ""Vox aliquorum nostrum te molesta erit in aliquo tempore"".",Esto no es un problema. La voz de algunos de nosotros te resultará molesta dentro de algún tiempo.
+77e40310-47d4-49dd-ba08-772a11567f82,_____Single03 Choice [1],Ho capito.,I understand.,Intelligo.,Entiendo.
+960009e3-b09c-4ac4-b749-9ce0bad9d38a,Single02,"Non porto, ne posso provare ormai alcun rancore, ma dal canto tuo saresti dovuto venire a parlare con
+me come prima cosa appena giunto qui.","I don't bear, nor can I now hold, any grudge, but for your part, you should have come and spoken to him
+me first thing as soon as I got here.","non feram, neque nunc ullam inuidiam tenere possum, sed ex parte tua uenires et loquereris ad eum.
+me primum quam primum huc adveni.","No guardo ni puedo guardar rencor, pero por tu parte deberías haber venido a hablar con él.
+lo primero que hice tan pronto como llegué aquí."
+7b2ea2d8-0811-42a0-b8fd-887a1e1dff56,_____Single02 Choice [1],Continua.,Continues.,Prosequitur.,Continúa.
+e20226b5-9e6f-48c5-8574-e2a8f74dadd1,Start01,"Io mi chiamo Hadrianus, salute a te vagabondo, ti ricordi per
+caso come sei arrivato sin qui?","My name is Hadrianus, greetings to you wanderer, you remember for
+How did you get here?","Hadrianus mihi nomen est, tibi salutem et erranti meministi
+Quomodo huc venisti?","Mi nombre es Hadrianus, saludos a ti, vagabundo, lo recuerdas por
+¿Cómo llegaste aquí?"
+30fff6f6-2bb4-4a92-8f39-a37897c7030c,_____Start01 Choice [1],"Piacere, non riesco a ricordare nulla.","Nice to meet you, I can't remember anything.","Te noscere gaudeo, nihil memini.","Encantado de conocerte, no recuerdo nada."
+e9f6d457-c98f-4c25-80dd-c6ff6c79b4aa,Multiple01,La senti la musica?,Can you hear the music?,Musicam audire potes?,¿Puedes oír la música?
+247a7090-5689-4f17-b1c1-5d38008682d6,_____Multiple01 Choice [1],"No sono sordo, ti sto leggendo il labbiale.","No I'm deaf, I'm reading your lips.","Non sum surdus, labia tua lego.","No, estoy sordo, estoy leyendo tus labios."
+6fd553d5-9e09-4ada-a675-1929c75bd3f9,_____Multiple01 Choice [2],"Non male, ma preferisco Achille Lauro.","Not bad, but I prefer Achille Lauro.","Non malum, sed Lauro Achille mavult.","No está mal, pero prefiero a Achille Lauro."
+b0eec698-f4db-4f5f-979a-65722e328f68,_____Multiple01 Choice [3],Mi sembra una illusione pure quella.,That too seems like an illusion to me.,Hoc etiam mihi videtur simile illusio.,Eso también me parece una ilusión.
+e1603f37-6bab-4a5a-bff6-8aada31d14f7,Start02,"Eccoti di ritorno, non ti ho mai perso di vista.
+Dimmi cosa hai notato di interessante qui intorno.","Here you are back, I've never lost sight of you.
+Tell me what you've noticed that's interesting around here.","Hic tu redis, ego te nunquam perdidi.
+Dic mihi quid animadverti hoc interest circa hic.","Aquí estás de vuelta, nunca te he perdido de vista.
+Cuéntame qué has notado que sea interesante por aquí."
+fb596e4c-8b5f-4779-94b6-1e938bff6ff5,_____Start02 Choice [1],Cosa intendi?,What do you mean?,Quid istuc est?,¿Qué quieres decir?
+458692c6-4fb2-469f-a6a9-e7f44fcf4d25,Start03,Salve ancora Ottaviano.,Hello again Octavian.,Salve iterum Octavianus.,Hola de nuevo Octavio.
+3a373c68-c285-4f07-b302-fb3010e253f1,_____Start03 Choice [1],Dimmi di più.,Tell me more.,Dic mihi plura.,Cuéntame más.
+ad38092e-1ef2-4814-b5af-39d259faa7fe,FinalSingle,"I primi tra noi nessuno sa chi fossero, alcuni parlano di personaggi con 
+nomi generici e dalle fattezze quadrangolari. Ma per quanto mi riguarda non credo a queste
+storie. Per esempio, solo tu puoi muoverti qui. Altra cosa strana. Se vuoi la mia opinione qua ci
+troviamo in una scadente rappresentazione. Spero sia stato gratis l'ingresso.","The first among us no one knows who they were, some talk about characters with 
+generic names with quadrangular features. But as far as I'm concerned I don't believe in these
+stories. For example, only you can move here. Another strange thing. If you want my opinion here
+we find in a poor representation. I hope entry was free.","Primus apud nos nemo scit quinam fuerint, aliqui sermones de moribus 
+nomina generica cum lineamentis quadrangulis. Sed quod ad me attinet, non credo in illis
+fabulas. Exempli causa, solum hic movere potes. Res aliena. Si vis hic meam sententiam
+invenimus in repraesentatione pauperis. Spero liber erat ingressum.","Los primeros entre nosotros nadie sabe quienes eran, algunos hablan de personajes con 
+Nombres genéricos con características cuadrangulares. Pero en lo que a mí respecta, no creo en estos
+historias. Por ejemplo, sólo tú puedes moverte aquí. Otra cosa extraña. Si quieres mi opinión aquí.
+nos encontramos en una pobre representación. Espero que la entrada haya sido gratuita."
+ea3d7428-e6ca-4fbf-9cfe-d71f8ccf718a,_____FinalSingle Choice [1],Grazie Hadrianus.,Thanks Hadrianus.,Deo Hadriano.,Gracias Adriano.
+03418fbb-97f1-49d2-adaf-e9a7b851f891,Multiple02,"Ottaviano, devo controllare se sia giunto il momento di dirti la mia verità?.","Ottaviano, should I check if the time has come to tell you my truth?","Ottaviano, num quaeram si tempus venerit ut veritatem tibi dicam meam?","Ottaviano, ¿debería comprobar si ha llegado el momento de contarte mi verdad?"
+99b929eb-09cf-440d-9d64-9eecd50f2493,_____Multiple02 Choice [1],Si.,Yes.,Ita.,Sí.
+1b839439-4080-4aa2-be6a-957a869b8f0b,_____Multiple02 Choice [2],No.,No.,Nec.,No.
+4ac78106-76eb-4119-823f-7358f09c9688,Multiple03,Dimmi tutto.,Tell me everything.,Omnia mihi narra.,Cuéntamelo todo.
+cd91bf19-4d38-4f7e-90e3-003d45e63b81,_____Multiple03 Choice [1],"Penso che dovresti dirmi tutto quello che sai, altrimenti ti spingerò oltre il limite della mappa.","I think you should tell me everything you know, otherwise I'll push you over the edge of the map.","Censeo me omnia quae nosti indices, aliter ego te in marginem chartae impellam.","Creo que deberías decirme todo lo que sabes, de lo contrario te empujaré al borde del mapa."
+4d69b801-6532-446a-b252-d4c9e1d0c16e,_____Multiple03 Choice [2],Ti chiedo gentilmente di darmi altre informazioni.,I kindly ask you to give me more information.,Benigne te rogo ut ad me plura referas.,Les pido amablemente que me den más información.
+b5998360-4ee3-4a56-92f4-b0e0933403af,_____Multiple03 Choice [3],Hai una splendida barba.,You have a gorgeous beard.,barbam habes splendidam.,Tienes una barba preciosa.
+ef5ac068-6550-4f04-bf83-ec7bb7d783ae,BadEndingSingle,"Ti avevo avvertito di stare attento a non offendere tutti noi. Ora se non è
+ancora crushata, la demo ti porterà al suo finale.","I warned you to be careful not to offend all of us. Now if it's not
+still crushed, the demo will take you to its ending.","Monui ut caveas ne nos omnes offendas. Nunc si non
+adhuc elisa, demo te ad exitum tollet.","Te advertí que tuvieras cuidado de no ofendernos a todos. Ahora si no es así
+Aún aplastado, la demo te llevará hasta su final."
+8a353434-610b-4a54-88eb-391ad3f35f66,_____BadEndingSingle Choice [1],Next Single Choice,Next Single Choice,Una electio,Siguiente elección única
+b6dee687-1715-446b-869f-14c5084f8407,Event03,"Tu sei un folle, allontanati subito da me, stolto!","You are a fool, get away from me immediately, you fool!","Stultus es, abi a me continuo, stulte!","¡Eres un tonto, aléjate de mí inmediatamente, tonto!"
+374cf8a5-ab40-442b-a340-792144bc444a,_____Event03 Choice [1],Anche Sfera non è male.,Sfera isn't bad either.,Sfera non est malum.,Sfera tampoco está mal.
+35c86f2a-8e96-44ae-a7b2-c59b7e4f6595,Event04,"Questa osservazione ti porta sulla strada giusta, poco di vero riuscirai
+a trovare qui. Ti dirò un segreto, non provare a fare cose strane, non vorrai fare
+crushare tutto.","This observation takes you on the right path, you will achieve little that is true
+to find here. I'll tell you a secret, don't try to do strange things, you won't want to do
+crush everything.","Haec animadversio te in rectam viam accipit, parum verum assequeris
+hie invenire. Secretum dicam tibi, noli mirabilia facere, facere non vis
+comminuet omnia.","Esta observación te lleva por el camino correcto, poco lograrás eso es cierto
+para encontrar aquí. Te contaré un secreto, no intentes hacer cosas raras, no querrás hacerlas.
+aplastar todo."
+8fa85abd-b413-4d5d-ad3f-450a8340ef71,_____Event04 Choice [1],EventOutput,EventOutput,EventOutput,Salida de evento
+e7f5267c-3fc0-4ba8-8605-807b580910e4,Event01,Aumenterò la tua reputazione generale e il tuo rapporto con me ne gioverà pure.,I will increase your overall reputation and your relationship with me will benefit as well.,Ampliorem famam augebo tuamque mecum etiam proderit necessitudinem.,Aumentaré su reputación general y su relación conmigo también se beneficiará.
+1274d88c-7a84-4a68-9898-0dc010088c36,_____Event01 Choice [1],Interessante.,Interesting.,GRATIS.,Interesante.
+31343626-68d8-43ad-b54d-c84406ca8dd8,Event02,Non andremo d'accordo se continuerai così.,We won't get along if you continue like this.,Non feremus si sic pergis.,No nos llevaremos bien si continúas así.
+1bc2e116-e8d8-4fd2-a877-5db66556dcb9,_____Event02 Choice [1],Lo terrò a mente.,I'll keep that in mind.,Id in animo habebo.,Lo tendré en cuenta.
+2976cd95-2b1b-405b-b521-985de001bd72,EndEvent,Fine della demo.,End of the demo.,Finis demo.,Fin de la demostración.
+5c64cbad-cb00-4bdc-a807-237df53b2175,_____EndEvent Choice [1],Fine.,End.,Finem.,Fin.
+852d0706-434c-48cf-9017-47f65d7188e5,EndEvent00,Fine della demo.,End of the demo.,Finis demo.,Fin de la demostración.
+a95425ba-f286-48ef-bc3e-8fc2efd53876,_____EndEvent00 Choice [1],Fine,End,End,Fin
+6670036b-d50b-47b2-ab0a-60fbd3e2c1e1,Event05,Le minacce non servono qui. Non ti dirò null'altro.,Threats are useless here. I won't tell you anything else.,Minae hic inutiles sunt. Non dicam tibi aliud.,Las amenazas aquí son inútiles. No te diré nada más.
+d5f15e1a-091f-4d92-bf60-46c1f7488a03,_____Event05 Choice [1],Mi spiace.,I am sorry.,Doleo.,Lo siento.
+cb6221a2-c0ce-4821-b452-1b0250aa0be5,Event06,"La gentilezza paga tra uomini saggi. Ti svelerò un segreto. Tutte le statistiche
+posso variare, ma bada bene a non offendere nessuno, altrimenti non scoprirai
+mai la verità sua propria. Ti toccherà ricominciare, non è ancora stato implementato
+un sistema di salvataggio.","Kindness pays among wise men. I'll tell you a secret. All the statistics
+I may vary, but be careful not to offend anyone, otherwise you won't find out
+never its own truth. You will have to start again, it hasn't been implemented yet
+a rescue system.","Inter sapientes reddit benignitas. Secretum eloquar. Omnes mutant
+Variari possum, sed cave ne aliquem offendas, alioquin non invenias
+numquam verum suum. Iterum incipiendum erit, nondum tamen effectum est
+liberandi ratio.","La bondad paga entre los sabios. Te contaré un secreto. todas las estadisticas
+Puedo variar, pero ten cuidado de no ofender a nadie, de lo contrario no te enterarás.
+nunca su propia verdad. Tendrás que empezar de nuevo, aún no se ha implementado.
+un sistema de rescate."
+3f3519f7-8650-4027-8175-c1931d599aca,_____Event06 Choice [1],Ti ringrazio.,I thank you.,Gratias tibi ago.,Te lo agradezco.
+68a8d148-4904-4490-9438-ff5303f94864,Event07,"Lo ho sempre sostenuto anche io, va di moda sai? Dovresti fartela cresere pure tu.","I've always supported it too, it's fashionable you know? You should grow it too.","Ego etiam semper fauvi, suus 'carbilis scis? Crescere etiam debes.","Yo también lo he apoyado siempre, está de moda ¿sabes? Deberías cultivarlo también."
+055f0281-34a7-47a9-a7f8-73d241889532,_____Event07 Choice [1],Ci penserò.,I'll think about it.,cogitabo.,Lo pensaré.
+dc425f87-1de2-4f78-adfb-7172f07eaa07,End02,"Va ora, fai attenzione, ci sono dei permalosoni qui.","Go now, be careful, there are some touchy-feely people here.","Ite nunc, cavete, sunt hic aliqui taeterrimi.","Anda, ten cuidado, que aquí hay gente sensiblera."
+85f47f12-060b-4c4a-95c2-70b37e4b7f47,End01,"Alcuni dicono siamo tutti già morti, altri dicono che si sia sull'isola di Lost. Dal
+canto mio posso dirti che qualcuno di noi potrà dirti di più alle giuste condizioni.","Some say we are all already dead, others say we are on the island of Lost. From the
+For my part, I can tell you that some of us will be able to tell you more under the right conditions.","Alii omnes jam mortui sumus, alii nos in insula Perdita. Ex the
+Ego vero tibi dicere possum aliquos ex nostris sub rectis conditionibus plura vobis dicere posse.","Algunos dicen que ya estamos todos muertos, otros dicen que estamos en la isla de Lost. Desde
+Por mi parte, puedo decirle que algunos de nosotros podremos contarle más en las condiciones adecuadas."
+b3dfefae-b547-4d77-ab5e-8a9937cbcfa9,End03,"Non è giunto, e tu sai il percè.","He hasn't arrived, and you know why.","Non venit, et tu scis.",No ha llegado y ya sabes por qué.
+8040bd38-488a-41ad-9182-415b13207153,FinalEnd,"Fine,","End,","Finis,","Fin,"
+af92164b-d9ca-4c98-a0c3-34a7db4b0775,End04,Mah.,Meh.,Meh.,Bueno.
+0100da4b-4682-4472-9093-66950ff9eb9f,End05,E perdona se qualcuno di noi sembra ripetersi.,And forgive us if any of us seem to repeat ourselves.,Et ignosce nobis si quis nosmetipsos repetere videamur.,Y perdónanos si alguno de nosotros parece repetirnos.

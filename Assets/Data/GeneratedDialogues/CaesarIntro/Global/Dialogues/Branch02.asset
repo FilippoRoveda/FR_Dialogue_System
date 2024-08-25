@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1e80299ce761d49b14b2d72215d872, type: 3}
+  m_Name: Branch02
+  m_EditorClassIdentifier: 
+  _dialogueName: Branch02
+  _dialogueID: 0cf06336-e3b6-4f00-baa8-1f74be10855e
+  _dialogueType: 5
+  _condtitions:
+    intConditions:
+    - _variableEnum: 0
+      comparisonValue: 3
+      _comparisonType: 3
+    floatConditions:
+    - _variableEnum: 1
+      comparisonValue: 3
+      _comparisonType: 3
+    boolConditions:
+    - _variableEnum: 4
+      comparisonValue: 0
+  _choices:
+  - _choiceTexts:
+    - Data: TRUE
+      LenguageType: 0
+    - Data: TRUE
+      LenguageType: 1
+    - Data: TRUE
+      LenguageType: 2
+    - Data: TRUE
+      LenguageType: 3
+    _choiceID: ab2079b5-afea-4feb-9afc-5d6b392e10a2
+    _nextDialogue: {fileID: 11400000, guid: 6104f9f72bf02a54c9c04d2f62a10159, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: FALSE
+      LenguageType: 0
+    - Data: FALSE
+      LenguageType: 1
+    - Data: FALSE
+      LenguageType: 2
+    - Data: FALSE
+      LenguageType: 3
+    _choiceID: 3b7379e2-bd3b-494c-9547-79111199e11a
+    _nextDialogue: {fileID: 11400000, guid: e495a3b8edf10534297b757796c2f111, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

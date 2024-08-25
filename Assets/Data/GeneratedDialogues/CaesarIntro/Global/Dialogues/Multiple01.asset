@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple01
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple01
+  _dialogueID: b862e790-a5a6-4bfb-885b-4a9850cdf8ce
+  _dialogueType: 1
+  _texts:
+  - Data: Dove pensi di essere?
+    LenguageType: 0
+  - Data: Where do you think you are?
+    LenguageType: 1
+  - Data: Ubi te esse putas?
+    LenguageType: 2
+  - Data: "\xBFD\xF3nde crees que est\xE1s?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Non ne ho idea, non so nemmeno come mi chiamo.
+      LenguageType: 0
+    - Data: I have no idea, I don't even know my name.
+      LenguageType: 1
+    - Data: Nescio, nomen ne novi quidem.
+      LenguageType: 2
+    - Data: "No tengo idea, ni siquiera s\xE9 mi nombre."
+      LenguageType: 3
+    _choiceID: 67a5d88d-ff5d-4551-ab7b-a1428b0449dc
+    _nextDialogue: {fileID: 11400000, guid: 6e766758a3334a345b068f721098518a, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: "Perch\xE8 non me lo dici tu dove ci troviamo?"
+      LenguageType: 0
+    - Data: Why don't you tell me where we are?
+      LenguageType: 1
+    - Data: Cur non indicas ubi sumus?
+      LenguageType: 2
+    - Data: "\xBFPor qu\xE9 no me dices d\xF3nde estamos?"
+      LenguageType: 3
+    _choiceID: eafddc9f-7802-4cb4-ba4a-7f780d0e50e7
+    _nextDialogue: {fileID: 11400000, guid: ffd09791f9f5e0f47bad276c27e422d0, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Poco importa, sono felice di essere qui.
+      LenguageType: 0
+    - Data: It doesn't matter, I'm happy to be here.
+      LenguageType: 1
+    - Data: Nihil refert, me beatum hic esse.
+      LenguageType: 2
+    - Data: "No importa, estoy feliz de estar aqu\xED."
+      LenguageType: 3
+    _choiceID: 8dea73c9-7af7-454f-8071-c81058307046
+    _nextDialogue: {fileID: 11400000, guid: 0120bd66f02637f40a0f795251c2a14c, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event07
+  m_EditorClassIdentifier: 
+  _dialogueName: Event07
+  _dialogueID: d2485521-d68e-4e54-9678-8e3e02944630
+  _dialogueType: 4
+  _texts:
+  - Data: Vero?! Lo ho sempre sostenuto pure io.
+    LenguageType: 0
+  - Data: Real?! I've always supported him too.
+    LenguageType: 1
+  - Data: Verus?! Ego illum etiam semper habui.
+    LenguageType: 2
+  - Data: "\xA1\xBFReal?! Yo tambi\xE9n lo he apoyado siempre."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Giove protegga tutti i calvi.
+      LenguageType: 0
+    - Data: Jupiter protect all bald people.
+      LenguageType: 1
+    - Data: Juppiter calvos omnes defendet populos.
+      LenguageType: 2
+    - Data: "J\xFApiter protege a todas las personas calvas."
+      LenguageType: 3
+    _choiceID: 3a4a8ef1-318e-4ca2-9871-767f864997f9
+    _nextDialogue: {fileID: 11400000, guid: 4ea8c53b8369fa643a949294b62d78ec, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 1
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

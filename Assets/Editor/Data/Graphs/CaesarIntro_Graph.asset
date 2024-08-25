@@ -15,68 +15,6 @@ MonoBehaviour:
   _graphName: CaesarIntro
   _groups: []
   _dialogueNodes:
-  - _name: Single01
-    _nodeID: c01be964-9803-45d7-a72f-99b7730f349d
-    _groupID: 
-    _nodeType: 0
-    _position: {x: 906, y: 184}
-    texts:
-    - Data: Sono felice tu abbia scelto me come tuo primo interlocutore in queste
-        oscure stanze.
-      LenguageType: 0
-    - Data: Single Dialogue Text
-      LenguageType: 1
-    - Data: Single Dialogue Text
-      LenguageType: 2
-    - Data: Single Dialogue Text
-      LenguageType: 3
-    _choices:
-    - choiceTexts:
-      - Data: Grazie Cesare.
-        LenguageType: 0
-      - Data: Next Single Choice
-        LenguageType: 1
-      - Data: Next Single Choice
-        LenguageType: 2
-      - Data: Next Single Choice
-        LenguageType: 3
-      choiceID: b51c52d5-b40b-4dbc-96eb-ce3ecde51e6a
-      nextNodeID: dcd35c8c-0165-4a88-9119-b466f8a84d57
-      conditions:
-        intConditions: []
-        floatConditions: []
-        boolConditions: []
-  - _name: Single02
-    _nodeID: c309ae6c-8699-4310-887f-ca9344df2c82
-    _groupID: 
-    _nodeType: 0
-    _position: {x: 918, y: 510}
-    texts:
-    - Data: "Vedo che ti sei gi\xE0 intrattenuto con alcuni dei miei colleghi, questo
-        mi lusinga.\nVedr\xF2 di ricordare questo tuo atteggiamento."
-      LenguageType: 0
-    - Data: Single Dialogue Text
-      LenguageType: 1
-    - Data: Single Dialogue Text
-      LenguageType: 2
-    - Data: Single Dialogue Text
-      LenguageType: 3
-    _choices:
-    - choiceTexts:
-      - Data: Continua.
-        LenguageType: 0
-      - Data: Next Single Choice
-        LenguageType: 1
-      - Data: Next Single Choice
-        LenguageType: 2
-      - Data: Next Single Choice
-        LenguageType: 3
-      choiceID: e27295d4-99ba-4bc8-96cf-a403b3b796dc
-      nextNodeID: 164082cc-cd9d-4d60-a7a2-694581bd4834
-      conditions:
-        intConditions: []
-        floatConditions: []
-        boolConditions: []
   - _name: Start01
     _nodeID: b22c973b-b1ba-438b-9d89-efc494c2aa1b
     _groupID: 
@@ -85,21 +23,21 @@ MonoBehaviour:
     texts:
     - Data: Benvenuto, cosa di porta in queste remote stanze?
       LenguageType: 0
-    - Data: Start Dialogue Text
+    - Data: Welcome, what do you bring to these remote rooms?
       LenguageType: 1
-    - Data: Start Dialogue Text
+    - Data: Suscipe, quid affers ad haec remota conclavia?
       LenguageType: 2
-    - Data: Start Dialogue Text
+    - Data: "Bienvenido, \xBFqu\xE9 traes a estas salas remotas?"
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Non so come sono finito qui.
         LenguageType: 0
-      - Data: Starting Choice
+      - Data: I don't know how I ended up here.
         LenguageType: 1
-      - Data: Starting Choice
+      - Data: Nescio quomodo hic finierim.
         LenguageType: 2
-      - Data: Starting Choice
+      - Data: "No s\xE9 c\xF3mo termin\xE9 aqu\xED."
         LenguageType: 3
       choiceID: f087dee7-fa0f-4ec2-a16f-bd6748264a0d
       nextNodeID: 7b005571-21d3-4a0e-948a-8df55816bbf6
@@ -118,24 +56,101 @@ MonoBehaviour:
         scritto
         qui sopra. Dimmi cosa ti trattiene qui con noi.'
       LenguageType: 0
-    - Data: Start Dialogue Text
+    - Data: 'You again, please, I didn''t introduce myself, you can read my name
+
+        written
+        above. Tell me what''s keeping you here with us.'
       LenguageType: 1
-    - Data: Start Dialogue Text
+    - Data: 'Tu iterum, quaeso, me non introduxi, nomen meum legere potes
+
+        supra
+        scriptum. Dic mihi quid hic te agat nobiscum.'
       LenguageType: 2
-    - Data: Start Dialogue Text
+    - Data: "T\xFA otra vez, por favor, no me present\xE9, puedes leer mi nombre.\r\nescrito
+        arriba. Dime qu\xE9 te mantiene aqu\xED con nosotros."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Che intendi?
         LenguageType: 0
-      - Data: Starting Choice
+      - Data: What do you mean?
         LenguageType: 1
-      - Data: Starting Choice
+      - Data: Quid istuc est?
         LenguageType: 2
-      - Data: Starting Choice
+      - Data: "\xBFQu\xE9 quieres decir?"
         LenguageType: 3
       choiceID: 93ec6150-bb9e-4ead-8717-a2b1c272aaa6
       nextNodeID: b862e790-a5a6-4bfb-885b-4a9850cdf8ce
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single01
+    _nodeID: c01be964-9803-45d7-a72f-99b7730f349d
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 797.9001, y: 184.00003}
+    texts:
+    - Data: Sono felice tu abbia scelto me come tuo primo interlocutore in queste
+        oscure stanze.
+      LenguageType: 0
+    - Data: I'm glad you chose me as your first interlocutor in these dark rooms.
+      LenguageType: 1
+    - Data: Gaudeo te me in his obscuris cubiculis primum interlocutorem elegisse.
+      LenguageType: 2
+    - Data: Me alegra que me hayas elegido como tu primer interlocutor en estos cuartos
+        oscuros.
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Grazie Cesare.
+        LenguageType: 0
+      - Data: Thanks Cesare.
+        LenguageType: 1
+      - Data: Deo gratias Cesari.
+        LenguageType: 2
+      - Data: "Gracias C\xE9sar."
+        LenguageType: 3
+      choiceID: b51c52d5-b40b-4dbc-96eb-ce3ecde51e6a
+      nextNodeID: dcd35c8c-0165-4a88-9119-b466f8a84d57
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: Single02
+    _nodeID: c309ae6c-8699-4310-887f-ca9344df2c82
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 798.0001, y: 370.85004}
+    texts:
+    - Data: "Vedo che ti sei gi\xE0 intrattenuto con alcuni dei miei colleghi, questo
+        mi lusinga.\r\nVedr\xF2 di ricordare questo tuo atteggiamento."
+      LenguageType: 0
+    - Data: 'I see that you have already met with some of my colleagues, this flatters
+        me.
+
+        I''ll try to remember this attitude of yours.'
+      LenguageType: 1
+    - Data: 'Video te iam cum quibusdam collegis convenire, hoc mihi blanditur.
+
+        Experiar
+        huius habitus tui meminisse.'
+      LenguageType: 2
+    - Data: "Veo que ya te has reunido con algunos de mis compa\xF1eros, esto me
+        halaga.\r\nIntentar\xE9 recordar esta actitud tuya."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Continua.
+        LenguageType: 0
+      - Data: Continues.
+        LenguageType: 1
+      - Data: Prosequitur.
+        LenguageType: 2
+      - Data: "Contin\xFAa."
+        LenguageType: 3
+      choiceID: e27295d4-99ba-4bc8-96cf-a403b3b796dc
+      nextNodeID: 164082cc-cd9d-4d60-a7a2-694581bd4834
       conditions:
         intConditions: []
         floatConditions: []
@@ -144,25 +159,25 @@ MonoBehaviour:
     _nodeID: b862e790-a5a6-4bfb-885b-4a9850cdf8ce
     _groupID: 
     _nodeType: 1
-    _position: {x: 778.00006, y: 972.0325}
+    _position: {x: 492.79126, y: 963.91656}
     texts:
     - Data: Dove pensi di essere?
       LenguageType: 0
-    - Data: Multiple Dialogue Text
+    - Data: Where do you think you are?
       LenguageType: 1
-    - Data: Multiple Dialogue Text
+    - Data: Ubi te esse putas?
       LenguageType: 2
-    - Data: Multiple Dialogue Text
+    - Data: "\xBFD\xF3nde crees que est\xE1s?"
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Non ne ho idea, non so nemmeno come mi chiamo.
         LenguageType: 0
-      - Data: New Choice 1
+      - Data: I have no idea, I don't even know my name.
         LenguageType: 1
-      - Data: New Choice 1
+      - Data: Nescio, nomen ne novi quidem.
         LenguageType: 2
-      - Data: New Choice 1
+      - Data: "No tengo idea, ni siquiera s\xE9 mi nombre."
         LenguageType: 3
       choiceID: 67a5d88d-ff5d-4551-ab7b-a1428b0449dc
       nextNodeID: c9f91f2a-168c-48b8-9db0-42bcafe608cf
@@ -173,11 +188,11 @@ MonoBehaviour:
     - choiceTexts:
       - Data: "Perch\xE8 non me lo dici tu dove ci troviamo?"
         LenguageType: 0
-      - Data: New choice 2
+      - Data: Why don't you tell me where we are?
         LenguageType: 1
-      - Data: New choice 2
+      - Data: Cur non indicas ubi sumus?
         LenguageType: 2
-      - Data: New choice 2
+      - Data: "\xBFPor qu\xE9 no me dices d\xF3nde estamos?"
         LenguageType: 3
       choiceID: eafddc9f-7802-4cb4-ba4a-7f780d0e50e7
       nextNodeID: 0e978756-5447-4ccb-b025-d764f2edadf8
@@ -188,11 +203,11 @@ MonoBehaviour:
     - choiceTexts:
       - Data: Poco importa, sono felice di essere qui.
         LenguageType: 0
-      - Data: New choice 3
+      - Data: It doesn't matter, I'm happy to be here.
         LenguageType: 1
-      - Data: New choice 3
+      - Data: Nihil refert, me beatum hic esse.
         LenguageType: 2
-      - Data: New choice 3
+      - Data: "No importa, estoy feliz de estar aqu\xED."
         LenguageType: 3
       choiceID: 8dea73c9-7af7-454f-8071-c81058307046
       nextNodeID: 7d2a0eb0-1c31-4009-bc2d-a7492e5acd9e
@@ -204,27 +219,37 @@ MonoBehaviour:
     _nodeID: c9f91f2a-168c-48b8-9db0-42bcafe608cf
     _groupID: 
     _nodeType: 0
-    _position: {x: 1493, y: 875}
+    _position: {x: 1164.1, y: 841.6502}
     texts:
     - Data: "Qui c'\xE8 un solo modo per ottenere risposte. Uno di noi le conosce,
-        se ti mostrerai degno\ned in sintonia con noi, sottoponendoti al nostro giudizio
-        riceverai quel che cerchi."
+        se ti mostrerai degno\r\ned in sintonia con noi, sottoponendoti al nostro
+        giudizio riceverai quel che cerchi."
       LenguageType: 0
-    - Data: Single Dialogue Text
+    - Data: 'There is only one way to get answers here. One of us knows them, if
+        you prove yourself worthy
+
+        and in harmony with us, by submitting
+        to our judgment you will receive what you are looking for.'
       LenguageType: 1
-    - Data: Single Dialogue Text
+    - Data: 'Uno tantum modo ut hic respondeas. Unus nostrum eos cognoscit, si te
+        dignum teipsum probas
+
+        et nobis consentaneum, judicio nostro subdendo
+        recipies quod petis.'
       LenguageType: 2
-    - Data: Single Dialogue Text
+    - Data: "Aqu\xED s\xF3lo hay una manera de obtener respuestas. Uno de nosotros
+        los conoce, si demuestras que eres digno\r\ny en armon\xEDa con nosotros,
+        someti\xE9ndote a nuestro criterio recibir\xE1s lo que buscas."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Ho capito.
         LenguageType: 0
-      - Data: Next Single Choice
+      - Data: I understand.
         LenguageType: 1
-      - Data: Next Single Choice
+      - Data: Intelligo.
         LenguageType: 2
-      - Data: Next Single Choice
+      - Data: Entiendo.
         LenguageType: 3
       choiceID: b9ea5778-1124-49a5-89f3-50186b9567c5
       nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
@@ -232,7 +257,7 @@ MonoBehaviour:
         intConditions: []
         floatConditions: []
         boolConditions: []
-  - _name: Multipl02
+  - _name: Multiple02
     _nodeID: d8ef09c6-6947-4693-8be0-cb61737757ef
     _groupID: 
     _nodeType: 1
@@ -240,21 +265,21 @@ MonoBehaviour:
     texts:
     - Data: "Vuoi che controlli se tu sia degno per la mia verit\xE0?"
       LenguageType: 0
-    - Data: Multiple Dialogue Text
+    - Data: Do you want me to check if you are worthy for my truth?
       LenguageType: 1
-    - Data: Multiple Dialogue Text
+    - Data: Vis me reprehendere si dignus es veritate mea?
       LenguageType: 2
-    - Data: Multiple Dialogue Text
+    - Data: "\xBFQuieres que compruebe si eres digno de mi verdad?"
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Si.
         LenguageType: 0
-      - Data: New Choice 1
+      - Data: Yes.
         LenguageType: 1
-      - Data: New Choice 1
+      - Data: Ita.
         LenguageType: 2
-      - Data: New Choice 1
+      - Data: "S\xED."
         LenguageType: 3
       choiceID: 0767eccc-dafa-4401-bff3-bdec8edbace0
       nextNodeID: 0cf06336-e3b6-4f00-baa8-1f74be10855e
@@ -265,11 +290,11 @@ MonoBehaviour:
     - choiceTexts:
       - Data: No.
         LenguageType: 0
-      - Data: New choice 2
+      - Data: No.
         LenguageType: 1
-      - Data: New choice 2
+      - Data: Nec.
         LenguageType: 2
-      - Data: New choice 2
+      - Data: No.
         LenguageType: 3
       choiceID: 38bd57b5-1b44-425a-bc3d-08669eaa291b
       nextNodeID: b224dc66-a5b6-4ce7-8822-6f72c04ff4f7
@@ -284,26 +309,50 @@ MonoBehaviour:
     _position: {x: 1386, y: 1669}
     texts:
     - Data: "Caro il mio Ottaviano, qui siamo bloccati a mio avviso oltre la soglia
-        della vita.\nOmbre smemorate in attesa di sparire, breve \xE8 la durata della
-        demo, e quando anche questa\nfinestra verr\xE0 chiusa ci scorderemo di aver
-        parlato. Goditi quel che hai, ora, nessuno di noi sa se sar\xE0\nqui al prossimo
-        rilascio. Stai attento."
+        della vita.\r\nOmbre smemorate in attesa di sparire, breve \xE8 la durata
+        della demo, e quando anche questa\r\nfinestra verr\xE0 chiusa ci scorderemo
+        di aver parlato. Goditi quel che hai, ora, nessuno di noi sa se sar\xE0\r\nqui
+        al prossimo rilascio. Stai attento."
       LenguageType: 0
-    - Data: Single Dialogue Text
+    - Data: 'My dear Octavian, here we are stuck, in my opinion, beyond the threshold
+        of life.
+
+        Forgetful shadows waiting to disappear, the duration of
+        the demo is short, and when this too
+
+        window will be closed we will
+        forget we spoke. Enjoy what you have now, none of us know what it will be
+
+        here
+        at the next release. Be careful.'
       LenguageType: 1
-    - Data: Single Dialogue Text
+    - Data: 'Mi Octaviane, hic haeremus, ut opinor, extra vitae limen.
+
+        Umbrae
+        immemores quaerunt interitum, diuturnitas demoum brevis est, et cum hoc quoque
+
+        fenestrae
+        clausae erunt, obliviscemur locuti sumus. fruere quod nunc habes, nemo nostrum
+        quid sit futurum
+
+        hinc proximo emissio. Cave.'
       LenguageType: 2
-    - Data: Single Dialogue Text
+    - Data: "Mi querido Octavio, aqu\xED estamos atrapados, en mi opini\xF3n, m\xE1s
+        all\xE1 del umbral de la vida.\r\nSombras olvidadizas esperando desaparecer,
+        la duraci\xF3n de la demo es corta, y cuando esta tambi\xE9n\r\nLa ventana
+        se cerrar\xE1 y olvidaremos que hablamos. Disfruta lo que tienes ahora, ninguno
+        de nosotros sabe lo que ser\xE1.\r\naqu\xED en el pr\xF3ximo lanzamiento.
+        Ten cuidado."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Grazie Cesare.
         LenguageType: 0
-      - Data: Next Single Choice
+      - Data: Thanks Cesare.
         LenguageType: 1
-      - Data: Next Single Choice
+      - Data: Deo gratias Cesari.
         LenguageType: 2
-      - Data: Next Single Choice
+      - Data: "Gracias C\xE9sar."
         LenguageType: 3
       choiceID: 29878b97-fbca-474b-9e1e-9181fb770bfb
       nextNodeID: 46b8030b-4bec-4a29-8f82-e02336be2c13
@@ -311,7 +360,7 @@ MonoBehaviour:
         intConditions: []
         floatConditions: []
         boolConditions: []
-  - _name: Multiple02
+  - _name: Multiple03
     _nodeID: b224dc66-a5b6-4ce7-8822-6f72c04ff4f7
     _groupID: 
     _nodeType: 1
@@ -319,21 +368,21 @@ MonoBehaviour:
     texts:
     - Data: Mi spiace, non sei ancora degno.
       LenguageType: 0
-    - Data: Multiple Dialogue Text
+    - Data: Sorry, you're not worthy yet.
       LenguageType: 1
-    - Data: Multiple Dialogue Text
+    - Data: Ignosce, sis tamen dignus.
       LenguageType: 2
-    - Data: Multiple Dialogue Text
+    - Data: "Lo siento, todav\xEDa no eres digno."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Non penso tu sia in grado di giudicarmi
         LenguageType: 0
-      - Data: New Choice 1
+      - Data: I don't think you're capable of judging me
         LenguageType: 1
-      - Data: New Choice 1
+      - Data: Non puto te posse me diiudicare
         LenguageType: 2
-      - Data: New Choice 1
+      - Data: No creo que seas capaz de juzgarme
         LenguageType: 3
       choiceID: 5b711597-2273-4862-8e4d-027a01cce281
       nextNodeID: 9a221875-0f41-4538-b97c-a0a1be742dab
@@ -344,11 +393,11 @@ MonoBehaviour:
     - choiceTexts:
       - Data: "Il tempo \xE8 dalla mia parte."
         LenguageType: 0
-      - Data: New choice 2
+      - Data: Time is on my side.
         LenguageType: 1
-      - Data: New choice 2
+      - Data: Tempus est ista.
         LenguageType: 2
-      - Data: New choice 2
+      - Data: "El tiempo est\xE1 de mi lado."
         LenguageType: 3
       choiceID: d9d270d9-b309-4bce-83a3-312ab1b467c7
       nextNodeID: a435af68-ec4e-41bf-9c7c-807126e8912f
@@ -362,11 +411,11 @@ MonoBehaviour:
     - choiceTexts:
       - Data: Sei meno calvo di quanto pensassi.
         LenguageType: 0
-      - Data: New choice 3
+      - Data: You're less bald than I thought.
         LenguageType: 1
-      - Data: New choice 3
+      - Data: Minus calvus es quam cogitavi.
         LenguageType: 2
-      - Data: New choice 3
+      - Data: Eres menos calvo de lo que pensaba.
         LenguageType: 3
       choiceID: 064260cf-1c33-4bcf-8b1a-49e2ba58912f
       nextNodeID: d2485521-d68e-4e54-9678-8e3e02944630
@@ -382,21 +431,21 @@ MonoBehaviour:
     texts:
     - Data: Eccoci dunque.
       LenguageType: 0
-    - Data: Start Dialogue Text
+    - Data: So here we are.
       LenguageType: 1
-    - Data: Start Dialogue Text
+    - Data: Hic itaque sumus.
       LenguageType: 2
-    - Data: Start Dialogue Text
+    - Data: "As\xED que aqu\xED estamos."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Continua.
         LenguageType: 0
-      - Data: Starting Choice
+      - Data: Continues.
         LenguageType: 1
-      - Data: Starting Choice
+      - Data: Prosequitur.
         LenguageType: 2
-      - Data: Starting Choice
+      - Data: "Contin\xFAa."
         LenguageType: 3
       choiceID: ef662387-67d6-42bc-ba49-f208b039d9a2
       nextNodeID: ab6a7d86-47f0-4cba-bdcc-c23c4972a313
@@ -415,21 +464,28 @@ MonoBehaviour:
 
         finirai la demo comunque.'
       LenguageType: 0
-    - Data: Single Dialogue Text
+    - Data: 'You have outraged each of us, you will not get information, but since
+        you have paid
+
+        you''ll finish the demo anyway.'
       LenguageType: 1
-    - Data: Single Dialogue Text
+    - Data: 'Violati estis unumquemque nostrum, non notitias, sed quia reddidistis
+
+        demo
+        usquam te consummare.'
       LenguageType: 2
-    - Data: Single Dialogue Text
+    - Data: "Nos has indignado a cada uno de nosotros, no obtendr\xE1s informaci\xF3n,
+        pero como has pagado\r\nTerminar\xE1s la demostraci\xF3n de todos modos."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Sono proprio scarso a giocare.
         LenguageType: 0
-      - Data: Next Single Choice
+      - Data: I'm really bad at playing.
         LenguageType: 1
-      - Data: Next Single Choice
+      - Data: Sum vere malus in ludo.
         LenguageType: 2
-      - Data: Next Single Choice
+      - Data: Soy muy malo jugando.
         LenguageType: 3
       choiceID: dd75553f-d270-404b-9799-2747f67464a4
       nextNodeID: 6da8aa55-0a3c-45e9-8b33-3dd2af30050d
@@ -442,25 +498,25 @@ MonoBehaviour:
     _nodeID: dcd35c8c-0165-4a88-9119-b466f8a84d57
     _groupID: 
     _nodeType: 4
-    _position: {x: 1573, y: 156}
+    _position: {x: 1356.25, y: 157.40001}
     texts:
     - Data: "La tua gravitas aumenter\xE0 di e anche il tuo rapporto con me."
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: Your gravitas will increase and so will your relationship with me.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Gravitas tua augebit ac necessitudinem tuam mecum faciet.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Tu seriedad aumentar\xE1 y tambi\xE9n tu relaci\xF3n conmigo."
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: EventOutput
+      - Data: Interessante.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: Interesting.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: GRATIS.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: Interesante.
         LenguageType: 3
       choiceID: 38ef646f-2313-4f55-8e62-b6bcb315dff9
       nextNodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
@@ -483,25 +539,25 @@ MonoBehaviour:
     _nodeID: 164082cc-cd9d-4d60-a7a2-694581bd4834
     _groupID: 
     _nodeType: 4
-    _position: {x: 1573, y: 500.99997}
+    _position: {x: 1356.0002, y: 426.99997}
     texts:
     - Data: La tua relazione con me sta calando, vedi di fare attenzione.
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: Your relationship with me is waning, be careful.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Necessitudo tua apud me deficit, diligenter.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Tu relaci\xF3n conmigo est\xE1 menguando, ten cuidado."
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: EventOutput
+      - Data: "Lo far\xF2."
         LenguageType: 0
-      - Data: EventOutput
+      - Data: I will do it.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: faciam.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: "Lo har\xE9."
         LenguageType: 3
       choiceID: 80ce4fe4-22ae-4b11-a610-aeac89a7d29c
       nextNodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
@@ -521,25 +577,25 @@ MonoBehaviour:
     _nodeID: 0e978756-5447-4ccb-b025-d764f2edadf8
     _groupID: 
     _nodeType: 4
-    _position: {x: 1550, y: 1061.5}
+    _position: {x: 1184.0001, y: 1019.0001}
     texts:
     - Data: "Perch\xE8 non sei ancora degno. Continua a migliorare e lo saprai."
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: Because you are not worthy yet. Keep improving and you'll know.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Quia dignissimos sed. Melius habe et scies.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Porque todav\xEDa no eres digno. Sigue mejorando y lo sabr\xE1s."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Ho capito.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: I understand.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Intelligo.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: Entiendo.
         LenguageType: 3
       choiceID: 06e7a710-5f7f-4145-86fe-43badf71d6c9
       nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
@@ -556,25 +612,25 @@ MonoBehaviour:
     _nodeID: 7d2a0eb0-1c31-4009-bc2d-a7492e5acd9e
     _groupID: 
     _nodeType: 4
-    _position: {x: 1550, y: 1278}
+    _position: {x: 1184, y: 1207.8503}
     texts:
     - Data: "Questa \xE8 adulazione, apprezzata devo dire, ma in giusta dose."
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: This is flattery, appreciated I must say, but in the right amount.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Haec est assentatio, recte dicendi, sed in tantum.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: Esto es un halago, apreciado, debo decir, pero en la cantidad justa.
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: "Lo terr\xF2 a mente."
         LenguageType: 0
-      - Data: EventOutput
+      - Data: I'll keep that in mind.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Id in animo habebo.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: "Lo tendr\xE9 en cuenta."
         LenguageType: 3
       choiceID: 728490f0-d135-48a2-ba4e-35b853e92535
       nextNodeID: f8c92790-11db-4993-badc-aad7ff24baa9
@@ -601,21 +657,21 @@ MonoBehaviour:
     texts:
     - Data: "Non oserai pi\xF9 ottenere alcuna informazione da me."
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: You won't dare get any information from me anymore.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Non audebis ex me amplius aliquid accipere.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Ya no te atrever\xE1s a obtener ninguna informaci\xF3n de m\xED."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Poco importa.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: It doesn't matter.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Nihil refert.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: No importa.
         LenguageType: 3
       choiceID: 7f93c366-0c46-4558-908a-c4f137ac2d73
       nextNodeID: c2f9530c-086e-4cf3-86ef-5febb6cb42f2
@@ -639,21 +695,21 @@ MonoBehaviour:
     texts:
     - Data: Fine della demo.
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: End of the demo.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Finis demo.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Fin de la demostraci\xF3n."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Fine.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: End.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Finem.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: Fin.
         LenguageType: 3
       choiceID: d5180f94-5d93-42d0-a459-5f6a47a9f914
       nextNodeID: 44f5fce7-07ba-469b-a9c7-8a59af5897d3
@@ -676,21 +732,24 @@ MonoBehaviour:
     - Data: Esatto, qui il tempo non scorre frequentemente, occorre che qualcuno
         faccia qualcosa.
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: That's right, time doesn't pass frequently here, someone needs to do
+        something.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Iustum est, tempus hic saepe non transit, aliquis ad aliquid faciendum
+        indiget.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "As\xED es, aqu\xED el tiempo no pasa frecuentemente, alguien necesita
+        hacer algo."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: "Lo far\xF2 Cesare"
         LenguageType: 0
-      - Data: EventOutput
+      - Data: I'll do it Caesar
         LenguageType: 1
-      - Data: EventOutput
+      - Data: faciam Caesari
         LenguageType: 2
-      - Data: EventOutput
+      - Data: "lo har\xE9 c\xE9sar"
         LenguageType: 3
       choiceID: 66868a7f-61c4-47ee-ac8d-c010a6495ee7
       nextNodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
@@ -714,21 +773,21 @@ MonoBehaviour:
     texts:
     - Data: Vero?! Lo ho sempre sostenuto pure io.
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: Real?! I've always supported him too.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Verus?! Ego illum etiam semper habui.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "\xA1\xBFReal?! Yo tambi\xE9n lo he apoyado siempre."
       LenguageType: 3
     _choices:
     - choiceTexts:
       - Data: Giove protegga tutti i calvi.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: Jupiter protect all bald people.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Juppiter calvos omnes defendet populos.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: "J\xFApiter protege a todas las personas calvas."
         LenguageType: 3
       choiceID: 3a4a8ef1-318e-4ca2-9871-767f864997f9
       nextNodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
@@ -755,21 +814,21 @@ MonoBehaviour:
     texts:
     - Data: Fine della demo.
       LenguageType: 0
-    - Data: Event Dialogue Text
+    - Data: End of the demo.
       LenguageType: 1
-    - Data: Event Dialogue Text
+    - Data: Finis demo.
       LenguageType: 2
-    - Data: Event Dialogue Text
+    - Data: "Fin de la demostraci\xF3n."
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: EventOutput
+      - Data: Fine.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: End.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Finem.
         LenguageType: 2
-      - Data: EventOutput
+      - Data: Fin.
         LenguageType: 3
       choiceID: 41166299-7c19-4acb-b2be-d2df1a9ff900
       nextNodeID: 44f5fce7-07ba-469b-a9c7-8a59af5897d3
@@ -788,7 +847,7 @@ MonoBehaviour:
     _nodeID: c41e59b0-7aa3-43f0-ab8c-6ad988a22144
     _groupID: 
     _nodeType: 3
-    _position: {x: 2106.0117, y: 404.99997}
+    _position: {x: 1798.9502, y: 317}
     texts:
     - Data: 'Queste stanze nascondono un segreto. Uno di noi tre, giunto qui ormai
         da molti
@@ -796,26 +855,35 @@ MonoBehaviour:
         eoni, conosce cosa si cela in questo luogo oscuro e senza
         tempo.'
       LenguageType: 0
-    - Data: End Dialogue Text
+    - Data: 'These rooms hide a secret. One of us three, who has come here for many
+        years now
+
+        eons, knows what lies in this dark and timeless place.'
       LenguageType: 1
-    - Data: End Dialogue Text
+    - Data: 'Haec conclavia occulta occultant. Unus e nobis tres, qui iam multos
+        annos huc advenit
+
+        eons, scit quid in hoc caliginoso et intempestivo
+        loco jacet.'
       LenguageType: 2
-    - Data: End Dialogue Text
+    - Data: "Estas habitaciones esconden un secreto. Uno de nosotros tres, que viene
+        aqu\xED desde hace muchos a\xF1os.\r\neones, sabe lo que hay en este lugar
+        oscuro y atemporal."
       LenguageType: 3
     isDialogueRepetable: 0
   - _name: End02
     _nodeID: f8c92790-11db-4993-badc-aad7ff24baa9
     _groupID: 
     _nodeType: 3
-    _position: {x: 2250, y: 1019}
+    _position: {x: 1670.9998, y: 1042.9998}
     texts:
     - Data: Torna a dare una occhiata in giro. A dopo.
       LenguageType: 0
-    - Data: End Dialogue Text
+    - Data: Come back and take a look around. Later.
       LenguageType: 1
-    - Data: End Dialogue Text
+    - Data: Redi et circumspice. Posterius.
       LenguageType: 2
-    - Data: End Dialogue Text
+    - Data: "Vuelve y echa un vistazo a tu alrededor. M\xE1s tarde."
       LenguageType: 3
     isDialogueRepetable: 0
   - _name: End03
@@ -826,11 +894,11 @@ MonoBehaviour:
     texts:
     - Data: "Non sei degno, e tu sai il perch\xE8."
       LenguageType: 0
-    - Data: End Dialogue Text
+    - Data: You are not worthy, and you know why.
       LenguageType: 1
-    - Data: End Dialogue Text
+    - Data: Non es dignus, et scis quare.
       LenguageType: 2
-    - Data: End Dialogue Text
+    - Data: "No eres digno y sabes por qu\xE9."
       LenguageType: 3
     isDialogueRepetable: 1
   - _name: End04
@@ -841,27 +909,11 @@ MonoBehaviour:
     texts:
     - Data: Non sarai mai degno dopo questa.
       LenguageType: 0
-    - Data: End Dialogue Text
+    - Data: You will never be worthy after this.
       LenguageType: 1
-    - Data: End Dialogue Text
+    - Data: Dignus eris post hoc.
       LenguageType: 2
-    - Data: End Dialogue Text
-      LenguageType: 3
-    isDialogueRepetable: 1
-  - _name: End05
-    _nodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
-    _groupID: 
-    _nodeType: 3
-    _position: {x: 2222, y: 2546}
-    texts:
-    - Data: "Tieni d'occhio le tue statistiche, il tre \xE8 un numero perfetto a
-        cui tutti dovrebbro tendere."
-      LenguageType: 0
-    - Data: End Dialogue Text
-      LenguageType: 1
-    - Data: End Dialogue Text
-      LenguageType: 2
-    - Data: End Dialogue Text
+    - Data: "Nunca ser\xE1s digno despu\xE9s de esto."
       LenguageType: 3
     isDialogueRepetable: 1
   - _name: BadEnd
@@ -872,19 +924,37 @@ MonoBehaviour:
     texts:
     - Data: Fine.
       LenguageType: 0
-    - Data: End Dialogue Text
+    - Data: End.
       LenguageType: 1
-    - Data: End Dialogue Text
+    - Data: Finem.
       LenguageType: 2
-    - Data: End Dialogue Text
+    - Data: Fin.
       LenguageType: 3
     isDialogueRepetable: 0
+  - _name: End05
+    _nodeID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 1960.7798, y: 2514.26}
+    texts:
+    - Data: "Tieni d'occhio le tue statistiche, il tre \xE8 un numero perfetto a
+        cui tutti dovrebbro tendere."
+      LenguageType: 0
+    - Data: Keep an eye on your stats, three is a perfect number that everyone should
+        strive for.
+      LenguageType: 1
+    - Data: Oculi tui status, tres numerus perfectus est ut quisque studeat.
+      LenguageType: 2
+    - Data: "Est\xE9 atento a sus estad\xEDsticas, tres es un n\xFAmero perfecto
+        por el que todos deber\xEDan esforzarse."
+      LenguageType: 3
+    isDialogueRepetable: 1
   _branchNodes:
   - _name: Branch01
     _nodeID: 7b005571-21d3-4a0e-948a-8df55816bbf6
     _groupID: 
     _nodeType: 5
-    _position: {x: 438, y: 184}
+    _position: {x: 394.30008, y: 184.00003}
     _conditions:
       intConditions:
       - comparisonValue: 0

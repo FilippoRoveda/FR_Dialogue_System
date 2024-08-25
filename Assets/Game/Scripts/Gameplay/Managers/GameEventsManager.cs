@@ -1,42 +1,25 @@
-using System;
 using System.Collections;
 
-public static class GameEventsManager
+namespace Game
 {
-
-    public static IEnumerator ExectuteEvent(string eventContent)
+    public static class GameEventsManager
     {
-        return EventExecutionAction(eventContent);
-    }
-    private static IEnumerator EventExecutionAction(string eventContent)
-    {
-        if (eventContent == "EndPhase_01")
+        public static IEnumerator ExectuteEvent(string eventContent)
         {
-            EndPhase_01();
+            return EventExecutionAction(eventContent);
         }
-        else if (eventContent == "EndPhase_02") 
+        private static IEnumerator EventExecutionAction(string eventContent)
         {
-            EndPhase_02();
+            if (eventContent == "EndDemo")
+            {
+                EndDemo();
+            }
+            yield return null;
         }
-        else if (eventContent == "EndDemo") 
+
+        private static void EndDemo()
         {
-            EndDemo();
+            OptionsScreenController.Instance.CompleteDemo();
         }
-        yield return null;
-    }
-
-    private static void EndDemo()
-    {
-        throw new NotImplementedException();
-    }
-
-    private static void EndPhase_02()
-    {
-        throw new NotImplementedException();
-    }
-
-    private static void EndPhase_01()
-    {
-        throw new NotImplementedException();
     }
 }

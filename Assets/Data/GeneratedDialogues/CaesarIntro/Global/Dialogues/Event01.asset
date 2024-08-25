@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event01
+  m_EditorClassIdentifier: 
+  _dialogueName: Event01
+  _dialogueID: dcd35c8c-0165-4a88-9119-b466f8a84d57
+  _dialogueType: 4
+  _texts:
+  - Data: "La tua gravitas aumenter\xE0 di e anche il tuo rapporto con me."
+    LenguageType: 0
+  - Data: Your gravitas will increase and so will your relationship with me.
+    LenguageType: 1
+  - Data: Gravitas tua augebit ac necessitudinem tuam mecum faciet.
+    LenguageType: 2
+  - Data: "Tu seriedad aumentar\xE1 y tambi\xE9n tu relaci\xF3n conmigo."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Interessante.
+      LenguageType: 0
+    - Data: Interesting.
+      LenguageType: 1
+    - Data: GRATIS.
+      LenguageType: 2
+    - Data: Interesante.
+      LenguageType: 3
+    _choiceID: 38ef646f-2313-4f55-8e62-b6bcb315dff9
+    _nextDialogue: {fileID: 11400000, guid: c8963186ce0dd5d43a3573814a95b45d, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 1
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

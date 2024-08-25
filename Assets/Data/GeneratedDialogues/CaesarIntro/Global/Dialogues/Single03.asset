@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single03
+  m_EditorClassIdentifier: 
+  _dialogueName: Single03
+  _dialogueID: c9f91f2a-168c-48b8-9db0-42bcafe608cf
+  _dialogueType: 0
+  _texts:
+  - Data: "Qui c'\xE8 un solo modo per ottenere risposte. Uno di noi le conosce,
+      se ti mostrerai degno\r\ned in sintonia con noi, sottoponendoti al nostro giudizio
+      riceverai quel che cerchi."
+    LenguageType: 0
+  - Data: 'There is only one way to get answers here. One of us knows them, if you
+      prove yourself worthy
+
+      and in harmony with us, by submitting to our
+      judgment you will receive what you are looking for.'
+    LenguageType: 1
+  - Data: 'Uno tantum modo ut hic respondeas. Unus nostrum eos cognoscit, si te dignum
+      teipsum probas
+
+      et nobis consentaneum, judicio nostro subdendo recipies
+      quod petis.'
+    LenguageType: 2
+  - Data: "Aqu\xED s\xF3lo hay una manera de obtener respuestas. Uno de nosotros
+      los conoce, si demuestras que eres digno\r\ny en armon\xEDa con nosotros, someti\xE9ndote
+      a nuestro criterio recibir\xE1s lo que buscas."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ho capito.
+      LenguageType: 0
+    - Data: I understand.
+      LenguageType: 1
+    - Data: Intelligo.
+      LenguageType: 2
+    - Data: Entiendo.
+      LenguageType: 3
+    _choiceID: b9ea5778-1124-49a5-89f3-50186b9567c5
+    _nextDialogue: {fileID: 11400000, guid: 0800dd6021b927c48895345e68727ea9, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

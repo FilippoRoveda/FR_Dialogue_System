@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End05
+  m_EditorClassIdentifier: 
+  _dialogueName: End05
+  _dialogueID: fd040b31-9a70-4aae-b0d6-3d8163c01ca4
+  _dialogueType: 3
+  _texts:
+  - Data: "Tieni d'occhio le tue statistiche, il tre \xE8 un numero perfetto a cui
+      tutti dovrebbro tendere."
+    LenguageType: 0
+  - Data: Keep an eye on your stats, three is a perfect number that everyone should
+      strive for.
+    LenguageType: 1
+  - Data: Oculi tui status, tres numerus perfectus est ut quisque studeat.
+    LenguageType: 2
+  - Data: "Est\xE9 atento a sus estad\xEDsticas, tres es un n\xFAmero perfecto por
+      el que todos deber\xEDan esforzarse."
+    LenguageType: 3
+  _isRepetable: 1

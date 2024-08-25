@@ -56,7 +56,7 @@ namespace Variables.Generated
             };
             intVariables = new Dictionary<string, IntVariable>()
             {
-                {"e28c3e33-034f-4cf9-9d85-8b04e083d988" , new IntVariable("Gravitas", "e28c3e33-034f-4cf9-9d85-8b04e083d988", 5)},
+                {"e28c3e33-034f-4cf9-9d85-8b04e083d988" , new IntVariable("Gravitas", "e28c3e33-034f-4cf9-9d85-8b04e083d988", 0)},
 			
             };
             floatVariables = new Dictionary<string, FloatVariable>()

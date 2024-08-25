@@ -157,7 +157,7 @@ namespace Game
                     EventDialogueSO eventDialogue = (EventDialogueSO)currentDialogue;
                     foreach (var gameEvent in eventDialogue.Events)
                     {
-                        Debug.Log("To implement event call");
+                        StartCoroutine(GameEventsManager.ExectuteEvent(gameEvent._eventString));
                     }
                     variableEventsHandler.ExecuteEvents(eventDialogue.VariableEvents);
                     break;

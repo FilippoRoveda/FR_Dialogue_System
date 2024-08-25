@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e22ecc1844ee7041858fa2757983258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsPersistent: 1
+  IsPersistent: 0
   _textsTypingSpeed: 0.06
   _typingSFXFrequency: 5
   _minPitch: 1
@@ -3699,7 +3699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c9260a9a71a445960be3b9ab01713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueContainers: []
+  dialogueContainers:
+  - {fileID: 11400000, guid: f9f513ce9d5c5514db26df57b01fda01, type: 2}
   _linkedCharacter: {fileID: 112163390}
   _talkZone: {fileID: 1555629120}
   availableDialogues: []
@@ -4388,7 +4389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueContainers:
-  - {fileID: 11400000, guid: 935e6290455edda42b5e6066fe17962f, type: 2}
+  - {fileID: 11400000, guid: 7fdc613d8adf1e94187e004541f4ec8f, type: 2}
   _linkedCharacter: {fileID: 731678411}
   _talkZone: {fileID: 1908027888}
   availableDialogues: []
@@ -4870,7 +4871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c9260a9a71a445960be3b9ab01713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueContainers: []
+  dialogueContainers:
+  - {fileID: 11400000, guid: 8fa0bb4ff1c045647a4e8b6d6f22b9ab, type: 2}
   _linkedCharacter: {fileID: 106825628}
   _talkZone: {fileID: 2062010625}
   availableDialogues: []
