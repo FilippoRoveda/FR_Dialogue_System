@@ -26,8 +26,7 @@ MonoBehaviour:
     LenguageType: 3
   _choices:
   - _choiceTexts:
-    - Data: "Dimmi tutto quello che sai, altrimenti ti spinger\xF2 oltre il limite
-        della mappa."
+    - Data: "Dimmi quello che sai, o  ti spinger\xF2 oltre il limite della mappa."
       LenguageType: 0
     - Data: I think you should tell me everything you know, otherwise I'll push you
         over the edge of the map.

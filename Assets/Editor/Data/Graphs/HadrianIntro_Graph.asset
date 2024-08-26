@@ -188,7 +188,7 @@ MonoBehaviour:
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: No sono sordo, ti sto leggendo il labbiale.
+      - Data: No, sono sordo, ti sto leggendo il labbiale.
         LenguageType: 0
       - Data: No I'm deaf, I'm reading your lips.
         LenguageType: 1
@@ -412,8 +412,7 @@ MonoBehaviour:
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: "Dimmi tutto quello che sai, altrimenti ti spinger\xF2 oltre il limite
-          della mappa."
+      - Data: "Dimmi quello che sai, o  ti spinger\xF2 oltre il limite della mappa."
         LenguageType: 0
       - Data: I think you should tell me everything you know, otherwise I'll push
           you over the edge of the map.

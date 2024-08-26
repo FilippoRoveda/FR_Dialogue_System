@@ -17,7 +17,7 @@ MonoBehaviour:
   _dialogueType: 4
   _texts:
   - Data: "Non fa nulla se sei venuto da me solo ora, l'importante \xE8 che non sia
-      ancora crushato niente.\r\nTieni un poco di influenza per aiutarti."
+      ancora crashato niente.\r\nTieni un poco di influenza per aiutarti."
     LenguageType: 0
   - Data: 'It doesn''t matter if you''ve only come to me now, the important thing
       is that nothing''s broken yet.

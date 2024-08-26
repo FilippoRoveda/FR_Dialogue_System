@@ -26,7 +26,7 @@ MonoBehaviour:
     LenguageType: 3
   _choices:
   - _choiceTexts:
-    - Data: No sono sordo, ti sto leggendo il labbiale.
+    - Data: No, sono sordo, ti sto leggendo il labbiale.
       LenguageType: 0
     - Data: No I'm deaf, I'm reading your lips.
       LenguageType: 1
