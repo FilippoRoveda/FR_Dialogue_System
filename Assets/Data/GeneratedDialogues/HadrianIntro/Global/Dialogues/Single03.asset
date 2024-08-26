@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single03
+  m_EditorClassIdentifier: 
+  _dialogueName: Single03
+  _dialogueID: c2b75b52-9fa4-4db6-95f5-5ad48a9e95ba
+  _dialogueType: 0
+  _texts:
+  - Data: "Questo non \xE8 un problema. La voce di alcuni di noi ti sar\xE0 fastidiosa
+      tra qualche tempo."
+    LenguageType: 0
+  - Data: This is not a problem. The voice of some of us will be annoying to you
+      in some time.
+    LenguageType: 1
+  - Data: Hoc non est dubium. "Vox aliquorum nostrum te molesta erit in aliquo tempore".
+    LenguageType: 2
+  - Data: "Esto no es un problema. La voz de algunos de nosotros te resultar\xE1
+      molesta dentro de alg\xFAn tiempo."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ho capito.
+      LenguageType: 0
+    - Data: I understand.
+      LenguageType: 1
+    - Data: Intelligo.
+      LenguageType: 2
+    - Data: Entiendo.
+      LenguageType: 3
+    _choiceID: 77e40310-47d4-49dd-ba08-772a11567f82
+    _nextDialogue: {fileID: 11400000, guid: 937a25ea25cd74d4d8964e1a565a41c4, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

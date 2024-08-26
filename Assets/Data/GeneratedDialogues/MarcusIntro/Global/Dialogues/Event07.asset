@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event07
+  m_EditorClassIdentifier: 
+  _dialogueName: Event07
+  _dialogueID: 2cff94d0-9746-422a-8783-96bbcc981159
+  _dialogueType: 4
+  _texts:
+  - Data: Mi sa che ti hanno sentito.
+    LenguageType: 0
+  - Data: I think they heard you.
+    LenguageType: 1
+  - Data: Audivisse te arbitror.
+    LenguageType: 2
+  - Data: "Audivisse al \xE1rbitro."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Continua.
+      LenguageType: 0
+    - Data: Continues.
+      LenguageType: 1
+    - Data: Perge.
+      LenguageType: 2
+    - Data: Perge.
+      LenguageType: 3
+    _choiceID: 2d4081e4-43f9-449e-bf7f-2d6d4b6a5e11
+    _nextDialogue: {fileID: 11400000, guid: 6804ed26c6f36f544a77fccc7dd381bc, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents:
+    - _variableEnum: 1
+      _eventType: 2
+      _eventValue: 1
+    - _variableEnum: 2
+      _eventType: 2
+      _eventValue: 1
+    _boolEvents: []

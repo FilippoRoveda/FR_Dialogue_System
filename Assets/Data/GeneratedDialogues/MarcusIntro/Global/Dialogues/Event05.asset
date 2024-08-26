@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event05
+  m_EditorClassIdentifier: 
+  _dialogueName: Event05
+  _dialogueID: 0a6f6e0e-dbb6-4f62-8aa5-dcaf54211a33
+  _dialogueType: 4
+  _texts:
+  - Data: "Tieni 23 punti relazione con me, cos\xEC non potrai sbagliarti. Comunque
+      mi piacerebbe molto\r\npoter cambiare sottofondo musicale, dopo quasi 1800
+      anni con quella che senti anche tu mi sto\r\niniziando a stancare."
+    LenguageType: 0
+  - Data: 'Keep 23 relationship points with me, so you can''t go wrong. However,
+      I would like it very much
+
+      being able to change the musical background,
+      after almost 1800 years, I''m happy with the one you hear too
+
+      starting
+      to get tired.'
+    LenguageType: 1
+  - Data: 'Necessitudinem 23 mecum observa, ne errabis. Volo tamen valde
+
+      musicam
+      scaenam mutare posse, post annos fere MDCCC gaudeo uno quoque quod audis
+
+      incipiens
+      gravere.'
+    LenguageType: 2
+  - Data: 'Necessitudinem 23 mecum observa, ne errabis. Vuelo tamen valde
+
+      musicam
+      scaenam mutare posse, post annos fere MDCCC gaudeo uno quoque quod audis
+
+      incipiens
+      gravere.'
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Sei un pazzo furioso.
+      LenguageType: 0
+    - Data: You're a raving madman.
+      LenguageType: 1
+    - Data: Demens es.
+      LenguageType: 2
+    - Data: Demens, p.e.
+      LenguageType: 3
+    _choiceID: cc0caa71-8457-45c0-bdc6-2f854d139f1d
+    _nextDialogue: {fileID: 11400000, guid: 6804ed26c6f36f544a77fccc7dd381bc, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 3
+      _eventType: 1
+      _eventValue: 23
+    _boolEvents: []

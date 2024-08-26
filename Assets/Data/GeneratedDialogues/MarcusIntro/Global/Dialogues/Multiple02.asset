@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple02
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple02
+  _dialogueID: 5b265223-5937-4b02-a1da-76db0e108753
+  _dialogueType: 1
+  _texts:
+  - Data: 'Dimmi vuoi che provi a vedere se il codice ti lascia sbloccare il mio
+      dialogo
+
+      finale?'
+    LenguageType: 0
+  - Data: 'Tell me do you want me to try to see if the code lets you unlock my dialogue
+
+      final?'
+    LenguageType: 1
+  - Data: 'Dic mihi vis experior ut videam si codicem permittit tibi reserare meum
+      dialogum
+
+      finalis?'
+    LenguageType: 2
+  - Data: 'Dec mihi vis experior ut videam si codicem permittit tibi reserare meum
+      dialogum
+
+      finales?'
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Si.
+      LenguageType: 0
+    - Data: Yes.
+      LenguageType: 1
+    - Data: Ita.
+      LenguageType: 2
+    - Data: Ing.
+      LenguageType: 3
+    _choiceID: 8d45d5fb-55ad-4eba-9861-6a06543a27e1
+    _nextDialogue: {fileID: 11400000, guid: d12e5eaf5950ab645a9d1dcb41e96390, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: No.
+      LenguageType: 0
+    - Data: No.
+      LenguageType: 1
+    - Data: Nec.
+      LenguageType: 2
+    - Data: "Comit\xE9 ejecutivo nacional."
+      LenguageType: 3
+    _choiceID: 26fc3452-8b4f-46c8-88f0-6a6124f0458f
+    _nextDialogue: {fileID: 11400000, guid: f68253b223b530048881d9babc7000ec, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

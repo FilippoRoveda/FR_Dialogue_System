@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event02
+  m_EditorClassIdentifier: 
+  _dialogueName: Event02
+  _dialogueID: 5afa46ce-7c27-4995-9408-4cd8164ba4d1
+  _dialogueType: 4
+  _texts:
+  - Data: "Non fa nulla se sei venuto da me solo ora, l'importante \xE8 che non sia
+      ancora crushato niente.\r\nTieni un poco di influenza per aiutarti."
+    LenguageType: 0
+  - Data: 'It doesn''t matter if you''ve only come to me now, the important thing
+      is that nothing''s broken yet.
+
+      Have a little influence to help you.'
+    LenguageType: 1
+  - Data: 'Non refert si modo ad me venias, refert tamen nihil fractum esse.
+
+      Modicum
+      iuvare te vim.'
+    LenguageType: 2
+  - Data: "No denuncien de esta manera ad me venias, den\xFAncien tamen nihil fractum
+      esse.\r\nModicum iuvare te vim."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Cosa?
+      LenguageType: 0
+    - Data: What?
+      LenguageType: 1
+    - Data: Quid?
+      LenguageType: 2
+    - Data: "\xBFLibra?"
+      LenguageType: 3
+    _choiceID: d274e000-a9d9-432d-abae-a7ab57443a4a
+    _nextDialogue: {fileID: 11400000, guid: 02d74c26622b1894a848f42e7a0c1dd9, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents: []
+    _boolEvents: []

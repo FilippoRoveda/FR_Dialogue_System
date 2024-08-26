@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End01
+  m_EditorClassIdentifier: 
+  _dialogueName: End01
+  _dialogueID: 18842604-fd49-4908-ab84-3ea133267e91
+  _dialogueType: 3
+  _texts:
+  - Data: 'Se ti annoia leggere velocizza pure i dialoghi. Se non sai leggere invece
+      spegni pure,
+
+      fidati non ci sono bug qua.'
+    LenguageType: 0
+  - Data: 'If you''re bored reading, speed up the dialogues too. If you don''t know
+      how to read, just turn it off,
+
+      Trust me there are no bugs here.'
+    LenguageType: 1
+  - Data: 'Si legendos es, etiam dialogos accelera. Si nescis legere, averte,
+
+      Non
+      sunt hic cimices, mihi crede.'
+    LenguageType: 2
+  - Data: "S\xED legendos es, los di\xE1logos etiam se aceleran. Si necesitas leer,
+      \xBFlo has hecho?\r\nMihi cree que no son bichos."
+    LenguageType: 3
+  _isRepetable: 0

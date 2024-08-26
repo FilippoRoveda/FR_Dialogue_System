@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple02
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple02
+  _dialogueID: 03418fbb-97f1-49d2-adaf-e9a7b851f891
+  _dialogueType: 1
+  _texts:
+  - Data: "Ottaviano, devo controllare se sia giunto il momento di dirti la mia verit\xE0?."
+    LenguageType: 0
+  - Data: Ottaviano, should I check if the time has come to tell you my truth?
+    LenguageType: 1
+  - Data: Ottaviano, num quaeram si tempus venerit ut veritatem tibi dicam meam?
+    LenguageType: 2
+  - Data: "Ottaviano, \xBFdeber\xEDa comprobar si ha llegado el momento de contarte
+      mi verdad?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Si.
+      LenguageType: 0
+    - Data: Yes.
+      LenguageType: 1
+    - Data: Ita.
+      LenguageType: 2
+    - Data: "S\xED."
+      LenguageType: 3
+    _choiceID: 99b929eb-09cf-440d-9d64-9eecd50f2493
+    _nextDialogue: {fileID: 11400000, guid: 1a3fa28c6dedd3b42b38f42c66a28544, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: No.
+      LenguageType: 0
+    - Data: No.
+      LenguageType: 1
+    - Data: Nec.
+      LenguageType: 2
+    - Data: No.
+      LenguageType: 3
+    _choiceID: 1b839439-4080-4aa2-be6a-957a869b8f0b
+    _nextDialogue: {fileID: 11400000, guid: 48f7fe0460b653843818b092b84ba26b, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

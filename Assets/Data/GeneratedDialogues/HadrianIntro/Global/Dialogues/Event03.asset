@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event03
+  m_EditorClassIdentifier: 
+  _dialogueName: Event03
+  _dialogueID: b6dee687-1715-446b-869f-14c5084f8407
+  _dialogueType: 4
+  _texts:
+  - Data: Tu sei un folle, allontanati subito da me, stolto!
+    LenguageType: 0
+  - Data: You are a fool, get away from me immediately, you fool!
+    LenguageType: 1
+  - Data: Stultus es, abi a me continuo, stulte!
+    LenguageType: 2
+  - Data: "\xA1Eres un tonto, al\xE9jate de m\xED inmediatamente, tonto!"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: "Anche Sfera non \xE8 male."
+      LenguageType: 0
+    - Data: Sfera isn't bad either.
+      LenguageType: 1
+    - Data: Sfera non est malum.
+      LenguageType: 2
+    - Data: "Sfera tampoco est\xE1 mal."
+      LenguageType: 3
+    _choiceID: 374cf8a5-ab40-442b-a340-792144bc444a
+    _nextDialogue: {fileID: 11400000, guid: 937a25ea25cd74d4d8964e1a565a41c4, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 2
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 2
+      _eventType: 2
+      _eventValue: 1
+    _boolEvents: []

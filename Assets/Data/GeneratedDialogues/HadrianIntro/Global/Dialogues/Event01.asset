@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event01
+  m_EditorClassIdentifier: 
+  _dialogueName: Event01
+  _dialogueID: e7f5267c-3fc0-4ba8-8605-807b580910e4
+  _dialogueType: 4
+  _texts:
+  - Data: "Aumenter\xF2 la tua reputazione generale e il tuo rapporto con me ne giover\xE0
+      pure."
+    LenguageType: 0
+  - Data: I will increase your overall reputation and your relationship with me will
+      benefit as well.
+    LenguageType: 1
+  - Data: Ampliorem famam augebo tuamque mecum etiam proderit necessitudinem.
+    LenguageType: 2
+  - Data: "Aumentar\xE9 su reputaci\xF3n general y su relaci\xF3n conmigo tambi\xE9n
+      se beneficiar\xE1."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Interessante.
+      LenguageType: 0
+    - Data: Interesting.
+      LenguageType: 1
+    - Data: GRATIS.
+      LenguageType: 2
+    - Data: Interesante.
+      LenguageType: 3
+    _choiceID: 1274d88c-7a84-4a68-9898-0dc010088c36
+    _nextDialogue: {fileID: 11400000, guid: 756d3ee2f7aa4ca418475e396b4311eb, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 2
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: FinalSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: FinalSingle
+  _dialogueID: 7a8a10d6-7bfa-4e37-9220-93d8e3445163
+  _dialogueType: 0
+  _texts:
+  - Data: "Splendido caro mio, ti posso solo dire che ci sono molti altri di noi
+      al di fuori del\r\nlimite della telecamera. Molte belle donne, ma purtroppo
+      questa \xE8 la demo e non\r\npuoi goder di tutto ci\xF2. Prova a passare pi\xF9
+      tardi, magari alla prossima release si potr\xE0.\r\nAh e comunque complimenti."
+    LenguageType: 0
+  - Data: 'Wonderful my dear, I can only tell you that there are many more of us
+      outside the
+
+      camera limit. Many beautiful women, but unfortunately this
+      is the demo and not
+
+      you can enjoy all this. Try to stop by later, maybe
+      the next release will be possible.
+
+      Oh and congratulations anyway.'
+    LenguageType: 1
+  - Data: 'Mirum mi, tantum tibi dicere possum quod extra thema plura ex nobis sunt
+
+      stricto
+      locus Multae feminae pulchrae, sed proh dolor haec est demo et not
+
+      his
+      omnibus frui potes. Conare postea desinere, fortasse altera missio poterit
+      esse.
+
+      o et gratulor usquam.'
+    LenguageType: 2
+  - Data: "Mirum mi, Once tibi dicere possum quod extra thema plura ex nobis sunt\r\nestricto
+      locus Multae feminae pulchrae, sed proh dolor haec est demo et not\r\nSe puede
+      disfrutar de su \xF3mnibus. Conare postea desinere, fortisse alter missio los
+      alimenta.\r\no et gratulor usquam."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Grazie.
+      LenguageType: 0
+    - Data: Thank you.
+      LenguageType: 1
+    - Data: Gratias agimus tibi.
+      LenguageType: 2
+    - Data: Gratias agimus tibi.
+      LenguageType: 3
+    _choiceID: b48e6db3-a6a8-41f1-9eed-c5bcae96ac0c
+    _nextDialogue: {fileID: 11400000, guid: 6d660e4097f82f54b98e40d91ad9bb56, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

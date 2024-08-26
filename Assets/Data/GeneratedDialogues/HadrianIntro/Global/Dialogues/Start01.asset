@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start01
+  m_EditorClassIdentifier: 
+  _dialogueName: Start01
+  _dialogueID: e20226b5-9e6f-48c5-8574-e2a8f74dadd1
+  _dialogueType: 2
+  _texts:
+  - Data: 'Io mi chiamo Hadrianus, salute a te vagabondo, ti ricordi per
+
+      caso
+      come sei arrivato sin qui?'
+    LenguageType: 0
+  - Data: 'My name is Hadrianus, greetings to you wanderer, you remember for
+
+      How
+      did you get here?'
+    LenguageType: 1
+  - Data: 'Hadrianus mihi nomen est, tibi salutem et erranti meministi
+
+      Quomodo
+      huc venisti?'
+    LenguageType: 2
+  - Data: "Mi nombre es Hadrianus, saludos a ti, vagabundo, lo recuerdas por\r\n\xBFC\xF3mo
+      llegaste aqu\xED?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Piacere, non riesco a ricordare nulla.
+      LenguageType: 0
+    - Data: Nice to meet you, I can't remember anything.
+      LenguageType: 1
+    - Data: Te noscere gaudeo, nihil memini.
+      LenguageType: 2
+    - Data: Encantado de conocerte, no recuerdo nada.
+      LenguageType: 3
+    _choiceID: 30fff6f6-2bb4-4a92-8f39-a37897c7030c
+    _nextDialogue: {fileID: 11400000, guid: 130c0706d44a67e409a37386984691e7, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

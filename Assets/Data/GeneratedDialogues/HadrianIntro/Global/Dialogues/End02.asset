@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End02
+  m_EditorClassIdentifier: 
+  _dialogueName: End02
+  _dialogueID: dc425f87-1de2-4f78-adfb-7172f07eaa07
+  _dialogueType: 3
+  _texts:
+  - Data: Va ora, fai attenzione, ci sono dei permalosoni qui.
+    LenguageType: 0
+  - Data: Go now, be careful, there are some touchy-feely people here.
+    LenguageType: 1
+  - Data: Ite nunc, cavete, sunt hic aliqui taeterrimi.
+    LenguageType: 2
+  - Data: "Anda, ten cuidado, que aqu\xED hay gente sensiblera."
+    LenguageType: 3
+  _isRepetable: 0

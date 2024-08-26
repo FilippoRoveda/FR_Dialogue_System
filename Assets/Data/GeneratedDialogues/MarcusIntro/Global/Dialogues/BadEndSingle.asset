@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: BadEndSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: BadEndSingle
+  _dialogueID: 3f1b8ae9-ed34-48d0-abf5-73377fe9f78e
+  _dialogueType: 0
+  _texts:
+  - Data: "Mi spiace molto mio caro, sei riuscito nella difficile implresa di infastidirci
+      tutti,\r\ncome contentino la demo comunque finir\xE0 per te."
+    LenguageType: 0
+  - Data: 'I''m very sorry my dear, you managed the difficult task of annoying us
+      all,
+
+      as a sop the demo will end up for you anyway.'
+    LenguageType: 1
+  - Data: 'Doleo mi admodum, difficultatem gessisti nobis omnibus molestis;
+
+      ut
+      a summo demo pro te usquam finietur.'
+    LenguageType: 2
+  - Data: 'Doleo mi admodum, dificultadatem gessisti nobis omnibus molestis;
+
+      ut
+      a summo demo pro te usquam finietur.'
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ma io sono giapponese.
+      LenguageType: 0
+    - Data: But I'm Japanese.
+      LenguageType: 1
+    - Data: Sed Iaponica sum.
+      LenguageType: 2
+    - Data: Sed Iaponica suma.
+      LenguageType: 3
+    _choiceID: 8c319a07-611f-4a30-83aa-ec76f15031fb
+    _nextDialogue: {fileID: 11400000, guid: 6d660e4097f82f54b98e40d91ad9bb56, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

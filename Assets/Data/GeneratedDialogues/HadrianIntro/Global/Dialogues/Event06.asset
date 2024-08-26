@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event06
+  m_EditorClassIdentifier: 
+  _dialogueName: Event06
+  _dialogueID: cb6221a2-c0ce-4821-b452-1b0250aa0be5
+  _dialogueType: 4
+  _texts:
+  - Data: "La gentilezza paga tra uomini saggi. Ti sveler\xF2 un segreto. Tutte le
+      statistiche\r\nposso variare, ma bada bene a non offendere nessuno, altrimenti
+      non scoprirai\r\nmai la verit\xE0 sua propria. Ti toccher\xE0 ricominciare,
+      non \xE8 ancora stato implementato\r\nun sistema di salvataggio."
+    LenguageType: 0
+  - Data: 'Kindness pays among wise men. I''ll tell you a secret. All the statistics
+
+      I
+      may vary, but be careful not to offend anyone, otherwise you won''t find out
+
+      never
+      its own truth. You will have to start again, it hasn''t been implemented yet
+
+      a
+      rescue system.'
+    LenguageType: 1
+  - Data: 'Inter sapientes reddit benignitas. Secretum eloquar. Omnes mutant
+
+      Variari
+      possum, sed cave ne aliquem offendas, alioquin non invenias
+
+      numquam
+      verum suum. Iterum incipiendum erit, nondum tamen effectum est
+
+      liberandi
+      ratio.'
+    LenguageType: 2
+  - Data: "La bondad paga entre los sabios. Te contar\xE9 un secreto. todas las estadisticas\r\nPuedo
+      variar, pero ten cuidado de no ofender a nadie, de lo contrario no te enterar\xE1s.\r\nnunca
+      su propia verdad. Tendr\xE1s que empezar de nuevo, a\xFAn no se ha implementado.\r\nun
+      sistema de rescate."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ti ringrazio.
+      LenguageType: 0
+    - Data: I thank you.
+      LenguageType: 1
+    - Data: Gratias tibi ago.
+      LenguageType: 2
+    - Data: Te lo agradezco.
+      LenguageType: 3
+    _choiceID: 3f3519f7-8650-4027-8175-c1931d599aca
+    _nextDialogue: {fileID: 11400000, guid: e73c039c19e2a93478491a67241ba544, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents: []
+    _boolEvents: []

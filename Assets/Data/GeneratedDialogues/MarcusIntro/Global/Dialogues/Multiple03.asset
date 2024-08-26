@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple03
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple03
+  _dialogueID: 2d23df5e-19c2-431a-950d-c00c9a8e00db
+  _dialogueType: 1
+  _texts:
+  - Data: Mi sembra giusto, vediamo un poco quali scelte hai a disposizione.
+    LenguageType: 0
+  - Data: It seems fair to me, let's see what choices you have available.
+    LenguageType: 1
+  - Data: Pulchrum mihi videtur, videamus quid in promptu habes electiones.
+    LenguageType: 2
+  - Data: Pulchrum mihi videtur, videamus quid in Promptu Habes Elections.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Spiegami il gioco.
+      LenguageType: 0
+    - Data: Explain the game to me.
+      LenguageType: 1
+    - Data: Ludum mihi expedi.
+      LenguageType: 2
+    - Data: Ludum mihi expedi.
+      LenguageType: 3
+    _choiceID: 1b963e79-6efd-454e-8a70-63ed6de7fe91
+    _nextDialogue: {fileID: 11400000, guid: 42e45d0bac53f414da6e622f859ba779, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Cosa ti aspetti dal futuro?
+      LenguageType: 0
+    - Data: What do you expect from the future?
+      LenguageType: 1
+    - Data: Quid de futuro exspectas?
+      LenguageType: 2
+    - Data: "\xBFCu\xE1les son las expectativas futuras?"
+      LenguageType: 3
+    _choiceID: fe794f0d-3bca-4a97-988b-9d0884ae3215
+    _nextDialogue: {fileID: 11400000, guid: 575f9d41a3240104caf9627c7e4ee6d7, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Hai mai pensato di fare l'usciere?
+      LenguageType: 0
+    - Data: Have you ever thought about being an usher?
+      LenguageType: 1
+    - Data: Have vos umquam de ente praeconem cogitasti?
+      LenguageType: 2
+    - Data: "\xBFAlguna vez has pensado en algo?"
+      LenguageType: 3
+    _choiceID: 56f645fd-a82b-4309-ab65-f1b94f1ba3f1
+    _nextDialogue: {fileID: 11400000, guid: 17b8677ec096ec741836579be0870780, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: I tuoi colleghi sono noiosi.
+      LenguageType: 0
+    - Data: Your colleagues are boring.
+      LenguageType: 1
+    - Data: Collegi tui taedet.
+      LenguageType: 2
+    - Data: Colegios tui taedet.
+      LenguageType: 3
+    _choiceID: 95b1ed9d-f329-49ed-8417-417ecdc41ed4
+    _nextDialogue: {fileID: 11400000, guid: 5fb2712065e8ce44a958a3418981b7e6, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

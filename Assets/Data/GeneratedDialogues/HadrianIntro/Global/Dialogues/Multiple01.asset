@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple01
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple01
+  _dialogueID: e9f6d457-c98f-4c25-80dd-c6ff6c79b4aa
+  _dialogueType: 1
+  _texts:
+  - Data: La senti la musica?
+    LenguageType: 0
+  - Data: Can you hear the music?
+    LenguageType: 1
+  - Data: Musicam audire potes?
+    LenguageType: 2
+  - Data: "\xBFPuedes o\xEDr la m\xFAsica?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: No sono sordo, ti sto leggendo il labbiale.
+      LenguageType: 0
+    - Data: No I'm deaf, I'm reading your lips.
+      LenguageType: 1
+    - Data: Non sum surdus, labia tua lego.
+      LenguageType: 2
+    - Data: No, estoy sordo, estoy leyendo tus labios.
+      LenguageType: 3
+    _choiceID: 247a7090-5689-4f17-b1c1-5d38008682d6
+    _nextDialogue: {fileID: 11400000, guid: 0872f086f208a064981eb362be3452d8, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Non male, ma preferisco Achille Lauro.
+      LenguageType: 0
+    - Data: Not bad, but I prefer Achille Lauro.
+      LenguageType: 1
+    - Data: Non malum, sed Lauro Achille mavult.
+      LenguageType: 2
+    - Data: "No est\xE1 mal, pero prefiero a Achille Lauro."
+      LenguageType: 3
+    _choiceID: 6fd553d5-9e09-4ada-a675-1929c75bd3f9
+    _nextDialogue: {fileID: 11400000, guid: 401366226ffe5cb4da6694102d36c69b, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Mi sembra una illusione pure quella.
+      LenguageType: 0
+    - Data: That too seems like an illusion to me.
+      LenguageType: 1
+    - Data: Hoc etiam mihi videtur simile illusio.
+      LenguageType: 2
+    - Data: "Eso tambi\xE9n me parece una ilusi\xF3n."
+      LenguageType: 3
+    _choiceID: b0eec698-f4db-4f5f-979a-65722e328f68
+    _nextDialogue: {fileID: 11400000, guid: 082f5a77cbe73f14bbc4512db0b4a841, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

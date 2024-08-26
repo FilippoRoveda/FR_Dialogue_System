@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event04
+  m_EditorClassIdentifier: 
+  _dialogueName: Event04
+  _dialogueID: a19c5968-97b2-41df-a064-3c777bd3f5b9
+  _dialogueType: 4
+  _texts:
+  - Data: Su questo posso darti ragione, in pochi me lo dicono, sei coraggioso.
+    LenguageType: 0
+  - Data: I can agree with you about this, few people tell me, you are brave.
+    LenguageType: 1
+  - Data: De hoc tibi assentiri possum, pauci mihi narrant te fortes esse.
+    LenguageType: 2
+  - Data: De hoc tibi assentiri possum, pauci mihi narrant te fortes esse.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ti ringrazio.
+      LenguageType: 0
+    - Data: I thank you.
+      LenguageType: 1
+    - Data: Gratias tibi ago.
+      LenguageType: 2
+    - Data: Hace gracias tibi.
+      LenguageType: 3
+    _choiceID: 013228cb-d7dc-4648-aeb6-5f7da8496481
+    _nextDialogue: {fileID: 11400000, guid: 458f778f88eb40d41bd6be89362f76b6, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 3
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

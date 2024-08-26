@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: BadEndingSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: BadEndingSingle
+  _dialogueID: ef5ac068-6550-4f04-bf83-ec7bb7d783ae
+  _dialogueType: 0
+  _texts:
+  - Data: "Ti avevo avvertito di stare attento a non offendere tutti noi. Ora se
+      non \xE8\r\nancora crushata, la demo ti porter\xE0 al suo finale."
+    LenguageType: 0
+  - Data: 'I warned you to be careful not to offend all of us. Now if it''s not
+
+      still
+      crushed, the demo will take you to its ending.'
+    LenguageType: 1
+  - Data: 'Monui ut caveas ne nos omnes offendas. Nunc si non
+
+      adhuc elisa,
+      demo te ad exitum tollet.'
+    LenguageType: 2
+  - Data: "Te advert\xED que tuvieras cuidado de no ofendernos a todos. Ahora si
+      no es as\xED\r\nA\xFAn aplastado, la demo te llevar\xE1 hasta su final."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Next Single Choice
+      LenguageType: 0
+    - Data: Next Single Choice
+      LenguageType: 1
+    - Data: Una electio
+      LenguageType: 2
+    - Data: "Siguiente elecci\xF3n \xFAnica"
+      LenguageType: 3
+    _choiceID: 8a353434-610b-4a54-88eb-391ad3f35f66
+    _nextDialogue: {fileID: 11400000, guid: 7dd7a2aee8497064bbae9761b51800fb, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

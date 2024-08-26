@@ -69,6 +69,7 @@ namespace Converter.Editor
                         SaveNodeToSO<EndDialogueSO>(nodeData, dialogueContainer);
                         break;
                     case NodeType.Event:
+                        Debug.Log("Converting an event node: " + nodeData.Name);
                         SaveNodeToSO<EventDialogueSO>(nodeData, dialogueContainer);
                         break;
                     case NodeType.Branch:
@@ -140,6 +141,7 @@ namespace Converter.Editor
 
 
                 case NodeType.Event:
+                    Debug.Log("Nodetype inside generic method of conversion is Event");
                     var eventDialogue = (baseDialogue as EventDialogueSO);
                     var eventNode = (EventNodeData)nodeData;
 

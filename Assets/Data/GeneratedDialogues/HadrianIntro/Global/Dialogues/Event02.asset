@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event02
+  m_EditorClassIdentifier: 
+  _dialogueName: Event02
+  _dialogueID: 31343626-68d8-43ad-b54d-c84406ca8dd8
+  _dialogueType: 4
+  _texts:
+  - Data: "Non andremo d'accordo se continuerai cos\xEC."
+    LenguageType: 0
+  - Data: We won't get along if you continue like this.
+    LenguageType: 1
+  - Data: Non feremus si sic pergis.
+    LenguageType: 2
+  - Data: "No nos llevaremos bien si contin\xFAas as\xED."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: "Lo terr\xF2 a mente."
+      LenguageType: 0
+    - Data: I'll keep that in mind.
+      LenguageType: 1
+    - Data: Id in animo habebo.
+      LenguageType: 2
+    - Data: "Lo tendr\xE9 en cuenta."
+      LenguageType: 3
+    _choiceID: 1bc2e116-e8d8-4fd2-a877-5db66556dcb9
+    _nextDialogue: {fileID: 11400000, guid: 756d3ee2f7aa4ca418475e396b4311eb, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents:
+    - _variableEnum: 2
+      _eventType: 2
+      _eventValue: 1
+    _boolEvents: []

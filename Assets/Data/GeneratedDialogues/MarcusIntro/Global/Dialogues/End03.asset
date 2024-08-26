@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End03
+  m_EditorClassIdentifier: 
+  _dialogueName: End03
+  _dialogueID: edf0214d-c360-4213-84eb-5c0f6be9485b
+  _dialogueType: 3
+  _texts:
+  - Data: Allora non puoi sbloccarlo ancora, se mi hai offeso non potrai mai.
+    LenguageType: 0
+  - Data: Then you can't unlock it again, if you have offended me you will never
+      be able to.
+    LenguageType: 1
+  - Data: Tunc iterum reserare non potes, si me offenderis, nunquam poteris.
+    LenguageType: 2
+  - Data: Tunc iterum reserare non potes, si me ofendeis, nunquam possibilis.
+    LenguageType: 3
+  _isRepetable: 1

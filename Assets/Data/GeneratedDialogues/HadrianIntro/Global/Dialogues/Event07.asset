@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event07
+  m_EditorClassIdentifier: 
+  _dialogueName: Event07
+  _dialogueID: 68a8d148-4904-4490-9438-ff5303f94864
+  _dialogueType: 4
+  _texts:
+  - Data: Lo ho sempre sostenuto anche io, va di moda sai? Dovresti fartela cresere
+      pure tu.
+    LenguageType: 0
+  - Data: I've always supported it too, it's fashionable you know? You should grow
+      it too.
+    LenguageType: 1
+  - Data: Ego etiam semper fauvi, suus 'carbilis scis? Crescere etiam debes.
+    LenguageType: 2
+  - Data: "Yo tambi\xE9n lo he apoyado siempre, est\xE1 de moda \xBFsabes? Deber\xEDas
+      cultivarlo tambi\xE9n."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: "Ci penser\xF2."
+      LenguageType: 0
+    - Data: I'll think about it.
+      LenguageType: 1
+    - Data: cogitabo.
+      LenguageType: 2
+    - Data: "Lo pensar\xE9."
+      LenguageType: 3
+    _choiceID: 055f0281-34a7-47a9-a7f8-73d241889532
+    _nextDialogue: {fileID: 11400000, guid: e73c039c19e2a93478491a67241ba544, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 2
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

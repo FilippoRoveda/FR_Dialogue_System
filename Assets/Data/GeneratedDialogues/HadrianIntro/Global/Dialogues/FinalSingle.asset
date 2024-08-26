@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: FinalSingle
+  m_EditorClassIdentifier: 
+  _dialogueName: FinalSingle
+  _dialogueID: ad38092e-1ef2-4814-b5af-39d259faa7fe
+  _dialogueType: 0
+  _texts:
+  - Data: "I primi tra noi nessuno sa chi fossero, alcuni parlano di personaggi con
+      \r\nnomi generici e dalle fattezze quadrangolari. Ma per quanto mi riguarda
+      non credo a queste\r\nstorie. Per esempio, solo tu puoi muoverti qui. Altra
+      cosa strana. Se vuoi la mia opinione qua ci\r\ntroviamo in una scadente rappresentazione.
+      Spero sia stato gratis l'ingresso."
+    LenguageType: 0
+  - Data: "The first among us no one knows who they were, some talk about characters
+      with \r\ngeneric names with quadrangular features. But as far as I'm concerned
+      I don't believe in these\r\nstories. For example, only you can move here. Another
+      strange thing. If you want my opinion here\r\nwe find in a poor representation.
+      I hope entry was free."
+    LenguageType: 1
+  - Data: "Primus apud nos nemo scit quinam fuerint, aliqui sermones de moribus \r\nnomina
+      generica cum lineamentis quadrangulis. Sed quod ad me attinet, non credo in
+      illis\r\nfabulas. Exempli causa, solum hic movere potes. Res aliena. Si vis
+      hic meam sententiam\r\ninvenimus in repraesentatione pauperis. Spero liber
+      erat ingressum."
+    LenguageType: 2
+  - Data: "Los primeros entre nosotros nadie sabe quienes eran, algunos hablan de
+      personajes con \r\nNombres gen\xE9ricos con caracter\xEDsticas cuadrangulares.
+      Pero en lo que a m\xED respecta, no creo en estos\r\nhistorias. Por ejemplo,
+      s\xF3lo t\xFA puedes moverte aqu\xED. Otra cosa extra\xF1a. Si quieres mi opini\xF3n
+      aqu\xED.\r\nnos encontramos en una pobre representaci\xF3n. Espero que la entrada
+      haya sido gratuita."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Grazie Hadrianus.
+      LenguageType: 0
+    - Data: Thanks Hadrianus.
+      LenguageType: 1
+    - Data: Deo Hadriano.
+      LenguageType: 2
+    - Data: Gracias Adriano.
+      LenguageType: 3
+    _choiceID: ea3d7428-e6ca-4fbf-9cfe-d71f8ccf718a
+    _nextDialogue: {fileID: 11400000, guid: fa1544b8a36112a48b2e9e9a5414d9ff, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

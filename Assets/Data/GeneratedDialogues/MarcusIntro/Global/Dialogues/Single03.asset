@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single03
+  m_EditorClassIdentifier: 
+  _dialogueName: Single03
+  _dialogueID: 91a875ac-2259-4e3a-a09b-cf6527d4e048
+  _dialogueType: 0
+  _texts:
+  - Data: 'Semplice. Non offendere nessuno, aumenta la tua gravitas e compiaci uno
+      di noi. Poi quando
+
+      ti senti pronto vai a farti giudicare da qualcuno
+      di noi.'
+    LenguageType: 0
+  - Data: 'Simple. Don''t offend anyone, increase your gravitas and please one of
+      us. Then when
+
+      you feel ready go and be judged by one of us.'
+    LenguageType: 1
+  - Data: 'Simplex. Ne aliquem offendas, auge tuam gravitas et placeat nostrum. tum
+      cum
+
+      ire sentis et iudicari per unum nostrum.'
+    LenguageType: 2
+  - Data: 'Simplex. No nos ofendas, aumenta tu seriedad y complacenos. cum
+
+      ire
+      sentis et iudicari per unum nostrum.'
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Grazie.
+      LenguageType: 0
+    - Data: Thank you.
+      LenguageType: 1
+    - Data: Gratias agimus tibi.
+      LenguageType: 2
+    - Data: Gratias agimus tibi.
+      LenguageType: 3
+    _choiceID: cef63965-efd8-4ee6-8711-221b5fd8a336
+    _nextDialogue: {fileID: 11400000, guid: 6804ed26c6f36f544a77fccc7dd381bc, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

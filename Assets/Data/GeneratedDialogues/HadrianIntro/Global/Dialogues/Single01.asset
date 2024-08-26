@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single01
+  m_EditorClassIdentifier: 
+  _dialogueName: Single01
+  _dialogueID: f5c4edc3-309b-4c5d-b5ed-9dff7476b5e3
+  _dialogueType: 0
+  _texts:
+  - Data: "Non si hanno molte cose da fare qui, ma parlare con me per primo \xE8
+      stata una\r\ndelle opzioni migliori che potevi scegliere. Ti dar\xF2 un consiglio,
+      bada bene a non offendere nessuno qui."
+    LenguageType: 0
+  - Data: 'There aren''t many things to do here, but talking to me first was one
+
+      of
+      the best options you could choose. I''ll give you some advice, be careful not
+      to offend anyone here.'
+    LenguageType: 1
+  - Data: 'Multa hic non sunt, sed mihi primum loqueris
+
+      optimus bene tu eligere.
+      Aliquid tibi dabo, cave ne quempiam offendas.'
+    LenguageType: 2
+  - Data: "No hay muchas cosas que hacer aqu\xED, pero hablar conmigo primero fue
+      una de ellas.\r\nde las mejores opciones que podr\xEDas elegir. Te dar\xE9
+      un consejo, ten cuidado de no ofender a nadie aqu\xED."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ti ringrazio.
+      LenguageType: 0
+    - Data: I thank you.
+      LenguageType: 1
+    - Data: Gratias tibi ago.
+      LenguageType: 2
+    - Data: Te lo agradezco.
+      LenguageType: 3
+    _choiceID: 012270c6-e375-45df-9110-44b42803ea6c
+    _nextDialogue: {fileID: 11400000, guid: 64f4e52c08657854397a7322cde99af7, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

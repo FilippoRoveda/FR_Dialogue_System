@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event01
+  m_EditorClassIdentifier: 
+  _dialogueName: Event01
+  _dialogueID: 10fc6b8f-c808-4384-a5c1-3e6717b4c4af
+  _dialogueType: 4
+  _texts:
+  - Data: 'Lascia stare, vedo che sei corso subito da me, grazie mille. Guarda che
+      begli sprite che ho.
+
+      Ti aumento leggermente la gravitas ed il rapporto
+      con me, inizi bene.'
+    LenguageType: 0
+  - Data: 'Forget it, I see you ran to me straight away, thank you very much. Look
+      at the beautiful sprites I have.
+
+      I slightly increase your gravitas and
+      relationship with me, you start off well.'
+    LenguageType: 1
+  - Data: 'Oblivisci, video te continuo ad me cucurrit, tibi valde gratias. Aspice
+      pulchras mentes quas habeo.
+
+      Ego tuam gravitatem ac necessitudinem mecum
+      paulo augeo, bene incipio.'
+    LenguageType: 2
+  - Data: "Oblivise, v\xEDdeo me sigues cucurrit, obtienes valor gratis. Aspice pulchras
+      mentes quas habeo.\r\nEgo tuam gravitatem ac necessitudinem mecum paulo augeo,
+      bene incipio."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Non sto capendo.
+      LenguageType: 0
+    - Data: I'm not understanding.
+      LenguageType: 1
+    - Data: Non sum intellectus.
+      LenguageType: 2
+    - Data: Non sum intellectus.
+      LenguageType: 3
+    _choiceID: 99a57de8-3f94-4f9b-b364-2ac59f4f065c
+    _nextDialogue: {fileID: 11400000, guid: 02d74c26622b1894a848f42e7a0c1dd9, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 3
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

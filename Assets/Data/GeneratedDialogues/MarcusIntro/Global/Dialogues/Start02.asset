@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start02
+  m_EditorClassIdentifier: 
+  _dialogueName: Start02
+  _dialogueID: 3b45ded7-98d0-4908-b7c9-6088c47adaa9
+  _dialogueType: 2
+  _texts:
+  - Data: 'Oh eccoti, ti stavo cercando, ti sei perso le mie splendide animazioni
+      di camminata ieri.
+
+      Erano proprio fantastiche.'
+    LenguageType: 0
+  - Data: 'Oh there you are, I was looking for you, you missed my gorgeous walking
+      animations yesterday.
+
+      They were just fantastic.'
+    LenguageType: 1
+  - Data: 'Oh illic es, quaerebam te, desiderabas ambulans animationes meas splendidis
+      heri.
+
+      Mox phantastici erant.'
+    LenguageType: 2
+  - Data: 'Oh illic es, quaerebam te, desibas ambulans animaciones meas splendidis
+      heri.
+
+      Mox phantastici eranant.'
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Non capisco nulla di quel che dici.
+      LenguageType: 0
+    - Data: I don't understand anything you say.
+      LenguageType: 1
+    - Data: Non intellego quod dicis.
+      LenguageType: 2
+    - Data: No entiendo lo que dices.
+      LenguageType: 3
+    _choiceID: b84b7b93-8f77-4439-a658-9e9e1efff514
+    _nextDialogue: {fileID: 11400000, guid: 343c0a55f25aa4f4988d90c01f834959, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

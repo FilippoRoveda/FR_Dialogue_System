@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event03
+  m_EditorClassIdentifier: 
+  _dialogueName: Event03
+  _dialogueID: 6c78a0c7-6f53-45fc-9772-025a347d6558
+  _dialogueType: 4
+  _texts:
+  - Data: "Mi pagarono molto di pi\xF9 per partecipare."
+    LenguageType: 0
+  - Data: They paid me a lot more to participate.
+    LenguageType: 1
+  - Data: Multum mihi dederunt ut participent.
+    LenguageType: 2
+  - Data: Multum mihi dederunt ut participante.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Chiaro.
+      LenguageType: 0
+    - Data: Clear.
+      LenguageType: 1
+    - Data: Patet.
+      LenguageType: 2
+    - Data: Patet.
+      LenguageType: 3
+    _choiceID: d29d7bf2-186c-46f2-9f95-66ba1090adca
+    _nextDialogue: {fileID: 11400000, guid: 458f778f88eb40d41bd6be89362f76b6, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents:
+    - _variableEnum: 3
+      _eventType: 2
+      _eventValue: 1
+    _boolEvents: []

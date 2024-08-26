@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start03
+  m_EditorClassIdentifier: 
+  _dialogueName: Start03
+  _dialogueID: 458692c6-4fb2-469f-a6a9-e7f44fcf4d25
+  _dialogueType: 2
+  _texts:
+  - Data: Salve ancora Ottaviano.
+    LenguageType: 0
+  - Data: Hello again Octavian.
+    LenguageType: 1
+  - Data: Salve iterum Octavianus.
+    LenguageType: 2
+  - Data: Hola de nuevo Octavio.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: "Dimmi di pi\xF9."
+      LenguageType: 0
+    - Data: Tell me more.
+      LenguageType: 1
+    - Data: Dic mihi plura.
+      LenguageType: 2
+    - Data: "Cu\xE9ntame m\xE1s."
+      LenguageType: 3
+    _choiceID: 3a373c68-c285-4f07-b302-fb3010e253f1
+    _nextDialogue: {fileID: 11400000, guid: 23e7c37c1958d8e42bbf99549c84bce6, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

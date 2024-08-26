@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: Event04
+  m_EditorClassIdentifier: 
+  _dialogueName: Event04
+  _dialogueID: 35c86f2a-8e96-44ae-a7b2-c59b7e4f6595
+  _dialogueType: 4
+  _texts:
+  - Data: "Questa osservazione ti porta sulla strada giusta, poco di vero riuscirai\r\na
+      trovare qui. Ti dir\xF2 un segreto, non provare a fare cose strane, non vorrai
+      fare\r\ncrushare tutto."
+    LenguageType: 0
+  - Data: 'This observation takes you on the right path, you will achieve little
+      that is true
+
+      to find here. I''ll tell you a secret, don''t try to do
+      strange things, you won''t want to do
+
+      crush everything.'
+    LenguageType: 1
+  - Data: 'Haec animadversio te in rectam viam accipit, parum verum assequeris
+
+      hie
+      invenire. Secretum dicam tibi, noli mirabilia facere, facere non vis
+
+      comminuet
+      omnia.'
+    LenguageType: 2
+  - Data: "Esta observaci\xF3n te lleva por el camino correcto, poco lograr\xE1s
+      eso es cierto\r\npara encontrar aqu\xED. Te contar\xE9 un secreto, no intentes
+      hacer cosas raras, no querr\xE1s hacerlas.\r\naplastar todo."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: EventOutput
+      LenguageType: 0
+    - Data: EventOutput
+      LenguageType: 1
+    - Data: EventOutput
+      LenguageType: 2
+    - Data: Salida de evento
+      LenguageType: 3
+    _choiceID: 8fa85abd-b413-4d5d-ad3f-450a8340ef71
+    _nextDialogue: {fileID: 11400000, guid: 937a25ea25cd74d4d8964e1a565a41c4, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents:
+    - _variableEnum: 0
+      _eventType: 1
+      _eventValue: 1
+    _floatEvents:
+    - _variableEnum: 2
+      _eventType: 1
+      _eventValue: 1
+    _boolEvents: []

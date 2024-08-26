@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single02
+  m_EditorClassIdentifier: 
+  _dialogueName: Single02
+  _dialogueID: 960009e3-b09c-4ac4-b749-9ce0bad9d38a
+  _dialogueType: 0
+  _texts:
+  - Data: 'Non porto, ne posso provare ormai alcun rancore, ma dal canto tuo saresti
+      dovuto venire a parlare con
+
+      me come prima cosa appena giunto qui.'
+    LenguageType: 0
+  - Data: 'I don''t bear, nor can I now hold, any grudge, but for your part, you
+      should have come and spoken to him
+
+      me first thing as soon as I got here.'
+    LenguageType: 1
+  - Data: 'non feram, neque nunc ullam inuidiam tenere possum, sed ex parte tua uenires
+      et loquereris ad eum.
+
+      me primum quam primum huc adveni.'
+    LenguageType: 2
+  - Data: "No guardo ni puedo guardar rencor, pero por tu parte deber\xEDas haber
+      venido a hablar con \xE9l.\r\nlo primero que hice tan pronto como llegu\xE9
+      aqu\xED."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Continua.
+      LenguageType: 0
+    - Data: Continues.
+      LenguageType: 1
+    - Data: Prosequitur.
+      LenguageType: 2
+    - Data: "Contin\xFAa."
+      LenguageType: 3
+    _choiceID: 7b2ea2d8-0811-42a0-b8fd-887a1e1dff56
+    _nextDialogue: {fileID: 11400000, guid: 7a33f1d7637286e4280f7fce5409da65, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

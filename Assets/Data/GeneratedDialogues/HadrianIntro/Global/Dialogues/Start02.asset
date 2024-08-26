@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start02
+  m_EditorClassIdentifier: 
+  _dialogueName: Start02
+  _dialogueID: e1603f37-6bab-4a5a-bff6-8aada31d14f7
+  _dialogueType: 2
+  _texts:
+  - Data: 'Eccoti di ritorno, non ti ho mai perso di vista.
+
+      Dimmi cosa hai
+      notato di interessante qui intorno.'
+    LenguageType: 0
+  - Data: 'Here you are back, I''ve never lost sight of you.
+
+      Tell me what
+      you''ve noticed that''s interesting around here.'
+    LenguageType: 1
+  - Data: 'Hic tu redis, ego te nunquam perdidi.
+
+      Dic mihi quid animadverti
+      hoc interest circa hic.'
+    LenguageType: 2
+  - Data: "Aqu\xED est\xE1s de vuelta, nunca te he perdido de vista.\r\nCu\xE9ntame
+      qu\xE9 has notado que sea interesante por aqu\xED."
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Cosa intendi?
+      LenguageType: 0
+    - Data: What do you mean?
+      LenguageType: 1
+    - Data: Quid istuc est?
+      LenguageType: 2
+    - Data: "\xBFQu\xE9 quieres decir?"
+      LenguageType: 3
+    _choiceID: fb596e4c-8b5f-4779-94b6-1e938bff6ff5
+    _nextDialogue: {fileID: 11400000, guid: 5728af9096bb7d840830fc2361306e2a, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

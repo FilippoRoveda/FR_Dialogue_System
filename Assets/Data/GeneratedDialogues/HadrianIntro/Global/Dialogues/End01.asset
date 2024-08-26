@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb0701c4cdd664cad6832510e36ed0, type: 3}
+  m_Name: End01
+  m_EditorClassIdentifier: 
+  _dialogueName: End01
+  _dialogueID: 85f47f12-060b-4c4a-95c2-70b37e4b7f47
+  _dialogueType: 3
+  _texts:
+  - Data: "Alcuni dicono siamo tutti gi\xE0 morti, altri dicono che si sia sull'isola
+      di Lost. Dal\r\ncanto mio posso dirti che qualcuno di noi potr\xE0 dirti di
+      pi\xF9 alle giuste condizioni."
+    LenguageType: 0
+  - Data: 'Some say we are all already dead, others say we are on the island of Lost.
+      From the
+
+      For my part, I can tell you that some of us will be able to
+      tell you more under the right conditions.'
+    LenguageType: 1
+  - Data: 'Alii omnes jam mortui sumus, alii nos in insula Perdita. Ex the
+
+      Ego
+      vero tibi dicere possum aliquos ex nostris sub rectis conditionibus plura vobis
+      dicere posse.'
+    LenguageType: 2
+  - Data: "Algunos dicen que ya estamos todos muertos, otros dicen que estamos en
+      la isla de Lost. Desde\r\nPor mi parte, puedo decirle que algunos de nosotros
+      podremos contarle m\xE1s en las condiciones adecuadas."
+    LenguageType: 3
+  _isRepetable: 0

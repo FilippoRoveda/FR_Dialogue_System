@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Single01
+  m_EditorClassIdentifier: 
+  _dialogueName: Single01
+  _dialogueID: 0db6a88d-8d42-4ca6-81b8-d4079588b8e1
+  _dialogueType: 0
+  _texts:
+  - Data: "Avresti dovuto scegliere degli sprite pi\xF9 adatti."
+    LenguageType: 0
+  - Data: You should have chosen more suitable sprites.
+    LenguageType: 1
+  - Data: Mentes aptius elegisses.
+    LenguageType: 2
+  - Data: Mentes aptius elegisses.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Hai ragione.
+      LenguageType: 0
+    - Data: You are right.
+      LenguageType: 1
+    - Data: Recte dicis.
+      LenguageType: 2
+    - Data: "L\xEDnea recta."
+      LenguageType: 3
+    _choiceID: 4ddb781b-60b8-4255-860c-7173e59fcd7d
+    _nextDialogue: {fileID: 11400000, guid: 458f778f88eb40d41bd6be89362f76b6, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

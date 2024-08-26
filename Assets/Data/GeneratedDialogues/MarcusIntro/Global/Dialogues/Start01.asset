@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start01
+  m_EditorClassIdentifier: 
+  _dialogueName: Start01
+  _dialogueID: 06e1e962-9315-49f2-a1cf-0c32f0473545
+  _dialogueType: 2
+  _texts:
+  - Data: "Ti saluto, anche tu qui quindi. Quante volte hai gi\xE0 ricominciato?"
+    LenguageType: 0
+  - Data: Hello, you're here too. How many times have you already started over?
+    LenguageType: 1
+  - Data: Salve, tu hic quoque es. Quotiens iam coepi per?
+    LenguageType: 2
+  - Data: Hola, hic quoque es. Cocientes iam coepi per?
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Che intendi?
+      LenguageType: 0
+    - Data: What do you mean?
+      LenguageType: 1
+    - Data: Quid istuc est?
+      LenguageType: 2
+    - Data: "\xBFQu\xE9 es esto?"
+      LenguageType: 3
+    _choiceID: eb9541f5-a6bf-42b5-8c05-f806e202ab40
+    _nextDialogue: {fileID: 11400000, guid: c14e4e184f1a89b45bd927a9d2414f70, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Start03
+  m_EditorClassIdentifier: 
+  _dialogueName: Start03
+  _dialogueID: c6d2fbd8-c022-4258-b47a-ea89cc73530b
+  _dialogueType: 2
+  _texts:
+  - Data: Sai che mi sono appena accorto di saper parlare in molte lingue?
+    LenguageType: 0
+  - Data: Do you know that I just realized that I can speak in many languages?
+    LenguageType: 1
+  - Data: Scisne me solum sensisse me multis linguis loqui posse?
+    LenguageType: 2
+  - Data: "Scisne me only sensisse me multis linguis loqui \xBFposeo?"
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ho notato si.
+      LenguageType: 0
+    - Data: I noticed yes.
+      LenguageType: 1
+    - Data: Etiam animadverti.
+      LenguageType: 2
+    - Data: Etiam animadverti.
+      LenguageType: 3
+    _choiceID: 616110e8-bb8e-45ff-bfb7-3781fd075da5
+    _nextDialogue: {fileID: 11400000, guid: eea682b717273c841b5f9c18b8fbb911, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738a1ff99fcb23448126457dec887c6, type: 3}
+  m_Name: Multiple01
+  m_EditorClassIdentifier: 
+  _dialogueName: Multiple01
+  _dialogueID: 8496f2a6-75c4-4c86-b1fa-c1156126797e
+  _dialogueType: 1
+  _texts:
+  - Data: "Dai dimmi qualcosa, vediamo cosa accadr\xE0."
+    LenguageType: 0
+  - Data: Come on, tell me something, let's see what will happen.
+    LenguageType: 1
+  - Data: Age, dic aliquid, videamus quid futurum sit.
+    LenguageType: 2
+  - Data: Edad, dic aliquid, videamus quid futurum sit.
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Ti preferivo nel Gladiatore.
+      LenguageType: 0
+    - Data: I preferred you in Gladiator.
+      LenguageType: 1
+    - Data: Ego te in Gladiatore praetuli.
+      LenguageType: 2
+    - Data: Ego te en Gladiator praetuli.
+      LenguageType: 3
+    _choiceID: 5db1b944-4b07-4298-97d1-6f41dc9ba517
+    _nextDialogue: {fileID: 11400000, guid: a3965e2f833c90c40a242d5090b6cab0, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: "Tuo figlio sar\xE0 molto antipatico."
+      LenguageType: 0
+    - Data: Your son will be very unpleasant.
+      LenguageType: 1
+    - Data: Filius tuus valde ingratus erit.
+      LenguageType: 2
+    - Data: Filius tuus valde ingratus erit.
+      LenguageType: 3
+    _choiceID: 03dbd383-f4db-4d6f-9dd8-f7744782458e
+    _nextDialogue: {fileID: 11400000, guid: 9fd638e8ed57e2f4ab43db90308d8549, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  - _choiceTexts:
+    - Data: Trovo che ci sia freschino qui.
+      LenguageType: 0
+    - Data: I find it cool here.
+      LenguageType: 1
+    - Data: Hic invenio frigus.
+      LenguageType: 2
+    - Data: Hic invenio frigus.
+      LenguageType: 3
+    _choiceID: 27933e32-9811-4b0c-a8fa-43936bb65d90
+    _nextDialogue: {fileID: 11400000, guid: f59d58a0638e0b341981dcc0c457b68f, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
