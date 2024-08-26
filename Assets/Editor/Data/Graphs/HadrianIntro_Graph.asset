@@ -412,8 +412,8 @@ MonoBehaviour:
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: "Penso che dovresti dirmi tutto quello che sai, altrimenti ti spinger\xF2
-          oltre il limite della mappa."
+      - Data: "Dimmi tutto quello che sai, altrimenti ti spinger\xF2 oltre il limite
+          della mappa."
         LenguageType: 0
       - Data: I think you should tell me everything you know, otherwise I'll push
           you over the edge of the map.
@@ -487,13 +487,13 @@ MonoBehaviour:
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: Next Single Choice
+      - Data: Continua.
         LenguageType: 0
-      - Data: Next Single Choice
+      - Data: Continue.
         LenguageType: 1
-      - Data: Una electio
+      - Data: Continua.
         LenguageType: 2
-      - Data: "Siguiente elecci\xF3n \xFAnica"
+      - Data: Continua.
         LenguageType: 3
       choiceID: 8a353434-610b-4a54-88eb-391ad3f35f66
       nextNodeID: 2976cd95-2b1b-405b-b521-985de001bd72
@@ -829,13 +829,13 @@ MonoBehaviour:
       LenguageType: 3
     _choices:
     - choiceTexts:
-      - Data: EventOutput
+      - Data: Continua.
         LenguageType: 0
-      - Data: EventOutput
+      - Data: Continue.
         LenguageType: 1
-      - Data: EventOutput
+      - Data: Continues.
         LenguageType: 2
-      - Data: Salida de evento
+      - Data: Continues.
         LenguageType: 3
       choiceID: 8fa85abd-b413-4d5d-ad3f-450a8340ef71
       nextNodeID: dc425f87-1de2-4f78-adfb-7172f07eaa07
@@ -1140,33 +1140,4 @@ MonoBehaviour:
         floatConditions: []
         boolConditions: []
   _oldGroupsNames: []
-  _oldUngroupedNames:
-  - Single01
-  - Single03
-  - Single02
-  - Start01
-  - Multiple01
-  - Start02
-  - Start03
-  - FinalSingle
-  - Multiple02
-  - Multiple03
-  - BadEndingSingle
-  - Event03
-  - Event02
-  - EndEvent
-  - EndEvent00
-  - Event05
-  - Event06
-  - Event07
-  - Event04
-  - Event01
-  - End02
-  - End01
-  - End03
-  - FinalEnd
-  - End04
-  - End05
-  - Branch01
-  - EndBranch
-  - Branch02
+  _oldUngroupedNames: []

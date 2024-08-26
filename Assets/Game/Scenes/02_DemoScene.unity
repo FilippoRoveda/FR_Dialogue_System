@@ -3700,7 +3700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueContainers:
-  - {fileID: 11400000, guid: f9f513ce9d5c5514db26df57b01fda01, type: 2}
+  - {fileID: 11400000, guid: adef40d0783e500439852470f673d723, type: 2}
   _linkedCharacter: {fileID: 112163390}
   _talkZone: {fileID: 1555629120}
   availableDialogues: []
@@ -4872,7 +4872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueContainers:
-  - {fileID: 11400000, guid: 8fa0bb4ff1c045647a4e8b6d6f22b9ab, type: 2}
+  - {fileID: 11400000, guid: 2495d32f7469b3341b92f157cf4d89e0, type: 2}
   _linkedCharacter: {fileID: 106825628}
   _talkZone: {fileID: 2062010625}
   availableDialogues: []

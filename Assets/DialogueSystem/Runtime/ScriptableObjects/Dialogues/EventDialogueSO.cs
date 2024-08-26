@@ -44,7 +44,7 @@ namespace DS.Runtime.ScriptableObjects
             _variableEvents = new();
             _variableEvents.Reload(eventsContainer);
         }
-
+#if UNITY_EDITOR
         /// <summary>
         /// Initialize the scriptble object informations.
         /// </summary>
@@ -55,8 +55,9 @@ namespace DS.Runtime.ScriptableObjects
         /// <param name="isStartingDialogue"></param>
         public override void Initialize(string dialogueName, string dialogueID, DialogueType dialogueType, List<LenguageData<string>> texts, List<DialogueChoice> choices)
         {
-            base.Initialize(dialogueName, dialogueID, dialogueType, texts);      
+            base.Initialize(dialogueName, dialogueID, dialogueType, texts);
             Choices = new List<DialogueChoice>(choices);
         }
+#endif
     }
 }

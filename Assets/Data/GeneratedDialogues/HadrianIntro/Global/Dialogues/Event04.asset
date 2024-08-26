@@ -42,13 +42,13 @@ MonoBehaviour:
     LenguageType: 3
   _choices:
   - _choiceTexts:
-    - Data: EventOutput
+    - Data: Continua.
       LenguageType: 0
-    - Data: EventOutput
+    - Data: Continue.
       LenguageType: 1
-    - Data: EventOutput
+    - Data: Continues.
       LenguageType: 2
-    - Data: Salida de evento
+    - Data: Continues.
       LenguageType: 3
     _choiceID: 8fa85abd-b413-4d5d-ad3f-450a8340ef71
     _nextDialogue: {fileID: 11400000, guid: 937a25ea25cd74d4d8964e1a565a41c4, type: 2}

@@ -525,107 +525,6 @@ MonoBehaviour:
         floatConditions: []
         boolConditions: []
   _eventNodes:
-  - _name: Event01
-    _nodeID: 10fc6b8f-c808-4384-a5c1-3e6717b4c4af
-    _groupID: 
-    _nodeType: 4
-    _position: {x: 1179, y: 365}
-    texts:
-    - Data: 'Lascia stare, vedo che sei corso subito da me, grazie mille. Guarda
-        che begli sprite che ho.
-
-        Ti aumento leggermente la gravitas ed il
-        rapporto con me, inizi bene.'
-      LenguageType: 0
-    - Data: 'Forget it, I see you ran to me straight away, thank you very much. Look
-        at the beautiful sprites I have.
-
-        I slightly increase your gravitas
-        and relationship with me, you start off well.'
-      LenguageType: 1
-    - Data: 'Oblivisci, video te continuo ad me cucurrit, tibi valde gratias. Aspice
-        pulchras mentes quas habeo.
-
-        Ego tuam gravitatem ac necessitudinem
-        mecum paulo augeo, bene incipio.'
-      LenguageType: 2
-    - Data: "Oblivise, v\xEDdeo me sigues cucurrit, obtienes valor gratis. Aspice
-        pulchras mentes quas habeo.\r\nEgo tuam gravitatem ac necessitudinem mecum
-        paulo augeo, bene incipio."
-      LenguageType: 3
-    _choices:
-    - choiceTexts:
-      - Data: Non sto capendo.
-        LenguageType: 0
-      - Data: I'm not understanding.
-        LenguageType: 1
-      - Data: Non sum intellectus.
-        LenguageType: 2
-      - Data: Non sum intellectus.
-        LenguageType: 3
-      choiceID: 99a57de8-3f94-4f9b-b364-2ac59f4f065c
-      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
-      conditions:
-        intConditions: []
-        floatConditions: []
-        boolConditions: []
-    gameEvents: []
-    variableEvents:
-      integerEvents:
-      - eventValue: 1
-        eventType: 1
-        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
-      floatEvents:
-      - eventValue: 1
-        eventType: 1
-        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
-      boolEvents: []
-  - _name: Event02
-    _nodeID: 5afa46ce-7c27-4995-9408-4cd8164ba4d1
-    _groupID: 
-    _nodeType: 4
-    _position: {x: 1179, y: 673}
-    texts:
-    - Data: "Non fa nulla se sei venuto da me solo ora, l'importante \xE8 che non
-        sia ancora crushato niente.\r\nTieni un poco di influenza per aiutarti."
-      LenguageType: 0
-    - Data: 'It doesn''t matter if you''ve only come to me now, the important thing
-        is that nothing''s broken yet.
-
-        Have a little influence to help you.'
-      LenguageType: 1
-    - Data: 'Non refert si modo ad me venias, refert tamen nihil fractum esse.
-
-        Modicum
-        iuvare te vim.'
-      LenguageType: 2
-    - Data: "No denuncien de esta manera ad me venias, den\xFAncien tamen nihil fractum
-        esse.\r\nModicum iuvare te vim."
-      LenguageType: 3
-    _choices:
-    - choiceTexts:
-      - Data: Cosa?
-        LenguageType: 0
-      - Data: What?
-        LenguageType: 1
-      - Data: Quid?
-        LenguageType: 2
-      - Data: "\xBFLibra?"
-        LenguageType: 3
-      choiceID: d274e000-a9d9-432d-abae-a7ab57443a4a
-      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
-      conditions:
-        intConditions: []
-        floatConditions: []
-        boolConditions: []
-    gameEvents: []
-    variableEvents:
-      integerEvents:
-      - eventValue: 1
-        eventType: 1
-        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
-      floatEvents: []
-      boolEvents: []
   - _name: Event03
     _nodeID: 6c78a0c7-6f53-45fc-9772-025a347d6558
     _groupID: 
@@ -883,6 +782,107 @@ MonoBehaviour:
       - eventValue: 1
         eventType: 2
         variable: {fileID: 11400000, guid: 92a93289b5f18254e937ca5e433a120d, type: 2}
+      boolEvents: []
+  - _name: Event02
+    _nodeID: 5afa46ce-7c27-4995-9408-4cd8164ba4d1
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1179, y: 673}
+    texts:
+    - Data: "Non fa nulla se sei venuto da me solo ora, l'importante \xE8 che non
+        sia ancora crushato niente.\r\nTieni un poco di influenza per aiutarti."
+      LenguageType: 0
+    - Data: 'It doesn''t matter if you''ve only come to me now, the important thing
+        is that nothing''s broken yet.
+
+        Have a little influence to help you.'
+      LenguageType: 1
+    - Data: 'Non refert si modo ad me venias, refert tamen nihil fractum esse.
+
+        Modicum
+        iuvare te vim.'
+      LenguageType: 2
+    - Data: "No denuncien de esta manera ad me venias, den\xFAncien tamen nihil fractum
+        esse.\r\nModicum iuvare te vim."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Cosa?
+        LenguageType: 0
+      - Data: What?
+        LenguageType: 1
+      - Data: Quid?
+        LenguageType: 2
+      - Data: "\xBFLibra?"
+        LenguageType: 3
+      choiceID: d274e000-a9d9-432d-abae-a7ab57443a4a
+      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents: []
+      boolEvents: []
+  - _name: Event01
+    _nodeID: 10fc6b8f-c808-4384-a5c1-3e6717b4c4af
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 1179, y: 365}
+    texts:
+    - Data: 'Lascia stare, vedo che sei corso subito da me, grazie mille. Guarda
+        che begli sprite che ho.
+
+        Ti aumento leggermente la gravitas ed il
+        rapporto con me, inizi bene.'
+      LenguageType: 0
+    - Data: 'Forget it, I see you ran to me straight away, thank you very much. Look
+        at the beautiful sprites I have.
+
+        I slightly increase your gravitas
+        and relationship with me, you start off well.'
+      LenguageType: 1
+    - Data: 'Oblivisci, video te continuo ad me cucurrit, tibi valde gratias. Aspice
+        pulchras mentes quas habeo.
+
+        Ego tuam gravitatem ac necessitudinem
+        mecum paulo augeo, bene incipio.'
+      LenguageType: 2
+    - Data: "Oblivise, v\xEDdeo me sigues cucurrit, obtienes valor gratis. Aspice
+        pulchras mentes quas habeo.\r\nEgo tuam gravitatem ac necessitudinem mecum
+        paulo augeo, bene incipio."
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Non sto capendo.
+        LenguageType: 0
+      - Data: I'm not understanding.
+        LenguageType: 1
+      - Data: Non sum intellectus.
+        LenguageType: 2
+      - Data: Non sum intellectus.
+        LenguageType: 3
+      choiceID: 99a57de8-3f94-4f9b-b364-2ac59f4f065c
+      nextNodeID: 18842604-fd49-4908-ab84-3ea133267e91
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 3e1b864ba20123847b9735373ea66601, type: 2}
+      floatEvents:
+      - eventValue: 1
+        eventType: 1
+        variable: {fileID: 11400000, guid: 624450583bf7c3447917447e1ea4c9df, type: 2}
       boolEvents: []
   _endNodes:
   - _name: End01
