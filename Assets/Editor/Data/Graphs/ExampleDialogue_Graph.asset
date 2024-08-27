@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1742452ed77d2e742bd4fa403feebc25, type: 3}
+  m_Name: ExampleDialogue_Graph
+  m_EditorClassIdentifier: 
+  _graphName: ExampleDialogue
+  _groups: []
+  _dialogueNodes:
+  - _name: ExampleStart
+    _nodeID: 1031017a-4251-4a17-9b76-5d4e0267cd5b
+    _groupID: 
+    _nodeType: 2
+    _position: {x: 189.4, y: -138.24808}
+    texts:
+    - Data: Inizio.
+      LenguageType: 0
+    - Data: Start Dialogue Text
+      LenguageType: 1
+    - Data: Start Dialogue Text
+      LenguageType: 2
+    - Data: Start Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Scelta iniziale
+        LenguageType: 0
+      - Data: Starting Choice
+        LenguageType: 1
+      - Data: Starting Choice
+        LenguageType: 2
+      - Data: Starting Choice
+        LenguageType: 3
+      choiceID: f43fd244-9011-4dd5-9583-e0acb8fa7e29
+      nextNodeID: ef62d804-b941-4a83-8b78-19338b97cb97
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _eventNodes:
+  - _name: ExampleEvent
+    _nodeID: 6dd45b57-6de3-42d2-ae17-258069237fbd
+    _groupID: 
+    _nodeType: 4
+    _position: {x: 863, y: -337.4481}
+    texts:
+    - Data: Dialogo del nodo evento.
+      LenguageType: 0
+    - Data: Event Dialogue Text
+      LenguageType: 1
+    - Data: Event Dialogue Text
+      LenguageType: 2
+    - Data: Event Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Risultato eventi.
+        LenguageType: 0
+      - Data: Event output.
+        LenguageType: 1
+      - Data: EventOutput
+        LenguageType: 2
+      - Data: EventOutput
+        LenguageType: 3
+      choiceID: 983be0d8-f32d-4bf9-93e9-eafc8f8f9d28
+      nextNodeID: 83bb15ca-817e-4b25-b054-e49a4fabfe2c
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    gameEvents: []
+    variableEvents:
+      integerEvents: []
+      floatEvents: []
+      boolEvents: []
+  _endNodes:
+  - _name: ExampleEnd
+    _nodeID: 83bb15ca-817e-4b25-b054-e49a4fabfe2c
+    _groupID: 
+    _nodeType: 3
+    _position: {x: 1288.6, y: -117.44809}
+    texts:
+    - Data: Testo finale.
+      LenguageType: 0
+    - Data: End Dialogue Text
+      LenguageType: 1
+    - Data: End Dialogue Text
+      LenguageType: 2
+    - Data: End Dialogue Text
+      LenguageType: 3
+    isDialogueRepetable: 0
+  _branchNodes:
+  - _name: ExampleBranch
+    _nodeID: ef62d804-b941-4a83-8b78-19338b97cb97
+    _groupID: 
+    _nodeType: 5
+    _position: {x: 501.40002, y: -142.24808}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions:
+      - comparisonValue: 1
+        variable: {fileID: 11400000, guid: ff14ec0cfc490fa46b480d0d50622bed, type: 2}
+    _choices:
+    - choiceTexts:
+      - Data: TRUE
+        LenguageType: 0
+      - Data: TRUE
+        LenguageType: 1
+      - Data: TRUE
+        LenguageType: 2
+      - Data: TRUE
+        LenguageType: 3
+      choiceID: 65050da5-0014-4ee0-ada3-60e221f69ff0
+      nextNodeID: 6dd45b57-6de3-42d2-ae17-258069237fbd
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: FALSE
+        LenguageType: 0
+      - Data: FALSE
+        LenguageType: 1
+      - Data: FALSE
+        LenguageType: 2
+      - Data: FALSE
+        LenguageType: 3
+      choiceID: 299bb861-58a1-4043-a44b-d86235784540
+      nextNodeID: 83bb15ca-817e-4b25-b054-e49a4fabfe2c
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  _oldGroupsNames: []
+  _oldUngroupedNames: []
