@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: ExampleDialogue_Graph
   m_EditorClassIdentifier: 
   _graphName: ExampleDialogue
-  _groups: []
+  _groups:
+  - name: ExampleGroup
+    id: 841de6c9-8099-4e80-b62f-e0aeff1aa22e
+    position: {x: 194.46053, y: -298.8861}
   _dialogueNodes:
   - _name: ExampleStart
     _nodeID: 1031017a-4251-4a17-9b76-5d4e0267cd5b
@@ -45,6 +48,96 @@ MonoBehaviour:
         intConditions: []
         floatConditions: []
         boolConditions: []
+  - _name: ExampleSingle
+    _nodeID: ad56cc68-0030-4e7e-854b-0ce144a804f9
+    _groupID: 
+    _nodeType: 0
+    _position: {x: 455.7338, y: -378.2009}
+    texts:
+    - Data: Testo dialogo singolo.
+      LenguageType: 0
+    - Data: Single Dialogue Text
+      LenguageType: 1
+    - Data: Single Dialogue Text
+      LenguageType: 2
+    - Data: Single Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Opzione singola.
+        LenguageType: 0
+      - Data: Next Single Choice
+        LenguageType: 1
+      - Data: Next Single Choice
+        LenguageType: 2
+      - Data: Next Single Choice
+        LenguageType: 3
+      choiceID: a12d7310-00e9-410a-a14f-de8d5dcc7d6b
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+  - _name: ExampleMultiple
+    _nodeID: 7a9c413a-f510-4c87-803f-cf4ab9b4f34f
+    _groupID: 
+    _nodeType: 1
+    _position: {x: 522.8, y: 72.400024}
+    texts:
+    - Data: Testo dialogo multiplo.
+      LenguageType: 0
+    - Data: Multiple Dialogue Text
+      LenguageType: 1
+    - Data: Multiple Dialogue Text
+      LenguageType: 2
+    - Data: Multiple Dialogue Text
+      LenguageType: 3
+    _choices:
+    - choiceTexts:
+      - Data: Opzione 1
+        LenguageType: 0
+      - Data: New Choice 1
+        LenguageType: 1
+      - Data: New Choice 1
+        LenguageType: 2
+      - Data: New Choice 1
+        LenguageType: 3
+      choiceID: 0db7d32c-80ba-4bbf-8e3e-825c442b65fb
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Opzione 2
+        LenguageType: 0
+      - Data: New choice 2
+        LenguageType: 1
+      - Data: New choice 2
+        LenguageType: 2
+      - Data: New choice 2
+        LenguageType: 3
+      choiceID: 4c38bcb5-8d4c-4619-aec0-d03561e5f8e2
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
+    - choiceTexts:
+      - Data: Opzione 3
+        LenguageType: 0
+      - Data: New choice 3
+        LenguageType: 1
+      - Data: New choice 3
+        LenguageType: 2
+      - Data: New choice 3
+        LenguageType: 3
+      choiceID: c17fab66-6783-4473-a986-81c5e36f30ac
+      nextNodeID: 
+      conditions:
+        intConditions: []
+        floatConditions: []
+        boolConditions: []
   _eventNodes:
   - _name: ExampleEvent
     _nodeID: 6dd45b57-6de3-42d2-ae17-258069237fbd
@@ -52,7 +145,7 @@ MonoBehaviour:
     _nodeType: 4
     _position: {x: 863, y: -337.4481}
     texts:
-    - Data: Dialogo del nodo evento.
+    - Data: Testo nodo evento..
       LenguageType: 0
     - Data: Event Dialogue Text
       LenguageType: 1
