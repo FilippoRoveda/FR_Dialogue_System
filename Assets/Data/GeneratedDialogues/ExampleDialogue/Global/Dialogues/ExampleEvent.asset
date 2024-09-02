@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a33bbd94cc1edc41981d92159b02b80, type: 3}
+  m_Name: ExampleEvent
+  m_EditorClassIdentifier: 
+  _dialogueName: ExampleEvent
+  _dialogueID: 6dd45b57-6de3-42d2-ae17-258069237fbd
+  _dialogueType: 4
+  _texts:
+  - Data: Testo nodo evento..
+    LenguageType: 0
+  - Data: Event Dialogue Text
+    LenguageType: 1
+  - Data: Event Dialogue Text
+    LenguageType: 2
+  - Data: Event Dialogue Text
+    LenguageType: 3
+  _choices:
+  - _choiceTexts:
+    - Data: Risultato eventi.
+      LenguageType: 0
+    - Data: Event output.
+      LenguageType: 1
+    - Data: EventOutput
+      LenguageType: 2
+    - Data: EventOutput
+      LenguageType: 3
+    _choiceID: 983be0d8-f32d-4bf9-93e9-eafc8f8f9d28
+    _nextDialogue: {fileID: 11400000, guid: e1340c360843d5549b7fc35e5781b00d, type: 2}
+    _conditions:
+      intConditions: []
+      floatConditions: []
+      boolConditions: []
+  _events: []
+  _variableEvents:
+    _integerEvents: []
+    _floatEvents: []
+    _boolEvents: []

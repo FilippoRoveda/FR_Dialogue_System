@@ -148,10 +148,12 @@ namespace DS.Editor.Elements
         public void SetGroup(DS_Group group)
         {
             Group = group;
+            _groupID = group.ID;
         }
         public void RemoveFromGroup()
         {
             Group = null;
+            _groupID = null;
         }
 
         /// <summary>

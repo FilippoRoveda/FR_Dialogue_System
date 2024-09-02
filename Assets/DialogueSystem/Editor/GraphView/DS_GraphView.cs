@@ -223,6 +223,7 @@ namespace DS.Editor.Windows
                     if ((element is BaseNode) == false) continue;
                     else
                     {
+                        Logger.Error("Element is node");
                         DS_Group nodeGroup = (DS_Group)group; 
                         BaseNode node = (BaseNode)element;
                         Remove_Node_FromUngrouped(node);

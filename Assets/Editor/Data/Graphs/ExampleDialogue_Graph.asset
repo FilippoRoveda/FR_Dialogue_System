@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _graphName: ExampleDialogue
   _groups:
-  - name: ExampleGroup
-    id: 841de6c9-8099-4e80-b62f-e0aeff1aa22e
-    position: {x: 194.46053, y: -298.8861}
+  - name: DialogueGroup
+    id: 4c1674e4-42db-497a-be8d-b4a50f33a223
+    position: {x: 132.8, y: 104.000015}
   _dialogueNodes:
   - _name: ExampleStart
     _nodeID: 1031017a-4251-4a17-9b76-5d4e0267cd5b
@@ -80,9 +80,9 @@ MonoBehaviour:
         boolConditions: []
   - _name: ExampleMultiple
     _nodeID: 7a9c413a-f510-4c87-803f-cf4ab9b4f34f
-    _groupID: 
+    _groupID: 4c1674e4-42db-497a-be8d-b4a50f33a223
     _nodeType: 1
-    _position: {x: 522.8, y: 72.400024}
+    _position: {x: 158.2, y: 163.8}
     texts:
     - Data: Testo dialogo multiplo.
       LenguageType: 0
