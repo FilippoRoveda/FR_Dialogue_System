@@ -14,6 +14,9 @@ namespace Game
         [SerializeField] private float _textsTypingSpeed = 0.08f;
         public float TextsTypingSpeed { get { return _textsTypingSpeed; } }
 
+        [SerializeField] private bool _typingSFXActivated = false;
+        public bool TypingSFXActivated { get { return _typingSFXActivated; } }
+
         [Range(1, 5)]
         [SerializeField] private int _typingSFXFrequency = 2;
         public int TypingSFXFrequency { get { return _typingSFXFrequency; } }
@@ -75,5 +78,9 @@ namespace Game
 #endif
             }
         }
+
+        public void EnableTypingSFX() { _typingSFXActivated = true; }
+        public void DisableTypingSFX() { _typingSFXActivated = false; }
+
     }
 }

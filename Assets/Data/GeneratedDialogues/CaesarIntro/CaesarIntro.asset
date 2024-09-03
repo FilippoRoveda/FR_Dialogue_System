@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5169bb0909fb4c04b895b35cc779425a, type: 3}
   m_Name: CaesarIntro
   m_EditorClassIdentifier: 
-  _graphName: CaesarIntro
+  _graphName: 
   _dialogueGroups:
     list: []
   _ungroupedDialogues:

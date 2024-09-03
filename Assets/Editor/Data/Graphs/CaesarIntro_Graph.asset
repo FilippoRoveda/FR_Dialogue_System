@@ -21,7 +21,7 @@ MonoBehaviour:
     _nodeType: 2
     _position: {x: 42.250004, y: 184.00003}
     texts:
-    - Data: Benvenuto, cosa di porta in queste remote stanze?
+    - Data: Benvenuto, cosa ti porta in queste remote stanze?
       LenguageType: 0
     - Data: Welcome, what do you bring to these remote rooms?
       LenguageType: 1

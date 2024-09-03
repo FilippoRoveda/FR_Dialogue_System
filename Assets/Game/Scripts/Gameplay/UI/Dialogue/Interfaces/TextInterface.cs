@@ -74,8 +74,11 @@ namespace Game
                     dialogueText.maxVisibleCharacters = textToDisplay.Length;
                     break;
                 }
-
-                PlayTypingSound(dialogueText.maxVisibleCharacters, dialogueText.text[dialogueText.maxVisibleCharacters]);
+                if(DialogueManager.Instance.TypingSFXActivated == true) 
+                {
+                    PlayTypingSound(dialogueText.maxVisibleCharacters, dialogueText.text[dialogueText.maxVisibleCharacters]);
+                }
+              
                 dialogueText.maxVisibleCharacters++;
 
                 yield return new WaitForSeconds(DialogueManager.Instance.TextsTypingSpeed);

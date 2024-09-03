@@ -16,7 +16,7 @@ MonoBehaviour:
   _dialogueID: b22c973b-b1ba-438b-9d89-efc494c2aa1b
   _dialogueType: 2
   _texts:
-  - Data: Benvenuto, cosa di porta in queste remote stanze?
+  - Data: Benvenuto, cosa ti porta in queste remote stanze?
     LenguageType: 0
   - Data: Welcome, what do you bring to these remote rooms?
     LenguageType: 1
